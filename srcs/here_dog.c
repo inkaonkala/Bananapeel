@@ -34,11 +34,8 @@ void	handle_the_dog(const char *delimiter)
     int     pipefd[2];
     pid_t   pid;
     char    *line;
-    size_t  len;
 
     line = NULL;
-    len = 0;
-
 	if(pipe(pipefd) == -1)
 	{
 		perror("pipe");
@@ -56,9 +53,9 @@ void	handle_the_dog(const char *delimiter)
 		close(pipefd[0]);
 		while ((line = get_next_line(STDIN_FILENO)) != NULL)
 		{
-			if ((strcmp(line, delimiter)) == 0) // this does not work
+			if ((strcmp(line, delimiter)) == 0)
 			{
-				ft_printf("Dog_exited!\n"); // TEST
+				ft_printf("Dog_exited!\n");
 				free (line);
 				break ;
 			}

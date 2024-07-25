@@ -12,8 +12,6 @@
 
 #include "../minishell.h"
 
-
-
 static int	count_tokens(char *str)
 {
 	int		count;
@@ -52,6 +50,7 @@ static int	count_tokens(char *str)
 // takes input and splits due to pipes and null to seperate nodes
 void	parsing(char *str)
 {
+	t_bananas bana;
 	char	**tokens;
 	int		token_i;
 	int		i;
@@ -94,17 +93,18 @@ void	parsing(char *str)
 		}
 	}
 	tokens[token_index] = NULL;
-
+	bana.token = tokens; // tokens set to struct
+	bana.tok_num = token_index;
+	command_search(&bana);
 	//CHECKER!!
-	    for (int k = 0; k < token_i; k++) 
+	for (int k = 0; k < token_i; k++) 
 	{
         ft_printf("Token %d: %s\n", k, tokens[k]);
         free(tokens[k]); // Free each token after use
     }
+	//remember to free all tokens!
 	// CHECKER!!
-
 	free(tokens);
-
 }
 
 
