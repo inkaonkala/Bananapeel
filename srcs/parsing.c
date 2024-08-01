@@ -12,6 +12,21 @@
 
 #include "../minishell.h"
 
+
+static void	free_tokens(char **tokens)
+{
+	int	k;
+
+	k = 0;
+	while (tokens[k])
+	{
+		free(tokens[k]);
+		k++;
+	}
+	free(tokens);
+}
+
+
 static int	count_tokens(char *str)
 {
 	int		count;
@@ -48,11 +63,10 @@ static int	count_tokens(char *str)
 }
 
 // takes input and splits due to pipes and null to seperate nodes
-void	parsing(char *str)
+bool	parsing(char *str, t_bananas *bana, char **envp)
 {
-	t_bananas bana;
 	char	**tokens;
-	int		token_i;
+	int		token_count;
 	int		i;
 	int		token_index;
 	char	cur_quo;
@@ -63,10 +77,11 @@ void	parsing(char *str)
 	token_index = 0;
 	cur_quo = 0;
 
-	token_i = count_tokens(str);
-	tokens = malloc((token_i + 1) * sizeof(char *));
+	token_count = count_tokens(str);
+
+	tokens = malloc((token_count + 1) * sizeof(char *));
 	if (!tokens)
-		exit(EXIT_FAILURE);
+		return (false);
 	
 	while(str[i])
 	{
@@ -86,25 +101,33 @@ void	parsing(char *str)
 			{
 				tokens[token_index] = malloc(tok_len + 1);
 				if (!tokens[token_index])
-					exit(EXIT_FAILURE);
+				{
+					//free(tokens); ?
+					return (false);
+				}
 				ft_strlcpy(tokens[token_index], &str[start], tok_len + 1);
 				token_index++;
 			}
 		}
 	}
 	tokens[token_index] = NULL;
-	bana.token = tokens; // tokens set to struct
-	bana.tok_num = token_index;
-	command_search(&bana);
+	bana->token = tokens; // tokens set to struct
+	bana->tok_num = token_index;
+
+	command_search(bana, envp);
+
 	//CHECKER!!
-	for (int k = 0; k < token_i; k++) 
-	{
-        ft_printf("Token %d: %s\n", k, tokens[k]);
-        free(tokens[k]); // Free each token after use
-    }
+	//for (int k = 0; k < token_i; k++) 
+	//{
+    //    ft_printf("Token %d: %s\n", k, tokens[k]);
+    //    free(tokens[k]); // Free each token after use
+    //}
+	//free(tokens);
 	//remember to free all tokens!
 	// CHECKER!!
-	free(tokens);
+	free_tokens(tokens);
+
+	return (true);
 }
 
 

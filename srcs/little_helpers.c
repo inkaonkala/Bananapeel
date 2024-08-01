@@ -37,4 +37,11 @@ int    quote_chk(char *str, char *cur_quo, int i)
 	    i++;			
     }
     return (i);
-}  
+}
+
+bool	check_specials(char *token)
+{
+	if (ft_strcmp(token, "|") == 0 || ft_strcmp(token, ">") == 0 || strcmp(token, ">>") == 0)
+		return (true);
+	return (false);
+}
