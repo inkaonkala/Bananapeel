@@ -17,19 +17,18 @@ int main(int arv, char **arc, char **envp)
 
 	if (isatty(STDIN_FILENO))
 	{
+		signaling();
 		while (1)
 		{
 			input = readline("🍌banana_peel:");
 			if (input == NULL)
 			{
-				ft_printf("Error in input\n");
+				write(1, "🍌 Goodbye Mate! 🍌\n", 25);
 				break ;
 			}
 			//ft_printf("Your input: %s\n", input); //  CHECKER!
 			if (*input)
 				add_history(input);
-			
-			// HANDLE SIGNALS BEFORE PARSING!
 
 			if(!parsing(input, &bana, envp))
 			{
@@ -44,7 +43,7 @@ int main(int arv, char **arc, char **envp)
 	}
 	else
 	{
-		ft_printf("Not active");
+		ft_printf("Bananas not rippen yet");
 	}
 	return (0);
 }
