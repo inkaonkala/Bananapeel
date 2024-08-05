@@ -83,6 +83,7 @@ static char	*get_path(char *path_name, char **envp)
 bool	parse_cmd_line(t_bananas *bana, char **envp)
 {
     int		i;
+	int		new_index; // to - the special characters
     char	**cmd;
 	char	*path;
 
@@ -91,14 +92,24 @@ bool	parse_cmd_line(t_bananas *bana, char **envp)
         return (false);
 
     i = 0;
+	new_index = 0;
     while (i < bana->tok_num)
     {
 		//printf("Token before split: %s\n", bana->token[i]);
 		
-		if (check_specials(bana->token[i]))
+		if (check_specials(bana->token[i])) // ADD evetyrhing not needed to pipe here!
 		{
-			i++;
-			continue; // is this needed?!
+			//handle_specials(bana, i);
+			free(bana->token[i]);
+			while(i < bana->tok_num - 1)
+			{
+				bana->token[i] = bana->token[i + 1];
+				i++;
+			}
+			bana->token[i] = NULL;
+			bana->tok_num--;
+			i = new_index;
+			continue ;
 		}
 
         cmd = ft_split(bana->token[i], ' ');
@@ -112,20 +123,23 @@ bool	parse_cmd_line(t_bananas *bana, char **envp)
 		path = get_path(cmd[0], envp);
         bana->cmd_paths[i] = path;
         free_line(cmd, -1);
+		new_index++;
         i++;
     }
 
 	//CHECKER!!
+	/*
+	bana->tok_num = new_index;
 
-	//ft_printf("Command Paths:\n");
-    //for (int j = 0; j < bana->tok_num; j++)
-    //{
-    //    if (bana->cmd_paths[j])
-    //        ft_printf("Path %d: %s\n", j, bana->cmd_paths[j]);
-    //    else
-    //        ft_printf("EMPTYYYY Path %d: (NULL)\n", j);
-    //}
-	
+	ft_printf("Command Paths:\n");
+    for (int j = 0; j < bana->tok_num; j++)
+    {
+        if (bana->cmd_paths[j])
+            ft_printf("Path %d: %s\n", j, bana->cmd_paths[j]);
+        else
+            ft_printf("EMPTYYYY Path %d: (NULL)\n", j);
+    }
+	*/
 	// CHECKER END!
     return (true);
 }

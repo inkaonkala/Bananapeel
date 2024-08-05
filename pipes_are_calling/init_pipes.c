@@ -44,4 +44,6 @@ void	init_pipes(t_bananas *bana)
 	}
 	bana->fd_input = -1;
 	bana->fd_output = -1;
+	bana->prev_fd[0] = -1;
+	bana->prev_fd[1] = -1;
 }
