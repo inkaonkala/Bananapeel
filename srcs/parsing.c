@@ -97,6 +97,7 @@ bool	parsing(char *str, t_bananas *bana, char **envp)
 			// HERE DOG!
 			if(tok_len == 2 && ft_strncmp(&str[start], "<<", 2) == 0)
 				find_dog(str);
+				
 			else
 			{
 				tokens[token_index] = malloc(tok_len + 1);

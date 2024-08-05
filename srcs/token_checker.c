@@ -13,19 +13,19 @@ void	command_search(t_bananas *bana, char **envp)
 		//PIPES
 		if (ft_strncmp(*token, "|", 1 ) == 0)
 		{
-			ft_printf("Eleven pipers piping\n");
+			//ft_printf("Eleven pipers piping\n");
 			
 			//TO COMPILE WITHOUT PIPEX
-			for (char **env = envp; *env != 0; env++)
-  			{
-    			char *thisEnv = *env;
-    			printf("%s\n", thisEnv);    
-  			}
+//			for (char **env = envp; *env != 0; env++)
+ // 			{
+//    			char *thisEnv = *env;
+//    			printf("%s\n", thisEnv);    
+//  			}
 
 			// END
 			
-			//if(pipex(bana, envp) == -1)
-			//	ft_printf("piping is not liking\n");
+			if(pipex(bana, envp) == -1)
+				ft_printf("piping is not liking\n");
 		}
 		
 		//REDIRECTIONS
