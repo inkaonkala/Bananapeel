@@ -9,6 +9,7 @@
 # include <stdio.h>
 # include <stdbool.h>
 # include <errno.h>
+# include <signal.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <fcntl.h> // for pipex
@@ -37,8 +38,11 @@ typedef struct s_bananas
 }   t_bananas;
 
 
-//in built_ins.c
+// in built_ins.c
 void	built_ins(t_bananas *bana);
+
+// in signaling.c
+void    signaling(void);
 
 //in parsing.c
 bool	parsing(char *str, t_bananas *bana, char **envp);

@@ -15,6 +15,7 @@ NAME		= 	bananapeel
 FLAGS		=	-Wall -Wextra -Werror
 
 SRCFILES 	= 	bananapeel.c \
+				signaling.c \
 				little_helpers.c \
 	 			built_ins.c \
 	 			parsing.c \
