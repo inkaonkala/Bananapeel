@@ -19,18 +19,20 @@
 
 typedef struct s_bananas
 {
-    int		fd_output;
-    int		fd_input;
-	
+    char	**token;
     int		tok_num;
 
-    char	**token;
+    //for pipex:
     char	**cmd_paths;
     char    **cmd_args;
 
 	int		**pipes;
+    int     prev_fd[2];
+    int		fd_output;
+    int		fd_input;
 
     bool    is_valid_intake;
+    bool    has_input;
 
 }   t_bananas;
 
