@@ -29,11 +29,19 @@ void	command_search(t_bananas *bana, char **envp)
 		}
 		
 		//REDIRECTIONS
-		if (ft_strncmp(*token, ">>", 2) == 0)
+		if (ft_strncmp(*token, ">>", 2) == 0 || ft_strncmp(*token, ">", 1) == 0)
+		{
 			ft_printf("Redirecting bananas\n");
+			//redirections(bana);
+		}
+			
+
 		
 		// SIGNALS ?!
 		token++;
 	}
+	// Here we could add a checker, that sees if there are tokens left.
+	// Everytime a token is used, it should be deleted. So, if we have some left at the end
+	// we now they are invalid and we can print an error message?
 
 }
