@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+         #
+#    By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 15:54:31 by jbremser          #+#    #+#              #
-#    Updated: 2024/07/22 16:15:20 by jbremser         ###   ########.fr        #
+#    Updated: 2024/08/07 12:51:55 by iniska           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ SRCFILES 	= 	bananapeel.c \
 	 			parsing.c \
 	 			here_dog.c \
 	 			delimiter.c \
-				token_checker.c
+				token_checker.c \
+				funky_arrows.c
 
 PIPEFILES	=	eleven_pipers_piping.c \
 				arguments.c\

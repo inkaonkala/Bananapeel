@@ -23,9 +23,17 @@ typedef struct s_bananas
     char	**token;
     int		tok_num;
 
+    // for file_handling
+
+    int     *in_files;
+    int     *out_files;
+    int     infile_count;
+    int     outfile_count;
+
     //for pipex:
     char	**cmd_paths;
     char    **cmd_args;
+
 
 	int		**pipes;
     int     prev_fd[2];
@@ -49,6 +57,7 @@ bool	parsing(char *str, t_bananas *bana, char **envp);
 int		empties(char c);
 
 //in little_helpers.c
+void	token_cleaner(t_bananas *bana, int i);
 int		empties(char c);
 int		quote_chk(char *str, char *cur_quo, int i);
 bool	check_specials(char *token);
@@ -62,6 +71,9 @@ char	*find_delimiter(char *str);
 
 // in token_checker.c
 void	command_search(t_bananas *bana, char **envp);
+
+//in funky_arrows.c
+void    redirections(t_bananas *bana);
 
 // pipes_are_calling
 
