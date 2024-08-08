@@ -6,12 +6,35 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 13:19:58 by iniska            #+#    #+#             */
-/*   Updated: 2024/07/22 16:07:19 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/08 15:07:02 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+//goes through everything checks bools for pips anr redirections
+static void	type_check(t_bananas *bana)
+{
+	int	i;
+
+	i = 0;
+	while(bana->token[i])
+	{
+		/*
+		if(ft_strncmp(bana->token[i], "<<", 2) == 0)
+			bana->is_dog = true;
+		
+		*/
+		if(ft_strncmp(bana->token[i], "|", 1) == 0)
+			bana->is_pipe = true;
+		if(ft_strncmp(bana->token[i], ">>", 2) == 0 || 
+			ft_strncmp(bana->token[i], ">", 1) == 0 || 
+			ft_strncmp(bana->token[i], "<", 1) == 0)
+			bana->is_rdr = true;
+		i++;		
+	}
+	
+}
 
 static void	free_tokens(char **tokens)
 {
@@ -25,7 +48,6 @@ static void	free_tokens(char **tokens)
 	}
 	free(tokens);
 }
-
 
 static int	count_tokens(char *str)
 {
@@ -94,10 +116,12 @@ bool	parsing(char *str, t_bananas *bana, char **envp)
 			i = quote_chk(str, &cur_quo, i);	
 			int tok_len = i - start; //HERE HERE
 
-			// HERE DOG!
+			// HERE DOG, REMOVE
+			/*
 			if(tok_len == 2 && ft_strncmp(&str[start], "<<", 2) == 0)
 				find_dog(str);
-				
+			*/
+			
 			else
 			{
 				tokens[token_index] = malloc(tok_len + 1);
@@ -114,7 +138,10 @@ bool	parsing(char *str, t_bananas *bana, char **envp)
 	tokens[token_index] = NULL;
 	bana->token = tokens; // tokens set to struct
 	bana->tok_num = token_index;
-
+	bana->is_pipe = false;
+	bana->is_rdr = false;
+	//bana->is_dog = false;
+	type_check(bana);
 	command_search(bana, envp);
 
 	//CHECKER!!

@@ -1,3 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bananapeel.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/07 10:43:50 by iniska            #+#    #+#             */
+/*   Updated: 2024/08/08 11:52:32 by iniska           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
 #include "../minishell.h"
 
 
@@ -43,7 +56,7 @@ int main(int arv, char **arc, char **envp)
 	}
 	else
 	{
-		ft_printf("Bananas not rippen yet");
+		ft_printf("Bananas not ripen yet");
 	}
 	return (0);
 }

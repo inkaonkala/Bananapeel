@@ -28,6 +28,12 @@ static void	read_buffer(int pipefd)
 	free(buffer);
 }
 
+static void	signal_dog(int sig)
+{
+	(void)sig;
+	write(STDOUT_FILENO, "\nI am giving you an error message\n", 30);
+	exit(EXIT_FAILURE);
+}
 //create a pipe and use it as fd, remember to close after use, or may cause freeze
 void	handle_the_dog(const char *delimiter)
 {
@@ -49,17 +55,20 @@ void	handle_the_dog(const char *delimiter)
 	}
 	if (pid == 0)
 	{
-		ft_printf("here_dog> ");
+		signal(SIGINT, signal_dog);
 		close(pipefd[0]);
-		while ((line = get_next_line(STDIN_FILENO)) != NULL)
+
+		while(1)
 		{
-			if ((strcmp(line, delimiter)) == 0)
+			ft_printf("here_dog> ");
+			line = readline(STDIN_FILENO); // should we use readline here?
+			if ((line == NULL || strcmp(line, delimiter)) == 0)
 			{
 				ft_printf("Dog_exited!\n");
 				free (line);
 				break ;
 			}
-			ft_printf("here_dog> ");
+			//ft_printf("here_dog> ");
 			write(pipefd[1], line, ft_strlen(line));
 			free(line);
 		}

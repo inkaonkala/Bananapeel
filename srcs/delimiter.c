@@ -6,11 +6,13 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 13:07:40 by iniska            #+#    #+#             */
-/*   Updated: 2024/07/22 16:06:18 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/08 12:02:50 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../minishell.h"
 
+/*
 static char *add_n(char *str)
 {
 	int i;
@@ -23,6 +25,7 @@ static char *add_n(char *str)
 	str[i] = '\n';
 	return (str);
 }
+*/
 
 char	*find_delimiter(char *str)
 {
@@ -56,7 +59,7 @@ char	*find_delimiter(char *str)
 				exit(EXIT_FAILURE);
 			}
 			ft_strlcpy(deli, &str[start], len + 1);
-			add_n(deli);
+			//add_n(deli);
 			return (deli);
 		}
 		if(str[i] != '\0')
