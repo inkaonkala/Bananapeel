@@ -122,8 +122,8 @@ bool	parsing(char *str, t_bananas *bana, char **envp)
 				find_dog(str);
 			*/
 			
-			else
-			{
+			//else
+			//{
 				tokens[token_index] = malloc(tok_len + 1);
 				if (!tokens[token_index])
 				{
@@ -132,7 +132,7 @@ bool	parsing(char *str, t_bananas *bana, char **envp)
 				}
 				ft_strlcpy(tokens[token_index], &str[start], tok_len + 1);
 				token_index++;
-			}
+			//}
 		}
 	}
 	tokens[token_index] = NULL;
