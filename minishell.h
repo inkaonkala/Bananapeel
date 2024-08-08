@@ -23,6 +23,17 @@ typedef struct s_bananas
     char	**token;
     int		tok_num;
 
+    // check for token values
+    bool    is_pipe;
+    bool    is_rdr;
+    //bool    is_dog;
+
+    // for file_handling
+    int     *in_files;
+    int     *out_files;
+    int     infile_count;
+    int     outfile_count;
+
     //for pipex:
     char	**cmd_paths;
     char    **cmd_args;
@@ -38,30 +49,39 @@ typedef struct s_bananas
 }   t_bananas;
 
 
-// in built_ins.c
+// built_ins.c
 void	built_ins(t_bananas *bana);
 
-// in signaling.c
+// signaling.c
 void    signaling(void);
 
-//in parsing.c
+// parsing.c
 bool	parsing(char *str, t_bananas *bana, char **envp);
 int		empties(char c);
 
-//in little_helpers.c
+// little_helpers.c
+void	token_cleaner(t_bananas *bana, int i);
 int		empties(char c);
 int		quote_chk(char *str, char *cur_quo, int i);
 bool	check_specials(char *token);
 
-// in here_dog.c
+// here_dog.c
 void	find_dog(char *str);
 void	handle_the_dog(const char *delimiter);
 
-// in delimiter.c
+// delimiter.c
 char	*find_delimiter(char *str);
 
-// in token_checker.c
+// token_checker.c
 void	command_search(t_bananas *bana, char **envp);
+
+// funky_arrows.c
+void    redirections(t_bananas *bana);
+
+// file_handling.c
+
+void    file_handling(t_bananas *bana, int i);
+void    file_malloc(t_bananas *bana);
 
 // pipes_are_calling
 
