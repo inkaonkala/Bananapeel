@@ -1,5 +1,20 @@
 #include "../minishell.h"
 
+static int token_cleaner(t_bananas *bana, char *token)
+{
+	int i;
+
+	i = 0;
+	while (i < )
+
+// my brain hurts, tomorrow work!
+// figure out a token cleaner to clean out our current token, and remove it from the char** list
+// so the next in the line will move into its slot, so the next token will be acted upon by 
+// the next function in broom handle which will be the built-in
+// THEN I would call this token cleaner again in say echo, as it should clean/free out the next
+// tokens
+}
+
 static int handle_echo(int tok_num, t_bananas *bana)
 {
 	// char *buf;
@@ -12,8 +27,6 @@ static int handle_echo(int tok_num, t_bananas *bana)
 		i++;
 		// free(bana->token[tok_num]);
 	}
-	else
-		return (1);
 	return (0);
 }
 
@@ -29,23 +42,28 @@ static int handle_pwd(t_bananas *bana)
 	return (0);
 }
 
-static void broom_handle(char *str, int tok_num, t_bananas *bana)
+static void broom_handle(char *token, int tok_num, t_bananas *bana)
 {
 	size_t  len;
 
-	len = ft_strlen(str);
-	if (len > 0 && str[len -1] == '\n')
-		str[len - 1] = '\0';
-	if (ft_strncmp(str, "exit", 4) == 0)
+	len = ft_strlen(token);
+	if (len > 0 && token[len -1] == '\n')
+		token[len - 1] = '\0';
+	if (ft_strncmp(token, "exit", 4) == 0)
 	{
 		ft_printf("Bye bye BaNaNaNaS!\n");
 		exit (1);
 	}
-	if (ft_strncmp(str, "pwd", 3) == 0)
+	if (ft_strncmp(token, "pwd", 3) == 0)
+	{
+		token_cleaner(bana, token);
 		handle_pwd(bana);
-	if (ft_strncmp(str, "echo", 4) == 0)
+	}
+	if (ft_strncmp(token, "echo", 4) == 0)
+	{
+		token_cleaner(bana, token);
 		handle_echo(tok_num, bana);
-
+	}
 }
 
 void built_ins(t_bananas *bana)
