@@ -1,18 +1,21 @@
 #include "../minishell.h"
 
-// static void handle_exit(char *str)
-// {
-// 	size_t  len;
-
-// 	len = ft_strlen(str);
-// 	if (len > 0 && str[len -1] == '\n')
-// 		str[len - 1] = '\0';
-// 	if (ft_strncmp(str, "exit", 4) == 0)
-// 	{
-// 		ft_printf("Bye bye BaNaNaNaS!\n");
-// 		exit (1);
-// 	}
-// }
+static int handle_echo(int tok_num, t_bananas *bana)
+{
+	// char *buf;
+	int	i = 0;
+	// buf = ft_strdup(bana->token[tok_num]);
+	while(i < tok_num - 1)
+	{
+		// printf("here\n");
+		ft_putendl_fd(bana->token[i], bana->fd_output);
+		i++;
+		// free(bana->token[tok_num]);
+	}
+	else
+		return (1);
+	return (0);
+}
 
 static int handle_pwd(t_bananas *bana)
 {
@@ -26,7 +29,7 @@ static int handle_pwd(t_bananas *bana)
 	return (0);
 }
 
-static void broom_handle(char *str, t_bananas *bana)
+static void broom_handle(char *str, int tok_num, t_bananas *bana)
 {
 	size_t  len;
 
@@ -40,9 +43,8 @@ static void broom_handle(char *str, t_bananas *bana)
 	}
 	if (ft_strncmp(str, "pwd", 3) == 0)
 		handle_pwd(bana);
-
-	// if (ft_strncmp(str, "echo", 4) == 0)
-		// handle_echo(str);
+	if (ft_strncmp(str, "echo", 4) == 0)
+		handle_echo(tok_num, bana);
 
 }
 
@@ -60,7 +62,7 @@ void built_ins(t_bananas *bana)
 				// also how would I jump in between different tokens within this while loop.
 
     	// handle_exit(*token);
-		broom_handle(*token, bana);
+		broom_handle(*token, bana->tok_num, bana);
 		/*
 		// HANDEL THESE AND SET THE TOKEN TO NULL
 		hande_echo(*token);
