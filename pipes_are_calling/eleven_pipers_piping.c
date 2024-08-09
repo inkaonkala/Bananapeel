@@ -3,8 +3,13 @@
 
 static bool	handle_commands(t_bananas *bana, char **envp)
 {
+
+	if(bana->is_rdr)
+		redirections(bana, envp);
+	ft_printf("			PIPEX after opening files\n");
+
 	/*
-	if(bana->has_input)
+	if(bana->is_rdr)
 	{
 		if (!check_arguments(bana))
 		{
