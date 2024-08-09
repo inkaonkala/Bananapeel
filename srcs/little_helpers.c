@@ -3,27 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   little_helpers.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 14:42:49 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/08 14:55:05 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/09 16:23:19 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	token_cleaner(t_bananas *bana, int i)
+void token_cleaner(t_bananas *bana, int i)
 {
+	free(bana->token[i]);
+	while (i < bana->tok_num - 1)
 	{
-			//handle_specials(bana, i);
-		free(bana->token[i]);
-		while(i < bana->tok_num - 1)
-		{
-			bana->token[i] = bana->token[i + 1];
-			i++;
-		}
-		//bana->token[i] = NULL;
-		bana->tok_num--;
+		// printf("incleaner\n");
+		bana->token[i] = bana->token[i + 1];
+		i++;	
+	}
+	bana->tok_num--;
+	if (bana->tok_num == 0)
+	{
+		// free(bana->token[0]);
+		bana->token[0] = NULL;
 	}
 }
 
@@ -60,3 +62,36 @@ bool	check_specials(char *token)
 		return (true);
 	return (false);
 }
+
+int	number_checker(char *argv)
+{
+	size_t i;
+
+	i = 0;
+	while (i <= ft_strlen(argv) - 1)
+	{
+		if (ft_isdigit(argv[i]) == 1)
+			return (1);
+		i++;	
+	}
+	return (0);
+
+}
+	// int	num;
+	// int	temp;
+
+	// printf("inside number_checker\n");
+	// num = ft_atoi(argv);
+	// temp = 0;
+	// if (num < 0)
+	// 	return (1);
+	// if (num == 0)
+	// 	return (0);
+	// while (num > 0)
+	// {
+	// 	temp = num % 10;
+	// 	if (temp < 0 || temp > 9)
+	// 		return (1);
+	// 	num /= 10;
+	// }
+	// return (0);

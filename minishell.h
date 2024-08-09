@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:54:44 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/08 16:59:00 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/09 14:11:15 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,11 @@ int		empties(char c);
 /* ************************************************************************** */
 /*									little_helpers							  */
 /* ************************************************************************** */
-void	token_cleaner(t_bananas *bana, int i);
-int		empties(char c);
+void    token_cleaner(t_bananas *bana, int i);
+int     empties(char c);
 int		quote_chk(char *str, char *cur_quo, int i);
 bool	check_specials(char *token);
+int     number_checker(char *argv);
 /* ************************************************************************** */
 /*									here_dog								  */
 /* ************************************************************************** */
