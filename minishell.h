@@ -76,7 +76,7 @@ char	*find_delimiter(char *str);
 void	command_search(t_bananas *bana, char **envp);
 
 // funky_arrows.c
-void    redirections(t_bananas *bana);
+void    redirections(t_bananas *bana, char **envp);
 
 // file_handling.c
 
