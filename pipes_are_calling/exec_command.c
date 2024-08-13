@@ -103,7 +103,7 @@ static bool	wait_it(t_bananas *bana, pid_t pid, int index, int *fd)
 	return (true);
 }
 */
-
+/*
 int	create_child(t_bananas *bana, char **envp, int index)
 {
 	pid_t	pid;
@@ -125,6 +125,50 @@ int	create_child(t_bananas *bana, char **envp, int index)
 		else
 			redirect_input(bana, index);
 			redirect_putput(bana, fd, index);
+		execute_command(bana, envp, index);
+		//exit(EXIT_FAILURE);
+	}
+	else
+	{
+		if (index > 0)
+			close(bana->prev_fd[0]);
+
+		if (!last)
+		{
+			bana->prev_fd[0] = fd[0];
+			close(fd[1]);
+		}
+	}
+	return (true);
+}
+*/
+
+int	create_child(t_bananas *bana, char **envp, int index)
+{
+	pid_t	pid;
+	int		fd[2];
+	int		last;
+	//int		first;
+
+	last = (index == bana->tok_num);
+	//first = (index == 0);
+
+	if (!fork_it(bana, fd, &pid, index))
+		return (false);
+	
+
+	if (pid == 0)
+	{
+		if(bana->is_rdr)
+		{
+			redirect_file_input(bana);
+			redirect_file_putput(bana);
+		}
+		else
+		{
+			redirect_input(bana, index);
+			redirect_putput(bana, fd, index);
+		}
 		execute_command(bana, envp, index);
 		//exit(EXIT_FAILURE);
 	}
