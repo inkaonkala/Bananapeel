@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/08 16:54:44 by jbremser          #+#    #+#             */
+/*   Updated: 2024/08/13 12:19:27 by jbremser         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef BANANA_PEEL
 # define BANANA_PEEL
@@ -49,42 +60,53 @@ typedef struct s_bananas
 }   t_bananas;
 
 
-// built_ins.c
-void	built_ins(t_bananas *bana);
-
-// signaling.c
+/* ************************************************************************** */
+/*									built-ins								  */
+/* ************************************************************************** */
+void	built_ins(t_bananas *bana, char **envp);
+/* ************************************************************************** */
+/*									signaling								  */
+/* ************************************************************************** */
 void    signaling(void);
-
-// parsing.c
+/* ************************************************************************** */
+/*									parsing 								  */
+/* ************************************************************************** */
 bool	parsing(char *str, t_bananas *bana, char **envp);
 int		empties(char c);
-
-// little_helpers.c
-void	token_cleaner(t_bananas *bana, int i);
-int		empties(char c);
+/* ************************************************************************** */
+/*									little_helpers							  */
+/* ************************************************************************** */
+void    token_cleaner(t_bananas *bana, int i);
+int     empties(char c);
 int		quote_chk(char *str, char *cur_quo, int i);
 bool	check_specials(char *token);
-
-// here_dog.c
+int     number_checker(char *argv);
+/* ************************************************************************** */
+/*									here_dog								  */
+/* ************************************************************************** */
 void	find_dog(char *str);
 void	handle_the_dog(const char *delimiter);
-
-// delimiter.c
+/* ************************************************************************** */
+/*									delimiter								  */
+/* ************************************************************************** */
 char	*find_delimiter(char *str);
-
-// token_checker.c
+/* ************************************************************************** */
+/*									token_checker							  */
+/* ************************************************************************** */
 void	command_search(t_bananas *bana, char **envp);
-
-// funky_arrows.c
+/* ************************************************************************** */
+/*									funky_arrows							  */
+/* ************************************************************************** */
 void    redirections(t_bananas *bana, char **envp);
-
-// file_handling.c
+/* ************************************************************************** */
+/*									file_handling							  */
+/* ************************************************************************** */
 
 void    file_handling(t_bananas *bana, int i);
 void    file_malloc(t_bananas *bana);
-
-// pipes_are_calling
-
+/* ************************************************************************** */
+/*									pipes_are_calling						  */
+/* ************************************************************************** */
 void	free_char_array(char ***paths, int arc);
 int     pipex(t_bananas *bana, char **envp);
 bool    parse_cmd_line(t_bananas *bana, char **envp);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bananapeel.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:43:50 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/08 11:52:32 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/12 14:59:37 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int main(int arv, char **arc, char **envp)
 {
 	(void)arc;
 	(void)arv;
-	(void)envp;
+	(void)**envp;
 	//int 	status;
 
 	t_bananas	bana;
@@ -46,12 +46,16 @@ int main(int arv, char **arc, char **envp)
 			if(!parsing(input, &bana, envp))
 			{
 				ft_printf("Parsing is bananas");
-				free(input);
+				// if (input)
+				// 	free(input);
 				break ;
 			}
 			//parsing(input, &bana, envp); // this creates the tokens " cat | "boy""" == cat, | , "boy")
-			free(input);
-				
+			if (input)
+			{	
+				// printf("input?\n");
+				free(input);
+			}	
 		}
 	}
 	else

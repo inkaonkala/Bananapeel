@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 13:19:58 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/09 09:29:02 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/09 15:33:59 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,6 @@ bool	parsing(char *str, t_bananas *bana, char **envp)
 	//free(tokens);
 	//remember to free all tokens!
 	// CHECKER!!
-
 	/*
 	// HERE WE CHECK IF WE DID USE EVERYTHING, 
 	// AND FREE EXTRA STUFF IN CASE ONF AN ERROR
