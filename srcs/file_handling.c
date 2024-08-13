@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 10:06:52 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/08 10:29:05 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/09 10:01:23 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,14 @@ static void    open_infile(t_bananas *bana, int i)
 	fd = open(bana->token[i], O_RDONLY);
 	if (fd == -1)
 	{
-		perror("Bananas!: Error opening input file");
-		return ;
+		//fd = open(bana->token[i], O_WRONLY | O_TRUNC | O_CREAT, 0644);
+		//ft_printf("opened an infile\n");
+		if(fd == -1)
+		{
+			ft_printf("%s: ", bana->token[i]);
+			perror("Bananas!");
+			return ;
+		}
 	}
 	bana->in_files[bana->infile_count] = fd;
 	bana->infile_count++;

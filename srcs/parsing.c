@@ -36,6 +36,7 @@ static void	type_check(t_bananas *bana)
 	
 }
 
+/*
 static void	free_tokens(char **tokens)
 {
 	int	k;
@@ -48,6 +49,8 @@ static void	free_tokens(char **tokens)
 	}
 	free(tokens);
 }
+*/
+
 
 static int	count_tokens(char *str)
 {
@@ -153,8 +156,18 @@ bool	parsing(char *str, t_bananas *bana, char **envp)
 	//free(tokens);
 	//remember to free all tokens!
 	// CHECKER!!
-	if (tokens)
+	/*
+	// HERE WE CHECK IF WE DID USE EVERYTHING, 
+	// AND FREE EXTRA STUFF IN CASE ONF AN ERROR
+	// BUT NOW IT MAKES DOUBLE FREES
+	
+	if (tokens != NULL)
+	{
+		ft_printf("%s", &tokens);
 		free_tokens(tokens);
+	}
+	*/
+
 	return (true);
 }
 
