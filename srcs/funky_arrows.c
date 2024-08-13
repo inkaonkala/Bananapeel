@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:33:37 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/12 14:12:44 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/13 10:22:42 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	close_files(t_bananas *bana)
 		i++;
 	}
 }
-
+/*
 static char	*find_path(const char *cmd, char **envp)
 {
 	char	*path_env;
@@ -68,6 +68,7 @@ static char	*find_path(const char *cmd, char **envp)
 	 
 
 }
+*/
 
 static void	execute_rdr(t_bananas *bana, char **envp)
 {
@@ -102,7 +103,10 @@ static void	execute_rdr(t_bananas *bana, char **envp)
 		}
 		
 		close_files(bana);
-		path = find_path(bana->token[0], envp);
+		ft_printf("Gonna look for PATH\n");
+		path = get_path(bana->token[0], envp);
+		ft_printf("this is where i get lost;\n");
+		ft_printf("			PATH:: %s\n", path);
 		if(!path)
 		{
 			perror("Command is bananas:");
@@ -132,5 +136,8 @@ void    redirections(t_bananas *bana, char **envp)
 		i++;
 	}
 	if(!bana->is_pipe)
+	{
+		ft_printf("exect without pipes\n");
 		execute_rdr(bana, envp);
+	}
 }

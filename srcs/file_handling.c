@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 10:06:52 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/09 10:01:23 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/13 10:01:10 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ static void    open_infile(t_bananas *bana, int i)
 {
 	int	fd;
 
-	//what if no file and need to create one?
-    ft_printf("Opening input file: %s\n", bana->token[i]);
+	ft_printf("Opening input file: %s\n", bana->token[i]);
 
 	fd = open(bana->token[i], O_RDONLY);
 	if (fd == -1)
@@ -69,7 +68,7 @@ void    file_handling(t_bananas *bana, int i)
 		token_cleaner(bana, i);
 	}
 		
-	if( ft_strncmp(bana->token[i], ">", 1) == 0)
+	else if( ft_strncmp(bana->token[i], ">", 1) == 0)
 	{
 		append = false;
 		token_cleaner(bana, i);
@@ -78,12 +77,14 @@ void    file_handling(t_bananas *bana, int i)
 		token_cleaner(bana, i);
 	}
 	// find < for infiles
-	if (ft_strncmp(bana->token[i], "<", 1) == 0)
+	else if (ft_strncmp(bana->token[i], "<", 1) == 0)
 	{
 		token_cleaner(bana, i);
 		open_infile(bana, i);
 		token_cleaner(bana, i);
 	}
+	else
+		return ;
 }
 
 void    file_malloc(t_bananas *bana) // THIS MALLOC NEEDS TO BE CORRECTED?
