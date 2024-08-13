@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   built_ins.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
+/*   Updated: 2024/08/13 13:31:40 by jbremser         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 
 
 // my brain hurts, tomorrow work!
-// figure out a token cleaner to clean out our current token, and remove it from the char** list
+//check.: figure out a token cleaner to clean out our current token, and remove it from the char** list
 // so the next in the line will move into its slot, so the next token will be acted upon by 
 // the next function in broom handle which will be the built-in
 // THEN I would call this token cleaner again in say echo, as it should clean/free out the next
@@ -16,12 +28,27 @@
 static void	handle_echo(t_bananas *bana)
 {
 	int i;
+	bool n_flag;
 
+	n_flag = false;
 	i = 1;	
 
-	while (i <= bana->tok_num - 1)
-		printf("%s ", bana->token[i++]);
-	printf("\n");
+	if (bana->tok_num == 1)
+		printf("\n");
+	else if (bana->tok_num > 1)
+	{
+		if (ft_strcmp(bana->token[1], "-n") == 0)
+		{
+			token_cleaner(bana, 1);
+			n_flag = true;
+		}
+		while (i <= bana->tok_num - 2)
+			printf("%s ", bana->token[i++]);
+		if (bana->tok_num >= 2)
+			printf("%s", bana->token[bana->tok_num - 1]);
+		if (n_flag == false)
+			printf("\n");
+	}
 	while (bana->tok_num > 0)
 		token_cleaner(bana, 0);
 }
@@ -35,9 +62,9 @@ static int	handle_pwd(t_bananas *bana)
 	if (!(buf = getcwd(NULL, 0)))
 		return (1);
 	ft_putendl_fd(buf, bana->fd_output);
-	// free_null((void *)&buf); oops this was unneeded
 	return (0);
 }
+	// free_null((void *)&buf); oops this was unneeded
 
 static void handle_exit(t_bananas *bana)
 { //mostly done, need to deal with large and negative numbers, as well as EXIT CODES 0-255, how are others dealing with exit codes
@@ -70,7 +97,41 @@ static void handle_exit(t_bananas *bana)
 	}
 }
 
-void built_ins(t_bananas *bana)
+static void handle_unset(t_bananas *bana, char **envp)
+{
+	(void)bana;
+	(void)envp;
+}
+
+static void handle_export(t_bananas *bana, char **envp)
+{
+	(void)bana;
+	int i;
+
+	i = 0;
+	while (envp[i])
+		i++;
+	
+
+}
+
+static void handle_env(t_bananas *bana, char **envp)
+{
+	char **temp;
+	int i;
+
+	(void)bana;
+	temp = envp;
+	i = 0;
+	while (temp[i])
+	{
+		ft_putendl_fd(temp[i], 1);
+		i++;
+	}
+//	ft_putendl_fd("\n", 1);
+}
+
+void built_ins(t_bananas *bana, char **envp)
 {
 	size_t	len;
 	char *	bi;
@@ -79,13 +140,24 @@ void built_ins(t_bananas *bana)
 	len = ft_strlen(bi);
 	if (len > 0 && bi[len - 1]  == '\n')
 		bi[len - 1] = '\0';
-	if (ft_strcmp(bi, "exit") == 0)
+	else if (ft_strcmp(bi, "exit") == 0)
 		handle_exit(bana);
-	if (ft_strcmp(bi, "pwd") == 0)
+	else if (ft_strcmp(bi, "pwd") == 0)
 		handle_pwd(bana);
-	if (ft_strcmp(bi, "echo") == 0)
+	else if (ft_strcmp(bi, "echo") == 0)
 		handle_echo(bana);
+	else if (ft_strcmp(bi, "unset") == 0)
+		handle_unset(bana, envp);
+	else if (ft_strcmp(bi, "env") == 0)
+		handle_env(bana, envp);
+	else if (ft_strcmp(bi, "export") == 0)
+		handle_export(bana, envp);
+	else
+		printf("Command '%s' not found\n", bi); 
 }
+
+
+
 
 	// temp = ft_atoi(bana->token[1]);
 

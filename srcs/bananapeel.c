@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:43:50 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/09 16:22:16 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/12 14:59:37 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int main(int arv, char **arc, char **envp)
 {
 	(void)arc;
 	(void)arv;
-	(void)envp;
+	(void)**envp;
 	//int 	status;
 
 	t_bananas	bana;

@@ -13,13 +13,8 @@ void    command_search(t_bananas *bana, char **envp)
     else if(bana->is_rdr)
         redirections(bana);
     else
-        built_ins(bana);
-
+        built_ins(bana, envp);
 }
-
-
-
-
 
 // void	command_search(t_bananas *bana, char **envp)
 // {
