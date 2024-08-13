@@ -6,7 +6,7 @@
 #    By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 15:54:31 by jbremser          #+#    #+#              #
-#    Updated: 2024/08/07 12:51:55 by iniska           ###   ########.fr        #
+#    Updated: 2024/08/08 10:21:42 by iniska           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRCFILES 	= 	bananapeel.c \
 	 			here_dog.c \
 	 			delimiter.c \
 				token_checker.c \
-				funky_arrows.c
+				funky_arrows.c \
+				file_handling.c
 
 PIPEFILES	=	eleven_pipers_piping.c \
 				arguments.c\
@@ -34,7 +35,7 @@ PIPEFILES	=	eleven_pipers_piping.c \
 				
 SRCDIR		=	srcs
 PIPEDIR		=	pipes_are_calling
-OBJDIR		=	objsq
+OBJDIR		=	objs
 
 HEADER		=	minishell.h
 
