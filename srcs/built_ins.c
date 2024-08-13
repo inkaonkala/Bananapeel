@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/13 13:31:40 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/13 17:06:06 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,31 @@ static void handle_unset(t_bananas *bana, char **envp)
 	(void)envp;
 }
 
+static char **envp_strjoin(t_bananas *bana, char **envp)
+{
+	int		i;
+	int		j;
+	size_t	len;
+
+	i = 0;
+	while (envp[i])
+		i++;
+//	i++;
+	len = (ft_strlen(bana->token[1]));
+	envp[i] = malloc(len + 1);
+	if (envp[i] == NULL)
+		return (NULL);
+	j = 0;
+	while (bana->token[1][j])
+	{
+		envp[i][j] = bana->token[1][j];
+		j++;
+	}
+	envp[i + 1] = malloc(sizeof(char));
+	envp[i + 1][1] = '\0';
+	return (envp);
+}
+
 static void handle_export(t_bananas *bana, char **envp)
 {
 	(void)bana;
@@ -111,8 +136,12 @@ static void handle_export(t_bananas *bana, char **envp)
 	i = 0;
 	while (envp[i])
 		i++;
-	
-
+	envp = envp_strjoin(bana, envp);
+	//malloc 2 for \n and \0 then write to envp[i]
+	//strjoin, token to envp[i]
+	//
+//	ft_strjoin(envp[i], bana->token[1], ft_strlen(bana->token[1]));
+//	envp[i + 1][0] = '\0';
 }
 
 static void handle_env(t_bananas *bana, char **envp)
@@ -125,6 +154,8 @@ static void handle_env(t_bananas *bana, char **envp)
 	i = 0;
 	while (temp[i])
 	{
+		if (!temp[i])
+			break ;
 		ft_putendl_fd(temp[i], 1);
 		i++;
 	}
