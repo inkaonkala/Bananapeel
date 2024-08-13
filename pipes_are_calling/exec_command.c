@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:46:16 by iniska            #+#    #+#             */
-/*   Updated: 2024/07/26 14:53:11 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/12 10:55:28 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static void	redirect_input(t_bananas *bana, int index)
 		}
 }
 
+
 static void	redirect_putput(t_bananas *bana, int fd[2], int index)
 {
 	if (index == bana->tok_num && bana->fd_output != -1)
@@ -46,6 +47,7 @@ static void	redirect_putput(t_bananas *bana, int fd[2], int index)
 		shut_fd(fd);
 	}
 }
+
 
 static void	execute_command(t_bananas *bana, char **envp, int index)
 {
@@ -107,10 +109,10 @@ int	create_child(t_bananas *bana, char **envp, int index)
 	pid_t	pid;
 	int		fd[2];
 	int		last;
-	int		first;
+	//int		first;
 
 	last = (index == bana->tok_num);
-	first = (index == 0);
+	//first = (index == 0);
 
 	if (!fork_it(bana, fd, &pid, index))
 		return (false);
@@ -118,8 +120,16 @@ int	create_child(t_bananas *bana, char **envp, int index)
 
 	if (pid == 0)
 	{
-		redirect_input(bana, index);
-		redirect_putput(bana, fd, index);
+		if(bana->is_rdr)
+		{
+			redirect_file_input(bana);
+			redirect_file_putput(bana);
+		}
+		else
+		{
+			redirect_input(bana, index);
+			redirect_putput(bana, fd, index);
+		}
 		execute_command(bana, envp, index);
 		//exit(EXIT_FAILURE);
 	}
