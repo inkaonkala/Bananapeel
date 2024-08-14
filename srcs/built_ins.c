@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/13 17:32:11 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/14 17:57:52 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,33 +25,33 @@
 // work for next work day: ENV, EXPORT, UNSET, and then CD finally. 
 
 
-static void	handle_echo(t_bananas *bana)
-{
-	int i;
-	bool n_flag;
+// static void	handle_echo(t_bananas *bana)
+// {
+// 	int i;
+// 	bool n_flag;
 
-	n_flag = false;
-	i = 1;	
+// 	n_flag = false;
+// 	i = 1;	
 
-	if (bana->tok_num == 1)
-		printf("\n");
-	else if (bana->tok_num > 1)
-	{
-		if (ft_strcmp(bana->token[1], "-n") == 0)
-		{
-			token_cleaner(bana, 1);
-			n_flag = true;
-		}
-		while (i <= bana->tok_num - 2)
-			printf("%s ", bana->token[i++]);
-		if (bana->tok_num >= 2)
-			printf("%s", bana->token[bana->tok_num - 1]);
-		if (n_flag == false)
-			printf("\n");
-	}
-	while (bana->tok_num > 0)
-		token_cleaner(bana, 0);
-}
+// 	if (bana->tok_num == 1)
+// 		printf("\n");
+// 	else if (bana->tok_num > 1)
+// 	{
+// 		if (ft_strcmp(bana->token[1], "-n") == 0)
+// 		{
+// 			token_cleaner(bana, 1);
+// 			n_flag = true;
+// 		}
+// 		while (i <= bana->tok_num - 2)
+// 			printf("%s ", bana->token[i++]);
+// 		if (bana->tok_num >= 2)
+// 			printf("%s", bana->token[bana->tok_num - 1]);
+// 		if (n_flag == false)
+// 			printf("\n");
+// 	}
+// 	while (bana->tok_num > 0)
+// 		token_cleaner(bana, 0);
+// }
 
 static int	handle_pwd(t_bananas *bana)
 {
@@ -97,77 +97,121 @@ static void handle_exit(t_bananas *bana)
 	}
 }
 
-static void handle_unset(t_bananas *bana, char **envp)
-{
-	(void)bana;
-	(void)envp;
-}
+// static void handle_unset(t_bananas *bana, char **envp)
+// {
+// 	(void)bana;
+// 	(void)envp;
+// }
 
-static char **envp_strjoin(t_bananas *bana, char **envp)
+// static char **envp_strjoin(t_bananas *bana, char **envp)
+// {
+// 	int		i;
+// 	int		j;
+// 	size_t	len;
+
+// 	i = 0;
+// 	while (envp[i])
+// 		i++;
+// //	i++;
+// 	len = (ft_strlen(bana->token[1]));
+// 	envp[i] = malloc(len + 1);
+// 	if (envp[i] == NULL)
+// 		return (NULL);
+// 	j = 0;
+// 	while (bana->token[1][j])
+// 	{
+// 		envp[i][j] = bana->token[1][j];
+// 		j++;
+// 	}
+// 	envp[i + 1] = malloc(sizeof(char));
+// 	envp[i + 1][1] = '\0';
+// 	return (envp);
+// }
+
+// static int find_export(t_bananas *bana, char **envp)
+// {
+// //search for the same key in the envp, and then we will replace that line with the key and anything after
+// 	//return the integer for the line number in the envp where this key appears
+// 		//or this will iterate through to the end of the envp in which case it returns the last line to the envp, 
+// 			//where it will write the new export variable to the bottom of env
+// 	int i;
+
+// 	i = 0;
+// 	while (envp[i])
+// 	{
+
+// 		i++;
+// 	}
+
+// }
+
+// static void parse_export(char *token)
+// {
+// 	//if there is a "=" sign after the key in the export var,
+// 	if (ft_strchr(token, "="))
+// 		return (1);
+// 	return (0);
+// }
+
+// static void handle_export(t_bananas *bana, char **envp)
+// {
+// 	int i;
+
+// 	if (bana->tok_num == 1)
+// 	{
+// 		i = 0;
+// 		while (envp[i])
+// 		{
+// 			if (!envp[i])
+// 				break ;
+// 			printf("declare -x %s\n", envp[i]);	
+// 			i++;
+// 		}
+// 	}
+// 	else if (bana->tok_num > 1)
+// 	{
+// 		i = 1;
+// 		if (!parse_export(bana->token[i]))
+// 			//write to bottom of env, move on to next token, check it for =
+	
+			
+// 			// i = find_export
+
+			
+// 	}
+// 	// envp = envp_strjoin(bana, envp);
+// 	//malloc 2 for \n and \0 then write to envp[i]
+// 	//strjoin, token to envp[i]
+// 	//
+// //	ft_strjoin(envp[i], bana->token[1], ft_strlen(bana->token[1]));
+// //	envp[i + 1][0] = '\0';
+// }
+
+// static void handle_env(t_bananas *bana, char **envp)
+// {
+// 	char **temp;
+// 	int i;
+
+// 	(void)bana;
+// 	temp = envp;
+// 	i = 0;
+// 	while (temp[i])
+// 	{
+// 		if (!temp[i])
+// 			break ;
+// 		ft_putendl_fd(temp[i], 1);
+// 		i++;
+// 	}
+// //	ft_putendl_fd("\n", 1);
+// }
+
+void built_ins(t_bananas *bana, t_node **env)
 {
-	int		i;
-	int		j;
 	size_t	len;
+	char 	*bi;
 
-	i = 0;
-	while (envp[i])
-		i++;
-//	i++;
-	len = (ft_strlen(bana->token[1]));
-	envp[i] = malloc(len + 1);
-	if (envp[i] == NULL)
-		return (NULL);
-	j = 0;
-	while (bana->token[1][j])
-	{
-		envp[i][j] = bana->token[1][j];
-		j++;
-	}
-	envp[i + 1] = malloc(sizeof(char));
-	envp[i + 1][1] = '\0';
-	return (envp);
-}
-
-static void handle_export(t_bananas *bana, char **envp)
-{
-	(void)bana;
-	int i;
-
-	i = 0;
-	while (envp[i])
-		i++;
-	envp = envp_strjoin(bana, envp);
-	//malloc 2 for \n and \0 then write to envp[i]
-	//strjoin, token to envp[i]
-	//
-//	ft_strjoin(envp[i], bana->token[1], ft_strlen(bana->token[1]));
-//	envp[i + 1][0] = '\0';
-}
-
-static void handle_env(t_bananas *bana, char **envp)
-{
-	char **temp;
-	int i;
-
-	(void)bana;
-	temp = envp;
-	i = 0;
-	while (temp[i])
-	{
-		if (!temp[i])
-			break ;
-		ft_putendl_fd(temp[i], 1);
-		i++;
-	}
-//	ft_putendl_fd("\n", 1);
-}
-
-void built_ins(t_bananas *bana, char **envp)
-{
-	size_t	len;
-	char *	bi;
-
-	bi = bana->token[0];
+	ft_printf("In BI's\n");
+	bi = env[0]->line;
 	len = ft_strlen(bi);
 	if (len > 0 && bi[len - 1]  == '\n')
 		bi[len - 1] = '\0';
@@ -175,14 +219,14 @@ void built_ins(t_bananas *bana, char **envp)
 		handle_exit(bana);
 	else if (ft_strcmp(bi, "pwd") == 0)
 		handle_pwd(bana);
-	else if (ft_strcmp(bi, "echo") == 0)
-		handle_echo(bana);
-	else if (ft_strcmp(bi, "unset") == 0)
-		handle_unset(bana, envp);
-	else if (ft_strcmp(bi, "env") == 0)
-		handle_env(bana, envp);
-	else if (ft_strcmp(bi, "export") == 0)
-		handle_export(bana, envp);
+	// else if (ft_strcmp(bi, "echo") == 0)
+	// 	handle_echo(bana);
+	// else if (ft_strcmp(bi, "unset") == 0)
+	// 	handle_unset(bana, envp);
+	// else if (ft_strcmp(bi, "env") == 0)
+	// 	handle_env(bana, envp);
+	// else if (ft_strcmp(bi, "export") == 0)
+	// 	handle_export(bana, envp);
 	else
 		printf("Command '%s' not found\n", bi); 
 }
