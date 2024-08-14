@@ -3,6 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   little_helpers.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/19 14:42:49 by iniska            #+#    #+#             */
+/*   Updated: 2024/08/13 15:13:17 by iniska           ###   ########.fr       */
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 14:42:49 by iniska            #+#    #+#             */
@@ -11,6 +15,25 @@
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+
+//OLD
+/*
+void	token_cleaner(t_bananas *bana, int i)
+{
+	{
+			//handle_specials(bana, i);
+		free(bana->token[i]);
+		while(i < bana->tok_num - 1)
+		{
+			bana->token[i] = bana->token[i + 1];
+			i++;
+		}
+		//bana->token[i] = NULL;
+		bana->tok_num--;
+	}
+}
+*/
 
 void token_cleaner(t_bananas *bana, int i)
 {

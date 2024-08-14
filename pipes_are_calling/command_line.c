@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 10:14:58 by iniska            #+#    #+#             */
-/*   Updated: 2024/05/09 10:15:15 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/13 10:17:02 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static char	*const_and_check(char *paths, char *path_name)
 	return (NULL);
 }
 
-static char	*get_path(char *path_name, char **envp)
+char	*get_path(char *path_name, char **envp)
 {
 	int		i;
 	char	*full_path;

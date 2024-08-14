@@ -59,7 +59,6 @@ typedef struct s_bananas
 
 }   t_bananas;
 
-
 /* ************************************************************************** */
 /*									built-ins								  */
 /* ************************************************************************** */
@@ -107,15 +106,24 @@ void    file_malloc(t_bananas *bana);
 /* ************************************************************************** */
 /*									pipes_are_calling						  */
 /* ************************************************************************** */
+
 void	free_char_array(char ***paths, int arc);
 int     pipex(t_bananas *bana, char **envp);
+
+char	*get_path(char *path_name, char **envp);
 bool    parse_cmd_line(t_bananas *bana, char **envp);
-bool	check_arguments(t_bananas *bana);
+
+
 bool	parse_cmd_args(t_bananas *bana);
 void	clean_n_errors(t_bananas *bana);
 int     create_child(t_bananas *bana, char **envp, int index);
 void	init_pipes(t_bananas *bana);
 void	free_line(char **paths, int arc);
+
+// files.c
+bool	check_arguments(t_bananas *bana);
+void	redirect_file_input(t_bananas *bana);
+void	redirect_file_putput(t_bananas *bana);
 
 
 #endif
