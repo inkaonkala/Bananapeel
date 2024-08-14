@@ -43,6 +43,11 @@ int main(int arv, char **arc, char **envp)
 				write(1, "🍌 Goodbye Mate! 🍌\n", 25);
 				break ;
 			}
+			if (*input == '\0')
+			{
+				free(input);
+				continue ;
+			}
 			//ft_printf("Your input: %s\n", input); //  CHECKER!
 			if (*input)
 				add_history(input);
