@@ -7,6 +7,7 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 10:06:52 by iniska            #+#    #+#             */
 /*   Updated: 2024/08/13 15:11:00 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/09 10:01:23 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +17,9 @@ static void    open_infile(t_bananas *bana, int i)
 {
 	int	fd;
 
+
 	ft_printf("Opening input file: %s\n", bana->token[i]);
+
 
 	fd = open(bana->token[i], O_RDONLY);
 	if (fd == -1)

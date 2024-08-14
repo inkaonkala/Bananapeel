@@ -10,7 +10,7 @@ static bool	handle_commands(t_bananas *bana, char **envp)
 
 		ft_printf("			PIPEX after opening files\n");
 	}
-	
+  
 	if (!parse_cmd_line(bana, envp))
 	{
 		clean_n_errors(bana);

@@ -7,6 +7,7 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:33:37 by iniska            #+#    #+#             */
 /*   Updated: 2024/08/14 09:03:42 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/09 11:54:00 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,50 +32,14 @@ static void	close_files(t_bananas *bana)
 		i++;
 	}
 }
-/*
-static char	*find_path(const char *cmd, char **envp)
-{
-	char	*path_env;
-	char	**paths;
-	char	*full;
-	int		i;
-
-	while (*envp && ft_strncmp(*envp, "PATH=", 5) != 0)
-		envp++;
-	if(!*envp)
-		return (NULL);
-	
-	path_env = *envp + 5;
-	paths = ft_split(path_env, ':');
-	if (!paths)
-		return (NULL);
-
-	i = 0;
-	while(paths[i])
-	{
-		full = ft_strjoin(paths[i], "/");
-		full = ft_strjoin(full, cmd);
-
-		if (access(full, X_OK) == 0)
-		{
-			free_char_array(&paths, i);
-			return (full);
-		}
-		free(full);
-		i++;
-	}
-	free_char_array(&paths, i);
-	return (NULL);
-	 
-
-}
-*/
 
 static void	execute_rdr(t_bananas *bana, char **envp)
 {
 	pid_t	pid;
 	int		status;
 	char	*path;
+
+
 
 	pid = fork();
 	if (pid < 0)
@@ -115,6 +80,7 @@ static void	execute_rdr(t_bananas *bana, char **envp)
 		execve(path, bana->token, envp);
 		free(path);
 
+
 		//perror("Bananas! Error in rdr execve");
 	}
 	else
@@ -137,4 +103,5 @@ void    redirections(t_bananas *bana, char **envp)
 		execute_rdr(bana, envp);
 		token_cleaner(bana, 0);
 	}
+
 }

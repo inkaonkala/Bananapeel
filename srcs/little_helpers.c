@@ -7,6 +7,10 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 14:42:49 by iniska            #+#    #+#             */
 /*   Updated: 2024/08/13 15:13:17 by iniska           ###   ########.fr       */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/19 14:42:49 by iniska            #+#    #+#             */
+/*   Updated: 2024/08/09 16:23:19 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +35,6 @@ void	token_cleaner(t_bananas *bana, int i)
 }
 */
 
-
 void token_cleaner(t_bananas *bana, int i)
 {
 	free(bana->token[i]);
@@ -48,7 +51,6 @@ void token_cleaner(t_bananas *bana, int i)
 		bana->token[0] = NULL;
 	}
 }
-
 
 int	empties(char c)
 {
@@ -83,3 +85,36 @@ bool	check_specials(char *token)
 		return (true);
 	return (false);
 }
+
+int	number_checker(char *argv)
+{
+	size_t i;
+
+	i = 0;
+	while (i <= ft_strlen(argv) - 1)
+	{
+		if (ft_isdigit(argv[i]) == 1)
+			return (1);
+		i++;	
+	}
+	return (0);
+
+}
+	// int	num;
+	// int	temp;
+
+	// printf("inside number_checker\n");
+	// num = ft_atoi(argv);
+	// temp = 0;
+	// if (num < 0)
+	// 	return (1);
+	// if (num == 0)
+	// 	return (0);
+	// while (num > 0)
+	// {
+	// 	temp = num % 10;
+	// 	if (temp < 0 || temp > 9)
+	// 		return (1);
+	// 	num /= 10;
+	// }
+	// return (0);

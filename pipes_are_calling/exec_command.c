@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:46:16 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/12 10:55:28 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/09 13:27:18 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,45 @@ static bool	wait_it(t_bananas *bana, pid_t pid, int index, int *fd)
 		}
 		//if (WIFEXITED(status) && WEXITSTATUS(status) != 0)
 		//	return (false);
+	}
+	return (true);
+}
+*/
+/*
+int	create_child(t_bananas *bana, char **envp, int index)
+{
+	pid_t	pid;
+	int		fd[2];
+	int		last;
+	//int		first;
+
+	last = (index == bana->tok_num);
+	//first = (index == 0);
+
+	if (!fork_it(bana, fd, &pid, index))
+		return (false);
+	
+
+	if (pid == 0)
+	{
+		if(bana->is_rdr)
+			// USE RIGHT IN AND OUTPUT
+		else
+			redirect_input(bana, index);
+			redirect_putput(bana, fd, index);
+		execute_command(bana, envp, index);
+		//exit(EXIT_FAILURE);
+	}
+	else
+	{
+		if (index > 0)
+			close(bana->prev_fd[0]);
+
+		if (!last)
+		{
+			bana->prev_fd[0] = fd[0];
+			close(fd[1]);
+		}
 	}
 	return (true);
 }
