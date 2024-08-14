@@ -6,12 +6,15 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 14:42:49 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/08 14:55:05 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/13 15:13:17 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+
+//OLD
+/*
 void	token_cleaner(t_bananas *bana, int i)
 {
 	{
@@ -26,6 +29,26 @@ void	token_cleaner(t_bananas *bana, int i)
 		bana->tok_num--;
 	}
 }
+*/
+
+
+void token_cleaner(t_bananas *bana, int i)
+{
+	free(bana->token[i]);
+	while (i < bana->tok_num - 1)
+	{
+		// printf("incleaner\n");
+		bana->token[i] = bana->token[i + 1];
+		i++;	
+	}
+	bana->tok_num--;
+	if (bana->tok_num == 0)
+	{
+		// free(bana->token[0]);
+		bana->token[0] = NULL;
+	}
+}
+
 
 int	empties(char c)
 {

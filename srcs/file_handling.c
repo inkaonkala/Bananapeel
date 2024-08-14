@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 10:06:52 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/13 10:01:10 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/13 15:11:00 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,24 +60,27 @@ void    file_handling(t_bananas *bana, int i)
     bool    append;
 
     // find > ar >> for outfiles
-	if (ft_strncmp(bana->token[i], ">>", 2) == 0)
+	if ((ft_strncmp(bana->token[i], ">>", 2) == 0) || (ft_strncmp(bana->token[i], ">", 1) == 0))
 	{
-		append = true;
-		token_cleaner(bana, i);
-		open_outfile(bana, i, append);
-		token_cleaner(bana, i);
-	}
-		
-	else if( ft_strncmp(bana->token[i], ">", 1) == 0)
-	{
-		append = false;
-		token_cleaner(bana, i);
-		// take the token token[>] and delete it, incrament file to this spot and token_count--
-		open_outfile(bana, i, append);
-		token_cleaner(bana, i);
+		if (ft_strncmp(bana->token[i], ">>\0", 3) == 0)
+		{
+			append = true;
+			token_cleaner(bana, i);
+			open_outfile(bana, i, append);
+			token_cleaner(bana, i);
+		}	
+		else if( ft_strncmp(bana->token[i], ">\0", 2) == 0)
+		{
+			append = false;
+			token_cleaner(bana, i);
+			// take the token token[>] and delete it, incrament file to this spot and token_count--
+			open_outfile(bana, i, append);
+			token_cleaner(bana, i);
+		}
+
 	}
 	// find < for infiles
-	else if (ft_strncmp(bana->token[i], "<", 1) == 0)
+	if (ft_strncmp(bana->token[i], "<\0", 2) == 0)
 	{
 		token_cleaner(bana, i);
 		open_infile(bana, i);
