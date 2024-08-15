@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/14 17:57:52 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/15 19:16:43 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,33 +25,33 @@
 // work for next work day: ENV, EXPORT, UNSET, and then CD finally. 
 
 
-// static void	handle_echo(t_bananas *bana)
-// {
-// 	int i;
-// 	bool n_flag;
+static void	handle_echo(t_bananas *bana)
+{
+	int i;
+	bool n_flag;
 
-// 	n_flag = false;
-// 	i = 1;	
+	n_flag = false;
+	i = 1;	
 
-// 	if (bana->tok_num == 1)
-// 		printf("\n");
-// 	else if (bana->tok_num > 1)
-// 	{
-// 		if (ft_strcmp(bana->token[1], "-n") == 0)
-// 		{
-// 			token_cleaner(bana, 1);
-// 			n_flag = true;
-// 		}
-// 		while (i <= bana->tok_num - 2)
-// 			printf("%s ", bana->token[i++]);
-// 		if (bana->tok_num >= 2)
-// 			printf("%s", bana->token[bana->tok_num - 1]);
-// 		if (n_flag == false)
-// 			printf("\n");
-// 	}
-// 	while (bana->tok_num > 0)
-// 		token_cleaner(bana, 0);
-// }
+	if (bana->tok_num == 1)
+		printf("\n");
+	else if (bana->tok_num > 1)
+	{
+		if (ft_strcmp(bana->token[1], "-n") == 0)
+		{
+			token_cleaner(bana, 1);
+			n_flag = true;
+		}
+		while (i <= bana->tok_num - 2)
+			printf("%s ", bana->token[i++]);
+		if (bana->tok_num >= 2)
+			printf("%s", bana->token[bana->tok_num - 1]);
+		if (n_flag == false)
+			printf("\n");
+	}
+	while (bana->tok_num > 0)
+		token_cleaner(bana, 0);
+}
 
 static int	handle_pwd(t_bananas *bana)
 {
@@ -91,7 +91,7 @@ static void handle_exit(t_bananas *bana)
 			(void)temp;
 			ft_printf("🍌Bye Bye BaNaNaNas🍌!\nexit\n%s: %s: count your 🍌s!\n", bana->token[0], bana->token[1]);  
 			while (bana->tok_num > 0)
-				token_cleaner(bana, 0);
+				token_cleaner(bana, 1);
 			exit(0);
 		}
 	}
@@ -187,48 +187,47 @@ static void handle_exit(t_bananas *bana)
 // //	envp[i + 1][0] = '\0';
 // }
 
-// static void handle_env(t_bananas *bana, char **envp)
-// {
-// 	char **temp;
-// 	int i;
-
-// 	(void)bana;
-// 	temp = envp;
-// 	i = 0;
-// 	while (temp[i])
-// 	{
-// 		if (!temp[i])
-// 			break ;
-// 		ft_putendl_fd(temp[i], 1);
-// 		i++;
-// 	}
-// //	ft_putendl_fd("\n", 1);
-// }
+static void handle_env(t_bananas *bana, t_node *env)
+{
+	(void)bana;
+	while (env->next)
+	{
+		if (!env)
+			break ;
+		printf("%s=%s\n", env->key, env->value);	
+		env = env->next;
+	}
+//	ft_putendl_fd("\n", 1);
+}
 
 void built_ins(t_bananas *bana, t_node **env)
 {
 	size_t	len;
 	char 	*bi;
 
-	ft_printf("In BI's\n");
-	bi = env[0]->line;
-	len = ft_strlen(bi);
-	if (len > 0 && bi[len - 1]  == '\n')
-		bi[len - 1] = '\0';
-	else if (ft_strcmp(bi, "exit") == 0)
-		handle_exit(bana);
-	else if (ft_strcmp(bi, "pwd") == 0)
-		handle_pwd(bana);
-	// else if (ft_strcmp(bi, "echo") == 0)
-	// 	handle_echo(bana);
-	// else if (ft_strcmp(bi, "unset") == 0)
-	// 	handle_unset(bana, envp);
-	// else if (ft_strcmp(bi, "env") == 0)
-	// 	handle_env(bana, envp);
-	// else if (ft_strcmp(bi, "export") == 0)
-	// 	handle_export(bana, envp);
-	else
-		printf("Command '%s' not found\n", bi); 
+	printf("In BI's\n");
+	if (bana->token[0])
+	{
+		bi = bana->token[0];
+		len = ft_strlen(bi);
+		// printf("bi:%s\n", bi);
+		if (len > 0 && bi[len - 1]  == '\n')
+			bi[len - 1] = '\0';
+		else if (ft_strcmp(bi, "exit") == 0)
+			handle_exit(bana);
+		else if (ft_strcmp(bi, "pwd") == 0)
+			handle_pwd(bana);
+		else if (ft_strcmp(bi, "echo") == 0)
+			handle_echo(bana);
+		// else if (ft_strcmp(bi, "unset") == 0)
+		// 	handle_unset(bana, envp);
+		else if (ft_strcmp(bi, "env") == 0)
+			handle_env(bana, *env);
+		// else if (ft_strcmp(bi, "export") == 0)
+		// 	handle_export(bana, envp);
+		else
+			printf("Command '%s' not found\n", bi); 
+	}
 }
 
 

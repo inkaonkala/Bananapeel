@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:54:44 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/14 16:57:38 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/15 17:58:37 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ typedef struct s_bananas
 
 typedef struct s_node
 {
-    char            *line;
+    char            *value;
+    char            *key;
     struct  s_node  *next;
     struct  s_node  *prev;
 }   t_node;
