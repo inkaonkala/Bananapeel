@@ -6,13 +6,13 @@
 #    By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 15:54:31 by jbremser          #+#    #+#              #
-#    Updated: 2024/08/08 10:21:42 by iniska           ###   ########.fr        #
+#    Updated: 2024/08/15 17:31:20 by etaattol         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= 	bananapeel
 
-FLAGS		=	-Wall -Wextra -Werror
+FLAGS		=	-Wall -Wextra -Werror -g
 
 SRCFILES 	= 	bananapeel.c \
 				signaling.c \
