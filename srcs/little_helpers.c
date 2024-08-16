@@ -10,7 +10,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 14:42:49 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/09 16:23:19 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/13 14:20:40 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void token_cleaner(t_bananas *bana, int i)
 	bana->tok_num--;
 	if (bana->tok_num == 0)
 	{
-		// free(bana->token[0]);
+	//	free(bana->token[0]);
 		bana->token[0] = NULL;
 	}
 }

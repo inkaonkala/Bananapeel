@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:46:16 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/09 13:27:18 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/13 15:27:26 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,10 +121,16 @@ int	create_child(t_bananas *bana, char **envp, int index)
 	if (pid == 0)
 	{
 		if(bana->is_rdr)
-			// USE RIGHT IN AND OUTPUT
+		{
+			printf("is_rdr\n");
+		//	redirect_file_input(bana);
+		//	redirect_file_putput(bana);
+		}
 		else
+		{
 			redirect_input(bana, index);
 			redirect_putput(bana, fd, index);
+		}
 		execute_command(bana, envp, index);
 		//exit(EXIT_FAILURE);
 	}

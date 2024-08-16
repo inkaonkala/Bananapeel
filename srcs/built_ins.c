@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/13 13:31:40 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/15 19:16:43 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,69 +91,143 @@ static void handle_exit(t_bananas *bana)
 			(void)temp;
 			ft_printf("🍌Bye Bye BaNaNaNas🍌!\nexit\n%s: %s: count your 🍌s!\n", bana->token[0], bana->token[1]);  
 			while (bana->tok_num > 0)
-				token_cleaner(bana, 0);
+				token_cleaner(bana, 1);
 			exit(0);
 		}
 	}
 }
 
-static void handle_unset(t_bananas *bana, char **envp)
-{
-	(void)bana;
-	(void)envp;
-}
+// static void handle_unset(t_bananas *bana, char **envp)
+// {
+// 	(void)bana;
+// 	(void)envp;
+// }
 
-static void handle_export(t_bananas *bana, char **envp)
-{
-	(void)bana;
-	int i;
+// static char **envp_strjoin(t_bananas *bana, char **envp)
+// {
+// 	int		i;
+// 	int		j;
+// 	size_t	len;
 
-	i = 0;
-	while (envp[i])
-		i++;
+// 	i = 0;
+// 	while (envp[i])
+// 		i++;
+// //	i++;
+// 	len = (ft_strlen(bana->token[1]));
+// 	envp[i] = malloc(len + 1);
+// 	if (envp[i] == NULL)
+// 		return (NULL);
+// 	j = 0;
+// 	while (bana->token[1][j])
+// 	{
+// 		envp[i][j] = bana->token[1][j];
+// 		j++;
+// 	}
+// 	envp[i + 1] = malloc(sizeof(char));
+// 	envp[i + 1][1] = '\0';
+// 	return (envp);
+// }
+
+// static int find_export(t_bananas *bana, char **envp)
+// {
+// //search for the same key in the envp, and then we will replace that line with the key and anything after
+// 	//return the integer for the line number in the envp where this key appears
+// 		//or this will iterate through to the end of the envp in which case it returns the last line to the envp, 
+// 			//where it will write the new export variable to the bottom of env
+// 	int i;
+
+// 	i = 0;
+// 	while (envp[i])
+// 	{
+
+// 		i++;
+// 	}
+
+// }
+
+// static void parse_export(char *token)
+// {
+// 	//if there is a "=" sign after the key in the export var,
+// 	if (ft_strchr(token, "="))
+// 		return (1);
+// 	return (0);
+// }
+
+// static void handle_export(t_bananas *bana, char **envp)
+// {
+// 	int i;
+
+// 	if (bana->tok_num == 1)
+// 	{
+// 		i = 0;
+// 		while (envp[i])
+// 		{
+// 			if (!envp[i])
+// 				break ;
+// 			printf("declare -x %s\n", envp[i]);	
+// 			i++;
+// 		}
+// 	}
+// 	else if (bana->tok_num > 1)
+// 	{
+// 		i = 1;
+// 		if (!parse_export(bana->token[i]))
+// 			//write to bottom of env, move on to next token, check it for =
 	
+			
+// 			// i = find_export
 
-}
+			
+// 	}
+// 	// envp = envp_strjoin(bana, envp);
+// 	//malloc 2 for \n and \0 then write to envp[i]
+// 	//strjoin, token to envp[i]
+// 	//
+// //	ft_strjoin(envp[i], bana->token[1], ft_strlen(bana->token[1]));
+// //	envp[i + 1][0] = '\0';
+// }
 
-static void handle_env(t_bananas *bana, char **envp)
+static void handle_env(t_bananas *bana, t_node *env)
 {
-	char **temp;
-	int i;
-
 	(void)bana;
-	temp = envp;
-	i = 0;
-	while (temp[i])
+	while (env->next)
 	{
-		ft_putendl_fd(temp[i], 1);
-		i++;
+		if (!env)
+			break ;
+		printf("%s=%s\n", env->key, env->value);	
+		env = env->next;
 	}
 //	ft_putendl_fd("\n", 1);
 }
 
-void built_ins(t_bananas *bana, char **envp)
+void built_ins(t_bananas *bana, t_node **env)
 {
 	size_t	len;
-	char *	bi;
+	char 	*bi;
 
-	bi = bana->token[0];
-	len = ft_strlen(bi);
-	if (len > 0 && bi[len - 1]  == '\n')
-		bi[len - 1] = '\0';
-	else if (ft_strcmp(bi, "exit") == 0)
-		handle_exit(bana);
-	else if (ft_strcmp(bi, "pwd") == 0)
-		handle_pwd(bana);
-	else if (ft_strcmp(bi, "echo") == 0)
-		handle_echo(bana);
-	else if (ft_strcmp(bi, "unset") == 0)
-		handle_unset(bana, envp);
-	else if (ft_strcmp(bi, "env") == 0)
-		handle_env(bana, envp);
-	else if (ft_strcmp(bi, "export") == 0)
-		handle_export(bana, envp);
-	else
-		printf("Command '%s' not found\n", bi); 
+	printf("In BI's\n");
+	if (bana->token[0])
+	{
+		bi = bana->token[0];
+		len = ft_strlen(bi);
+		// printf("bi:%s\n", bi);
+		if (len > 0 && bi[len - 1]  == '\n')
+			bi[len - 1] = '\0';
+		else if (ft_strcmp(bi, "exit") == 0)
+			handle_exit(bana);
+		else if (ft_strcmp(bi, "pwd") == 0)
+			handle_pwd(bana);
+		else if (ft_strcmp(bi, "echo") == 0)
+			handle_echo(bana);
+		// else if (ft_strcmp(bi, "unset") == 0)
+		// 	handle_unset(bana, envp);
+		else if (ft_strcmp(bi, "env") == 0)
+			handle_env(bana, *env);
+		// else if (ft_strcmp(bi, "export") == 0)
+		// 	handle_export(bana, envp);
+		else
+			printf("Command '%s' not found\n", bi); 
+	}
 }
 
 
