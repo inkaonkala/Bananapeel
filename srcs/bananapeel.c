@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   bananapeel.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/07 10:43:50 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/08 11:52:32 by iniska           ###   ########.fr       */
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:43:50 by iniska            #+#    #+#             */
+/*   Updated: 2024/08/16 16:23:53 by jbremser         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 /*   Updated: 2024/08/15 12:18:42 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -26,10 +26,14 @@ int main(int arv, char **arc, char **envp)
 
 	t_bananas	bana;
 	char		*input;
+	t_node		**env;
 
 	input = NULL;
+	env = NULL;
 
 	ft_memset(&bana, 0, sizeof(t_bananas));
+	env  = malloc(sizeof(t_node));
+    load_list(envp, env);
 
 	if (isatty(STDIN_FILENO))
 	{
@@ -51,7 +55,7 @@ int main(int arv, char **arc, char **envp)
 			if (*input)
 				add_history(input);
 
-			if(!parsing(input, &bana, envp))
+			if(!parsing(input, &bana, envp, env))
 			{
 				ft_printf("Parsing is bananas");
 				// if (input)

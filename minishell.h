@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:54:44 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/15 17:58:37 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/16 16:22:13 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void    signaling(void);
 /* ************************************************************************** */
 /*									parsing 								  */
 /* ************************************************************************** */
-bool	parsing(char *str, t_bananas *bana, char **envp);
+bool	parsing(char *str, t_bananas *bana, char **envp, t_node **env);
 int		empties(char c);
 /* ************************************************************************** */
 /*									little_helpers							  */
@@ -101,7 +101,9 @@ char	*find_delimiter(t_bananas *bana);
 /* ************************************************************************** */
 /*									token_checker							  */
 /* ************************************************************************** */
-void    command_search(t_bananas *bana, char **envp);
+void    command_search(t_bananas *bana, char **envp, t_node **env);
+void    load_list(char **envp, t_node **env);
+
 /* ************************************************************************** */
 /*									funky_arrows							  */
 /* ************************************************************************** */

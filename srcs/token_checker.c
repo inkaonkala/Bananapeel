@@ -36,6 +36,7 @@ static t_node   *parse_str(t_node *node, char *str)
     // split++;
     if (!split)
     {
+        ft_printf("no split\n");
         node->value = NULL;
         node->key = ft_strdup(str);
     }
@@ -103,7 +104,7 @@ void	free_env(t_node	**env)
 	*env = NULL;
 }
 
-static void load_list(char **envp, t_node **env)
+void load_list(char **envp, t_node **env)
 {
     int i;
 
@@ -125,14 +126,11 @@ static void load_list(char **envp, t_node **env)
 
 
 
-void    command_search(t_bananas *bana, char **envp)
+void    command_search(t_bananas *bana, char **envp, t_node **env)
 {
-    t_node   **env;
     int i;
 
     i = 0;
-    env = ft_calloc(1, sizeof(t_node *));
-    load_list(envp, env);
     // printf("command_search\n");
     if(bana->is_pipe)
         pipex(bana, envp);

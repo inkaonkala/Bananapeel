@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 13:19:58 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/15 17:41:43 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/08/16 16:22:01 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static int	count_tokens(char *str)
 }
 
 // takes input and splits due to pipes and null to seperate nodes
-bool	parsing(char *str, t_bananas *bana, char **envp)
+bool	parsing(char *str, t_bananas *bana, char **envp, t_node **env)
 {
 	char	**tokens;
 	int		token_count;
@@ -151,7 +151,7 @@ bool	parsing(char *str, t_bananas *bana, char **envp)
 	}
 	//bana->is_dog = false;
 	type_check(bana);
-	command_search(bana, envp);
+	command_search(bana, envp, env);
 
 	//CHECKER!!
 	//for (int k = 0; k < token_i; k++) 
