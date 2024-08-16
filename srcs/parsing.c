@@ -7,10 +7,6 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 13:19:58 by iniska            #+#    #+#             */
 /*   Updated: 2024/08/14 12:57:50 by iniska           ###   ########.fr       */
-/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/17 13:19:58 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/15 17:41:43 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,13 +119,24 @@ bool	parsing(char *str, t_bananas *bana, char **envp)
 
 			i = quote_chk(str, &cur_quo, i);	
 			int tok_len = i - start; //HERE HERE
-			tokens[token_index] = malloc(tok_len + 1);
-			if (!tokens[token_index])
-			{
-				return (false);
-			}
-			ft_strlcpy(tokens[token_index], &str[start], tok_len + 1);
-			token_index++;
+
+			// HERE DOG, REMOVE
+			/*
+			if(tok_len == 2 && ft_strncmp(&str[start], "<<", 2) == 0)
+				find_dog(str);
+			*/
+			
+			//else
+			//{
+				tokens[token_index] = malloc(tok_len + 1);
+				if (!tokens[token_index])
+				{
+					//free(tokens); ?
+					return (false);
+				}
+				ft_strlcpy(tokens[token_index], &str[start], tok_len + 1);
+				token_index++;
+			//}
 		}
 	}
 	tokens[token_index] = NULL;
@@ -140,19 +147,6 @@ bool	parsing(char *str, t_bananas *bana, char **envp)
 	//bana->infile_count = 0;
 	//bana->outfile_count = 0;
 
-	i = 0;
-	while (bana->token[i])
-	{
-		if (ft_strncmp(bana->token[i], "<<", 3) == 0)
-		{
-			find_dog(bana);
-			i++;
-		}
-		else
-			//other checks
-			(void)tokens;
-		i++;
-	}
 	//bana->is_dog = false;
 	type_check(bana);
 	command_search(bana, envp);
