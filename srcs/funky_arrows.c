@@ -6,10 +6,10 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:33:37 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/14 09:03:42 by iniska           ###   ########.fr       */
-/*   Updated: 2024/08/09 11:54:00 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/16 10:23:22 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../minishell.h"
 
@@ -39,7 +39,8 @@ static void	execute_rdr(t_bananas *bana, char **envp)
 	int		status;
 	char	*path;
 
-
+	
+	ft_printf("			the set FD DUP DUP DUP 1 	%d\n", bana->out_files[bana->outfile_count - 1]);
 
 	pid = fork();
 	if (pid < 0)
@@ -58,8 +59,15 @@ static void	execute_rdr(t_bananas *bana, char **envp)
 			}
 		}
 		
+		ft_printf("%d\n \n", bana->outfile_count);
+		ft_printf("		FD NUMBER = %d\n", bana->out_files[bana->outfile_count - 1]);
+		
+		
 		if(bana->outfile_count > 0)
 		{
+			ft_printf(" :::::::::::::::: DUPPING! :::::::::::::::::::\n");
+			ft_printf("		FD NUMBER IN DUP = %d\n", bana->out_files[bana->outfile_count - 1]);
+			
 			if (dup2(bana->out_files[bana->outfile_count - 1], STDOUT_FILENO) < 0)
 			{
 				perror("Bananas! Error in dup2 PUTPUT redirections\n");
@@ -68,20 +76,17 @@ static void	execute_rdr(t_bananas *bana, char **envp)
 		}
 		
 		close_files(bana);
-		ft_printf("Gonna look for PATH\n");
-		path = get_path(bana->token[0], envp);
-		ft_printf("			PATH:: %s\n", path);
+		path = get_path(bana->token[0], envp);		
 		if(!path)
 		{
 			perror("Command is bananas:");
 			exit(EXIT_FAILURE);
 		}
-		ft_printf("		before EXECV\n");
+		
+		token_cleaner(bana, 0);
+
 		execve(path, bana->token, envp);
 		free(path);
-
-
-		//perror("Bananas! Error in rdr execve");
 	}
 	else
 		waitpid(pid, &status, 0);		
@@ -89,19 +94,25 @@ static void	execute_rdr(t_bananas *bana, char **envp)
 
 void    redirections(t_bananas *bana, char **envp)
 {
+	// this is not incramenting right and it delets the fd!
 	int		i;
 	
 	i = 0;
+	bana->outfile_count = 0;
+	bana->infile_count = 0;
+	file_malloc(bana);
 	while(bana->token[i])
 	{
-		file_malloc(bana);
-		file_handling(bana, i);
+		//file_malloc(bana);
+		if(file_handling(bana, i))
+			continue ;
+		ft_printf("			the set REDIRDIER 1 	%d\n", bana->out_files[bana->outfile_count - 1]);
 		i++;
 	}
 	if(!bana->is_pipe)
 	{
 		execute_rdr(bana, envp);
-		token_cleaner(bana, 0);
+		//token_cleaner(bana, 0);
 	}
 
 }

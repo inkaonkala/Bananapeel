@@ -11,7 +11,7 @@ void    command_search(t_bananas *bana, char **envp)
     if(bana->is_pipe)
         pipex(bana, envp);
     else if(bana->is_rdr)
-        redirections(bana);
+        redirections(bana, envp);
     else
         built_ins(bana, envp);
 }

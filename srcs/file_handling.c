@@ -6,10 +6,10 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 10:06:52 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/13 15:11:00 by iniska           ###   ########.fr       */
-/*   Updated: 2024/08/09 10:01:23 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/16 10:28:16 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../minishell.h"
 
@@ -34,15 +34,16 @@ static void    open_infile(t_bananas *bana, int i)
 		}
 	}
 	bana->in_files[bana->infile_count] = fd;
-	bana->infile_count++;
+	//bana->infile_count++;
 }
 
 static void    open_outfile(t_bananas *bana, int i, bool append)
 {
 	int	fd;
+
+	//ft_printf("%d\n \n", bana->outfile_count);
 	
-	ft_printf("Opening output file: %s\n", bana->token[i]);
-	
+	//ft_printf("Opening output file: %s\n", bana->token[i]);
 	if (append)
 		fd = open(bana->token[i], O_WRONLY | O_APPEND | O_CREAT, 0644);
 	else
@@ -53,14 +54,27 @@ static void    open_outfile(t_bananas *bana, int i, bool append)
 		perror("Bananas!: Error opening output file");
 		return ;
 	}
+	
 	bana->out_files[bana->outfile_count] = fd;
+
+
+
+	ft_printf("			the FD 				%d\n", fd);
+	ft_printf("			the set FD 			%d\n", bana->out_files[bana->outfile_count]);
+	
 	bana->outfile_count++;
+	
+	ft_printf("%d\n \n", bana->outfile_count);
+
+	ft_printf("			the set FD after incrament 	%d\n", bana->out_files[bana->outfile_count - 1]);
 
 }
 
-void    file_handling(t_bananas *bana, int i)
+bool    file_handling(t_bananas *bana, int i)
 {
     bool    append;
+
+	
 
     // find > ar >> for outfiles
 	if ((ft_strncmp(bana->token[i], ">>", 2) == 0) || (ft_strncmp(bana->token[i], ">", 1) == 0))
@@ -70,7 +84,9 @@ void    file_handling(t_bananas *bana, int i)
 			append = true;
 			token_cleaner(bana, i);
 			open_outfile(bana, i, append);
-			token_cleaner(bana, i);
+			//token_cleaner(bana, i);
+			ft_printf("				the set FD IN HANFILNDd\n %d\n", bana->out_files[bana->outfile_count - 1]);
+			return (true);
 		}	
 		else if( ft_strncmp(bana->token[i], ">\0", 2) == 0)
 		{
@@ -79,7 +95,10 @@ void    file_handling(t_bananas *bana, int i)
 			// take the token token[>] and delete it, incrament file to this spot and token_count--
 			open_outfile(bana, i, append);
 			token_cleaner(bana, i);
+			return (true);
 		}
+		return (false);
+
 
 	}
 	// find < for infiles
@@ -88,11 +107,12 @@ void    file_handling(t_bananas *bana, int i)
 		token_cleaner(bana, i);
 		open_infile(bana, i);
 		token_cleaner(bana, i);
+		return (true);
 	}
-	else
-		return ;
+	return (false);
 }
 
+/*
 void    file_malloc(t_bananas *bana) // THIS MALLOC NEEDS TO BE CORRECTED?
 {
     //somehow we should count the amount of actual files for right mallocsize
@@ -110,4 +130,42 @@ void    file_malloc(t_bananas *bana) // THIS MALLOC NEEDS TO BE CORRECTED?
 		return ;
 	}
 
+}
+*/
+
+void file_malloc(t_bananas *bana)
+{
+    int in_file_count = 0;
+    int out_file_count = 0;
+    int i = 0;
+
+    // First pass to count redirection symbols
+    while (i < bana->tok_num)
+    {
+        if (ft_strncmp(bana->token[i], "<", 1) == 0)
+            in_file_count++;
+        else if (ft_strncmp(bana->token[i], ">", 1) == 0 || ft_strncmp(bana->token[i], ">>", 2) == 0)
+            out_file_count++;
+        i++;
+    }
+
+    // Allocate memory based on the count
+    bana->in_files = malloc(sizeof(int) * in_file_count);
+    if (!bana->in_files)
+    {
+        perror("Malloc in_files failed");
+        return;
+    }
+
+    bana->out_files = malloc(sizeof(int) * out_file_count);
+    if (!bana->out_files)
+    {
+        perror("Malloc out_files failed");
+        free(bana->in_files);
+        return;
+    }
+
+    // Initialize counters
+    bana->infile_count = 0;
+    bana->outfile_count = 0;
 }

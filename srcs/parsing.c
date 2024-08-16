@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 13:19:58 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/13 12:42:29 by iniska           ###   ########.fr       */
-/*   Updated: 2024/08/09 15:33:59 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/14 12:57:50 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../minishell.h"
 
@@ -144,8 +144,8 @@ bool	parsing(char *str, t_bananas *bana, char **envp)
 	bana->tok_num = token_index;
 	bana->is_pipe = false;
 	bana->is_rdr = false;
-	bana->infile_count = 0;
-	bana->outfile_count = 0;
+	//bana->infile_count = 0;
+	//bana->outfile_count = 0;
 
 	//bana->is_dog = false;
 	type_check(bana);
