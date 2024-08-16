@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 13:19:58 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/09 15:33:59 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/15 17:41:43 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../minishell.h"
 
@@ -118,24 +119,13 @@ bool	parsing(char *str, t_bananas *bana, char **envp)
 
 			i = quote_chk(str, &cur_quo, i);	
 			int tok_len = i - start; //HERE HERE
-
-			// HERE DOG, REMOVE
-			/*
-			if(tok_len == 2 && ft_strncmp(&str[start], "<<", 2) == 0)
-				find_dog(str);
-			*/
-			
-			//else
-			//{
-				tokens[token_index] = malloc(tok_len + 1);
-				if (!tokens[token_index])
-				{
-					//free(tokens); ?
-					return (false);
-				}
-				ft_strlcpy(tokens[token_index], &str[start], tok_len + 1);
-				token_index++;
-			//}
+			tokens[token_index] = malloc(tok_len + 1);
+			if (!tokens[token_index])
+			{
+				return (false);
+			}
+			ft_strlcpy(tokens[token_index], &str[start], tok_len + 1);
+			token_index++;
 		}
 	}
 	tokens[token_index] = NULL;
@@ -143,6 +133,22 @@ bool	parsing(char *str, t_bananas *bana, char **envp)
 	bana->tok_num = token_index;
 	bana->is_pipe = false;
 	bana->is_rdr = false;
+	bana->infile_count = 0;
+	bana->outfile_count = 0;
+
+	i = 0;
+	while (bana->token[i])
+	{
+		if (ft_strncmp(bana->token[i], "<<", 3) == 0)
+		{
+			find_dog(bana);
+			i++;
+		}
+		else
+			//other checks
+			(void)tokens;
+		i++;
+	}
 	//bana->is_dog = false;
 	type_check(bana);
 	command_search(bana, envp);

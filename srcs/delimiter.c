@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   delimiter.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 13:07:40 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/08 12:02:50 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/15 17:21:12 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,38 @@ static char *add_n(char *str)
 }
 */
 
+char	*find_delimiter(t_bananas *bana)
+{
+	int		i;
+	int		len;
+	char 	*deli;
+
+	i = 0;
+	len = 5;
+	ft_printf("testi\n");
+	while(bana->token[i])
+	{
+		if (!ft_strcmp(bana->token[i], "<<"))
+		{
+			token_cleaner(bana, i);
+			len = ft_strlen(bana->token[i]);
+			ft_printf("%d\n", len);
+			deli = malloc(sizeof(char) * (len  + 1));
+			if(!deli)
+			{
+				//clean_n_exit()// THIS WE NEED TO DO!
+				return (NULL);
+			}
+			ft_strlcpy(deli, bana->token[i], len + 1);
+			token_cleaner(bana, i);
+			return(deli);
+		}
+		i++;
+	}
+	return (NULL);
+}
+
+/*
 char	*find_delimiter(char *str)
 {
 	int		i;
@@ -60,6 +92,7 @@ char	*find_delimiter(char *str)
 			}
 			ft_strlcpy(deli, &str[start], len + 1);
 			//add_n(deli);
+			//add_n(deli);
 			return (deli);
 		}
 		if(str[i] != '\0')
@@ -68,4 +101,4 @@ char	*find_delimiter(char *str)
 	return (NULL);
 }
 
-
+*/

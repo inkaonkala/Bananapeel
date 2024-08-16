@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:54:44 by jbremser          #+#    #+#             */
 /*   Updated: 2024/08/15 17:58:37 by jbremser         ###   ########.fr       */
@@ -92,12 +92,12 @@ int     number_checker(char *argv);
 /* ************************************************************************** */
 /*									here_dog								  */
 /* ************************************************************************** */
-void	find_dog(char *str);
+void	find_dog(t_bananas *bana);
 void	handle_the_dog(const char *delimiter);
 /* ************************************************************************** */
 /*									delimiter								  */
 /* ************************************************************************** */
-char	*find_delimiter(char *str);
+char	*find_delimiter(t_bananas *bana);
 /* ************************************************************************** */
 /*									token_checker							  */
 /* ************************************************************************** */
@@ -115,15 +115,24 @@ void    file_malloc(t_bananas *bana);
 /* ************************************************************************** */
 /*									pipes_are_calling						  */
 /* ************************************************************************** */
+
 void	free_char_array(char ***paths, int arc);
 int     pipex(t_bananas *bana, char **envp);
+
+char	*get_path(char *path_name, char **envp);
 bool    parse_cmd_line(t_bananas *bana, char **envp);
-bool	check_arguments(t_bananas *bana);
+
+
 bool	parse_cmd_args(t_bananas *bana);
 void	clean_n_errors(t_bananas *bana);
 int     create_child(t_bananas *bana, char **envp, int index);
 void	init_pipes(t_bananas *bana);
 void	free_line(char **paths, int arc);
+
+// files.c
+bool	check_arguments(t_bananas *bana);
+void	redirect_file_input(t_bananas *bana);
+void	redirect_file_putput(t_bananas *bana);
 
 
 #endif

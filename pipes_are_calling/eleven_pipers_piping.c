@@ -5,23 +5,12 @@ static bool	handle_commands(t_bananas *bana, char **envp)
 {
 
 	if(bana->is_rdr)
+	{
 		redirections(bana, envp);
 
-	ft_printf("			PIPEX after opening files\n");
-
-	/*
-	if(bana->is_rdr)
-	{
-		if (!check_arguments(bana))
-		{
-			//clean_n_errors(bana);
-			return (false);
-		}
-	
-		ft_printf("after check_arguments\n");
+		ft_printf("			PIPEX after opening files\n");
 	}
-	*/
-	
+  
 	if (!parse_cmd_line(bana, envp))
 	{
 		clean_n_errors(bana);
@@ -111,6 +100,6 @@ int pipex(t_bananas *bana, char **envp)
         i++;
     }
 
-    return 0;
+    return (0);
 }
 
