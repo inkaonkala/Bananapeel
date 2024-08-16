@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 14:42:49 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/14 10:38:07 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/16 11:57:24 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	token_cleaner(t_bananas *bana, int i)
 	}
 }
 */
+
 
 void token_cleaner(t_bananas *bana, int i)
 {
