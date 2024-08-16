@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+         #
+#    By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 15:54:31 by jbremser          #+#    #+#              #
-#    Updated: 2024/08/08 10:21:42 by iniska           ###   ########.fr        #
+#    Updated: 2024/08/15 12:53:19 by jbremser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= 	bananapeel
 
-FLAGS		=	-Wall -Wextra -Werror
+FLAGS		=	-Wall -Wextra -Werror -g
 
 SRCFILES 	= 	bananapeel.c \
 				signaling.c \
@@ -56,7 +56,7 @@ ANSI_RESET 	:= 	\033[0m
 
 all: 			$(NAME)
 
-$(OBJDIR)/%.o:	$(SRCDIR)/%.c $(HEADER)
+$(OBJDIR)/%.o:	$(SRCDIR)/%.c $(HEADER) 
 				@mkdir -p $(OBJDIR)
 				@cc $(FLAGS) -o $@ -c $<
 
@@ -74,7 +74,7 @@ $(LIBFT):
 
 clean:
 				@rm -rf $(OBJDIR)
-				@rm -f $(PIPEDIR)/*.o
+				@rm -f $(PIPEDIR)/*.o   #this is useless i Think#
 				@make -C $(LIBFT_DIR) clean
 				@echo "$(ANSI_RED)Objects and LIB_FT Cleaned$(ANSI_RESET)"
 
