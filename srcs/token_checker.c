@@ -123,16 +123,47 @@ static void load_list(char **envp, t_node **env)
 
 }
 
+static char	**copy_envp(char **envp)
+{
+	char 	**tmp;
+	int		len;
+	int		i;
 
+	len = 0;
+	while (envp[len] != NULL)
+		len++;
+	tmp = (char **)malloc((len + 1) * sizeof(char *));
+	if(!tmp)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		tmp[i] = ft_strdup(envp[i]);
+		if (!tmp[i])
+		{
+			while(i-- >= 0)
+				free(tmp[i]);
+			free(tmp);
+			return (NULL);
+		}
+		i++;
+	}
+	tmp[len] = NULL;
+	return (tmp);
+}
 
 void    command_search(t_bananas *bana, char **envp)
 {
-    t_node   **env;
-    int i;
+    char	**tmp;
+    t_node	**env;
+    int		i;
 
     i = 0;
+	tmp = copy_envp(envp);
+	if(!tmp)
+		return ;
     env = ft_calloc(1, sizeof(t_node *));
-    load_list(envp, env);
+    load_list(tmp, env);
     // printf("command_search\n");
     if(bana->is_pipe)
         pipex(bana, envp);
