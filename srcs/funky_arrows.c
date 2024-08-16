@@ -6,10 +6,10 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:33:37 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/14 09:03:42 by iniska           ###   ########.fr       */
-/*   Updated: 2024/08/09 11:54:00 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/16 12:02:17 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../minishell.h"
 
@@ -39,8 +39,6 @@ static void	execute_rdr(t_bananas *bana, char **envp)
 	int		status;
 	char	*path;
 
-
-
 	pid = fork();
 	if (pid < 0)
 	{
@@ -51,15 +49,13 @@ static void	execute_rdr(t_bananas *bana, char **envp)
 	{
 		if (bana->infile_count > 0)
 		{
-			if (dup2(bana->in_files[bana->infile_count - 1], STDIN_FILENO) < 0) // SHOULD THIS -1 BE REMOVED
-			{
-				perror("Bananas! Error in dup2 for INPUT redirection\n");
+			if (dup2(bana->in_files[bana->infile_count - 1], STDIN_FILENO) < 0)
 				exit(EXIT_FAILURE); //CHECK THIS!
-			}
+			
 		}
-		
 		if(bana->outfile_count > 0)
 		{
+		
 			if (dup2(bana->out_files[bana->outfile_count - 1], STDOUT_FILENO) < 0)
 			{
 				perror("Bananas! Error in dup2 PUTPUT redirections\n");
@@ -68,20 +64,17 @@ static void	execute_rdr(t_bananas *bana, char **envp)
 		}
 		
 		close_files(bana);
-		ft_printf("Gonna look for PATH\n");
-		path = get_path(bana->token[0], envp);
-		ft_printf("			PATH:: %s\n", path);
+		path = get_path(bana->token[0], envp);		
 		if(!path)
 		{
 			perror("Command is bananas:");
 			exit(EXIT_FAILURE);
 		}
-		ft_printf("		before EXECV\n");
+		
+		token_cleaner(bana, 0);
+
 		execve(path, bana->token, envp);
 		free(path);
-
-
-		//perror("Bananas! Error in rdr execve");
 	}
 	else
 		waitpid(pid, &status, 0);		
@@ -92,16 +85,20 @@ void    redirections(t_bananas *bana, char **envp)
 	int		i;
 	
 	i = 0;
+	bana->outfile_count = 0;
+	bana->infile_count = 0;
+	file_malloc(bana);
 	while(bana->token[i])
 	{
-		file_malloc(bana);
-		file_handling(bana, i);
+		//file_malloc(bana);
+		if(file_handling(bana, i))
+			continue ;
 		i++;
 	}
 	if(!bana->is_pipe)
 	{
 		execute_rdr(bana, envp);
-		token_cleaner(bana, 0);
+		//token_cleaner(bana, 0);
 	}
 
 }

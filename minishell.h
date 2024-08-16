@@ -3,6 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/08 16:54:44 by jbremser          #+#    #+#             */
+/*   Updated: 2024/08/16 10:03:46 by iniska           ###   ########.fr       */
 /*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:54:44 by jbremser          #+#    #+#             */
@@ -110,7 +114,7 @@ void    redirections(t_bananas *bana, char **envp);
 /*									file_handling							  */
 /* ************************************************************************** */
 
-void    file_handling(t_bananas *bana, int i);
+bool  file_handling(t_bananas *bana, int i);
 void    file_malloc(t_bananas *bana);
 /* ************************************************************************** */
 /*									pipes_are_calling						  */

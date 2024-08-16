@@ -6,6 +6,10 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:43:50 by iniska            #+#    #+#             */
+/*   Updated: 2024/08/14 12:21:11 by iniska           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+/*   Updated: 2024/08/12 14:59:37 by jbremser         ###   ########.fr       */
 /*   Updated: 2024/08/08 11:52:32 by iniska           ###   ########.fr       */
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -36,6 +40,7 @@ int main(int arv, char **arc, char **envp)
 		signaling();
 		while (1)
 		{
+			
 			input = readline("🍌banana_peel:");
 			if (input == NULL)
 			{
@@ -48,6 +53,11 @@ int main(int arv, char **arc, char **envp)
 				continue ;
 			}
 			//ft_printf("Your input: %s\n", input); //  CHECKER!
+			if (*input == '\0')
+			{
+				free(input);
+				continue ;
+			}
 			if (*input)
 				add_history(input);
 
