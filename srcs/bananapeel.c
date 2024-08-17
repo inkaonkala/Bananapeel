@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   bananapeel.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/07 10:43:50 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/14 12:21:11 by iniska           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-/*   Updated: 2024/08/12 14:59:37 by jbremser         ###   ########.fr       */
-/*   Updated: 2024/08/08 11:52:32 by iniska           ###   ########.fr       */
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:43:50 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/15 12:18:42 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/17 15:00:34 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../minishell.h"
-
 
 int main(int arv, char **arc, char **envp)
 {
@@ -30,10 +20,14 @@ int main(int arv, char **arc, char **envp)
 
 	t_bananas	bana;
 	char		*input;
+	t_node		**env;
 
 	input = NULL;
+	env = NULL;
 
 	ft_memset(&bana, 0, sizeof(t_bananas));
+	env  = ft_calloc(1, sizeof(t_node));
+  load_list(envp, env);
 
 	if (isatty(STDIN_FILENO))
 	{
@@ -61,7 +55,7 @@ int main(int arv, char **arc, char **envp)
 			if (*input)
 				add_history(input);
 
-			if(!parsing(input, &bana, envp))
+			if(!parsing(input, &bana, env))
 			{
 				ft_printf("Parsing is bananas");
 				// if (input)

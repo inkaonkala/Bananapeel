@@ -6,7 +6,7 @@
 #    By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 15:54:31 by jbremser          #+#    #+#              #
-#    Updated: 2024/08/15 12:53:19 by jbremser         ###   ########.fr        #
+#    Updated: 2024/08/17 15:04:00 by jbremser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ SRCFILES 	= 	bananapeel.c \
 	 			delimiter.c \
 				token_checker.c \
 				funky_arrows.c \
-				file_handling.c
+				file_handling.c \
+				linked_lists.c
 
 PIPEFILES	=	eleven_pipers_piping.c \
 				arguments.c\
