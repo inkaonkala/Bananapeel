@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 13:19:58 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/16 16:22:01 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/17 15:17:01 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,27 @@ static void	type_check(t_bananas *bana)
 	}
 	
 }
+
+static char	**list_to_eepie(char **eepie, t_node **env)
+{
+	int len;
+	int i;
+	t_node *curr;
+
+	i = 0;
+	curr = *env;
+	len = stack_len(curr) + 1;
+	eepie = ft_calloc(len, sizeof(char *));
+	while (i < len - 1)
+	{
+		eepie[i] = ft_strjoin(curr->key, "=");
+		eepie[i] = ft_strjoin(eepie[i], curr->value);
+		curr = curr->next;
+		i++;
+	}
+	return (eepie);
+}
+
 
 /*
 static void	free_tokens(char **tokens)
@@ -89,22 +110,24 @@ static int	count_tokens(char *str)
 }
 
 // takes input and splits due to pipes and null to seperate nodes
-bool	parsing(char *str, t_bananas *bana, char **envp, t_node **env)
+bool	parsing(char *str, t_bananas *bana, t_node **env)
 {
 	char	**tokens;
 	int		token_count;
 	int		i;
 	int		token_index;
 	char	cur_quo;
+	char	**envp;
 
 	int start;
 
 	i = 0;
 	token_index = 0;
 	cur_quo = 0;
+	envp = NULL;
 
 	token_count = count_tokens(str);
-
+	envp = list_to_eepie(envp, env);
 	tokens = malloc((token_count + 1) * sizeof(char *));
 	if (!tokens)
 		return (false);

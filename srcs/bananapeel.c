@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:43:50 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/16 16:23:53 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/17 15:00:34 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int main(int arv, char **arc, char **envp)
 	env = NULL;
 
 	ft_memset(&bana, 0, sizeof(t_bananas));
-	env  = malloc(sizeof(t_node));
+	env  = ft_calloc(1, sizeof(t_node));
     load_list(envp, env);
 
 	if (isatty(STDIN_FILENO))
@@ -55,7 +55,7 @@ int main(int arv, char **arc, char **envp)
 			if (*input)
 				add_history(input);
 
-			if(!parsing(input, &bana, envp, env))
+			if(!parsing(input, &bana, env))
 			{
 				ft_printf("Parsing is bananas");
 				// if (input)

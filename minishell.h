@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:54:44 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/16 16:22:13 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/17 15:15:35 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void    signaling(void);
 /* ************************************************************************** */
 /*									parsing 								  */
 /* ************************************************************************** */
-bool	parsing(char *str, t_bananas *bana, char **envp, t_node **env);
+bool	parsing(char *str, t_bananas *bana, t_node **env);
 int		empties(char c);
 /* ************************************************************************** */
 /*									little_helpers							  */
@@ -102,7 +102,6 @@ char	*find_delimiter(t_bananas *bana);
 /*									token_checker							  */
 /* ************************************************************************** */
 void    command_search(t_bananas *bana, char **envp, t_node **env);
-void    load_list(char **envp, t_node **env);
 
 /* ************************************************************************** */
 /*									funky_arrows							  */
@@ -111,9 +110,19 @@ void    redirections(t_bananas *bana, char **envp);
 /* ************************************************************************** */
 /*									file_handling							  */
 /* ************************************************************************** */
-
 void    file_handling(t_bananas *bana, int i);
 void    file_malloc(t_bananas *bana);
+/* ************************************************************************** */
+/*									linked_lists    						  */
+/* ************************************************************************** */
+t_node  *find_last(t_node	*stack);
+t_node  *parse_str(t_node *node, char *str);
+int     add_end(t_node **stack, char *str);
+void	free_env(t_node	**env);
+int     stack_len(t_node *stack);
+void    load_list(char **envp, t_node **env);
+
+
 /* ************************************************************************** */
 /*									pipes_are_calling						  */
 /* ************************************************************************** */

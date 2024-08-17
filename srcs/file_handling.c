@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   file_handling.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 10:06:52 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/13 15:11:00 by iniska           ###   ########.fr       */
-/*   Updated: 2024/08/09 10:01:23 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/17 15:55:32 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../minishell.h"
 
@@ -109,5 +109,4 @@ void    file_malloc(t_bananas *bana) // THIS MALLOC NEEDS TO BE CORRECTED?
 		free(bana->in_files);
 		return ;
 	}
-
 }
