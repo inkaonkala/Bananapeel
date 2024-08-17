@@ -10,13 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/*   Updated: 2024/08/15 12:18:42 by jbremser         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-
 #include "../minishell.h"
-
 
 int main(int arv, char **arc, char **envp)
 {
@@ -33,13 +27,14 @@ int main(int arv, char **arc, char **envp)
 
 	ft_memset(&bana, 0, sizeof(t_bananas));
 	env  = ft_calloc(1, sizeof(t_node));
-    load_list(envp, env);
+  load_list(envp, env);
 
 	if (isatty(STDIN_FILENO))
 	{
 		signaling();
 		while (1)
 		{
+			
 			input = readline("🍌banana_peel:");
 			if (input == NULL)
 			{
@@ -52,6 +47,11 @@ int main(int arv, char **arc, char **envp)
 				continue ;
 			}
 			//ft_printf("Your input: %s\n", input); //  CHECKER!
+			if (*input == '\0')
+			{
+				free(input);
+				continue ;
+			}
 			if (*input)
 				add_history(input);
 

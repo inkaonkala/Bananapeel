@@ -156,8 +156,8 @@ bool	parsing(char *str, t_bananas *bana, t_node **env)
 	bana->tok_num = token_index;
 	bana->is_pipe = false;
 	bana->is_rdr = false;
-	bana->infile_count = 0;
-	bana->outfile_count = 0;
+	//bana->infile_count = 0;
+	//bana->outfile_count = 0;
 
 	i = 0;
 	while (bana->token[i])

@@ -6,6 +6,11 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 14:42:49 by iniska            #+#    #+#             */
+/*   Updated: 2024/08/16 11:57:24 by iniska           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/*   Updated: 2024/08/09 16:23:19 by jbremser         ###   ########.fr       */
 /*   Updated: 2024/08/13 15:13:17 by iniska           ###   ########.fr       */
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -34,6 +39,7 @@ void	token_cleaner(t_bananas *bana, int i)
 	}
 }
 */
+
 
 void token_cleaner(t_bananas *bana, int i)
 {
