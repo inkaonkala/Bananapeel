@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   little_helpers.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 14:42:49 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/16 11:57:24 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/18 14:00:50 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,10 @@ int    quote_chk(char *str, char *cur_quo, int i)
 
 bool	check_specials(char *token)
 {
-	if (ft_strcmp(token, "|") == 0 || ft_strcmp(token, ">") == 0 || strcmp(token, ">>") == 0)
-		return (true);
+	if (ft_strcmp(token, "|") == 0 
+		|| ft_strcmp(token, ">") == 0 
+			|| ft_strcmp(token, ">>") == 0)
+		return (true);	
 	return (false);
 }
 

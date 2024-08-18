@@ -15,9 +15,9 @@
 
 void    command_search(t_bananas *bana, char **envp, t_node **env)
 {
-    int i;
+    // int i;
 
-    i = 0;
+    // i = 0;
     // printf("command_search\n");
     if(bana->is_pipe)
         pipex(bana, envp);
