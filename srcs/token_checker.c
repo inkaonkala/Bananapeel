@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:41:54 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/20 14:41:55 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/20 15:22:58 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,19 @@
 
 void    command_search(t_bananas *bana, char **envp, t_node **env)
 {
+    if(bana->is_rdr)
+        redirections(bana, envp);
+    
+    built_ins(bana, env);
+    if(bana->tok_num > 0)
+        pipex(bana, envp);
+}
     // int i;
 
     // i = 0;
     // printf("command_search\n");
-    if(bana->is_pipe)
-        pipex(bana, envp);
-    else if(bana->is_rdr)
-        redirections(bana, envp);
-    else
-        built_ins(bana, env);
+    //if(bana->is_pipe)
+    //    pipex(bana, envp);
     // while (env)
     // {
     //     printf("before print stack\n");
@@ -51,4 +54,3 @@ void    command_search(t_bananas *bana, char **envp, t_node **env)
 
     //else if(bana->is_dog && !bana->is_pipe)
     //    here_dog(bana);
-}
