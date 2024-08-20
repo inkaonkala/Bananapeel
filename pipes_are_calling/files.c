@@ -6,21 +6,21 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 12:04:29 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/12 14:31:01 by iniska           ###   ########.fr       */
-/*   Updated: 2024/08/07 12:22:31 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/20 14:09:38 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "../minishell.h"
 
-void	redirect_file_input(t_bananas *bana)
+bool	redirect_file_input(t_bananas *bana)
 {
 	int	fd;
 
 	if( bana->infile_count > 0)
 	{
-		fd = bana->in_files[0]; // HERE IS THE PROBLEM
-		ft_printf("		Redirecting input: outfile_fd = %d\n", fd);
+		fd = bana->in_files[0];
+	
 		if (fd != -1)
 		{
 			if (dup2(fd, STDIN_FILENO) == -1)
@@ -29,8 +29,10 @@ void	redirect_file_input(t_bananas *bana)
 				exit(EXIT_FAILURE);
 			}
 			close(fd);
+			return (true);
 		}
 	}
+	return (false);
 	
 }
 
@@ -41,8 +43,8 @@ void	redirect_file_putput(t_bananas *bana)
 
 	if(bana->outfile_count > 0)
 	{
-		fd = bana->out_files[bana->outfile_count]; // HERE IS THE PROBLEM
-		ft_printf("		Redirecting output: outfile_fd = %d\n", fd);
+		fd = bana->out_files[bana->outfile_count - 1]; // HERE IS THE PROBLEM
+		
 		if(fd != -1)
 		{
 			if(dup2(fd, STDOUT_FILENO) == -1)

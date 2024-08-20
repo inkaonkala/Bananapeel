@@ -3,12 +3,10 @@
 
 static bool	handle_commands(t_bananas *bana, char **envp)
 {
-
 	if(bana->is_rdr)
 	{
 		redirections(bana, envp);
-
-		ft_printf("			PIPEX after opening files\n");
+		//ft_printf("		OUT_FD %d\n", bana->out_files[bana->outfile_count - 1]);
 	}
   
 	if (!parse_cmd_line(bana, envp))
@@ -16,8 +14,7 @@ static bool	handle_commands(t_bananas *bana, char **envp)
 		clean_n_errors(bana);
 		return (false);
 	}
-	//ft_printf("after parse_cmd_line\n");
-	
+
 	if (!parse_cmd_args(bana))
 	{
 		clean_n_errors(bana);
@@ -89,7 +86,7 @@ int pipex(t_bananas *bana, char **envp)
     while (i < bana->tok_num)
     {
         if (!create_child(bana, envp, i))
-            return -1;
+            return (-1);
         i++;
     }
 

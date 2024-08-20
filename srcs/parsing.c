@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 13:19:58 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/17 15:17:01 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/20 14:55:10 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ bool	parsing(char *str, t_bananas *bana, t_node **env)
 			token_index++;
 		}
 	}
+	 // banananice(t_bananas *bana):
 	tokens[token_index] = NULL;
 	bana->token = tokens; // tokens set to struct
 	bana->tok_num = token_index;
@@ -162,10 +163,11 @@ bool	parsing(char *str, t_bananas *bana, t_node **env)
 	i = 0;
 	while (bana->token[i])
 	{
-		if (ft_strncmp(bana->token[i], "<<", 3) == 0)
+		if (ft_strncmp(bana->token[i], "<<", 2) == 0)
 		{
-			find_dog(bana);
-			i++;
+			find_dog(bana, i);
+			if (ft_strlen(bana->token[i]) == 2)
+				i++;
 		}
 		else
 			//other checks
