@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:43:50 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/17 15:00:34 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/20 14:54:56 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int main(int arv, char **arc, char **envp)
 
 	ft_memset(&bana, 0, sizeof(t_bananas));
 	env  = ft_calloc(1, sizeof(t_node));
-  load_list(envp, env);
+  	load_list(envp, env);
 
 	if (isatty(STDIN_FILENO))
 	{

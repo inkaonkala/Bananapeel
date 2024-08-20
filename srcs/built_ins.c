@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/18 14:10:37 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/20 16:32:08 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ static int	handle_pwd(t_bananas *bana)
 {
 	char	*buf;
 
-	while (bana->tok_num > 0)
-		token_cleaner(bana, 0);
+	// while (bana->tok_num > 0)
+	token_cleaner(bana, 0);
 	if (!(buf = getcwd(NULL, 0)))
 		return (1);
 	ft_putendl_fd(buf, bana->fd_output);
@@ -97,11 +97,22 @@ static void handle_exit(t_bananas *bana)
 	}
 }
 
-// static void handle_unset(t_bananas *bana, char **envp)
-// {
-// 	(void)bana;
-// 	(void)envp;
-// }
+static void handle_unset(t_bananas *bana, t_node *env)
+{
+	if (bana->tok_num == 1)
+		token_cleaner(bana, 0);
+	else if (bana->tok_num > 1)
+	{
+		while (env->next)
+		{
+			if (!env)
+				break ;
+			printf("next");
+			env = env->next;
+
+		}
+	}
+}
 
 // static char **envp_strjoin(t_bananas *bana, char **envp)
 // {
@@ -205,7 +216,7 @@ void built_ins(t_bananas *bana, t_node **env)
 	size_t	len;
 	char 	*bi;
 
-	printf("In BI's\n");
+	// printf("In BI's\n");
 	if (bana->token[0])
 	{
 		bi = bana->token[0];
@@ -219,14 +230,16 @@ void built_ins(t_bananas *bana, t_node **env)
 			handle_pwd(bana);
 		else if (ft_strcmp(bi, "echo") == 0)
 			handle_echo(bana);
-		// else if (ft_strcmp(bi, "unset") == 0)
-		// 	handle_unset(bana, envp);
+		else if (ft_strcmp(bi, "unset") == 0)
+			handle_unset(bana, *env);
 		else if (ft_strcmp(bi, "env") == 0)
 			handle_env(bana, *env);
 		// else if (ft_strcmp(bi, "export") == 0)
 		// 	handle_export(bana, envp);
 		else
-			printf("Command '%s' not found\n", bi); 
+			return ;
+			//send to pipes
+			// printf("Command '%s' not found\n", bi); 
 	}
 }
 
