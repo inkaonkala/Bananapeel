@@ -6,7 +6,7 @@
 /*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 13:07:40 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/20 17:48:25 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/08/20 18:30:22 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,12 @@ char	*find_delimiter(t_bananas *bana)
 	char 	*deli;
 
 	i = 0;
+	//len = 5; unnecessary?
 	while(bana->token[i])
 	{
 		if (!ft_strcmp(bana->token[i++], "<<"))
 		{
-			// token cleaning removed cause it changed the index
+			// token_cleaner(bana, i);   token cleaning removed cause it changed the index
 			len = ft_strlen(bana->token[i]);
 			deli = malloc(sizeof(char) * (len  + 1));
 			if(!deli)
@@ -47,6 +48,7 @@ char	*find_delimiter(t_bananas *bana)
 				return (NULL);
 			}
 			ft_strlcpy(deli, bana->token[i], len + 1);
+			// token_cleaner(bana, i);        token cleaning removed cause it changed the index
 			return(deli);
 		}
 	}
