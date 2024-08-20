@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:54:44 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/17 15:15:35 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/20 14:01:37 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ void	free_line(char **paths, int arc);
 
 // files.c
 bool	check_arguments(t_bananas *bana);
-void	redirect_file_input(t_bananas *bana);
+bool	redirect_file_input(t_bananas *bana);
 void	redirect_file_putput(t_bananas *bana);
 
 
