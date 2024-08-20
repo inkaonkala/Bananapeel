@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 13:19:58 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/17 15:17:01 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/20 12:45:15 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ bool	parsing(char *str, t_bananas *bana, t_node **env)
 			token_index++;
 		}
 	}
+	 // banananice(t_bananas *bana):
 	tokens[token_index] = NULL;
 	bana->token = tokens; // tokens set to struct
 	bana->tok_num = token_index;
