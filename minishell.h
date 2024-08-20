@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/08 16:54:44 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/20 14:54:14 by etaattol         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2024/08/20 15:18:56 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef BANANA_PEEL
 # define BANANA_PEEL
