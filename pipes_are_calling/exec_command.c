@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:46:16 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/20 14:00:33 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/20 17:47:53 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,9 @@ static void	redirect_putput(t_bananas *bana, int fd[2], int index)
 static void	execute_command(t_bananas *bana, char **envp, int index)
 {
 	if(bana->cmd_paths[index])
-	{
 		execve(bana->cmd_paths[index], &bana->cmd_args[index], envp);
-
-	}
-	else
-		perror("Bananas! Can't find your command to execve");
+	perror("Bananas! Can't find your command to execve"); 
+	exit(127); // if command isn't found or cannot be executed, child need to be killed(exited)
 }
 
 
