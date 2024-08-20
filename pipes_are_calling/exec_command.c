@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:46:16 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/13 15:27:26 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/20 14:00:33 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static void	redirect_putput(t_bananas *bana, int fd[2], int index)
 {
 	if (index == bana->tok_num && bana->fd_output != -1)
 	{
+		
 		dup2(bana->fd_output, STDOUT_FILENO);
 		close(bana->fd_output);
 	}
@@ -57,7 +58,7 @@ static void	execute_command(t_bananas *bana, char **envp, int index)
 
 	}
 	else
-		perror("		Bananas! Can't find your command to execve");
+		perror("Bananas! Can't find your command to execve");
 }
 
 
@@ -167,7 +168,8 @@ int	create_child(t_bananas *bana, char **envp, int index)
 	{
 		if(bana->is_rdr)
 		{
-			redirect_file_input(bana);
+			if(!redirect_file_input(bana))
+				redirect_input(bana, index);
 			redirect_file_putput(bana);
 		}
 		else
