@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/08/21 10:07:10 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/21 10:34:24 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,10 +141,16 @@ int     create_child(t_bananas *bana, char **envp, int index);
 void	init_pipes(t_bananas *bana);
 void	free_line(char **paths, int arc);
 
-// files.c
-bool	check_arguments(t_bananas *bana);
+//in_n_out_put.c
+
+void	redirect_putput(t_bananas *bana, int fd[2], int index);
+void	redirect_input(t_bananas *bana, int index);
 bool	redirect_file_input(t_bananas *bana);
 void	redirect_file_putput(t_bananas *bana);
+
+// files.c
+bool	check_arguments(t_bananas *bana);
+void	shut_fd(int fd[2]);
 
 
 #endif
