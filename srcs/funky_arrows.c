@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:33:37 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/20 11:26:06 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/21 10:41:02 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,8 @@ void    redirections(t_bananas *bana, char **envp)
 	if(!bana->is_pipe)
 	{
 		execute_rdr(bana, envp);
-		//token_cleaner(bana, 0);
+		while(bana->tok_num > 0)
+			token_cleaner(bana, 0);
 	}
-
+	//FREE SOMETHING?
 }
