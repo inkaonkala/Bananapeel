@@ -6,13 +6,13 @@
 #    By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 15:54:31 by jbremser          #+#    #+#              #
-#    Updated: 2024/08/17 15:04:00 by jbremser         ###   ########.fr        #
+#    Updated: 2024/08/21 17:05:49 by jbremser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= 	bananapeel
 
-FLAGS		=	-Wall -Wextra -Werror -g
+FLAGS		=	-Wall -Wextra -Werror -g #-fsanitize=address
 
 SRCFILES 	= 	bananapeel.c \
 				signaling.c \

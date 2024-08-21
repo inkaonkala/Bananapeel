@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/20 16:32:08 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:43:20 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,25 +91,59 @@ static void handle_exit(t_bananas *bana)
 			(void)temp;
 			ft_printf("🍌Bye Bye BaNaNaNas🍌!\nexit\n%s: %s: count your 🍌s!\n", bana->token[0], bana->token[1]);  
 			while (bana->tok_num > 0)
-				token_cleaner(bana, 1);
+				token_cleaner(bana, 2);
 			exit(0);
 		}
 	}
 }
 
-static void handle_unset(t_bananas *bana, t_node *env)
+static void	remove_node(t_node *node)
 {
+	t_node *temp;
+	temp = node->prev;
+	temp->next = node->next;
+	temp->next->prev = temp;
+	node->prev = NULL;
+	node->next = NULL;
+	free(node);	
+}
+
+
+static void handle_unset(t_bananas *bana, t_node **env)
+{
+	t_node *node;
+
+	node = NULL;
+	printf("%d\n", bana->tok_num);
 	if (bana->tok_num == 1)
 		token_cleaner(bana, 0);
-	else if (bana->tok_num > 1)
+	else if (bana->tok_num ==  2)
 	{
-		while (env->next)
+		printf("inside\n");
+		node = *env;
+		//search for bana-token1 in all of the keys of the LL iterating through them. 
+		//remove that whole list and link it back up with the ones around. 
+		while (node->next)
 		{
-			if (!env)
-				break ;
-			printf("next");
-			env = env->next;
-
+			printf("inside while\n");
+		//	if (!env)
+				// break ;
+			if (!ft_strcmp(node->key, bana->token[1]))
+			{
+				printf("key = %s\n", node->key);
+				while (bana->tok_num > 0)
+					token_cleaner(bana, 0);
+				free(node->key);
+				free(node->value);
+				node->key = NULL;
+				node->value = NULL;
+				remove_node(node);
+				return ;
+				// node->prev = node->prev->prev;
+				// node->next = node->next->next;
+			}
+			// printf("next");
+			node = node->next;
 		}
 	}
 }
@@ -231,7 +265,7 @@ void built_ins(t_bananas *bana, t_node **env)
 		else if (ft_strcmp(bi, "echo") == 0)
 			handle_echo(bana);
 		else if (ft_strcmp(bi, "unset") == 0)
-			handle_unset(bana, *env);
+			handle_unset(bana, env);
 		else if (ft_strcmp(bi, "env") == 0)
 			handle_env(bana, *env);
 		// else if (ft_strcmp(bi, "export") == 0)
