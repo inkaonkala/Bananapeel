@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_checker.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:41:54 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/20 15:22:58 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/21 10:09:27 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ void    command_search(t_bananas *bana, char **envp, t_node **env)
     built_ins(bana, env);
     if(bana->tok_num > 0)
         pipex(bana, envp);
+    
+    // CHECKER!
+    if(bana->tok_num > 0)
+        ft_printf(" You have tokens left to clean!\n");
 }
     // int i;
 
