@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/08/20 15:18:56 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/08/21 10:07:10 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ void    load_list(char **envp, t_node **env);
 /* ************************************************************************** */
 
 void	free_char_array(char ***paths, int arc);
-int     pipex(t_bananas *bana, char **envp);
+void     pipex(t_bananas *bana, char **envp);
 
 char	*get_path(char *path_name, char **envp);
 bool    parse_cmd_line(t_bananas *bana, char **envp);
