@@ -27,7 +27,7 @@
 
 void    command_search(t_bananas *bana, char **envp, t_node **env)
 {
-    if(bana->is_rdr)
+    if(bana->is_rdr && !bana->is_pipe)
         redirections(bana, envp);
     
     built_ins(bana, env);
