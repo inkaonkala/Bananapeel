@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:46:16 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/20 14:00:33 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/21 10:13:00 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,15 @@ static void	execute_command(t_bananas *bana, char **envp, int index)
 	if(bana->cmd_paths[index])
 	{
 		execve(bana->cmd_paths[index], &bana->cmd_args[index], envp);
-
+		exit (1);
 	}
 	else
+	{
 		perror("Bananas! Can't find your command to execve");
-}
+		exit (1);
+	}
 
+}
 
 bool	fork_it(t_bananas *bana, int fd[2], pid_t *pid, int index)
 {
