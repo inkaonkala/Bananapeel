@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/21 17:43:20 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/22 12:58:13 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,12 +100,40 @@ static void handle_exit(t_bananas *bana)
 static void	remove_node(t_node *node)
 {
 	t_node *temp;
-	temp = node->prev;
-	temp->next = node->next;
-	temp->next->prev = temp;
-	node->prev = NULL;
-	node->next = NULL;
-	free(node);	
+	if (!node->prev && !node->next) //only node
+	{
+		(void)temp;
+		free(node);
+		return ;
+	}
+	else if (!node->prev && node->next) //first node
+	{
+		temp = node->next;
+		node->next = NULL;
+		temp->prev = NULL;
+		free(node);
+		node = temp;
+		return ;
+	}
+	else if (node->prev && !node->next) //last node
+	{
+		temp = node->prev;
+		temp->next = NULL;
+		node->prev = NULL;
+		free(node);
+		node = temp;
+		return ;
+	}
+	else
+	//needs to handle for first node, last node, two nodes only, edges
+	{
+		temp = node->prev;
+		temp->next = node->next;
+		temp->next->prev = temp;
+		node->prev = NULL;
+		node->next = NULL;
+		free(node);	
+	}
 }
 
 
