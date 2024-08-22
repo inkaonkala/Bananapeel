@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bananapeel.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:43:50 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/17 15:00:34 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/22 13:04:22 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int main(int arv, char **arc, char **envp)
 
 	ft_memset(&bana, 0, sizeof(t_bananas));
 	env  = ft_calloc(1, sizeof(t_node));
-  load_list(envp, env);
+	load_list(envp, env);
 
 	if (isatty(STDIN_FILENO))
 	{
@@ -41,12 +41,6 @@ int main(int arv, char **arc, char **envp)
 				write(1, "🍌 Goodbye Mate! 🍌\n", 25);
 				break ;
 			}
-			if (*input == '\0')
-			{
-				free(input);
-				continue ;
-			}
-			//ft_printf("Your input: %s\n", input); //  CHECKER!
 			if (*input == '\0')
 			{
 				free(input);
