@@ -16,31 +16,34 @@
 
 static void	if_echo(t_bananas *bana)
 {
-	int i;
-	bool n_flag;
-
-	n_flag = false;
-	i = 1;	
-
-	if (bana->tok_num == 1)
-		printf("\n");
-	else if (bana->tok_num > 1)
+	if(strcmp(bana->token[0], "echo") == 0)
 	{
-		if (ft_strcmp(bana->token[1], "-n") == 0)
-		{
-			token_cleaner(bana, 1);
-			n_flag = true;
-		}
-		while (i <= bana->tok_num - 2)
-			printf("%s ", bana->token[i++]);
-		if (bana->tok_num >= 2)
-			printf("%s", bana->token[bana->tok_num - 1]);
-		if (n_flag == false)
+		int i;
+		bool n_flag;
+
+		n_flag = false;
+		i = 1;
+
+		if (bana->tok_num == 1)
 			printf("\n");
+		else if (bana->tok_num > 1)
+		{
+			if (ft_strcmp(bana->token[1], "-n") == 0)
+			{
+				token_cleaner(bana, 1);
+				n_flag = true;
+			}
+			while (i <= bana->tok_num - 2)
+				printf("%s ", bana->token[i++]);
+			if (bana->tok_num >= 2)
+				printf("%s", bana->token[bana->tok_num - 1]);
+			if (n_flag == false)
+				printf("\n");
+		}
+		while (bana->tok_num > 0)
+			token_cleaner(bana, 0);
+		exit (0);
 	}
-	while (bana->tok_num > 0)
-		token_cleaner(bana, 0);
-	exit (0);
 }
 
 static void	close_files(t_bananas *bana)
