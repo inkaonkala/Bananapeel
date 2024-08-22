@@ -6,6 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:41:54 by jbremser          #+#    #+#             */
+/*   Updated: 2024/08/21 12:33:09 by iniska           ###   ########.fr       */
 /*   Updated: 2024/08/21 10:09:27 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -31,6 +32,7 @@ void    command_search(t_bananas *bana, char **envp, t_node **env)
         redirections(bana, envp);
     
     built_ins(bana, env);
+    
     if(bana->tok_num > 0)
         pipex(bana, envp);
     

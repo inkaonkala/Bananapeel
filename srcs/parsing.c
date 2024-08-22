@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/08/20 15:18:26 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/08/21 11:48:37 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ static void	type_check(t_bananas *bana)
 		
 		*/
 		if(ft_strncmp(bana->token[i], "|", 1) == 0)
+		{
 			bana->is_pipe = true;
+		}
 		if(ft_strncmp(bana->token[i], ">>", 2) == 0 || 
 			ft_strncmp(bana->token[i], ">", 1) == 0 || 
 			ft_strncmp(bana->token[i], "<", 1) == 0)

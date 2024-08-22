@@ -6,6 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:46:16 by iniska            #+#    #+#             */
+/*   Updated: 2024/08/21 13:10:05 by iniska           ###   ########.fr       */
 /*   Updated: 2024/08/21 10:34:14 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -20,10 +21,11 @@ void	shut_fd(int fd[2])
 
 static void	execute_command(t_bananas *bana, char **envp, int index)
 {
+
 	if(bana->cmd_paths[index])
 	{
-		execve(bana->cmd_paths[index], &bana->cmd_args[index], envp);
-		exit (1);
+			execve(bana->cmd_paths[index], &bana->cmd_args[index], envp);
+			exit (1);
 	}
 	else
 	{

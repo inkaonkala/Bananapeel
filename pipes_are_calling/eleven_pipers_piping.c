@@ -96,9 +96,6 @@ void pipex(t_bananas *bana, char **envp)
         waitpid(-1, NULL, 0);
         i++;
     }
-	//ft_printf("		%d\n", bana->tok_num);
 	while(bana->tok_num > 0)
 		token_cleaner(bana, 0);
-	//ft_printf("		%d\n", bana->tok_num);
 }
-
