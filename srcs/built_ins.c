@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/22 17:13:55 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/22 17:18:15 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ static int	handle_pwd(t_bananas *bana)
 {
 	char	*buf;
 
-	// while (bana->tok_num > 0)
-	token_cleaner(bana, 0);
+	while (bana->tok_num > 0)
+		token_cleaner(bana, 0);
 	if (!(buf = getcwd(NULL, 0)))
 		return (1);
 	ft_putendl_fd(buf, bana->fd_output);
@@ -91,7 +91,7 @@ static void handle_exit(t_bananas *bana)
 			(void)temp;
 			ft_printf("🍌Bye Bye BaNaNaNas🍌!\nexit\n%s: %s: count your 🍌s!\n", bana->token[0], bana->token[1]);  
 			while (bana->tok_num > 0)
-				token_cleaner(bana, 2);
+				token_cleaner(bana, 1);
 			exit(0);
 		}
 	}
@@ -279,7 +279,7 @@ void built_ins(t_bananas *bana, t_node **env)
 	size_t	len;
 	char 	*bi;
 
-	// printf("In BI's\n");
+	//printf("In BI's\n");
 	if (bana->token[0])
 	{
 		bi = bana->token[0];
@@ -293,16 +293,14 @@ void built_ins(t_bananas *bana, t_node **env)
 			handle_pwd(bana);
 		else if (ft_strcmp(bi, "echo") == 0)
 			handle_echo(bana);
-		else if (ft_strcmp(bi, "unset") == 0)
-			handle_unset(bana, env);
+		// else if (ft_strcmp(bi, "unset") == 0)
+		// 	handle_unset(bana, envp);
 		else if (ft_strcmp(bi, "env") == 0)
 			handle_env(bana, *env);
 		// else if (ft_strcmp(bi, "export") == 0)
 		// 	handle_export(bana, envp);
-		else
-			return ;
-			//send to pipes
-			// printf("Command '%s' not found\n", bi); 
+		//else
+		//	printf("Command '%s' not found\n", bi); 
 	}
 }
 

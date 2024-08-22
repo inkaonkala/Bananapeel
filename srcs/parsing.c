@@ -6,36 +6,53 @@
 /*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/08/20 15:18:26 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/08/22 15:12:42 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
 #include "../minishell.h"
 
-//goes through everything checks bools for pips anr redirections
 static void	type_check(t_bananas *bana)
 {
 	int	i;
 
 	i = 0;
-	while(bana->token[i])
+	if(ft_strcmp(bana->token[i], "foo") == 0)
 	{
-		/*
-		if(ft_strncmp(bana->token[i], "<<", 2) == 0)
-			bana->is_dog = true;
+		ft_printf("Bananas! Can't find your command\nDid you mean 'poo'?\n");
+		return ;
+	}
+	while(bana->token[i])
+	{		
+		if (ft_strncmp(bana->token[i], "<<", 2) == 0)
+		{
+			find_dog(bana, i);
+			//if (ft_strlen(bana->token[i]) == 2)
+			//	i++;
+		}
 		
-		*/
 		if(ft_strncmp(bana->token[i], "|", 1) == 0)
+		{
 			bana->is_pipe = true;
+		}
 		if(ft_strncmp(bana->token[i], ">>", 2) == 0 || 
 			ft_strncmp(bana->token[i], ">", 1) == 0 || 
 			ft_strncmp(bana->token[i], "<", 1) == 0)
 			bana->is_rdr = true;
 		i++;		
-	}
+	}	
+}
+
+static void	banananice(t_bananas *bana, char **tokens, int token_index)
+{
+	tokens[token_index] = NULL;
+	bana->token = tokens;
+	bana->tok_num = token_index;
+	bana->is_pipe = false;
+	bana->is_rdr = false;
+	//bana->is_dog = false;
 	
+	type_check(bana);
 }
 
 static char	**list_to_eepie(char **eepie, t_node **env)
@@ -57,23 +74,6 @@ static char	**list_to_eepie(char **eepie, t_node **env)
 	}
 	return (eepie);
 }
-
-
-/*
-static void	free_tokens(char **tokens)
-{
-	int	k;
-
-	k = 0;
-	while (tokens[k])
-	{
-		free(tokens[k]);
-		k++;
-	}
-	free(tokens);
-}
-*/
-
 
 static int	count_tokens(char *str)
 {
@@ -104,13 +104,11 @@ static int	count_tokens(char *str)
 				}
 			}
 			i++;
-		}
-		
+		}	
 	}
 	return (count);
 }
 
-// takes input and splits due to pipes and null to seperate nodes
 bool	parsing(char *str, t_bananas *bana, t_node **env)
 {
 	char	**tokens;
@@ -119,14 +117,12 @@ bool	parsing(char *str, t_bananas *bana, t_node **env)
 	int		token_index;
 	char	cur_quo;
 	char	**envp;
-
-	int start;
+	int		start;
 
 	i = 0;
 	token_index = 0;
 	cur_quo = 0;
 	envp = NULL;
-
 	token_count = count_tokens(str);
 	envp = list_to_eepie(envp, env);
 	tokens = malloc((token_count + 1) * sizeof(char *));
@@ -152,33 +148,14 @@ bool	parsing(char *str, t_bananas *bana, t_node **env)
 			token_index++;
 		}
 	}
-	 // banananice(t_bananas *bana):
-	tokens[token_index] = NULL;
-	bana->token = tokens; // tokens set to struct
-	bana->tok_num = token_index;
-	bana->is_pipe = false;
-	bana->is_rdr = false;
-	//bana->infile_count = 0;
-	//bana->outfile_count = 0;
-
-	i = 0;
-	while (bana->token[i])
-	{
-		if (ft_strncmp(bana->token[i], "<<", 2) == 0)
-		{
-			find_dog(bana, i);
-			if (ft_strlen(bana->token[i]) == 2)
-				i++;
-		}
-		else
-			//other checks
-			(void)tokens;
-		i++;
-	}
-	//bana->is_dog = false;
-	type_check(bana);
+	banananice(bana, tokens, token_index);
 	command_search(bana, envp, env);
 
+	//CHECKER
+	return (true);
+}
+
+/*
 	//CHECKER!!
 	//for (int k = 0; k < token_i; k++) 
 	//{
@@ -186,22 +163,11 @@ bool	parsing(char *str, t_bananas *bana, t_node **env)
     //    free(tokens[k]); // Free each token after use
     //}
 	//free(tokens);
-	//remember to free all tokens!
-	// CHECKER!!
-	/*
-	// HERE WE CHECK IF WE DID USE EVERYTHING, 
-	// AND FREE EXTRA STUFF IN CASE ONF AN ERROR
-	// BUT NOW IT MAKES DOUBLE FREES
-	
+
 	if (tokens != NULL)
 	{
 		ft_printf("%s", &tokens);
 		free_tokens(tokens);
 	}
-	*/
-
-	return (true);
-}
-
-
+*/
 
