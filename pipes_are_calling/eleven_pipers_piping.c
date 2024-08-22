@@ -68,7 +68,6 @@ int	pipex(t_bananas *bana, char **envp)
 }
 */
 
-
 void pipex(t_bananas *bana, char **envp)
 {
     int i;

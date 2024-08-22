@@ -7,6 +7,7 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
 /*   Updated: 2024/08/21 11:27:29 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/21 10:34:24 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +148,11 @@ void	redirect_putput(t_bananas *bana, int fd[2], int index);
 void	redirect_input(t_bananas *bana, int index);
 bool	redirect_file_input(t_bananas *bana);
 bool	redirect_file_putput(t_bananas *bana);
+
+// files.c
+bool	check_arguments(t_bananas *bana);
+void	shut_fd(int fd[2]);
+
 
 // files.c
 bool	check_arguments(t_bananas *bana);

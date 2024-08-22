@@ -7,6 +7,7 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 10:30:36 by iniska            #+#    #+#             */
 /*   Updated: 2024/08/21 11:27:57 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/21 10:32:41 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +65,7 @@ bool	redirect_file_input(t_bananas *bana)
 	
 }
 
+
 bool	redirect_file_putput(t_bananas *bana)
 {
 	int	fd;
@@ -80,7 +82,7 @@ bool	redirect_file_putput(t_bananas *bana)
 				exit(EXIT_FAILURE);
 			}
 			close(fd);
-            return (true);
+      return (true);
 		}
 	}
     return (false);
