@@ -6,56 +6,12 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 12:04:29 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/20 14:09:38 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/22 13:50:27 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../minishell.h"
 
-bool	redirect_file_input(t_bananas *bana)
-{
-	int	fd;
-
-	if( bana->infile_count > 0)
-	{
-		fd = bana->in_files[0];
-	
-		if (fd != -1)
-		{
-			if (dup2(fd, STDIN_FILENO) == -1)
-			{
-				perror("Failed to redirect input to file\n");
-				exit(EXIT_FAILURE);
-			}
-			close(fd);
-			return (true);
-		}
-	}
-	return (false);
-	
-}
-
-
-void	redirect_file_putput(t_bananas *bana)
-{
-	int	fd;
-
-	if(bana->outfile_count > 0)
-	{
-		fd = bana->out_files[bana->outfile_count - 1]; // HERE IS THE PROBLEM
-		
-		if(fd != -1)
-		{
-			if(dup2(fd, STDOUT_FILENO) == -1)
-			{
-				perror("Failed to redirect output to file");
-				exit(EXIT_FAILURE);
-			}
-			close(fd);
-		}
-	}
-}
 
 static int	get_infile(t_bananas *bana)
 {
@@ -92,7 +48,7 @@ static int	get_outfile(t_bananas *bana)
 	{
 		perror("Bananas!: Error opening output file");
 		//exit(1);
-		return (1);
+		return (-1);
 	}
 	return (bana->fd_output);
 }
