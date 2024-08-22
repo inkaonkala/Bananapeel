@@ -68,7 +68,8 @@ int	pipex(t_bananas *bana, char **envp)
 }
 */
 
-int pipex(t_bananas *bana, char **envp)
+
+void pipex(t_bananas *bana, char **envp)
 {
     int i;
     pid_t pid;
@@ -79,14 +80,14 @@ int pipex(t_bananas *bana, char **envp)
     if (!handle_commands(bana, envp))
     {
         ft_printf("Bananas! Commands failed\n");
-        return -1;
+        return ;
     }
 
     i = 0;
     while (i < bana->tok_num)
     {
         if (!create_child(bana, envp, i))
-            return (-1);
+            return ;
         i++;
     }
 
@@ -96,7 +97,6 @@ int pipex(t_bananas *bana, char **envp)
         waitpid(-1, NULL, 0);
         i++;
     }
-
-    return (0);
+	while(bana->tok_num > 0)
+		token_cleaner(bana, 0);
 }
-
