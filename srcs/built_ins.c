@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/22 12:58:13 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/22 17:13:55 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ static void	remove_node(t_node *node)
 		node->next = NULL;
 		free(node);	
 	}
+
 }
 
 
