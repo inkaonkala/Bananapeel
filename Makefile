@@ -7,12 +7,13 @@
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 15:54:31 by jbremser          #+#    #+#              #
 #    Updated: 2024/08/21 10:33:34 by iniska           ###   ########.fr        #
+#    Updated: 2024/08/21 17:05:49 by jbremser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= 	bananapeel
 
-FLAGS		=	-Wall -Wextra -Werror -g
+FLAGS		=	-Wall -Wextra -Werror -g #-fsanitize=address
 
 SRCFILES 	= 	bananapeel.c \
 				signaling.c \
