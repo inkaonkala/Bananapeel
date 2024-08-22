@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_ins.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/18 14:10:37 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/21 10:03:46 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,7 +205,7 @@ void built_ins(t_bananas *bana, t_node **env)
 	size_t	len;
 	char 	*bi;
 
-	printf("In BI's\n");
+	//printf("In BI's\n");
 	if (bana->token[0])
 	{
 		bi = bana->token[0];
@@ -225,8 +225,8 @@ void built_ins(t_bananas *bana, t_node **env)
 			handle_env(bana, *env);
 		// else if (ft_strcmp(bi, "export") == 0)
 		// 	handle_export(bana, envp);
-		else
-			printf("Command '%s' not found\n", bi); 
+		//else
+		//	printf("Command '%s' not found\n", bi); 
 	}
 }
 
