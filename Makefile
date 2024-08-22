@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+         #
+#    By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 15:54:31 by jbremser          #+#    #+#              #
 #    Updated: 2024/08/21 17:05:49 by jbremser         ###   ########.fr        #
@@ -32,7 +32,8 @@ PIPEFILES	=	eleven_pipers_piping.c \
 				command_line.c \
 				exec_command.c \
 				files.c\
-				init_pipes.c
+				init_pipes.c\
+				in_n_out_put.c
 				
 SRCDIR		=	srcs
 PIPEDIR		=	pipes_are_calling
