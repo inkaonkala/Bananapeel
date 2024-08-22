@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/08/20 15:18:56 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/08/21 11:27:29 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ void    load_list(char **envp, t_node **env);
 /* ************************************************************************** */
 
 void	free_char_array(char ***paths, int arc);
-int     pipex(t_bananas *bana, char **envp);
+void     pipex(t_bananas *bana, char **envp);
 
 char	*get_path(char *path_name, char **envp);
 bool    parse_cmd_line(t_bananas *bana, char **envp);
@@ -141,10 +141,16 @@ int     create_child(t_bananas *bana, char **envp, int index);
 void	init_pipes(t_bananas *bana);
 void	free_line(char **paths, int arc);
 
+//in_n_out_put.c
+
+void	redirect_putput(t_bananas *bana, int fd[2], int index);
+void	redirect_input(t_bananas *bana, int index);
+bool	redirect_file_input(t_bananas *bana);
+bool	redirect_file_putput(t_bananas *bana);
+
 // files.c
 bool	check_arguments(t_bananas *bana);
-bool	redirect_file_input(t_bananas *bana);
-void	redirect_file_putput(t_bananas *bana);
+void	shut_fd(int fd[2]);
 
 
 #endif
