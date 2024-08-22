@@ -6,10 +6,10 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:46:16 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/21 13:10:05 by iniska           ###   ########.fr       */
-/*   Updated: 2024/08/21 10:34:14 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/22 13:50:53 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../minishell.h"
 
@@ -29,7 +29,8 @@ static void	execute_command(t_bananas *bana, char **envp, int index)
 	}
 	else
 	{
-		perror("Bananas! Can't find your command to execve");
+		ft_printf("Bananas! Can't find your command :( \n"); // WHICH WE WANT TO USE?
+		//perror("Bananas! Can't find your command: ");
 		exit (1);
 	}
 

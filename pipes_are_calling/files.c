@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 12:04:29 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/21 10:32:37 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/22 13:50:27 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	get_outfile(t_bananas *bana)
 	{
 		perror("Bananas!: Error opening output file");
 		//exit(1);
-		return (1);
+		return (-1);
 	}
 	return (bana->fd_output);
 }
