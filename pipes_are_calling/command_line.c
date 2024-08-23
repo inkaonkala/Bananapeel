@@ -18,11 +18,12 @@ static char	*extrct_path(char *path, char **envp)
 	int	i;
 
 	i = 0;
-	while (envp[i++] != NULL)
+	while (envp[i] != NULL)
 	{
 		if (ft_strncmp(path, envp[i], ft_strlen(path)) == 0
 			&& envp[i][ft_strlen(path)] == '=')
 			return (ft_strchr(envp[i], '=') + 1);
+		i++;
 	}
 	return (NULL);
 }
