@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_handling.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 10:06:52 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/17 15:55:32 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/23 11:19:32 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,15 @@ bool    file_handling(t_bananas *bana, int i)
 	return (false);
 }
 
-
 void file_malloc(t_bananas *bana)
 {
-    int in_file_count = 0;
-    int out_file_count = 0;
-    int i = 0;
+    int in_file_count;
+    int out_file_count;
+    int i;
 
+	in_file_count = 0;
+	out_file_count = 0;
+	i = 0;
     while (i < bana->tok_num)
     {
         if (ft_strncmp(bana->token[i], "<", 1) == 0)
@@ -113,14 +115,14 @@ void file_malloc(t_bananas *bana)
     if (!bana->in_files)
     {
         perror("Malloc in_files failed");
-        return;
+        return ;
     }
     bana->out_files = malloc(sizeof(int) * out_file_count);
     if (!bana->out_files)
     {
         perror("Malloc out_files failed");
         free(bana->in_files);
-        return;
+        return ;
     }
     bana->infile_count = 0;
     bana->outfile_count = 0;

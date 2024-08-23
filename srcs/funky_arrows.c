@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:33:37 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/22 13:09:14 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/23 11:23:39 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void	dupper(t_bananas * bana)
 	if (bana->infile_count > 0)
 	{
 		if (dup2(bana->in_files[bana->infile_count - 1], STDIN_FILENO) < 0)
-			exit(EXIT_FAILURE); //CHECK THIS!
+			exiting(bana, -1);
 			
 	}
 	if(bana->outfile_count > 0)
@@ -78,7 +78,7 @@ static void	dupper(t_bananas * bana)
 		if (dup2(bana->out_files[bana->outfile_count - 1], STDOUT_FILENO) < 0)
 		{
 			perror("Bananas! Error in dup2 PUTPUT redirections\n");
-			exit(EXIT_FAILURE);
+			exiting(bana, -1);
 		}
 	}
 }
@@ -108,7 +108,7 @@ static void	execute_rdr(t_bananas *bana, char **envp)
 		if_echo(bana);
 		token_cleaner(bana, 0);
 		execve(path, bana->token, envp);
-		//free(path); // this does not happen
+		exiting(bana, -1);
 	}
 	//free(path);
 	else
@@ -136,5 +136,5 @@ void    redirections(t_bananas *bana, char **envp)
 		while(bana->tok_num > 0)
 			token_cleaner(bana, 0);
 	}
-	//FREE SOMETHING?
+	//FREE SOMETHING? exiting(bana, 1);
 }
