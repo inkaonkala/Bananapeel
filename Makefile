@@ -6,14 +6,13 @@
 #    By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 15:54:31 by jbremser          #+#    #+#              #
-#    Updated: 2024/08/21 10:33:34 by iniska           ###   ########.fr        #
-#    Updated: 2024/08/21 17:05:49 by jbremser         ###   ########.fr        #
+#    Updated: 2024/08/23 09:08:29 by iniska           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= 	bananapeel
 
-FLAGS		=	-Wall -Wextra -Werror -g #-fsanitize=address
+FLAGS		=	-Wall -Wextra -Werror -g
 
 SRCFILES 	= 	bananapeel.c \
 				signaling.c \
@@ -25,7 +24,8 @@ SRCFILES 	= 	bananapeel.c \
 				token_checker.c \
 				funky_arrows.c \
 				file_handling.c \
-				linked_lists.c
+				linked_lists.c \
+				clean_n_exit.c \
 
 PIPEFILES	=	eleven_pipers_piping.c \
 				arguments.c\

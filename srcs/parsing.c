@@ -6,6 +6,7 @@
 /*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2024/08/23 11:34:02 by iniska           ###   ########.fr       */
 /*   Updated: 2024/08/22 15:12:42 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -17,11 +18,6 @@ static void	type_check(t_bananas *bana)
 	int	i;
 
 	i = 0;
-	if(ft_strcmp(bana->token[i], "foo") == 0)
-	{
-		ft_printf("Bananas! Can't find your command\nDid you mean 'poo'?\n");
-		return ;
-	}
 	while(bana->token[i])
 	{		
 		if (ft_strncmp(bana->token[i], "<<", 2) == 0)

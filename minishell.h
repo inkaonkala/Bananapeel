@@ -6,10 +6,10 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/08/21 11:27:29 by iniska           ###   ########.fr       */
-/*   Updated: 2024/08/21 10:34:24 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/23 09:19:53 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 
 #ifndef BANANA_PEEL
@@ -86,7 +86,7 @@ int		empties(char c);
 /* ************************************************************************** */
 /*									little_helpers							  */
 /* ************************************************************************** */
-void    token_cleaner(t_bananas *bana, int i);
+
 int     empties(char c);
 int		quote_chk(char *str, char *cur_quo, int i);
 bool	check_specials(char *token);
@@ -103,7 +103,16 @@ char	*find_delimiter(t_bananas *bana);
 /* ************************************************************************** */
 /*									token_checker							  */
 /* ************************************************************************** */
+
 void    command_search(t_bananas *bana, char **envp, t_node **env);
+
+
+/* ************************************************************************** */
+/*							        clean_n_exit							  */
+/* ************************************************************************** */
+
+void    token_cleaner(t_bananas *bana, int i);
+void    exiting(t_bananas *bana, int i);
 
 /* ************************************************************************** */
 /*									funky_arrows							  */
