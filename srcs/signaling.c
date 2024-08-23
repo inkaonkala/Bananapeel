@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signaling.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:37:19 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/05 13:38:04 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/23 17:41:03 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@ static void	handle_sigint(int sig)
 static void	handle_quit(int sig)
 {
 	(void)sig;
+	if (get_heredog_status() == IN_HEREDOG)
+		(void)sig; // heredog stuff
+	else
+		(void)sig; // normal stuff
 }
 
 void    signaling(void)
@@ -48,3 +52,4 @@ void    signaling(void)
 	
 	signal(SIGTSTP, SIG_IGN); 
 }
+
