@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/23 16:29:13 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/23 16:36:23 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ static void handle_unset(t_bananas *bana, t_node **env)
 	t_node *node;
 
 	node = NULL;
-	printf("%d\n", bana->tok_num);
+	// printf("%d\n", bana->tok_num);
 	if (bana->tok_num == 1)
 		token_cleaner(bana, 0);
 	else if (bana->tok_num ==  2)
