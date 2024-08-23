@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_ins.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/21 10:03:46 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/22 17:22:20 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ static int	handle_pwd(t_bananas *bana)
 {
 	char	*buf;
 
-	while (bana->tok_num > 0)
-		token_cleaner(bana, 0);
+	// while (bana->tok_num > 0)
+	token_cleaner(bana, 0);
 	if (!(buf = getcwd(NULL, 0)))
 		return (1);
 	ft_putendl_fd(buf, bana->fd_output);
@@ -91,17 +91,90 @@ static void handle_exit(t_bananas *bana)
 			(void)temp;
 			ft_printf("🍌Bye Bye BaNaNaNas🍌!\nexit\n%s: %s: count your 🍌s!\n", bana->token[0], bana->token[1]);  
 			while (bana->tok_num > 0)
-				token_cleaner(bana, 1);
+				token_cleaner(bana, 2);
 			exit(0);
 		}
 	}
 }
 
-// static void handle_unset(t_bananas *bana, char **envp)
-// {
-// 	(void)bana;
-// 	(void)envp;
-// }
+static void	remove_node(t_node *node)
+{
+	t_node *temp;
+	if (!node->prev && !node->next) //only node
+	{
+		(void)temp;
+		free(node);
+		return ;
+	}
+	else if (!node->prev && node->next) //first node
+	{
+		temp = node->next;
+		node->next = NULL;
+		temp->prev = NULL;
+		free(node);
+		node = temp;
+		return ;
+	}
+	else if (node->prev && !node->next) //last node
+	{
+		temp = node->prev;
+		temp->next = NULL;
+		node->prev = NULL;
+		free(node);
+		node = temp;
+		return ;
+	}
+	else
+	//needs to handle for first node, last node, two nodes only, edges
+	{
+		temp = node->prev;
+		temp->next = node->next;
+		temp->next->prev = temp;
+		node->prev = NULL;
+		node->next = NULL;
+		free(node);	
+	}
+}
+
+
+static void handle_unset(t_bananas *bana, t_node **env)
+{
+	t_node *node;
+
+	node = NULL;
+	printf("%d\n", bana->tok_num);
+	if (bana->tok_num == 1)
+		token_cleaner(bana, 0);
+	else if (bana->tok_num ==  2)
+	{
+		printf("inside\n");
+		node = *env;
+		//search for bana-token1 in all of the keys of the LL iterating through them. 
+		//remove that whole list and link it back up with the ones around. 
+		while (node->next)
+		{
+			printf("inside while\n");
+		//	if (!env)
+				// break ;
+			if (!ft_strcmp(node->key, bana->token[1]))
+			{
+				printf("key = %s\n", node->key);
+				while (bana->tok_num > 0)
+					token_cleaner(bana, 0);
+				free(node->key);
+				free(node->value);
+				node->key = NULL;
+				node->value = NULL;
+				remove_node(node);
+				return ;
+				// node->prev = node->prev->prev;
+				// node->next = node->next->next;
+			}
+			// printf("next");
+			node = node->next;
+		}
+	}
+}
 
 // static char **envp_strjoin(t_bananas *bana, char **envp)
 // {
@@ -205,7 +278,7 @@ void built_ins(t_bananas *bana, t_node **env)
 	size_t	len;
 	char 	*bi;
 
-	//printf("In BI's\n");
+	// printf("In BI's\n");
 	if (bana->token[0])
 	{
 		bi = bana->token[0];
@@ -219,14 +292,16 @@ void built_ins(t_bananas *bana, t_node **env)
 			handle_pwd(bana);
 		else if (ft_strcmp(bi, "echo") == 0)
 			handle_echo(bana);
-		// else if (ft_strcmp(bi, "unset") == 0)
-		// 	handle_unset(bana, envp);
+		else if (ft_strcmp(bi, "unset") == 0)
+			handle_unset(bana, env);
 		else if (ft_strcmp(bi, "env") == 0)
 			handle_env(bana, *env);
 		// else if (ft_strcmp(bi, "export") == 0)
 		// 	handle_export(bana, envp);
-		//else
-		//	printf("Command '%s' not found\n", bi); 
+		else
+			return ;
+			//send to pipes
+			// printf("Command '%s' not found\n", bi); 
 	}
 }
 
