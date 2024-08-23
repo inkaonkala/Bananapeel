@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/22 17:22:20 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/23 16:29:13 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,39 +226,48 @@ static void handle_unset(t_bananas *bana, t_node **env)
 // 	return (0);
 // }
 
-// static void handle_export(t_bananas *bana, char **envp)
-// {
-// 	int i;
+static void handle_export(t_bananas *bana, t_node *env)
+{
+	// if it is export without 
 
-// 	if (bana->tok_num == 1)
-// 	{
-// 		i = 0;
-// 		while (envp[i])
-// 		{
-// 			if (!envp[i])
-// 				break ;
-// 			printf("declare -x %s\n", envp[i]);	
-// 			i++;
-// 		}
-// 	}
-// 	else if (bana->tok_num > 1)
-// 	{
-// 		i = 1;
-// 		if (!parse_export(bana->token[i]))
-// 			//write to bottom of env, move on to next token, check it for =
+	if (bana->tok_num == 1)
+	{
+		while (env->next)
+		{
+			if (!env)
+				break ;
+			printf("declare -x %s=%s\n", env->key, env->value);	
+			env = env->next;
+		}
+		token_cleaner(bana, 0);
+	}
+	else if (bana->tok_num > 1)
+	{
+		// while (env->next)
+		// {
+		// 	if (!ft_strcmp(env->key, bana->token[1]))
+		// 	{
+				
+		// 	}
+
+		// }	
+		return ;
+		// i = 1;
+		// if (!parse_export(bana->token[i]))
+		// 	//write to bottom of env, move on to next token, check it for =
 	
 			
-// 			// i = find_export
+		// 	// i = find_export
 
 			
-// 	}
-// 	// envp = envp_strjoin(bana, envp);
-// 	//malloc 2 for \n and \0 then write to envp[i]
-// 	//strjoin, token to envp[i]
-// 	//
-// //	ft_strjoin(envp[i], bana->token[1], ft_strlen(bana->token[1]));
-// //	envp[i + 1][0] = '\0';
-// }
+	}
+	// envp = envp_strjoin(bana, envp);
+	//malloc 2 for \n and \0 then write to envp[i]
+	//strjoin, token to envp[i]
+	//
+//	ft_strjoin(envp[i], bana->token[1], ft_strlen(bana->token[1]));
+//	envp[i + 1][0] = '\0';
+}
 
 static void handle_env(t_bananas *bana, t_node *env)
 {
@@ -267,10 +276,12 @@ static void handle_env(t_bananas *bana, t_node *env)
 	{
 		if (!env)
 			break ;
-		printf("%s=%s\n", env->key, env->value);	
+		if (env->value)
+			printf("%s=%s\n", env->key, env->value);	
 		env = env->next;
 	}
-//	ft_putendl_fd("\n", 1);
+	while (bana->tok_num > 0)
+		token_cleaner(bana, 0);
 }
 
 void built_ins(t_bananas *bana, t_node **env)
@@ -296,8 +307,8 @@ void built_ins(t_bananas *bana, t_node **env)
 			handle_unset(bana, env);
 		else if (ft_strcmp(bi, "env") == 0)
 			handle_env(bana, *env);
-		// else if (ft_strcmp(bi, "export") == 0)
-		// 	handle_export(bana, envp);
+		else if (ft_strcmp(bi, "export") == 0)
+			handle_export(bana, *env);
 		else
 			return ;
 			//send to pipes
