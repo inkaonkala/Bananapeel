@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:46:16 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/22 13:50:53 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/23 09:20:44 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ static void	execute_command(t_bananas *bana, char **envp, int index)
 	if(bana->cmd_paths[index])
 	{
 			execve(bana->cmd_paths[index], &bana->cmd_args[index], envp);
-			exit (1);
+			exiting(bana, 1);
 	}
 	else
 	{
 		ft_printf("Bananas! Can't find your command :( \n"); // WHICH WE WANT TO USE?
 		//perror("Bananas! Can't find your command: ");
-		exit (1);
+		exiting(bana, 0);
 	}
 
 }
