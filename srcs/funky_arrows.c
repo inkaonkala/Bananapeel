@@ -101,13 +101,12 @@ static void	execute_rdr(t_bananas *bana, char **envp, t_node **env)
 	{
 		dupper(bana);
 		close_files(bana);
-		//built_ins(bana, env);
 		path = get_path(bana->token[0], envp);		
 		if(!path)
 		{
 			built_ins(bana, env);
-			//perror("Command is bananas:"); THIS SHOULD BE PRINTE IF THERE IS NO BUILT_INS COMMAND
-			//exit(EXIT_FAILURE);
+			perror("Command is bananas:"); THIS SHOULD BE PRINTE IF THERE IS NO BUILT_INS COMMAND
+			exit(EXIT_FAILURE);
 		}
 		//if_echo(bana);
 		built_ins(bana, env);
