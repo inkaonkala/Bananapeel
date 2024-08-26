@@ -1,11 +1,11 @@
 #include "../minishell.h"
 
 
-static bool	handle_commands(t_bananas *bana, char **envp)
+static bool	handle_commands(t_bananas *bana, char **envp, t_node **env)
 {
 	if(bana->is_rdr)
 	{
-		redirections(bana, envp);
+		redirections(bana, envp, env);
 		//ft_printf("		OUT_FD %d\n", bana->out_files[bana->outfile_count - 1]);
 	}
   
@@ -24,7 +24,7 @@ static bool	handle_commands(t_bananas *bana, char **envp)
 	return (true);
 }
 
-void pipex(t_bananas *bana, char **envp)
+void pipex(t_bananas *bana, char **envp, t_node **env)
 {
     int i;
     pid_t pid;
@@ -32,7 +32,7 @@ void pipex(t_bananas *bana, char **envp)
     bana->prev_fd[0] = -1;
     bana->prev_fd[1] = -1;
 
-    if (!handle_commands(bana, envp))
+    if (!handle_commands(bana, envp, env))
     {
         ft_printf("Bananas! Commands failed\n");
         return ;

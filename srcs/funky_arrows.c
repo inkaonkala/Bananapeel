@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:33:37 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/23 11:23:39 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/26 14:36:45 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 #include "../minishell.h"
 
-static void	if_echo(t_bananas *bana)
+/*
+static void	if_echo(t_bananas *bana, int i)
 {
 	if(strcmp(bana->token[0], "echo") == 0)
 	{
@@ -45,6 +46,7 @@ static void	if_echo(t_bananas *bana)
 		exit (0);
 	}
 }
+*/
 
 static void	close_files(t_bananas *bana)
 {
@@ -83,7 +85,7 @@ static void	dupper(t_bananas * bana)
 	}
 }
 
-static void	execute_rdr(t_bananas *bana, char **envp)
+static void	execute_rdr(t_bananas *bana, char **envp, t_node **env)
 {
 	pid_t	pid;
 	int		status;
@@ -99,13 +101,16 @@ static void	execute_rdr(t_bananas *bana, char **envp)
 	{
 		dupper(bana);
 		close_files(bana);
+		//built_ins(bana, env);
 		path = get_path(bana->token[0], envp);		
 		if(!path)
 		{
-			perror("Command is bananas:");
-			exit(EXIT_FAILURE);
+			built_ins(bana, env);
+			//perror("Command is bananas:"); THIS SHOULD BE PRINTE IF THERE IS NO BUILT_INS COMMAND
+			//exit(EXIT_FAILURE);
 		}
-		if_echo(bana);
+		//if_echo(bana);
+		built_ins(bana, env);
 		token_cleaner(bana, 0);
 		execve(path, bana->token, envp);
 		exiting(bana, -1);
@@ -115,7 +120,7 @@ static void	execute_rdr(t_bananas *bana, char **envp)
 		waitpid(pid, &status, 0);		
 }
 
-void    redirections(t_bananas *bana, char **envp)
+void    redirections(t_bananas *bana, char **envp, t_node **env)
 {
 	int		i;
 	
@@ -132,7 +137,7 @@ void    redirections(t_bananas *bana, char **envp)
 	}
 	if(!bana->is_pipe)
 	{
-		execute_rdr(bana, envp);
+		execute_rdr(bana, envp, env);
 		while(bana->tok_num > 0)
 			token_cleaner(bana, 0);
 	}

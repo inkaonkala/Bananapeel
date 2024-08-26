@@ -3,9 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_ins.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
+/*   Updated: 2024/08/26 14:35:58 by iniska           ###   ########.fr       */
 /*   Updated: 2024/08/23 16:36:23 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -309,6 +310,8 @@ void built_ins(t_bananas *bana, t_node **env)
 			handle_env(bana, *env);
 		else if (ft_strcmp(bi, "export") == 0)
 			handle_export(bana, *env);
+		if (bana->is_rdr)
+			exit (0);
 		else
 			return ;
 			//send to pipes

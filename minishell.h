@@ -6,6 +6,7 @@
 /*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2024/08/26 13:56:21 by iniska           ###   ########.fr       */
 /*   Updated: 2024/08/23 17:37:05 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -60,6 +61,7 @@ typedef struct s_bananas
 
     bool    is_valid_intake;
     bool    has_input;
+    
 
 }   t_bananas;
 
@@ -111,6 +113,7 @@ char	*find_delimiter(t_bananas *bana);
 /* ************************************************************************** */
 
 void    command_search(t_bananas *bana, char **envp, t_node **env);
+void    token_merge(t_bananas *bana);
 
 
 /* ************************************************************************** */
@@ -123,7 +126,7 @@ void    exiting(t_bananas *bana, int i);
 /* ************************************************************************** */
 /*									funky_arrows							  */
 /* ************************************************************************** */
-void    redirections(t_bananas *bana, char **envp);
+void    redirections(t_bananas *bana, char **envp, t_node **env);
 /* ************************************************************************** */
 /*									file_handling							  */
 /* ************************************************************************** */
@@ -145,7 +148,7 @@ void    load_list(char **envp, t_node **env);
 /* ************************************************************************** */
 
 void	free_char_array(char ***paths, int arc);
-void     pipex(t_bananas *bana, char **envp);
+void     pipex(t_bananas *bana, char **envp, t_node **env);
 
 char	*get_path(char *path_name, char **envp);
 bool    parse_cmd_line(t_bananas *bana, char **envp);
