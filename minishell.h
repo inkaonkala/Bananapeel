@@ -3,10 +3,11 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
 /*   Updated: 2024/08/26 13:56:21 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/23 17:37:05 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +29,8 @@
 # include <fcntl.h> // for pipex
 # include  "libft/libft.h"
 
+# define IN_HEREDOG 1
+# define OUT_HEREDOG 0
 
 // extern int global;
 
@@ -97,6 +100,10 @@ int     number_checker(char *argv);
 /* ************************************************************************** */
 void	find_dog(t_bananas *bana, int tk_i);
 void	handle_the_dog(const char *delimiter);
+
+char    get_heredog_status(void);
+void    set_heredog_status(char status);
+
 /* ************************************************************************** */
 /*									delimiter								  */
 /* ************************************************************************** */
