@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:33:37 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/26 14:36:45 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/26 14:52:14 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,8 @@ static void	execute_rdr(t_bananas *bana, char **envp, t_node **env)
 		if(!path)
 		{
 			built_ins(bana, env);
-			//perror("Command is bananas:"); THIS SHOULD BE PRINTE IF THERE IS NO BUILT_INS COMMAND
-			//exit(EXIT_FAILURE);
+			perror("Command is bananas:");
+			exit(EXIT_FAILURE);
 		}
 		//if_echo(bana);
 		built_ins(bana, env);

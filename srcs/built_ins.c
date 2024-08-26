@@ -6,10 +6,10 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/26 14:35:58 by iniska           ###   ########.fr       */
-/*   Updated: 2024/08/23 16:36:23 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/26 14:56:38 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../minishell.h"
 
@@ -52,6 +52,8 @@ static void	handle_echo(t_bananas *bana)
 	}
 	while (bana->tok_num > 0)
 		token_cleaner(bana, 0);
+	if(bana->is_rdr)
+		exit(0);
 }
 
 static int	handle_pwd(t_bananas *bana)
@@ -63,6 +65,8 @@ static int	handle_pwd(t_bananas *bana)
 	if (!(buf = getcwd(NULL, 0)))
 		return (1);
 	ft_putendl_fd(buf, bana->fd_output);
+	if(bana->is_rdr)
+		exit(0);
 	return (0);
 }
 	// free_null((void *)&buf); oops this was unneeded
@@ -310,8 +314,6 @@ void built_ins(t_bananas *bana, t_node **env)
 			handle_env(bana, *env);
 		else if (ft_strcmp(bi, "export") == 0)
 			handle_export(bana, *env);
-		if (bana->is_rdr)
-			exit (0);
 		else
 			return ;
 			//send to pipes
