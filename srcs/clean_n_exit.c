@@ -31,12 +31,12 @@ void token_cleaner(t_bananas *bana, int i)
 
 void    exiting(t_bananas *bana, int i)
 {
-	bana = NULL;
-	free(bana);
+	while(bana->tok_num > 0)
+		token_cleaner(bana, 0);
 
     // If something else to clean, clean here mebbe?
-    if (i == 0)
-        exit (0);
-    if (i == 1)
-        exit (-1);
+	if (i == 0)
+		exit (0);
+	if (i == 1)
+		exit (-1);
 }
