@@ -105,7 +105,7 @@ static void	execute_rdr(t_bananas *bana, char **envp, t_node **env)
 		if(!path)
 		{
 			built_ins(bana, env);
-			perror("Command is bananas:"); THIS SHOULD BE PRINTE IF THERE IS NO BUILT_INS COMMAND
+			perror("Command is bananas:");
 			exit(EXIT_FAILURE);
 		}
 		//if_echo(bana);
