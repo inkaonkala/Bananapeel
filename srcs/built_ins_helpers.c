@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 10:20:14 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/27 10:40:39 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/27 16:09:47 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,40 +90,44 @@ void handle_unset(t_bananas *bana, t_node **env)
 	t_node *node;
 
 	node = NULL;
-	// printf("%d\n", bana->tok_num);
-	if (bana->tok_num == 1)
-		token_cleaner(bana, 0);
-	else if (bana->tok_num ==  2)
+	token_cleaner(bana, 0);
+	while (bana->tok_num >=  1)
 	{
-		// printf("inside\n");
 		node = *env;
-		//search for bana-token1 in all of the keys of the LL iterating through them. 
-		//remove that whole list and link it back up with the ones around. 
 		while (node->next)
 		{
-		// printf("inside while\n");
-		//	if (!env)
-				// break ;
-			if (!ft_strcmp(node->key, bana->token[1]))
+			if (!ft_strcmp(node->key, bana->token[0]))
 			{
 				printf("key = %s\n", node->key);
-				while (bana->tok_num > 0)
-					token_cleaner(bana, 0);
+				token_cleaner(bana, 0);
 				free(node->key);
 				free(node->value);
 				node->key = NULL;
 				node->value = NULL;
 				remove_node(node);
-				return ;
-
+				break ;
 			}
-			// printf("next");
 			node = node->next;
 		}
 	}
 	if (bana->is_rdr)
 		exit (0);
 }
+	// printf("%d\n", bana->tok_num);
+	// if (bana->tok_num == 1)
+		// printf("amount of tokens = %d\n", bana->tok_num);
+		// printf("inside\n");
+		// while tok_num > 1
+		//search for bana-token1 in all of the keys of the LL iterating through them. 
+		//remove that whole list and link it back up with the ones around. 
+			// printf("inside inner while loop\n");
+		//	if (!env)
+				// break ;
+				// printf("after token cleaner\n");
+				// return ;
+				// printf("after remove node\n");
+			// printf("next");
+		// printf("after inner loop\n");
 
 
 void	remove_node(t_node *node)
