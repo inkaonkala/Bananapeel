@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/27 10:34:48 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/27 18:42:47 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,45 @@
 
 static void handle_export(t_bananas *bana, t_node *env)
 {
+	char 	*temp;
+	int 	len;
 	if (bana->tok_num == 1)
 	{
 		while (env->next)
 		{
 			if (!env)
 				break ;
-			printf("declare -x %s=%s\n", env->key, env->value);	
+			printf("declare -x %s=\"%s\"\n", env->key, env->value);	
 			env = env->next;
 		}
 		token_cleaner(bana, 0);
 	}
-	else if (bana->tok_num > 1)
-		return ;
+	while (bana->tok_num > 1)   //////////////////////////////// CANT FIND COMMAND, nothing is stopping the function
+	{
+		if (ft_strchr(bana->token[0], '='))
+		{
+			temp = ft_strchr(bana->token[0], '=');
+			len = temp - bana->token[0];
+			temp++;
+			while (env->next)
+			{
+				if (!env)
+					break ;
+				else if (ft_strncmp(env->key, bana->token[0], len))
+				{
+					if (temp)
+						env->value = ft_strdup(temp);
+					else
+						env->value = NULL; //ehhhhhhhhh im confused
+				}
+				else
+					env = env->next;	
+			}
+			env->key = ft_strdup(bana->token[0]);  //export "NEW KEY" doesnt work--->    this is not complete, i need to add FULL export into env->key and value
+		}
+		token_cleaner(bana, 0);
+		// return ;
+	}
 	if (bana->is_rdr)
 		exit (0);
 }
