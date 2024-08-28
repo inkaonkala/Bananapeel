@@ -3,6 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2024/08/28 11:50:03 by iniska           ###   ########.fr       */
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
@@ -104,6 +108,8 @@ int     empties(char c);
 int		quote_chk(char *str, char *cur_quo, int i);
 bool	check_specials(char *token);
 int     number_checker(char *argv);
+void	free_stuff(char **args, char *path);
+
 /* ************************************************************************** */
 /*									here_dog								  */
 /* ************************************************************************** */

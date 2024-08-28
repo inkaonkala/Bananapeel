@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   exec_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:46:16 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/23 09:20:44 by iniska           ###   ########.fr       */
-/*   Updated: 2024/08/22 15:07:43 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/08/28 11:52:05 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 
 #include "../minishell.h"
@@ -22,10 +22,18 @@ void	shut_fd(int fd[2])
 
 static void	execute_command(t_bananas *bana, char **envp, int index)
 {
+	char **cmd_args;
+
+	cmd_args = ft_split(bana->token[index], ' ');
+	if (cmd_args == NULL)
+	{
+		ft_printf("Bananas! Failed to split command arguments\n");
+		exiting(bana, 1);
+	}
 
 	if(bana->cmd_paths[index])
 	{
-			execve(bana->cmd_paths[index], &bana->cmd_args[index], envp);
+			execve(bana->cmd_paths[index], cmd_args, envp);
 			exiting(bana, 1);
 	}
 	else
@@ -34,7 +42,7 @@ static void	execute_command(t_bananas *bana, char **envp, int index)
 		//perror("Bananas! Can't find your command: ");
 		exiting(bana, 0);
 	}
-
+	//free_stuff(cmd_args, NULL);
 }
 
 bool	fork_it(t_bananas *bana, int fd[2], pid_t *pid, int index)
