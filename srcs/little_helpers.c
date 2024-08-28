@@ -6,13 +6,27 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 14:42:49 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/23 09:10:49 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/28 11:49:26 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../minishell.h"
 
+void	free_stuff(char **args, char *path)
+{
+	int	i;
+
+	i = 0;
+	while(args[i])
+	{
+		free(args[i]);
+		i++;
+	}
+	free(args);
+	if (path)
+		free(path);
+}
 
 int	empties(char c)
 {

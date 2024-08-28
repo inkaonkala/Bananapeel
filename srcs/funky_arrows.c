@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:33:37 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/26 14:52:14 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/28 12:03:46 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,6 @@
 
 #include "../minishell.h"
 
-/*
-static void	if_echo(t_bananas *bana, int i)
-{
-	if(strcmp(bana->token[0], "echo") == 0)
-	{
-		int i;
-		bool n_flag;
-
-		n_flag = false;
-		i = 1;
-
-		if (bana->tok_num == 1)
-			printf("\n");
-		else if (bana->tok_num > 1)
-		{
-			if (ft_strcmp(bana->token[1], "-n") == 0)
-			{
-				token_cleaner(bana, 1);
-				n_flag = true;
-			}
-			while (i <= bana->tok_num - 2)
-				printf("%s ", bana->token[i++]);
-			if (bana->tok_num >= 2)
-				printf("%s", bana->token[bana->tok_num - 1]);
-			if (n_flag == false)
-				printf("\n");
-		}
-		while (bana->tok_num > 0)
-			token_cleaner(bana, 0);
-		exit (0);
-	}
-}
-*/
 
 static void	close_files(t_bananas *bana)
 {
@@ -90,7 +57,10 @@ static void	execute_rdr(t_bananas *bana, char **envp, t_node **env)
 	pid_t	pid;
 	int		status;
 	char	*path;
+	char	**cmd_args;
 
+	cmd_args = NULL;
+	path = NULL;
 	pid = fork();
 	if (pid < 0)
 	{
@@ -101,23 +71,30 @@ static void	execute_rdr(t_bananas *bana, char **envp, t_node **env)
 	{
 		dupper(bana);
 		close_files(bana);
-		//built_ins(bana, env);
-		path = get_path(bana->token[0], envp);		
+		cmd_args = ft_split(bana->token[0], ' ');
+		if(cmd_args == NULL)
+		{
+			ft_printf("Bnanas! Failed to split the command arguments\n");
+			free_stuff(cmd_args, path);
+			exiting(bana, 1);
+		}
+		path = get_path(cmd_args[0], envp);		
 		if(!path)
 		{
 			built_ins(bana, env);
 			perror("Command is bananas:");
+			free_stuff(cmd_args, NULL);
 			exit(EXIT_FAILURE);
 		}
-		//if_echo(bana);
 		built_ins(bana, env);
 		token_cleaner(bana, 0);
-		execve(path, bana->token, envp);
+		execve(path, cmd_args, envp);
+		free_stuff(cmd_args, path);
 		exiting(bana, -1);
 	}
-	//free(path);
 	else
-		waitpid(pid, &status, 0);		
+		waitpid(pid, &status, 0);
+	//free_stuff(cmd_args, PATH);
 }
 
 void    redirections(t_bananas *bana, char **envp, t_node **env)
