@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/28 14:00:57 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/28 14:50:14 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,25 @@ static void handle_env(t_bananas *bana, t_node *env)
 		exit (0);
 }
 
+void print_tokens(t_bananas *bana)
+{
+	int i;
+
+	i = 0;
+	while(i < bana->tok_num)
+	{
+		printf("Token#%d: %s\n", i + 1, bana->token[i]);
+		i++;
+	}
+}
+
 void built_ins(t_bananas *bana, t_node **env)
 {
 	size_t	len;
 	char 	*bi;
 
 	// printf("In BI's\n");
+	print_tokens(bana);
 	if (bana->token[0])
 	{
 		bi = bana->token[0];

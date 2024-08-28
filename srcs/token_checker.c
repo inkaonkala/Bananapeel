@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:41:54 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/28 14:18:06 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/28 14:55:53 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,17 @@ static bool valid(t_bananas *bana, int j)
     if ((j < bana->tok_num) && 
         (ft_strncmp(bana->token[j], "|", 1) != 0) && 
         (ft_strncmp(bana->token[j], "<", 1) != 0) && 
-        (ft_strncmp(bana->token[j], ">", 1) != 0) && 
-        (ft_strncmp(bana->token[j], "echo\0", 5) != 0))
-       return (true);
+        (ft_strncmp(bana->token[j], ">", 1) != 0))
+        {
+            if (bana->is_rdr)
+            {
+                if (ft_strncmp(bana->token[j], "echo\0", 5) != 0)
+                    return (true);
+                else
+                    return (false);
+            }
+            return (true);
+        }
     else
         return (false);
     

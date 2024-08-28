@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/08/23 11:34:02 by iniska           ###   ########.fr       */
-/*   Updated: 2024/08/22 15:12:42 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/08/28 14:44:44 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../minishell.h"
 
@@ -151,19 +151,20 @@ bool	parsing(char *str, t_bananas *bana, t_node **env)
 	return (true);
 }
 
-/*
-	//CHECKER!!
-	//for (int k = 0; k < token_i; k++) 
-	//{
-    //    ft_printf("Token %d: %s\n", k, tokens[k]);
-    //    free(tokens[k]); // Free each token after use
-    //}
-	//free(tokens);
 
-	if (tokens != NULL)
-	{
-		ft_printf("%s", &tokens);
-		free_tokens(tokens);
-	}
-*/
+// void print_tokens(char *bana->tokens)
+// {
+// 	for (int k = 0; k < token_i; k++) 
+// 	{
+//        ft_printf("Token %d: %s\n", k, tokens[k]);
+//        free(tokens[k]); // Free each token after use
+//     }
+// 	free(tokens);
+
+// 	if (tokens != NULL)
+// 	{
+// 		ft_printf("%s", &tokens);
+// 		free_tokens(tokens);
+// 	}
+// }
 
