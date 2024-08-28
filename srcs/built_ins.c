@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/28 14:50:14 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/28 18:39:03 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,44 +14,78 @@
 
 static void handle_export(t_bananas *bana, t_node *env)
 {
+	bool	found_in_env;
+	bool	equality;
 	char 	*temp;
 	int 	len;
+	temp = NULL;
+	equality = false;
+	found_in_env = false;
 	if (bana->tok_num == 1)
 	{
 		while (env->next)
 		{
 			if (!env)
 				break ;
-			printf("declare -x %s=\"%s\"\n", env->key, env->value);	
+			else if (env->value)
+				printf("declare -x %s=\"%s\"\n", env->key, env->value);	
+			else if (!env->value)
+				printf("declare -x %s\n", env->key);	
 			env = env->next;
 		}
 		token_cleaner(bana, 0);
 	}
-	while (bana->tok_num > 1)   //////////////////////////////// CANT FIND COMMAND, nothing is stopping the function
+	while (bana->tok_num >= 1)   //////////////////////////////// CANT FIND COMMAND, nothing is stopping the function
 	{
-		if (ft_strchr(bana->token[0], '='))
+		if (!ft_strncmp(bana->token[0], "export", 6))
+			token_cleaner(bana, 0);
+		if (ft_strchr(bana->token[0], '=') && printf("= found"))
 		{
+			printf("Here\n");
 			temp = ft_strchr(bana->token[0], '=');
-			len = temp - bana->token[0];
 			temp++;
-			while (env->next)
+			printf("temp:%s\n", temp);
+			len = temp - bana->token[0] - 1;
+			printf("len:%d\n", len);
+			equality = true;
+		}
+		else
+		{
+			len = ft_strlen(bana->token[0]);
+			printf("len:%d\n", len);
+		}
+		while (env->next)
+		{
+			if (!env)
+				break ;
+			else if (!ft_strncmp(env->key, bana->token[0], len))
 			{
-				if (!env)
-					break ;
-				else if (ft_strncmp(env->key, bana->token[0], len))
-				{
-					if (temp)
-						env->value = ft_strdup(temp);
-					else
-						env->value = NULL; //ehhhhhhhhh im confused
-				}
-				else
-					env = env->next;	
+				found_in_env = true;
+				if (temp)
+					env->value = ft_strdup(temp);
 			}
-			env->key = ft_strdup(bana->token[0]);  //export "NEW KEY" doesnt work--->    this is not complete, i need to add FULL export into env->key and value
+			env = env->next;	
+		}
+		if (found_in_env == false)
+		{
+			printf("FALSE FOUND BOBIATHAN:%s\n", bana->token[0]);
+			add_end(&env, "");
+			if (equality == true)
+			{
+				ft_strlcpy(env->key, bana->token[0], len + 1);  //export "NEW KEY" doesnt work--->    this is not complete, i need to add FULL export into env->key and value
+				env->value = ft_strdup(temp);
+			}
+			else
+			{	env->key = ft_strdup(bana->token[0]);
+				env->value = NULL;
+			}
 		}
 		token_cleaner(bana, 0);
-		// return ;
+		while (env->prev)
+			env = env->prev;
+		printf("end of first token loop tok_num:%d\n", bana->tok_num);
+		equality = false;
+		found_in_env = false;
 	}
 	if (bana->is_rdr)
 		exit (0);
@@ -79,6 +113,7 @@ void print_tokens(t_bananas *bana)
 	int i;
 
 	i = 0;
+	printf("tok_num:%d\n", bana->tok_num);
 	while(i < bana->tok_num)
 	{
 		printf("Token#%d: %s\n", i + 1, bana->token[i]);
