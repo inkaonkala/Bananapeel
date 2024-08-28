@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/08/26 13:56:21 by iniska           ###   ########.fr       */
-/*   Updated: 2024/08/23 17:37:05 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/08/28 11:50:03 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 
 
@@ -79,6 +79,15 @@ typedef struct s_node
 /* ************************************************************************** */
 void	built_ins(t_bananas *bana, t_node **env);
 /* ************************************************************************** */
+/*									built-ins_helpers						  */
+/* ************************************************************************** */
+void	handle_echo(t_bananas *bana);
+int	    handle_pwd(t_bananas *bana);
+void    handle_exit(t_bananas *bana);
+void    handle_unset(t_bananas *bana, t_node **env);
+void	remove_node(t_node *node);
+
+/* ************************************************************************** */
 /*									signaling								  */
 /* ************************************************************************** */
 void    signaling(void);
@@ -95,6 +104,8 @@ int     empties(char c);
 int		quote_chk(char *str, char *cur_quo, int i);
 bool	check_specials(char *token);
 int     number_checker(char *argv);
+void	free_stuff(char **args, char *path);
+
 /* ************************************************************************** */
 /*									here_dog								  */
 /* ************************************************************************** */

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+         #
+#    By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 15:54:31 by jbremser          #+#    #+#              #
-#    Updated: 2024/08/23 17:41:32 by etaattol         ###   ########.fr        #
+#    Updated: 2024/08/27 10:34:54 by jbremser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRCFILES 	= 	bananapeel.c \
 				signaling.c \
 				little_helpers.c \
 	 			built_ins.c \
+				built_ins_helpers.c \
 	 			parsing.c \
 	 			here_dog.c \
 	 			delimiter.c \
