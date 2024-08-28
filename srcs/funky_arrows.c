@@ -94,7 +94,6 @@ static void	execute_rdr(t_bananas *bana, char **envp, t_node **env)
 	}
 	else
 		waitpid(pid, &status, 0);
-	//free_stuff(cmd_args, PATH);
 }
 
 void    redirections(t_bananas *bana, char **envp, t_node **env)
