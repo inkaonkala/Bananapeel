@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/28 18:39:03 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/28 18:59:04 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,9 @@
 static void handle_export(t_bananas *bana, t_node *env)
 {
 	bool	found_in_env;
-	bool	equality;
 	char 	*temp;
 	int 	len;
 	temp = NULL;
-	equality = false;
 	found_in_env = false;
 	if (bana->tok_num == 1)
 	{
@@ -42,12 +40,11 @@ static void handle_export(t_bananas *bana, t_node *env)
 		if (ft_strchr(bana->token[0], '=') && printf("= found"))
 		{
 			printf("Here\n");
-			temp = ft_strchr(bana->token[0], '=');
+			temp = ft_strchr(bana->token[0], '=');  
 			temp++;
 			printf("temp:%s\n", temp);
 			len = temp - bana->token[0] - 1;
 			printf("len:%d\n", len);
-			equality = true;
 		}
 		else
 		{
@@ -70,7 +67,7 @@ static void handle_export(t_bananas *bana, t_node *env)
 		{
 			printf("FALSE FOUND BOBIATHAN:%s\n", bana->token[0]);
 			add_end(&env, "");
-			if (equality == true)
+			if (temp)
 			{
 				ft_strlcpy(env->key, bana->token[0], len + 1);  //export "NEW KEY" doesnt work--->    this is not complete, i need to add FULL export into env->key and value
 				env->value = ft_strdup(temp);
@@ -84,7 +81,7 @@ static void handle_export(t_bananas *bana, t_node *env)
 		while (env->prev)
 			env = env->prev;
 		printf("end of first token loop tok_num:%d\n", bana->tok_num);
-		equality = false;
+		temp = NULL;
 		found_in_env = false;
 	}
 	if (bana->is_rdr)
