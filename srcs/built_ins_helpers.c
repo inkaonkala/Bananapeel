@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 10:20:14 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/27 16:09:47 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/28 13:10:19 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	handle_pwd(t_bananas *bana)
 	token_cleaner(bana, 0);
 	if (!(buf = getcwd(NULL, 0)))
 		return (1);
-	ft_putendl_fd(buf, bana->fd_output);
+	printf("%s\n", buf);
 	if (bana->is_rdr)
 		exit (0);
 	return (0);
