@@ -12,7 +12,7 @@
 
 #include "../minishell.h"
 
-
+/*
 static bool	buildercheck(char *str)
 {
 	if(strcmp(str, "echo"))
@@ -23,6 +23,7 @@ static bool	buildercheck(char *str)
 	else
 		return (false);
 }
+*/
 
 void	del_quotes(t_bananas *bana)
 {
@@ -32,11 +33,11 @@ void	del_quotes(t_bananas *bana)
 	i = 0;
 	while(bana->token[i])
 	{
-		if(buildercheck(bana->token[i]))
-		{
-			i++;
-			continue ;
-		}
+		//if(buildercheck(bana->token[i]))
+		//{
+		//	i++;
+		//	continue ;
+		//}
 		len = ft_strlen(bana->token[i]);
 		ft_printf("%s\n", bana->token[i]);
 		if(((len > 1 && bana->token[i][0] == '"') && (bana->token[i][len - 1] == '"')) || 
