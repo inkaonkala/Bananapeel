@@ -37,6 +37,32 @@ static bool valid(t_bananas *bana, int j)
 
 static void merge_it(t_bananas *bana, int i, int j)
 {
+	int     len;
+    char    *new_str;
+
+	if((ft_strncmp(bana->token[i], "<", 1)) == 0 || (ft_strncmp(bana->token[i], ">", 1) == 0))
+					return ;
+	len = ft_strlen(bana->token[i] + ft_strlen(bana->token[j] + 2));
+    new_str = malloc(len);
+    if (new_str == NULL)
+    {
+        ft_printf("Malloc fail in merge\n");
+        exiting(bana, 1);
+    }
+    ft_strlcat(bana->token[i], " ", len);
+    ft_strlcat(bana->token[i], bana->token[j], len); //CHECK THIS
+    if (j < bana->tok_num && ((ft_strcmp(bana->token[i], "|") != 0) ||
+	ft_strncmp(bana->token[i], "<", 1) != 0 ||
+	ft_strncmp(bana->token[i], ">", 1) != 0 ||
+	ft_strncmp(bana->token[i], "echo\0", 5) != 0))
+        token_cleaner(bana, j);
+}
+
+
+/*
+THIS ONE HAS UNFORGIVEN STUFF IN IT!
+static void merge_it(t_bananas *bana, int i, int j)
+{
 	int len;
 
 	if((strcmp(bana->token[i], "<")) == 0 || (strcmp(bana->token[i], ">") == 0))
@@ -51,6 +77,7 @@ static void merge_it(t_bananas *bana, int i, int j)
 	ft_strncmp(bana->token[i], "echo\0", 5) != 0))
         token_cleaner(bana, j);
 }
+*/
 
 void    token_merge(t_bananas *bana)
 {
