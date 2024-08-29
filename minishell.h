@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/08/29 11:46:22 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/29 13:40:43 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	free_stuff(char **args, char *path);
 /*									here_dog								  */
 /* ************************************************************************** */
 void	find_dog(t_bananas *bana, int tk_i);
-void	handle_the_dog(const char *delimiter);
+void	handle_the_dog(const char *delimiter, t_bananas *bana);
 
 char    get_heredog_status(void);
 void    set_heredog_status(char status);

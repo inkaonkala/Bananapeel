@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/08/29 11:48:19 by iniska           ###   ########.fr       */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2024/08/29 13:34:45 by etaattol         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 /*   Updated: 2024/08/28 14:44:44 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -53,7 +53,9 @@ static void	banananice(t_bananas *bana, char **tokens, int token_index)
 	bana->is_rdr = false;
 	bana->is_dog = false;
 	//bana->is_dog = false;
-	
+	bana->outfile_count = 0;
+	bana->infile_count = 0;
+	file_malloc(bana);
 	type_check(bana);
 }
 

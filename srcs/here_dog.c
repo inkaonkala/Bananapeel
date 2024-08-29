@@ -6,7 +6,7 @@
 /*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 13:19:18 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/27 15:52:27 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/08/29 13:42:50 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static inline void	_dprint(const int fd)
 	}
 }
 
-void	handle_the_dog(const char *delimiter)
+void	handle_the_dog(const char *delimiter, t_bananas *bana)
 {
     char    *line;
 	int		fd[2];
@@ -39,6 +39,8 @@ void	handle_the_dog(const char *delimiter)
 		line = readline("here_dog> ");
 	}
 	close(fd[1]);
+	bana->in_files[bana->infile_count] = fd[0];
+	bana->infile_count++;
 	_dprint(fd[0]);
 }
 
@@ -56,7 +58,7 @@ void	find_dog(t_bananas *bana, int tk_i)
 	else
 		delimiter = bana->token[tk_i] + 2;
 	ft_printf("THIS IS :%s\n", delimiter);
-	handle_the_dog(delimiter);
+	handle_the_dog(delimiter, bana);
 	if (separate)
 		free(delimiter);
 }

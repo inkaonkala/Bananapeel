@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_handling.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 10:06:52 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/29 11:47:19 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/29 13:43:19 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,38 @@ static void    open_infile(t_bananas *bana, int i)
 {
 	int	fd;
 
-
-	//ft_printf("Opening input file: %s\n", bana->token[i]);
-	if (bana->is_dog)
+	if (ft_strncmp(bana->token[i], "<<", 2) == 0)
 	{
-		ft_printf("FD should be the heredoc pipe");
+		set_heredog_status(IN_HEREDOG);
+		char *delimiter = find_delimiter(bana);
+		if (delimiter)
+		{
+			handle_the_dog(delimiter, bana);
+			free(delimiter);
+		}
+		else
+			ft_printf("Error: Unable to find heredog delimiter\n");
+		set_heredog_status(OUT_HEREDOG);
+		bana->is_dog = true;
+		ft_printf("FD should be the heredog pipe\n");
 	}
-
-	fd = open(bana->token[i], O_RDONLY);
-	if (fd == -1)
+	else if (get_heredog_status() == OUT_HEREDOG)
 	{
-		//fd = open(bana->token[i], O_WRONLY | O_TRUNC | O_CREAT, 0644);
-		//ft_printf("opened an infile\n");
-		if(fd == -1)
+		fd = open(bana->token[i], O_RDONLY);
+		if (fd == -1)
 		{
 			ft_printf("%s: ", bana->token[i]);
 			perror("Bananas!");
 			return ;
 		}
+		bana->in_files[bana->infile_count] = fd;
 	}
-	bana->in_files[bana->infile_count] = fd;
-	//bana->infile_count++;
+	else
+	{
+		ft_printf("Unexpected token while in heredog: %s\n", bana->token[i]);
+		return ;
+	}
+	bana->infile_count++;
 }
 
 static void    open_outfile(t_bananas *bana, int i, bool append)

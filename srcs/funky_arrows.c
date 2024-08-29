@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   funky_arrows.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:33:37 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/28 12:03:46 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/29 13:33:42 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,6 @@ void    redirections(t_bananas *bana, char **envp, t_node **env)
 	int		i;
 	
 	i = 0;
-	bana->outfile_count = 0;
-	bana->infile_count = 0;
-	file_malloc(bana);
 	while(bana->token[i])
 	{
 		//file_malloc(bana);
