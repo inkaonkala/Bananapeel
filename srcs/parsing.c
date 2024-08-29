@@ -3,6 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2024/08/29 11:48:19 by iniska           ###   ########.fr       */
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
@@ -22,6 +26,7 @@ static void	type_check(t_bananas *bana)
 	{		
 		if (ft_strncmp(bana->token[i], "<<", 2) == 0)
 		{
+			bana->is_dog = true;
 			find_dog(bana, i);
 			//if (ft_strlen(bana->token[i]) == 2)
 			//	i++;
@@ -46,6 +51,7 @@ static void	banananice(t_bananas *bana, char **tokens, int token_index)
 	bana->tok_num = token_index;
 	bana->is_pipe = false;
 	bana->is_rdr = false;
+	bana->is_dog = false;
 	//bana->is_dog = false;
 	
 	type_check(bana);

@@ -6,6 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:41:54 by jbremser          #+#    #+#             */
+/*   Updated: 2024/08/29 10:17:03 by iniska           ###   ########.fr       */
 /*   Updated: 2024/08/28 14:55:53 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -76,6 +77,7 @@ void    command_search(t_bananas *bana, char **envp, t_node **env)
         built_ins(bana, env);
 
     token_merge(bana);
+    del_quotes(bana);
 
     if(bana->is_rdr && !bana->is_pipe)
         redirections(bana, envp, env);

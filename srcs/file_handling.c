@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 10:06:52 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/26 14:04:37 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/29 11:47:19 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ static void    open_infile(t_bananas *bana, int i)
 
 
 	//ft_printf("Opening input file: %s\n", bana->token[i]);
-
+	if (bana->is_dog)
+	{
+		ft_printf("FD should be the heredoc pipe");
+	}
 
 	fd = open(bana->token[i], O_RDONLY);
 	if (fd == -1)
