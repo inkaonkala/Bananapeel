@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:41:54 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/28 11:25:48 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/29 10:17:03 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,17 @@ static bool valid(t_bananas *bana, int j)
     if ((j < bana->tok_num) && 
         (ft_strncmp(bana->token[j], "|", 1) != 0) && 
         (ft_strncmp(bana->token[j], "<", 1) != 0) && 
-        (ft_strncmp(bana->token[j], ">", 1) != 0) && 
-        (ft_strncmp(bana->token[j], "echo\0", 5) != 0))
-       return (true);
+        (ft_strncmp(bana->token[j], ">", 1) != 0))
+        {
+            if (bana->is_rdr)
+            {
+                if (ft_strncmp(bana->token[j], "echo\0", 5) != 0)
+                    return (true);
+                else
+                    return (false);
+            }
+            return (true);
+        }
     else
         return (false);
     
@@ -64,10 +72,11 @@ void    token_merge(t_bananas *bana)
 
 void    command_search(t_bananas *bana, char **envp, t_node **env)
 {
-    if(!bana->is_rdr)
+    if(!bana->is_rdr && !bana->is_pipe)
         built_ins(bana, env);
 
     token_merge(bana);
+    del_quotes(bana);
 
     if(bana->is_rdr && !bana->is_pipe)
         redirections(bana, envp, env);

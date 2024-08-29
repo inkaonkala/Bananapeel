@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/08/23 11:34:02 by iniska           ###   ########.fr       */
-/*   Updated: 2024/08/22 15:12:42 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/08/29 11:48:19 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../minishell.h"
 
@@ -22,6 +22,7 @@ static void	type_check(t_bananas *bana)
 	{		
 		if (ft_strncmp(bana->token[i], "<<", 2) == 0)
 		{
+			bana->is_dog = true;
 			find_dog(bana, i);
 			//if (ft_strlen(bana->token[i]) == 2)
 			//	i++;
@@ -46,6 +47,7 @@ static void	banananice(t_bananas *bana, char **tokens, int token_index)
 	bana->tok_num = token_index;
 	bana->is_pipe = false;
 	bana->is_rdr = false;
+	bana->is_dog = false;
 	//bana->is_dog = false;
 	
 	type_check(bana);
@@ -151,19 +153,20 @@ bool	parsing(char *str, t_bananas *bana, t_node **env)
 	return (true);
 }
 
-/*
-	//CHECKER!!
-	//for (int k = 0; k < token_i; k++) 
-	//{
-    //    ft_printf("Token %d: %s\n", k, tokens[k]);
-    //    free(tokens[k]); // Free each token after use
-    //}
-	//free(tokens);
 
-	if (tokens != NULL)
-	{
-		ft_printf("%s", &tokens);
-		free_tokens(tokens);
-	}
-*/
+// void print_tokens(char *bana->tokens)
+// {
+// 	for (int k = 0; k < token_i; k++) 
+// 	{
+//        ft_printf("Token %d: %s\n", k, tokens[k]);
+//        free(tokens[k]); // Free each token after use
+//     }
+// 	free(tokens);
+
+// 	if (tokens != NULL)
+// 	{
+// 		ft_printf("%s", &tokens);
+// 		free_tokens(tokens);
+// 	}
+// }
 
