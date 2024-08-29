@@ -39,7 +39,6 @@ void	del_quotes(t_bananas *bana)
 		//	continue ;
 		//}
 		len = ft_strlen(bana->token[i]);
-		ft_printf("%s\n", bana->token[i]);
 		if(((len > 1 && bana->token[i][0] == '"') && (bana->token[i][len - 1] == '"')) || 
 			((bana->token[i][0] == '\'') && (bana->token[i][len - 1] == '\'')))
 		{
@@ -47,7 +46,6 @@ void	del_quotes(t_bananas *bana)
 			bana->token[i][len - 2] = '\0';
 			continue ;
 		}
-		ft_printf("		%s\n", bana->token[i]);
 		i++;
 	}
 }
