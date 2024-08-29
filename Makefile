@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+         #
+#    By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 15:54:31 by jbremser          #+#    #+#              #
-#    Updated: 2024/08/27 10:34:54 by jbremser         ###   ########.fr        #
+#    Updated: 2024/08/29 10:16:04 by iniska           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ SRCFILES 	= 	bananapeel.c \
 				file_handling.c \
 				linked_lists.c \
 				clean_n_exit.c \
-				here_dog_utils.c
+				here_dog_utils.c \
+				coyotes.c
 
 PIPEFILES	=	eleven_pipers_piping.c \
 				arguments.c\

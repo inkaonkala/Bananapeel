@@ -6,10 +6,10 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/08/28 11:50:03 by iniska           ###   ########.fr       */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2024/08/29 11:46:22 by iniska           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 /*   Updated: 2024/08/27 10:37:34 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -46,7 +46,7 @@ typedef struct s_bananas
     // check for token values
     bool    is_pipe;
     bool    is_rdr;
-    //bool    is_dog;
+    bool    is_dog;
 
     // for file_handling
     int     *in_files;
@@ -130,6 +130,11 @@ char	*find_delimiter(t_bananas *bana);
 void    command_search(t_bananas *bana, char **envp, t_node **env);
 void    token_merge(t_bananas *bana);
 
+/* ************************************************************************** */
+/*									coyotes.c								  */
+/* ************************************************************************** */
+
+void	del_quotes(t_bananas *bana);
 
 /* ************************************************************************** */
 /*							        clean_n_exit							  */
