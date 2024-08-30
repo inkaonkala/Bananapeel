@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   token_checker.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:41:54 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/29 10:17:03 by iniska           ###   ########.fr       */
-/*   Updated: 2024/08/28 14:55:53 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/30 12:39:00 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 
 #include "../minishell.h"
@@ -58,27 +58,6 @@ static void merge_it(t_bananas *bana, int i, int j)
         token_cleaner(bana, j);
 }
 
-
-/*
-THIS ONE HAS UNFORGIVEN STUFF IN IT!
-static void merge_it(t_bananas *bana, int i, int j)
-{
-	int len;
-
-	if((strcmp(bana->token[i], "<")) == 0 || (strcmp(bana->token[i], ">") == 0))
-					return ;
-	len = ft_strlen(bana->token[i] + ft_strlen(bana->token[j] + 2));
-    bana->token[i] = realloc(bana->token[i], len);
-    strcat(bana->token[i], " ");
-    strcat(bana->token[i], bana->token[j]);
-    if (j < bana->tok_num && ((ft_strcmp(bana->token[i], "|") != 0) ||
-	ft_strncmp(bana->token[i], "<", 1) != 0 ||
-	ft_strncmp(bana->token[i], ">", 1) != 0 ||
-	ft_strncmp(bana->token[i], "echo\0", 5) != 0))
-        token_cleaner(bana, j);
-}
-*/
-
 void    token_merge(t_bananas *bana)
 {
     int i;
@@ -100,22 +79,25 @@ void    token_merge(t_bananas *bana)
 
 void    command_search(t_bananas *bana, char **envp, t_node **env)
 {
-    if(!bana->is_rdr && !bana->is_pipe)
+    if (!bana->is_rdr && !bana->is_pipe)
         built_ins(bana, env);
 
     token_merge(bana);
     del_quotes(bana);
 
-    if(bana->is_rdr && !bana->is_pipe)
+    if (bana->is_rdr && !bana->is_pipe)
         redirections(bana, envp, env);
     
+    if (bana->tok_num > 0)
+        pipex(bana, envp, env);   
     
-    if(bana->tok_num > 0)
-        pipex(bana, envp, env);
-    
-    // CHECKER!
+    while (bana->tok_num > 0)
+        token_cleaner(bana, 0);
+
+	//CHECKER
     if(bana->tok_num > 0)
         ft_printf(" You have tokens left to clean!\n");
+	
 }
 
 // static void print_stack(t_node *stack)
@@ -152,3 +134,24 @@ void    command_search(t_bananas *bana, char **envp, t_node **env)
 
     //else if(bana->is_dog && !bana->is_pipe)
     //    here_dog(bana);
+
+
+/*
+THIS ONE HAS UNFORGIVEN STUFF IN IT!
+static void merge_it(t_bananas *bana, int i, int j)
+{
+	int len;
+
+	if((strcmp(bana->token[i], "<")) == 0 || (strcmp(bana->token[i], ">") == 0))
+					return ;
+	len = ft_strlen(bana->token[i] + ft_strlen(bana->token[j] + 2));
+    bana->token[i] = realloc(bana->token[i], len);
+    strcat(bana->token[i], " ");
+    strcat(bana->token[i], bana->token[j]);
+    if (j < bana->tok_num && ((ft_strcmp(bana->token[i], "|") != 0) ||
+	ft_strncmp(bana->token[i], "<", 1) != 0 ||
+	ft_strncmp(bana->token[i], ">", 1) != 0 ||
+	ft_strncmp(bana->token[i], "echo\0", 5) != 0))
+        token_cleaner(bana, j);
+}
+*/
