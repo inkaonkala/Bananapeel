@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:46:16 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/28 11:52:05 by iniska           ###   ########.fr       */
+/*   Updated: 2024/08/30 12:18:31 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ static void	execute_command(t_bananas *bana, char **envp, int index)
 	else
 	{
 		ft_printf("Bananas! Can't find your command :( \n"); // WHICH WE WANT TO USE?
-		//perror("Bananas! Can't find your command: ");
 		exiting(bana, 0);
 	}
 	//free_stuff(cmd_args, NULL);
@@ -74,7 +73,7 @@ int	create_child(t_bananas *bana, char **envp, int index)
 	int		last;
 	//int		first;
 
-	last = (index == bana->tok_num);
+	last = (index == bana->tok_num - 1); // ADDED -1 HERE
 	//first = (index == 0);
 
 	if (!fork_it(bana, fd, &pid, index))
