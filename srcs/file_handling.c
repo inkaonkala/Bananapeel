@@ -6,7 +6,7 @@
 /*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 10:06:52 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/29 13:43:19 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/08/29 15:16:25 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ bool    file_handling(t_bananas *bana, int i)
 		token_cleaner(bana, i);
 		return (true);
 	}
+	
 	return (false);
 }
 

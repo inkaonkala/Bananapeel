@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_ins.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/28 18:59:04 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/08/30 12:52:56 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,10 +110,10 @@ void print_tokens(t_bananas *bana)
 	int i;
 
 	i = 0;
-	printf("tok_num:%d\n", bana->tok_num);
+	dprintf(2, "tok_num:%d\n", bana->tok_num);
 	while(i < bana->tok_num)
 	{
-		printf("Token#%d: %s\n", i + 1, bana->token[i]);
+		dprintf(2, "Token#%d: %s\n", i + 1, bana->token[i]);
 		i++;
 	}
 }
