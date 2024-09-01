@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/08/29 13:34:45 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/09/01 13:35:41 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,39 +79,30 @@ static char	**list_to_eepie(char **eepie, t_node **env)
 	return (eepie);
 }
 
-static int	count_tokens(char *str)
+static int count_tokens(char *str)
 {
-	int		count;
-	int		i;
-	int		quotes;
-	char	current;
+    int count = 0;
+    int i = 0;
+    // int quotes = 0;
+    char current = '\0';
 
-	i = 0;
-	count = 0;
-	quotes = 0;
-	while (str[i] !=  '\0')
-	{
-		while (str[i] != '\0' && empties(str[i]))
-			i++;
-		if (str[i])
-			count++;
-		while(str[i] && (!empties(str[i]) || quotes))
-		{
-			if (str[i] == '"' || str[i] == '\'')
-			{
-				if (quotes && str[i] == current)
-					quotes = 0;
-				else if (!quotes)
-				{
-					quotes= 1;
-					current = str[i];
-				}
-			}
-			i++;
-		}	
-	}
-	return (count);
+    while (str[i] != '\0')
+    {
+        // Skip over any leading whitespace
+        while (str[i] != '\0' && empties(str[i]))
+            i++;
+
+        if (str[i] != '\0') // Start of a new token
+        {
+            count++;
+            // Check and handle quoted sections
+            i = quote_chk(str, &current, i);
+        }
+    }
+
+    return count;
 }
+
 
 bool	parsing(char *str, t_bananas *bana, t_node **env)
 {

@@ -6,10 +6,10 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:41:54 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/29 10:17:03 by iniska           ###   ########.fr       */
-/*   Updated: 2024/08/28 14:55:53 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/01 13:34:48 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 
 #include "../minishell.h"
@@ -108,8 +108,7 @@ void    command_search(t_bananas *bana, char **envp, t_node **env)
 
     if(bana->is_rdr && !bana->is_pipe)
         redirections(bana, envp, env);
-    
-    
+     
     if(bana->tok_num > 0)
         pipex(bana, envp, env);
     
