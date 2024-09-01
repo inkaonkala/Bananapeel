@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/09/01 13:35:41 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/01 13:39:18 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,31 +78,40 @@ static char	**list_to_eepie(char **eepie, t_node **env)
 	}
 	return (eepie);
 }
-
 static int count_tokens(char *str)
 {
-    int count = 0;
-    int i = 0;
-    // int quotes = 0;
-    char current = '\0';
+    int count;
+    int i;
+    int quotes;
+    char current;
 
+    i = 0;
+    count = 0;
+    quotes = 0;
+    current = '\0';
     while (str[i] != '\0')
     {
-        // Skip over any leading whitespace
         while (str[i] != '\0' && empties(str[i]))
             i++;
-
-        if (str[i] != '\0') // Start of a new token
-        {
+        if (str[i])
             count++;
-            // Check and handle quoted sections
-            i = quote_chk(str, &current, i);
+        while (str[i] && (!empties(str[i]) || quotes))
+        {
+            if (str[i] == '"' || str[i] == '\'')
+            {
+                if (quotes && str[i] == current)
+                    quotes = 0;
+                else if (!quotes && (str[i] == '"' || current != '"'))
+                {
+                    quotes = 1;
+                    current = str[i];
+                }
+            }
+            i++;
         }
     }
-
     return count;
 }
-
 
 bool	parsing(char *str, t_bananas *bana, t_node **env)
 {

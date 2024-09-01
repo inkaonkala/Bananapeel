@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 14:42:49 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/01 13:33:42 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/01 13:39:41 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,30 +35,24 @@ int	empties(char c)
 
 int    quote_chk(char *str, char *cur_quo, int i)
 {
-    int quotes = 0;
-    char quote_char = '\0';
+    int quotes;
 
-    while (str[i])
-    {
-        if (str[i] == '"' || str[i] == '\'')
-        {
-            if (quotes && str[i] == quote_char)
-                quotes = 0;
-            else if (!quotes && (str[i] == '"' || str[i] == '\''))
-            {
-                quotes = 1;
-                quote_char = str[i];
-                *cur_quo = str[i];
-            }
-        }
-        i++;
+    quotes = 0;
+    while (str[i] && (!empties(str[i]) || quotes))
+    	{
+	    	if(str[i] == '"' || str[i] == '\'')
+	    	{
+	    		if (quotes && str[i] == *cur_quo)
+    				quotes = 0;
+    			else if (!quotes)
+    			{
+    				quotes = 1;
+				    *cur_quo = str[i];
+			    }
+		    }
+	    i++;			
     }
-    if (quotes)
-    {
-        while (str[i])
-            i++;
-    }
-    return i;
+    return (i);
 }
 
 bool	check_specials(char *token)
