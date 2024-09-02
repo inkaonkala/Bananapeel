@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/02 13:25:53 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/02 18:22:33 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,19 @@ static void handle_export(t_bananas *bana, t_node *env)
 	{
 		if (!ft_strncmp(bana->token[0], "export", 6))
 			token_cleaner(bana, 0);
-		if (ft_strchr(bana->token[0], '=') && printf("= found"))
+		if (ft_strchr(bana->token[0], '='))
 		{
-			printf("Here\n");
+			// printf("Here\n");
 			temp = ft_strchr(bana->token[0], '=');  
 			temp++;
-			printf("temp:%s\n", temp);
+			// printf("temp:%s\n", temp);
 			len = temp - bana->token[0] - 1;
-			printf("len:%d\n", len);
+			// printf("len:%d\n", len);
 		}
 		else
 		{
 			len = ft_strlen(bana->token[0]);
-			printf("len:%d\n", len);
+			// printf("export: %s: not a valid identifier\n", bana->token[0]);
 		}
 		while (env->next)
 		{
@@ -65,7 +65,7 @@ static void handle_export(t_bananas *bana, t_node *env)
 		}
 		if (found_in_env == false)
 		{
-			printf("FALSE FOUND BOBIATHAN:%s\n", bana->token[0]);
+			// printf("FALSE FOUND BOBIATHAN:%s\n", bana->token[0]);
 			add_end(&env, "");
 			if (temp)
 			{
@@ -80,7 +80,7 @@ static void handle_export(t_bananas *bana, t_node *env)
 		token_cleaner(bana, 0);
 		while (env->prev)
 			env = env->prev;
-		printf("end of first token loop tok_num:%d\n", bana->tok_num);
+		// printf("end of first token loop tok_num:%d\n", bana->tok_num);
 		temp = NULL;
 		found_in_env = false;
 	}
@@ -118,15 +118,47 @@ void print_tokens(t_bananas *bana)
 	}
 }
 
+void quote_clean(t_bananas *bana)
+{
+	int i;
+	// (void)bana;
+	char *temp;
+
+	printf("In quoote cleans's\n");
+	temp = NULL;
+	i = 0;
+	while (i <= bana->tok_num)
+	{
+		if (ft_strchr(bana->token[i], '\"') || ft_strchr(bana->token[i], '\''))
+		{
+			temp
+		}
+		i++;	
+	}
+	return ;
+}
+
+			// printf("after first strchr\n");
+			// printf("second quote: %s\n", (ft_strchr(ft_strchr(bana->token[i], '\"'), '\"')));
+			// if (ft_strchr((ft_strchr(bana->token[i], '\"')), '\"') 
+			// 	&& !(ft_strchr(ft_strchr(ft_strchr(bana->token[i], '\"'), '\"'), '\"')))
+			// {
+			// 	ft_strlcpy(temp, ft_strchr(bana->token[i], '\"'), 1);		
+			// 	printf("tostrtrim\n");
+			// 	ft_strtrim(bana->token[i], temp);	
+			// 	free(temp);
+			// }
+				
 void built_ins(t_bananas *bana, t_node **env)
 {
 	size_t	len;
 	char 	*bi;
 
 	// printf("In BI's\n");
-	//print_tokens(bana); //CHECKER
+	print_tokens(bana); //CHECKER
 	if (bana->token[0])
 	{
+		quote_clean(bana);
 		bi = bana->token[0];
 		len = ft_strlen(bi);
 		// printf("bi:%s\n", bi);
