@@ -75,7 +75,6 @@ void    token_merge(t_bananas *bana)
             while (valid(bana, j))
 				merge_it(bana, i, j);	
         }
-        ft_printf(" THIS IS THE TOKEN: %s\n", bana->token[i]);
         i++;
 
     }
