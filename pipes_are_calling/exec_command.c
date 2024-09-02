@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:46:16 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/02 13:11:51 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/02 13:39:32 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,33 @@ void	shut_fd(int fd[2])
 	close(fd[1]);
 }
 
-/*
-static void	empty_prompt(void)
+static void handle_sigint(int sig)
 {
-	char *line;
-	int	fd[2];
-
-	pipe(fd);
-	line = readline("");
-	while(line)
-	{
-		ft_putendl_fd(line, fd[1]);
-		free(line);
-		line = readline("");
-	}
-	close(fd[1]);
-	exit(1);
+    (void)sig;
+    signal(SIGINT, SIG_DFL);
+    _exit(1);
 }
-*/
+
+static void empty_prompt(void)
+{
+    char *line;
+    int fd[2];
+
+    signal(SIGINT, handle_sigint);
+    if (pipe(fd) == -1) {
+        perror("Bananas! Pipe creation failed");
+        return;
+    }
+    line = readline("");
+	while (line)
+    {
+        ft_putendl_fd(line, fd[1]);
+        free(line);
+        line = readline("");
+    }
+    close(fd[1]);
+    signal(SIGINT, SIG_DFL);
+}
 
 
 static void	execute_command(t_bananas *bana, char **envp, int index)
@@ -51,8 +60,9 @@ static void	execute_command(t_bananas *bana, char **envp, int index)
 		exiting(bana, 1);
 	}
 
-	//if((ft_strncmp(cmd_args[0],  "cat", 3) == 0 || ft_strncmp(cmd_args[0], "grep", 4) == 0) && cmd_args[1] == NULL)
-	//		empty_prompt();
+	if ((ft_strncmp(cmd_args[0],  "cat", 3) == 0)  && cmd_args[1] == NULL || 
+		(ft_strncmp(cmd_args[0], "grep", 4) == 0) && cmd_args[2] == NULL)
+			empty_prompt();
 
 
 	if(bana->cmd_paths[index])
