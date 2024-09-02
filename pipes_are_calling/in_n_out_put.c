@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 10:30:36 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/30 10:52:27 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/02 12:38:56 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ bool	redirect_file_input(t_bananas *bana)
 	
 }
 
-
 bool	redirect_file_putput(t_bananas *bana)
 {
 	int	fd;
@@ -82,10 +81,8 @@ bool	redirect_file_putput(t_bananas *bana)
 				exit(EXIT_FAILURE);
 			}
 			close(fd);
-      return (true);
+      		return (true);
 		}
 	}
     return (false);
 }
-
-
