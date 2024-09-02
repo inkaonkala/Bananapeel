@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/09/02 13:30:36 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/02 16:12:46 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <fcntl.h> // for pipex
+# include <termios.h> // 
 # include  "libft/libft.h"
 
 # define IN_HEREDOG 1
@@ -198,5 +199,8 @@ void	shut_fd(int fd[2]);
 bool	check_arguments(t_bananas *bana);
 void	shut_fd(int fd[2]);
 
+// terminal_configuration.c
+void	setup_terminal(struct termios *original_termios);
+void	restore_terminal(const struct termios *original_termios);
 
 #endif

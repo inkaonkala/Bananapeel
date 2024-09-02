@@ -6,7 +6,7 @@
 /*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:37:19 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/23 17:41:03 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/09/02 16:39:37 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,16 @@
 static void	handle_sigint(int sig)
 {
 	(void)sig;
-	write(STDOUT_FILENO, "\n🍌banana_peel:", 17);
+	write(STDOUT_FILENO, "\n", 1);
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
+}
+
+int	event_hook(void)
+{
+	rl_variable_bind("enable-bracketed-paste", "off");
+	return (0);
 }
 
 static void	handle_quit(int sig)
@@ -38,18 +47,23 @@ void    signaling(void)
     //CTRL + C SIGINT, display new prompt
 
     sa_int.sa_handler = handle_sigint;
-	sa_int.sa_flags = SA_RESTART; // allowed this is?
+	sa_int.sa_flags = 0;
 	sigaction(SIGINT, &sa_int, NULL);
 
 
     //CTR + \ EOF, exit the program clean
 
 	sa_quit.sa_handler = handle_quit;
-	sa_quit.sa_flags = SA_RESTART; // Restarts interrupted system calls
+	sa_quit.sa_flags = 0;
 	sigaction(SIGQUIT, &sa_quit, NULL);
 
     // CTR + Z SIGQUIT, does nothing
 	
-	signal(SIGTSTP, SIG_IGN); 
+	//signal(SIGTSTP, SIG_IGN); 
 }
-
+/*
+void	reset_terminal_settings(void)
+{
+	struct
+}
+*/

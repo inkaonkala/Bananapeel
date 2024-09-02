@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+         #
+#    By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 15:54:31 by jbremser          #+#    #+#              #
-#    Updated: 2024/09/02 13:26:15 by jbremser         ###   ########.fr        #
+#    Updated: 2024/09/02 16:11:38 by etaattol         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME		= 	bananapeel
 
-FLAGS		=	-Wall -Wextra -Werror -g
+FLAGS		=	-Wall -Wextra -Werror -g #-fsanitize=address
 
 SRCFILES 	= 	bananapeel.c \
 				signaling.c \
@@ -30,7 +30,8 @@ SRCFILES 	= 	bananapeel.c \
 				clean_n_exit.c \
 				here_dog_utils.c \
 				cdeeznuts.c \
-				coyotes.c
+				coyotes.c \
+				terminal_configuration.c
 
 PIPEFILES	=	eleven_pipers_piping.c \
 				arguments.c\
