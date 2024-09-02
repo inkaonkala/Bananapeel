@@ -3,13 +3,13 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+         #
+#    By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 15:54:31 by jbremser          #+#    #+#              #
-#    Updated: 2024/08/29 10:16:04 by iniska           ###   ########.fr        #
-#    Updated: 2024/08/28 13:11:19 by jbremser         ###   ########.fr        #
+#    Updated: 2024/09/02 13:26:15 by jbremser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 NAME		= 	bananapeel
 
@@ -29,6 +29,7 @@ SRCFILES 	= 	bananapeel.c \
 				linked_lists.c \
 				clean_n_exit.c \
 				here_dog_utils.c \
+				cdeeznuts.c \
 				coyotes.c
 
 PIPEFILES	=	eleven_pipers_piping.c \

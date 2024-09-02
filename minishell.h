@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/08/29 15:13:31 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/02 13:30:36 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ typedef struct s_node
 /*									built-ins								  */
 /* ************************************************************************** */
 void	built_ins(t_bananas *bana, t_node **env);
-void    handle_deeznuts(t_bananas bana, t_node *env);
+void    handle_deeznuts(t_bananas *bana, t_node *env);
 
 /* ************************************************************************** */
 /*									built-ins_helpers						  */
