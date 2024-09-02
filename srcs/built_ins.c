@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_ins.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/30 12:52:56 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/09/02 09:44:31 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void built_ins(t_bananas *bana, t_node **env)
 	char 	*bi;
 
 	// printf("In BI's\n");
-	print_tokens(bana);
+	//print_tokens(bana); //CHECKER
 	if (bana->token[0])
 	{
 		bi = bana->token[0];

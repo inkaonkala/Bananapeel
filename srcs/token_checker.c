@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_checker.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:41:54 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/01 13:51:22 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/02 10:54:22 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,25 +37,28 @@ static bool valid(t_bananas *bana, int j)
 
 static void merge_it(t_bananas *bana, int i, int j)
 {
-	int     len;
-    char    *new_str;
+	int		len;
+	char	*new_str;
 
 	if((ft_strncmp(bana->token[i], "<", 1)) == 0 || (ft_strncmp(bana->token[i], ">", 1) == 0))
-					return ;
-	len = ft_strlen(bana->token[i] + ft_strlen(bana->token[j] + 2));
-    new_str = malloc(len);
-    if (new_str == NULL)
-    {
-        ft_printf("Malloc fail in merge\n");
-        exiting(bana, 1);
+		return ;
+	len = ft_strlen(bana->token[i]) + ft_strlen(bana->token[j]) + 2;
+    new_str = (char *)malloc(len * sizeof(char));
+	if (new_str == NULL)
+	{
+		ft_printf("Malloc fail in merge\n");
+		exiting(bana, 1);
     }
-    ft_strlcat(bana->token[i], " ", len);
-    ft_strlcat(bana->token[i], bana->token[j], len); //CHECK THIS
-    if (j < bana->tok_num && ((ft_strcmp(bana->token[i], "|") != 0) ||
+	ft_strlcpy(new_str, bana->token[i], len);
+	ft_strlcat(new_str, " ", len);
+	ft_strlcat(new_str, bana->token[j], len);
+	free(bana->token[i]);
+	bana->token[i] = new_str; 
+	if (j < bana->tok_num && ((ft_strcmp(bana->token[i], "|") != 0) ||
 	ft_strncmp(bana->token[i], "<", 1) != 0 ||
 	ft_strncmp(bana->token[i], ">", 1) != 0 ||
 	ft_strncmp(bana->token[i], "echo\0", 5) != 0))
-        token_cleaner(bana, j);
+    	token_cleaner(bana, j);
 }
 
 void    token_merge(t_bananas *bana)
@@ -72,6 +75,7 @@ void    token_merge(t_bananas *bana)
             while (valid(bana, j))
 				merge_it(bana, i, j);	
         }
+        ft_printf(" THIS IS THE TOKEN: %s\n", bana->token[i]);
         i++;
 
     }
@@ -81,9 +85,10 @@ void    command_search(t_bananas *bana, char **envp, t_node **env)
 {
     if (!bana->is_rdr && !bana->is_pipe)
         built_ins(bana, env);
-
-    token_merge(bana);
+    
     del_quotes(bana);
+    token_merge(bana);
+    //del_quotes(bana);
 
     if (bana->is_rdr && !bana->is_pipe)
         redirections(bana, envp, env);
@@ -137,21 +142,4 @@ void    command_search(t_bananas *bana, char **envp, t_node **env)
 
 
 /*
-THIS ONE HAS UNFORGIVEN STUFF IN IT!
-static void merge_it(t_bananas *bana, int i, int j)
-{
-	int len;
 
-	if((strcmp(bana->token[i], "<")) == 0 || (strcmp(bana->token[i], ">") == 0))
-					return ;
-	len = ft_strlen(bana->token[i] + ft_strlen(bana->token[j] + 2));
-    bana->token[i] = realloc(bana->token[i], len);
-    strcat(bana->token[i], " ");
-    strcat(bana->token[i], bana->token[j]);
-    if (j < bana->tok_num && ((ft_strcmp(bana->token[i], "|") != 0) ||
-	ft_strncmp(bana->token[i], "<", 1) != 0 ||
-	ft_strncmp(bana->token[i], ">", 1) != 0 ||
-	ft_strncmp(bana->token[i], "echo\0", 5) != 0))
-        token_cleaner(bana, j);
-}
-*/
