@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_ins.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/02 09:44:31 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/02 13:25:53 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,8 @@ void built_ins(t_bananas *bana, t_node **env)
 			handle_env(bana, *env);
 		else if (ft_strcmp(bi, "export") == 0)
 			handle_export(bana, *env);
+		else if (ft_strcmp(bi, "cd") == 0)
+			handle_deeznuts(bana, *env);
 		else
 			return ;
 			//send to pipes
