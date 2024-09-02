@@ -140,5 +140,3 @@ void    command_search(t_bananas *bana, char **envp, t_node **env)
     //    here_dog(bana);
 
 
-/*
-
