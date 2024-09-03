@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/09/01 14:47:10 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/03 15:09:59 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,7 @@ bool	parsing(char *str, t_bananas *bana, t_node **env)
 		}
 	}
 	banananice(bana, tokens, token_index);
+	del_taco(bana);
 	command_search(bana, envp, env);
 
 	//CHECKER
