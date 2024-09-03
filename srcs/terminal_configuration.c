@@ -6,7 +6,7 @@
 /*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:06:03 by etaattol          #+#    #+#             */
-/*   Updated: 2024/09/02 16:13:36 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/09/03 11:51:30 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	setup_terminal(struct termios *original_termios)
 
 	tcgetattr(STDIN_FILENO, original_termios);
 	new_termios = *original_termios;
-	new_termios.c_lflag &= ~(ECHOCTL);
+	new_termios.c_lflag |= ECHOCTL;
 	tcsetattr(STDIN_FILENO, TCSANOW, &new_termios);
 }
 
