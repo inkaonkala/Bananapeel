@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/09/02 13:30:36 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/03 10:58:21 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,12 +191,14 @@ bool	redirect_file_putput(t_bananas *bana);
 
 // files.c
 bool	check_arguments(t_bananas *bana);
-void	shut_fd(int fd[2]);
-
 
 // files.c
 bool	check_arguments(t_bananas *bana);
-void	shut_fd(int fd[2]);
 
+// pipe_helpers.c
+
+void	shut_fd(int fd[2]);
+void	free_argh(char **argh);
+void    handle_sigint_s(int sig);
 
 #endif
