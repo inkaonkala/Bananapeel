@@ -6,33 +6,18 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:46:16 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/02 13:39:32 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/03 10:56:13 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
 #include "../minishell.h"
-
-void	shut_fd(int fd[2])
-{
-	close(fd[0]);
-	close(fd[1]);
-}
-
-static void handle_sigint(int sig)
-{
-    (void)sig;
-    signal(SIGINT, SIG_DFL);
-    _exit(1);
-}
 
 static void empty_prompt(void)
 {
     char *line;
     int fd[2];
 
-    signal(SIGINT, handle_sigint);
+    signal(SIGINT, handle_sigint_s);
     if (pipe(fd) == -1) {
         perror("Bananas! Pipe creation failed");
         return;
@@ -48,13 +33,12 @@ static void empty_prompt(void)
     signal(SIGINT, SIG_DFL);
 }
 
-
 static void	execute_command(t_bananas *bana, char **envp, int index)
 {
 	char **cmd_args;
 
 	cmd_args = ft_split(bana->token[index], ' ');
-	if (cmd_args == NULL)
+	if (cmd_args == NULL || cmd_args[0] == NULL)
 	{
 		ft_printf("Bananas! Failed to split command arguments\n");
 		exiting(bana, 1);
@@ -75,7 +59,7 @@ static void	execute_command(t_bananas *bana, char **envp, int index)
 		ft_printf("Bananas! Can't find your command :( \n"); // WHICH WE WANT TO USE?
 		exiting(bana, 0);
 	}
-	//free_stuff(cmd_args, NULL);
+	free_argh(cmd_args);
 }
 
 bool	fork_it(t_bananas *bana, int fd[2], pid_t *pid, int index)
@@ -105,10 +89,8 @@ int	create_child(t_bananas *bana, char **envp, int index)
 	pid_t	pid;
 	int		fd[2];
 	int		last;
-	//int		first;
 
-	last = (index == bana->tok_num - 1); // ADDED -1 HERE
-	//first = (index == 0);
+	last = (index == bana->tok_num); // ADDED -1 HERE
 
 	if (!fork_it(bana, fd, &pid, index))
 		return (false);
@@ -128,6 +110,7 @@ int	create_child(t_bananas *bana, char **envp, int index)
 			redirect_putput(bana, fd, index);
 		}
 		execute_command(bana, envp, index);
+		exit (1);
 	}
 	else
 	{
@@ -139,6 +122,8 @@ int	create_child(t_bananas *bana, char **envp, int index)
 			bana->prev_fd[0] = fd[0];
 			close(fd[1]);
 		}
+		else
+			shut_fd(fd);
 	}
 	return (true);
 }
