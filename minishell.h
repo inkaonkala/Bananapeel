@@ -6,7 +6,7 @@
 /*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/09/02 16:12:46 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/09/03 16:49:11 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@
 
 # define IN_HEREDOG 1
 # define OUT_HEREDOG 0
+
+#define SET 0
+#define GET 1
 
 // extern int global;
 
@@ -67,7 +70,6 @@ typedef struct s_bananas
     bool    is_valid_intake;
     bool    has_input;
     
-
 }   t_bananas;
 
 typedef struct s_node
@@ -98,6 +100,7 @@ void	remove_node(t_node *node);
 /*									signaling								  */
 /* ************************************************************************** */
 void    signaling(void);
+int     big_stopping(int get, int newvalue);
 /* ************************************************************************** */
 /*									parsing 								  */
 /* ************************************************************************** */

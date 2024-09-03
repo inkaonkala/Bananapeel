@@ -6,7 +6,7 @@
 /*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:37:19 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/03 11:50:35 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/09/03 16:48:59 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,19 @@
 static void	handle_sigint(int sig)
 {
 	(void)sig;
-	write(STDOUT_FILENO, "\n", 1);
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
+	dprintf(2, "sigint\n");
+	if (get_heredog_status() == IN_HEREDOG)
+	{
+		write(STDOUT_FILENO, "^C\n", 3);
+		big_stopping(SET, 1);
+	}
+	else
+	{
+		write(STDOUT_FILENO, "^C\n", 3);
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
+	}
 }
 
 int	event_hook(void)
@@ -30,10 +39,10 @@ int	event_hook(void)
 static void	handle_quit(int sig)
 {
 	(void)sig;
-	if (get_heredog_status() == IN_HEREDOG)
-		(void)sig; // heredog stuff
-	else
-		(void)sig; // normal stuff
+	//if (get_heredog_status() == IN_HEREDOG)
+	//	(void)sig; // heredog stuff
+	//else
+	//	(void)sig; // normal stuff
 }
 
 void    signaling(void)
