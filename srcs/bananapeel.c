@@ -6,7 +6,7 @@
 /*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:43:50 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/03 16:47:53 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/09/04 11:34:59 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ int main(int arv, char **arc, char **envp)
 	env = NULL;
 
 	ft_memset(&bana, 0, sizeof(t_bananas));
-	env  = ft_calloc(1, sizeof(t_node));
+	bana.skip_command = 0;
+	bana.original_stdin = -1;
+	bana.heredog_interrupted = 0;
+	env = ft_calloc(1, sizeof(t_node));
 	load_list(envp, env);
 	
 	setup_terminal(&original_termios);
@@ -55,12 +58,19 @@ int main(int arv, char **arc, char **envp)
 				free(input);
 				break ;
 			}
+			if (bana.skip_command)
+			{
+				bana.skip_command = 0;
+				free(input);
+				continue ;
+			}
 			//parsing(input, &bana, envp); // this creates the tokens " cat | "boy""" == cat, | , "boy")
 			//if (input)
 			//{	
 			//	// printf("input?\n");
 			//	free(input);
 			//}
+			free(input);
 		}
 		restore_terminal(&original_termios);
 	}

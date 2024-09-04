@@ -6,7 +6,7 @@
 /*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:33:37 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/29 13:33:42 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/09/03 17:22:27 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ static void	execute_rdr(t_bananas *bana, char **envp, t_node **env)
 		path = get_path(cmd_args[0], envp);		
 		if(!path)
 		{
+			printf("%s\n", cmd_args[0]);
 			built_ins(bana, env);
 			perror("Command is bananas:");
 			free_stuff(cmd_args, NULL);

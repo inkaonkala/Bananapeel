@@ -6,7 +6,7 @@
 /*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/09/03 16:49:11 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/09/04 11:38:15 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,11 @@ typedef struct s_bananas
     bool    is_valid_intake;
     bool    has_input;
     
+    // for heredog:
+    int     original_stdin;
+    int     heredog_interrupted;
+    int     skip_command;
+    
 }   t_bananas;
 
 typedef struct s_node
@@ -120,7 +125,7 @@ void	free_stuff(char **args, char *path);
 /*									here_dog								  */
 /* ************************************************************************** */
 void	find_dog(t_bananas *bana, int tk_i);
-void	handle_the_dog(const char *delimiter, t_bananas *bana);
+int 	handle_the_dog(const char *delimiter, t_bananas *bana);
 
 char    get_heredog_status(void);
 void    set_heredog_status(char status);
