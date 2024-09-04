@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_checker.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:41:54 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/02 10:54:22 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/04 17:39:36 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void    token_merge(t_bananas *bana)
 
 void    command_search(t_bananas *bana, char **envp, t_node **env)
 {
+    del_quotes(bana);
     if (!bana->is_rdr && !bana->is_pipe)
         built_ins(bana, env);
     

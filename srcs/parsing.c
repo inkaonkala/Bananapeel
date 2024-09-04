@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/09/03 15:09:59 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/04 18:08:54 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ static int	count_tokens(char *str)
 			if (str[i] == '"' || str[i] == '\'')
 			{
 				if (quotes && str[i] == current)
+					// count++;
 					quotes = 0;
 				else if (!quotes)
 				{
@@ -153,7 +154,7 @@ bool	parsing(char *str, t_bananas *bana, t_node **env)
 		}
 	}
 	banananice(bana, tokens, token_index);
-	del_taco(bana);
+	// del_quotes(bana);
 	command_search(bana, envp, env);
 
 	//CHECKER
