@@ -6,7 +6,7 @@
 /*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:37:19 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/04 11:13:59 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/09/04 16:49:11 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static void	handle_sigint(int sig)
 {
 	(void)sig;
-	//dprintf(2, "sigint\n");
 	if (get_heredog_status() == IN_HEREDOG)
 	{
 		write(STDOUT_FILENO, "^C\n", 3);

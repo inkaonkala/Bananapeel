@@ -6,13 +6,13 @@
 /*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 13:19:18 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/04 11:39:13 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/09/04 16:56:13 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	handle_the_dog(const char *delimiter, t_bananas *bana)
+void	handle_the_dog(const char *delimiter, t_bananas *bana)
 {
     char    *line;
 	int		fd[2];
@@ -32,7 +32,7 @@ int	handle_the_dog(const char *delimiter, t_bananas *bana)
 	set_heredog_status(IN_HEREDOG);
 	while (1)
 	{
-		line = readline("here_dog> ");
+		line = readline_wrapper("here_dog> ", bana);
 		if (!line || bana->heredog_interrupted)
 			break ;
 		if (ft_strncmp(line, delimiter, ft_strlen(delimiter)) == 0)
@@ -43,12 +43,12 @@ int	handle_the_dog(const char *delimiter, t_bananas *bana)
 		ft_putendl_fd(line,fd[1]);
 		free(line);
 	}
+	close(fd[1]);
+	set_heredog_status(OUT_HEREDOG);
 	if (bana->heredog_interrupted)
 	{
 		close(fd[0]);
 		dprintf(2, "Heredog was interrrupted\n");
-		return (1);
-		//bana->skip_command = 1;
 	}
 	else
 	{
@@ -62,7 +62,6 @@ int	handle_the_dog(const char *delimiter, t_bananas *bana)
 		bana->original_stdin = -1;
 	}
 
-	return (0);
 	//pipe(fd); // check failure
 	//big_stopping(SET, 0);
 	//set_heredog_status(IN_HEREDOG);
@@ -80,17 +79,17 @@ int	handle_the_dog(const char *delimiter, t_bananas *bana)
 	//bana->infile_count++;
 }
 
-int big_stopping(int get, int newvalue)
-{
-	static int	stopper = 0;
-
-	dprintf(2, "big stopping\n");
-	if (get)
-		return stopper;
-	else
-		stopper = newvalue;
-	return stopper;
-}
+//int big_stopping(int get, int newvalue)
+//{
+//	static int	stopper = 0;
+//
+//	dprintf(2, "big stopping\n");
+//	if (get)
+//		return stopper;
+//	else
+//		stopper = newvalue;
+//	return stopper;
+//}
 
 void	find_dog(t_bananas *bana, int tk_i)
 {       
