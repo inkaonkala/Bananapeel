@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_checker.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:41:54 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/04 17:39:36 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/04 12:01:13 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,24 +82,25 @@ void    token_merge(t_bananas *bana)
 
 void    command_search(t_bananas *bana, char **envp, t_node **env)
 {
-    del_quotes(bana);
     if (!bana->is_rdr && !bana->is_pipe)
         built_ins(bana, env);
     
     del_quotes(bana);
     token_merge(bana);
+	
     //del_quotes(bana);
 
     if (bana->is_rdr && !bana->is_pipe)
+	{
+		file_malloc(bana);
         redirections(bana, envp, env);
-    
+	}
     if (bana->tok_num > 0)
         pipex(bana, envp, env);   
     
     while (bana->tok_num > 0)
         token_cleaner(bana, 0);
-
-	//CHECKER
+	
     if(bana->tok_num > 0)
         ft_printf(" You have tokens left to clean!\n");
 	
