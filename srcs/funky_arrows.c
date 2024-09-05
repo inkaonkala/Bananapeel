@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   funky_arrows.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:33:37 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/29 13:33:42 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/09/05 18:27:10 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,9 @@ static void	execute_rdr(t_bananas *bana, char **envp, t_node **env)
 			free_stuff(cmd_args, NULL);
 			exit(EXIT_FAILURE);
 		}
-		built_ins(bana, env);
+		built_ins(bana, env); //possibly we add a list->eepie
+		free_envp(envp);
+		envp = list_to_eepie(envp, env);
 		token_cleaner(bana, 0);
 		execve(path, cmd_args, envp);
 		free_stuff(cmd_args, path);

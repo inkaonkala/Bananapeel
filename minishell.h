@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/09/03 14:39:27 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/05 18:27:15 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ void    signaling(void);
 /* ************************************************************************** */
 bool	parsing(char *str, t_bananas *bana, t_node **env);
 int		empties(char c);
+char	**list_to_eepie(char **eepie, t_node **env);
 /* ************************************************************************** */
 /*									little_helpers							  */
 /* ************************************************************************** */
@@ -144,6 +145,7 @@ void	del_quotes(t_bananas *bana);
 
 void    token_cleaner(t_bananas *bana, int i);
 void    exiting(t_bananas *bana, int i);
+void	free_envp(char **envp);
 
 /* ************************************************************************** */
 /*									funky_arrows							  */
