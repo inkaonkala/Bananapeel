@@ -5,10 +5,11 @@
 #                                                     +:+ +:+         +:+      #
 #    By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/07/22 15:54:31 by jbremser          #+#    #+#              #
-#    Updated: 2024/09/02 16:11:38 by etaattol         ###   ########.fr        #
+#    Created: Invalid date        by                   #+#    #+#              #
+#    Updated: 2024/09/05 17:56:41 by etaattol         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 
 NAME		= 	bananapeel
@@ -38,9 +39,10 @@ PIPEFILES	=	eleven_pipers_piping.c \
 				clean_n_errors.c \
 				command_line.c \
 				exec_command.c \
-				files.c\
-				init_pipes.c\
-				in_n_out_put.c
+				files.c \
+				init_pipes.c \
+				in_n_out_put.c \
+				pipe_helpers.c
 				
 SRCDIR		=	srcs
 PIPEDIR		=	pipes_are_calling

@@ -6,7 +6,7 @@
 /*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:41:54 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/05 16:02:40 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/09/05 18:10:39 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void    command_search(t_bananas *bana, char **envp, t_node **env)
     
     del_quotes(bana);
     token_merge(bana);
+	
     //del_quotes(bana);
     if (bana->is_dog)
     {
@@ -96,15 +97,16 @@ void    command_search(t_bananas *bana, char **envp, t_node **env)
         return ;
     }
     if (bana->is_rdr && !bana->is_pipe)
+	{
+		file_malloc(bana);
         redirections(bana, envp, env);
-    
+	}
     if (bana->tok_num > 0)
         pipex(bana, envp, env);   
     
     while (bana->tok_num > 0)
         token_cleaner(bana, 0);
-
-	//CHECKER
+	
     if(bana->tok_num > 0)
         ft_printf(" You have tokens left to clean!\n");
 	

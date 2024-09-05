@@ -6,7 +6,7 @@
 /*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/09/02 16:57:26 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/09/05 17:55:59 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ static int	count_tokens(char *str)
 			if (str[i] == '"' || str[i] == '\'')
 			{
 				if (quotes && str[i] == current)
+					// count++;
 					quotes = 0;
 				else if (!quotes)
 				{
@@ -153,6 +154,7 @@ bool	parsing(char *str, t_bananas *bana, t_node **env)
 		}
 	}
 	banananice(bana, tokens, token_index);
+	// del_quotes(bana);
 	command_search(bana, envp, env);
 
 	//CHECKER

@@ -6,18 +6,16 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 12:04:29 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/22 13:50:27 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/03 11:01:16 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-
 static int	get_infile(t_bananas *bana)
 {
 	int fd;
 
-	// Assuming the infile is the second token for now !!!
 	if (bana->tok_num < 2 || bana->token[1] == NULL)
 	{
 		perror("Bananas! No input file givency\n");
@@ -36,13 +34,11 @@ static int	get_infile(t_bananas *bana)
 
 static int	get_outfile(t_bananas *bana)
 {
-	// Assuming the outfile is the last token for now !!!
 	if (bana->tok_num < 2 || bana->token[bana->tok_num - 1] == NULL)
 	{
 		perror("Bananas! Flawed output\n");
 		return (-1);
 	}
-	printf("Opening output file: %s\n", bana->token[bana->tok_num - 1]);
 	bana->fd_output = open(bana->token[bana->tok_num - 1], O_WRONLY | O_TRUNC | O_CREAT, 0644);
 	if (bana->fd_output == -1)
 	{

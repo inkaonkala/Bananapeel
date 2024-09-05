@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 14:42:49 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/01 14:47:09 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/03 14:46:34 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	empties(char c)
 	return (c == ' ' || c == '\t' || c == '\n');
 }
 
-int    quote_chk(char *str, char *cur_quo, int i)
+int    	quote_chk(char *str, char *cur_quo, int i)
 {
     int quotes;
 
@@ -54,6 +54,7 @@ int    quote_chk(char *str, char *cur_quo, int i)
     }
     return (i);
 }
+
 
 bool	check_specials(char *token)
 {

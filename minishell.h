@@ -6,7 +6,7 @@
 /*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/09/05 16:05:59 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/09/05 18:05:27 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,15 +199,18 @@ bool	redirect_file_putput(t_bananas *bana);
 
 // files.c
 bool	check_arguments(t_bananas *bana);
-void	shut_fd(int fd[2]);
-
 
 // files.c
 bool	check_arguments(t_bananas *bana);
-void	shut_fd(int fd[2]);
 
-// terminal_configuration.c
-void	setup_terminal(struct termios *original_termios);
-void	restore_terminal(const struct termios *original_termios);
+// pipe_helpers.c
+
+void	shut_fd(int fd[2]);
+void	free_argh(char **argh);
+void    handle_sigint_s(int sig);
+void	del_taco(t_bananas *bana);
+int	    trim_quote(char *str, char *cur_quo, int i);
+
+
 
 #endif
