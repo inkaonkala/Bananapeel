@@ -6,7 +6,7 @@
 /*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/09/04 16:55:02 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/09/05 12:34:03 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct s_bananas
     int     original_stdin;
     int     heredog_interrupted;
     //int     skip_command;
+    bool    is_valid_heredog_intake;
     
 }   t_bananas;
 
@@ -129,6 +130,7 @@ void 	handle_the_dog(const char *delimiter, t_bananas *bana);
 char    get_heredog_status(void);
 void    set_heredog_status(char status);
 char	*readline_wrapper(const char *prompt, t_bananas *bana);
+void	print_heredoc_status(void); // DEBUGGING FUNCTION DELETE
 
 /* ************************************************************************** */
 /*									delimiter								  */

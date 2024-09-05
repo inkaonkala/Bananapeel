@@ -6,7 +6,7 @@
 /*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:43:50 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/04 16:54:08 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/09/05 12:22:40 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int main(int arv, char **arc, char **envp)
 		signaling();
 		while (1)
 		{
+			print_heredoc_status(); // DEBUGGING
 			input = readline("🍌banana_peel:");
 			if (input == NULL)
 			{
@@ -76,4 +77,12 @@ int main(int arv, char **arc, char **envp)
 		ft_printf("Bananas not ripen yet");
 	}
 	return (0);
+}
+
+void	print_heredoc_status(void) // DEBUGGING FUNCTION
+{
+	char status = get_heredog_status();
+	dprintf(2, "DEBUG: Current heredoc status: %s\n", 
+			status == IN_HEREDOG ? "IN_HEREDOG" : 
+			status == OUT_HEREDOG ? "OUT_HEREDOG" : "UNKNOWN");
 }

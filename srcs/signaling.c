@@ -6,7 +6,7 @@
 /*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:37:19 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/04 16:49:11 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/09/05 12:52:11 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,16 @@ static void	handle_sigint(int sig)
 	(void)sig;
 	if (get_heredog_status() == IN_HEREDOG)
 	{
+		dprintf(2, "DEBUG: SIGINT received during heredoc\n");
 		write(STDOUT_FILENO, "^C\n", 3);
 		rl_done = 1;
 		close(STDIN_FILENO);
 		//big_stopping(SET, 1);
+		dprintf(2, "DEBUG: Closed STDIN_FILENO\n");
 	}
 	else
 	{
+		dprintf(2, "DEBUG: SIGINT received outside heredoc\n");
 		write(STDOUT_FILENO, "\n", 1);
 		//write(STDOUT_FILENO, "^C\n", 3);
 		rl_on_new_line();
