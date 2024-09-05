@@ -6,7 +6,7 @@
 /*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 13:19:18 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/05 16:12:13 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/09/05 16:53:31 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void	handle_the_dog(const char *delimiter, t_bananas *bana)
 {
-    char    			*line;
-	int					fd[2];
+    char    *line;
+	int		fd[2];
+	bool	EOF_encountered;
 	
 	bana->original_stdin = dup(STDIN_FILENO);
 	if (bana->original_stdin == -1)
@@ -34,9 +35,12 @@ void	handle_the_dog(const char *delimiter, t_bananas *bana)
 	while (1)
 	{
 		line = readline_wrapper("here_dog> ", bana);
-		if (!line || big_stopping(GET, 0))
+		if (!line)
 		{
-			bana->heredog_interrupted = 1;
+			if(big_stopping(GET, 0))
+				bana->heredog_interrupted = 1;
+			else
+				EOF_encountered = true;
 			break ;
 		}
 		if (ft_strncmp(line, delimiter, ft_strlen(delimiter)) == 0)
@@ -49,8 +53,15 @@ void	handle_the_dog(const char *delimiter, t_bananas *bana)
 	}
 	close(fd[1]);
 	set_heredog_status(OUT_HEREDOG);
-	if (bana->heredog_interrupted)
+	if (bana->heredog_interrupted || EOF_encountered)
+	{
 		close(fd[0]);
+		if (EOF_encountered)
+		{
+			printf("\nbanana: warning: heredog delimited by end-of-file (wanted `%s')\n", 
+            delimiter);
+		}
+	}
 	else
 	{
 		bana->in_files[bana->infile_count] = fd[0];
