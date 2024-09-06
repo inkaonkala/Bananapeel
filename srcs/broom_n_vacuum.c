@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   broom_n_vacuum.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 09:23:36 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/06 12:05:30 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/06 14:46:17 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 static void clean_files(t_bananas *bana)
 {
-	int i; 
+	// int i; 
 	
-	i = 0;
+	// i = 0;
 
 	if (bana->in_files != NULL)
 	{
