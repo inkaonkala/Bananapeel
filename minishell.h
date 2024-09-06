@@ -103,7 +103,6 @@ int     big_stopping(int get, int newvalue);
 /* ************************************************************************** */
 bool	parsing(char *str, t_bananas *bana, t_node **env);
 int		empties(char c);
-char	**list_to_eepie(char **eepie, t_node **env);
 /* ************************************************************************** */
 /*									little_helpers							  */
 /* ************************************************************************** */
@@ -146,7 +145,6 @@ void	del_quotes(t_bananas *bana);
 
 void    token_cleaner(t_bananas *bana, int i);
 void    exiting(t_bananas *bana, int i);
-void	free_envp(char **envp);
 
 /* ************************************************************************** */
 /*									funky_arrows							  */

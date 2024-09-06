@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_checker.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:41:54 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/06 10:16:12 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/06 12:09:08 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,13 @@ void    token_merge(t_bananas *bana)
 
 void    command_search(t_bananas *bana, char **envp, t_node **env)
 {
-    del_quotes(bana); // this needs to be done BEFORE Bobiathan, so there are no quotes in BIs
+    del_quotes(bana);
     if (!bana->is_rdr && !bana->is_pipe)
         built_ins(bana, env);
     
+    
     token_merge(bana);
-	
-    //del_quotes(bana);
+
     if (bana->is_dog)
     {
         big_stopping(SET, 0);
@@ -105,49 +105,5 @@ void    command_search(t_bananas *bana, char **envp, t_node **env)
     if (bana->tok_num > 0)
         pipex(bana, envp, env);   
     
-    //while (bana->tok_num > 0)
-    //    token_cleaner(bana, 0);
-	
-    //if(bana->tok_num > 0)
-    //    ft_printf(" You have tokens left to clean!\n");
-    
-    clean_struct(bana);
-	
+    clean_struct(bana);	
 }
-
-// static void print_stack(t_node *stack)
-// {
-
-// 	t_node *ptr;
-// 	ptr = stack;
-
-// 	while (ptr)
-// 	{
-// 		ft_printf("%s\n", ptr->line);
-// 		ptr = ptr->next;
-// 	}
-// }
-
-    
-	// int i;
-
-    // i = 0;
-    // printf("command_search\n");
-    //if(bana->is_pipe)
-    //    pipex(bana, envp);
-    // while (env)
-    // {
-    //     printf("before print stack\n");
-    //     print_stack(env[i]);
-    //     i++;
-    // }
-
-
-
-    //if(bana->token[0] != executable)
-    //    free_tokens(bana);
-
-    //else if(bana->is_dog && !bana->is_pipe)
-    //    here_dog(bana);
-
-

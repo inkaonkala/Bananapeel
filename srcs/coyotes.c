@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 10:02:54 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/05 11:34:58 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/04 18:06:44 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,20 @@ void	del_quotes(t_bananas *bana)
 		j = 0;
 		len = ft_strlen(bana->token[i]);
 		while (bana->token[i][j])
-		{  
-			if (bana->token[i][j] == '\'' || bana->token[i][j] == '"')  // Check for both single and double quotes
+		{
+			// Check for both single and double quotes
+			if (bana->token[i][j] == '\'' || bana->token[i][j] == '"')
 			{
-				quote = bana->token[i][j];  // Remove the opening quote
+				quote = bana->token[i][j];
+				// Remove the opening quote
 				ft_memmove(bana->token[i] + j, bana->token[i] + j + 1, len - j);
 				len--;
-				while (bana->token[i][j] && bana->token[i][j] != quote) 	// Find the matching closing quote
+				// Find the matching closing quote
+				while (bana->token[i][j] && bana->token[i][j] != quote)
 					j++;
-				if (bana->token[i][j] == quote)// Remove the closing quote
+				if (bana->token[i][j] == quote)
 				{
+					// Remove the closing quote
 					ft_memmove(bana->token[i] + j, bana->token[i] + j + 1, len - j);
 					len--;
 				}

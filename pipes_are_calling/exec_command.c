@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:46:16 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/03 10:56:13 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/06 11:37:58 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ static void	execute_command(t_bananas *bana, char **envp, int index)
 		exiting(bana, 1);
 	}
 
-	if ((ft_strncmp(cmd_args[0],  "cat", 3) == 0)  && cmd_args[1] == NULL || 
-		(ft_strncmp(cmd_args[0], "grep", 4) == 0) && cmd_args[2] == NULL)
-			empty_prompt();
+	//if ((ft_strncmp(cmd_args[0],  "cat", 3) == 0)  && cmd_args[1] == NULL || 
+	//	(ft_strncmp(cmd_args[0], "grep", 4) == 0) && cmd_args[2] == NULL)
+	//		empty_prompt();
 
 
 	if(bana->cmd_paths[index])
