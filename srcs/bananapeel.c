@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bananapeel.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:43:50 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/05 18:10:11 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/09/06 10:14:28 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ int main(int arv, char **arc, char **envp)
 			if (input)
 				// printf("input?\n");
 				free(input);	
-			if (env)
-				free_env(env);
+			//if (env)
+			//	free_env(env);
 		}
 		restore_terminal(&original_termios);
 	}

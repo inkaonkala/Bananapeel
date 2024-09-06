@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   token_checker.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:41:54 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/05 18:10:39 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/09/06 10:16:12 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 
 #include "../minishell.h"
+
 
 static bool valid(t_bananas *bana, int j)
 {
@@ -104,11 +105,13 @@ void    command_search(t_bananas *bana, char **envp, t_node **env)
     if (bana->tok_num > 0)
         pipex(bana, envp, env);   
     
-    while (bana->tok_num > 0)
-        token_cleaner(bana, 0);
+    //while (bana->tok_num > 0)
+    //    token_cleaner(bana, 0);
 	
-    if(bana->tok_num > 0)
-        ft_printf(" You have tokens left to clean!\n");
+    //if(bana->tok_num > 0)
+    //    ft_printf(" You have tokens left to clean!\n");
+    
+    clean_struct(bana);
 	
 }
 
