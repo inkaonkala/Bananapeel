@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/03 14:39:33 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/05 17:55:37 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,24 @@
 static void handle_export(t_bananas *bana, t_node *env)
 {
 	bool	found_in_env;
+	t_node	*head;
 	char 	*temp;
 	int 	len;
 	temp = NULL;
 	found_in_env = false;
+	head = env;
 	if (bana->tok_num == 1)
 	{
-		while (env->next)
+		while (env)
 		{
-			if (!env)
-				break ;
-			else if (env->value)
+			if (env->value)
 				printf("declare -x %s=\"%s\"\n", env->key, env->value);	
 			else if (!env->value)
 				printf("declare -x %s\n", env->key);	
+			if (!env->next)
+				break ;
 			env = env->next;
+			
 		}
 		token_cleaner(bana, 0);
 	}
@@ -59,44 +62,68 @@ static void handle_export(t_bananas *bana, t_node *env)
 			{
 				found_in_env = true;
 				if (temp)
+				{
+					if (env->value)
+						free(env->value);
+					printf("inside temp-env->valuebowhdaskkd\n");
 					env->value = ft_strdup(temp);
+				}
 			}
 			env = env->next;	
 		}
 		if (found_in_env == false)
 		{
-			printf("FALSE FOUND BOBIATHAN:%s\n", bana->token[0]);
-			add_end(&env, "");
-			if (temp)
-			{
-				ft_strlcpy(env->key, bana->token[0], len + 1);  //export "NEW KEY" doesnt work--->    this is not complete, i need to add FULL export into env->key and value
-				env->value = ft_strdup(temp);
-			}
-			else
-			{	env->key = ft_strdup(bana->token[0]);
-				env->value = NULL;
-			}
+			// env = head;
+		//	printf("FIE: %s not found in ENV and env is now at%s=%s\n", bana->token[0], env->key, env->value);
+			add_end(&env, bana->token[0]);
+			//printf("FIE: NEXT%s not found in ENV and env is now at%s=%s\n", bana->token[0], env->key, env->value);
+
 		}
 		token_cleaner(bana, 0);
-		while (env->prev)
-			env = env->prev;
 		printf("end of first token loop tok_num:%d\n", bana->tok_num);
 		temp = NULL;
 		found_in_env = false;
+	// 	env = head;
+	// 		while (env->next)
+	// {
+	// 	if (!env)
+	// 		break ;
+	// 	if (env->value)
+	// 		printf("%s=%s\n", env->key, env->value);	
+	// 	env = env->next;
+	// }
+		env = head;
+
 	}
 	if (bana->is_rdr)
 		exit (0);
 }
+			// if (temp)
+			// {
+			// 	if (env->key)
+			// 		free(env->key);
+			// 	ft_strlcpy(env->key, bana->token[0], len + 1);  //export "NEW KEY" doesnt work--->    this is not complete, i need to add FULL export into env->key and value
+			// 	env->value = ft_strdup(temp);
+			// }
+			// else
+			// {
+			// 	if (env->key)
+			// 		free(env->key);
+			// 	env->key = ft_strdup(bana->token[0]);
+			// 	env->value = NULL;
+			// }
 
 static void handle_env(t_bananas *bana, t_node *env)
 {
 	(void)bana;
-	while (env->next)
+	while (env)
 	{
-		if (!env)
-			break ;
+		// if (!env)
+		// 	break ;
 		if (env->value)
-			printf("%s=%s\n", env->key, env->value);	
+			printf("%s=%s\n", env->key, env->value);
+		if (!env->next)
+			break ;
 		env = env->next;
 	}
 	while (bana->tok_num > 0)

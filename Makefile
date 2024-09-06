@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+         #
+#    By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2024/09/06 09:33:02 by iniska           ###   ########.fr        #
+#    Created: 2024/07/22 15:54:31 by jbremser          #+#    #+#              #
+#    Updated: 2024/09/05 15:14:00 by jbremser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= 	bananapeel
 
-FLAGS		=	-Wall -Wextra -Werror -g #-fsanitize=address
+FLAGS		=	-Wall -Wextra -Werror -g 
 
 SRCFILES 	= 	bananapeel.c \
 				signaling.c \

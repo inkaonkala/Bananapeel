@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 14:42:49 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/03 14:46:34 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/05 18:39:55 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,17 @@ int    	quote_chk(char *str, char *cur_quo, int i)
 
     quotes = 0;
     while (str[i] && (!empties(str[i]) || quotes))
-    	{
-	    	if(str[i] == '"' || str[i] == '\'')
-	    	{
-	    		if (quotes && str[i] == *cur_quo)
-    				quotes = 0;
-    			else if (!quotes)
-    			{
-    				quotes = 1;
-				    *cur_quo = str[i];
-			    }
-		    }
+	{
+		if(str[i] == '"' || str[i] == '\'')
+		{
+			if (quotes && str[i] == *cur_quo)
+				quotes = 0;
+			else if (!quotes)
+			{
+				quotes = 1;
+				*cur_quo = str[i];
+			}
+		}
 	    i++;			
     }
     return (i);
@@ -79,6 +79,22 @@ int	number_checker(char *argv)
 	return (0);
 
 }
+
+void	free_envp(char **envp)
+{
+	int	i;
+
+	i = 0;
+	while (envp[i])
+	{
+		free(envp[i]);
+		envp[i] = NULL;
+		i++;
+	}
+	free(envp);
+}
+
+
 	// int	num;
 	// int	temp;
 

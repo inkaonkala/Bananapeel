@@ -10,10 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/*   Updated: 2024/08/28 14:44:44 by jbremser         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 
 #include "../minishell.h"
 
@@ -59,20 +55,27 @@ static void	banananice(t_bananas *bana, char **tokens, int token_index)
 	type_check(bana);
 }
 
-static char	**list_to_eepie(char **eepie, t_node **env)
+char	**list_to_eepie(char **eepie, t_node **env)
 {
 	int len;
 	int i;
 	t_node *curr;
+	char	*ptr_parking;
 
+	// printf("\n\nlist_to_eepie run\n\n");
 	i = 0;
 	curr = *env;
-	len = stack_len(curr) + 1;
+	len = stack_len(curr);
 	eepie = ft_calloc(len, sizeof(char *));
-	while (i < len - 1)
+	while (i < len)
 	{
+		// ptr_parking = eepie[i];
+		// free(ptr_parking); //this may be extra
 		eepie[i] = ft_strjoin(curr->key, "=");
+		ptr_parking = eepie[i];
 		eepie[i] = ft_strjoin(eepie[i], curr->value);
+		free(ptr_parking);
+		ptr_parking = NULL;
 		curr = curr->next;
 		i++;
 	}
@@ -114,6 +117,8 @@ static int	count_tokens(char *str)
 	return (count);
 }
 
+
+
 bool	parsing(char *str, t_bananas *bana, t_node **env)
 {
 	char	**tokens;
@@ -132,7 +137,10 @@ bool	parsing(char *str, t_bananas *bana, t_node **env)
 	envp = list_to_eepie(envp, env);
 	tokens = malloc((token_count + 1) * sizeof(char *));
 	if (!tokens)
+	{
+		free_envp(envp);
 		return (false);
+	}
 	
 	while(str[i])
 	{
@@ -147,6 +155,7 @@ bool	parsing(char *str, t_bananas *bana, t_node **env)
 			tokens[token_index] = malloc(tok_len + 1);
 			if (!tokens[token_index])
 			{
+				free_envp(envp);
 				return (false);
 			}
 			ft_strlcpy(tokens[token_index], &str[start], tok_len + 1);
@@ -158,6 +167,8 @@ bool	parsing(char *str, t_bananas *bana, t_node **env)
 	command_search(bana, envp, env);
 
 	//CHECKER
+	if (envp)
+		free_envp(envp);
 	return (true);
 }
 
