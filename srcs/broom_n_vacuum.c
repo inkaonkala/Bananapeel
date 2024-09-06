@@ -6,23 +6,18 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 09:23:36 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/06 10:25:24 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/06 11:40:20 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	clean_struct(t_bananas *bana)
+
+static void clean_files(t_bananas *bana)
 {
-	//printf("PATH: %s\n", bana->cmd_paths[0]);
-	
-	int i;
+	int i; 
 	
 	i = 0;
-	if (bana->tok_num > 0)
-	{
-		token_cleaner(bana, 0); // WRITE A NEW CLEANING FUNCTION?
-	}
 
 	if (bana->in_files != NULL)
 	{
@@ -37,10 +32,12 @@ void	clean_struct(t_bananas *bana)
 		free(bana->out_files);
 		bana->out_files = NULL;
 	}
-
+	
+/*
+	printf("	HERE 4\n");
+	
 	if(bana->cmd_paths != NULL)
 	{
-		i = 0;
 		while(bana->cmd_paths[i] != NULL)
 		{
 			free(bana->cmd_paths[i]);
@@ -50,10 +47,20 @@ void	clean_struct(t_bananas *bana)
 		free(bana->cmd_paths);
 		bana->cmd_paths = NULL;
 	}
+*/	
+}
 
+
+void	clean_struct(t_bananas *bana)
+{
+	//printf("PATH: %s\n", bana->cmd_paths[0]);
+
+	if (bana->tok_num > 0)
+		token_cleaner(bana, 0);
+
+	clean_files(bana);
 	if(bana->pipes != NULL)
 	{
-	//	printf("\n pipes freed\n");
 		free(bana->pipes);
 		bana->pipes = NULL;
 	}
@@ -66,5 +73,4 @@ void	clean_struct(t_bananas *bana)
 	bana->fd_output = -1;
 	bana->prev_fd[0] = -1;
 	bana->prev_fd[1] = -1;
-	
 }

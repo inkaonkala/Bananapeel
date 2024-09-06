@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/09/05 17:55:59 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/09/06 11:12:35 by iniska           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/*   Updated: 2024/08/28 14:44:44 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,34 +52,26 @@ static void	banananice(t_bananas *bana, char **tokens, int token_index)
 	bana->is_pipe = false;
 	bana->is_rdr = false;
 	bana->is_dog = false;
-	//bana->is_dog = false;
 	bana->outfile_count = 0;
 	bana->infile_count = 0;
 	file_malloc(bana);
 	type_check(bana);
 }
 
-char	**list_to_eepie(char **eepie, t_node **env)
+static char	**list_to_eepie(char **eepie, t_node **env)
 {
 	int len;
 	int i;
 	t_node *curr;
-	char	*ptr_parking;
 
-	// printf("\n\nlist_to_eepie run\n\n");
 	i = 0;
 	curr = *env;
-	len = stack_len(curr);
+	len = stack_len(curr) + 1;
 	eepie = ft_calloc(len, sizeof(char *));
-	while (i < len)
+	while (i < len - 1)
 	{
-		// ptr_parking = eepie[i];
-		// free(ptr_parking); //this may be extra
 		eepie[i] = ft_strjoin(curr->key, "=");
-		ptr_parking = eepie[i];
 		eepie[i] = ft_strjoin(eepie[i], curr->value);
-		free(ptr_parking);
-		ptr_parking = NULL;
 		curr = curr->next;
 		i++;
 	}
@@ -117,8 +113,6 @@ static int	count_tokens(char *str)
 	return (count);
 }
 
-
-
 bool	parsing(char *str, t_bananas *bana, t_node **env)
 {
 	char	**tokens;
@@ -137,10 +131,7 @@ bool	parsing(char *str, t_bananas *bana, t_node **env)
 	envp = list_to_eepie(envp, env);
 	tokens = malloc((token_count + 1) * sizeof(char *));
 	if (!tokens)
-	{
-		free_envp(envp);
 		return (false);
-	}
 	
 	while(str[i])
 	{
@@ -155,20 +146,18 @@ bool	parsing(char *str, t_bananas *bana, t_node **env)
 			tokens[token_index] = malloc(tok_len + 1);
 			if (!tokens[token_index])
 			{
-				free_envp(envp);
 				return (false);
 			}
 			ft_strlcpy(tokens[token_index], &str[start], tok_len + 1);
 			token_index++;
 		}
 	}
+
 	banananice(bana, tokens, token_index);
 	// del_quotes(bana);
 	command_search(bana, envp, env);
 
 	//CHECKER
-	if (envp)
-		free_envp(envp);
 	return (true);
 }
 

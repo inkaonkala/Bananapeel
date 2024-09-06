@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 09:07:07 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/23 11:15:33 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/06 11:38:12 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,7 @@ void token_cleaner(t_bananas *bana, int i)
 
 void    exiting(t_bananas *bana, int i)
 {
-	while(bana->tok_num > 0)
-		token_cleaner(bana, 0);
-
+	clean_struct(bana);
     // If something else to clean, clean here mebbe?
 	if (i == 0)
 		exit (0);

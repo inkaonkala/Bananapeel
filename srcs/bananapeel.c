@@ -24,7 +24,7 @@ int main(int arv, char **arc, char **envp)
 	struct termios	original_termios;
 	
 	input = NULL;
-	env = NULL; //remove me as I am redundant with ft_calloc two lines below
+	env = NULL;
 
 	ft_memset(&bana, 0, sizeof(t_bananas));
 	bana.original_stdin = -1;
@@ -64,12 +64,13 @@ int main(int arv, char **arc, char **envp)
 			}
 			//parsing(input, &bana, envp); // this creates the tokens " cat | "boy""" == cat, | , "boy")
 			if (input)
+				// printf("input?\n");
 				free(input);	
+			//if (env)
+			//	free_env(env);
 		}
 		restore_terminal(&original_termios);
 	}
-	if (env)
-		free_env(env);
 	else
 	{
 		ft_printf("Bananas not ripen yet");
