@@ -17,7 +17,7 @@ bool parse_cmd_args(t_bananas *bana)
     int		i;
     char	**args;
 
-    bana->cmd_args = ft_calloc(bana->tok_num - 1, sizeof(char **));
+    bana->cmd_args = ft_calloc(bana->tok_num, sizeof(char **));
     if (!bana->cmd_args)
         return (false);
 
