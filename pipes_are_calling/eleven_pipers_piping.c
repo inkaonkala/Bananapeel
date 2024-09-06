@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 11:01:35 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/06 10:17:32 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/06 11:00:07 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static bool	handle_commands(t_bananas *bana, char **envp, t_node **env)
 	if(bana->is_rdr)
 	{
 		redirections(bana, envp, env);
-		//ft_printf("		OUT_FD %d\n", bana->out_files[bana->outfile_count - 1]);
 	}
   
 	if (!parse_cmd_line(bana, envp))
@@ -26,16 +25,12 @@ static bool	handle_commands(t_bananas *bana, char **envp, t_node **env)
 		return (false);
 	}
 
-    //printf("PATH: %s\n", bana->cmd_paths[0]);
-
 	if (!parse_cmd_args(bana))
 	{
 		clean_n_errors(bana);
 		return (false);
 	}
 
-    //printf("argument: %s\n", bana->cmd_args[1]);
-	//ft_printf("					Parsing for pipes, DONE!\n");
 	return (true);
 }
 
