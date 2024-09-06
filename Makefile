@@ -10,10 +10,9 @@
 #                                                                              #
 # **************************************************************************** #
 
-
 NAME		= 	bananapeel
 
-FLAGS		=	-Wall -Wextra -Werror -g
+FLAGS		=	-Wall -Wextra -Werror -g 
 
 SRCFILES 	= 	bananapeel.c \
 				signaling.c \
@@ -30,7 +29,9 @@ SRCFILES 	= 	bananapeel.c \
 				clean_n_exit.c \
 				here_dog_utils.c \
 				cdeeznuts.c \
-				coyotes.c
+				coyotes.c \
+				terminal_configuration.c \
+				broom_n_vacuum.c \
 
 PIPEFILES	=	eleven_pipers_piping.c \
 				arguments.c\

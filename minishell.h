@@ -3,19 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/09/05 18:27:15 by jbremser         ###   ########.fr       */
+/*   Created: 2024/09/05 18:12:07 by etaattol          #+#    #+#             */
+/*   Updated: 2024/09/06 09:30:49 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*   Updated: 2024/08/27 10:37:34 by jbremser         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-
-
 
 #ifndef BANANA_PEEL
 # define BANANA_PEEL
@@ -31,10 +24,14 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <fcntl.h> // for pipex
+# include <termios.h> // 
 # include  "libft/libft.h"
 
 # define IN_HEREDOG 1
 # define OUT_HEREDOG 0
+
+#define SET 0
+#define GET 1
 
 // extern int global;
 
@@ -66,7 +63,10 @@ typedef struct s_bananas
     bool    is_valid_intake;
     bool    has_input;
     
-
+    // for heredog:
+    int     original_stdin;
+    int     heredog_interrupted;
+    
 }   t_bananas;
 
 typedef struct s_node
@@ -97,6 +97,7 @@ void	remove_node(t_node *node);
 /*									signaling								  */
 /* ************************************************************************** */
 void    signaling(void);
+int     big_stopping(int get, int newvalue);
 /* ************************************************************************** */
 /*									parsing 								  */
 /* ************************************************************************** */
@@ -117,10 +118,10 @@ void	free_stuff(char **args, char *path);
 /*									here_dog								  */
 /* ************************************************************************** */
 void	find_dog(t_bananas *bana, int tk_i);
-void	handle_the_dog(const char *delimiter, t_bananas *bana);
-
+void 	handle_the_dog(const char *delimiter, t_bananas *bana);
 char    get_heredog_status(void);
 void    set_heredog_status(char status);
+char	*readline_wrapper(const char *prompt, t_bananas *bana);
 
 /* ************************************************************************** */
 /*									delimiter								  */
@@ -166,6 +167,11 @@ void	free_env(t_node	**env);
 int     stack_len(t_node *stack);
 void    load_list(char **envp, t_node **env);
 
+/* ************************************************************************** */
+/*									broom_n_vacuum    						  */
+/* ************************************************************************** */
+
+void	clean_struct(t_bananas *bana);
 
 /* ************************************************************************** */
 /*									pipes_are_calling						  */
@@ -202,9 +208,11 @@ bool	check_arguments(t_bananas *bana);
 void	shut_fd(int fd[2]);
 void	free_argh(char **argh);
 void    handle_sigint_s(int sig);
-void	del_taco(t_bananas *bana);
-int	    trim_quote(char *str, char *cur_quo, int i);
+//void	del_taco(t_bananas *bana);
+//int	    trim_quote(char *str, char *cur_quo, int i);
 
-
+// terminal_configuration.c
+void	setup_terminal(struct termios *original_termios);
+void	restore_terminal(const struct termios *original_termios);
 
 #endif
