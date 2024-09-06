@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_handling.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 10:06:52 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/29 15:16:25 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/09/06 12:01:32 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ static void    open_infile(t_bananas *bana, int i)
 			ft_printf("Error: Unable to find heredog delimiter\n");
 		set_heredog_status(OUT_HEREDOG);
 		bana->is_dog = true;
-		ft_printf("FD should be the heredog pipe\n");
+		//ft_printf("FD should be the heredog pipe\n");
 	}
 	else if (get_heredog_status() == OUT_HEREDOG)
 	{
 		fd = open(bana->token[i], O_RDONLY);
 		if (fd == -1)
 		{
-			ft_printf("%s: ", bana->token[i]);
+			//ft_printf("%s: ", bana->token[i]);
 			perror("Bananas!");
 			return ;
 		}
@@ -97,7 +97,6 @@ bool    file_handling(t_bananas *bana, int i)
 
 
 	}
-	// find < for infiles
 	if (ft_strncmp(bana->token[i], "<\0", 2) == 0)
 	{
 		token_cleaner(bana, i);

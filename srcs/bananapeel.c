@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:43:50 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/06 10:14:28 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/06 12:19:18 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,17 @@ int main(int arv, char **arc, char **envp)
 	input = NULL;
 	env = NULL;
 
-	ft_memset(&bana, 0, sizeof(t_bananas));
-	bana.original_stdin = -1;
-	bana.heredog_interrupted = 0;
+	if(!ft_memset(&bana, 0, sizeof(t_bananas)))
+	{
+		printf("Banana errors\n");
+		exit (1); // what do we want this to do in this case?
+	}
 	env = ft_calloc(1, sizeof(t_node));
+	if (!env)
+	{
+		printf("Banana errors\n");
+		exit(1); // what do we want this to do in this case?
+	}
 	load_list(envp, env);
 	setup_terminal(&original_termios);
 	if (isatty(STDIN_FILENO))
@@ -62,7 +69,6 @@ int main(int arv, char **arc, char **envp)
 				bana.heredog_interrupted = 0;
 				continue ;
 			}
-			//parsing(input, &bana, envp); // this creates the tokens " cat | "boy""" == cat, | , "boy")
 			if (input)
 				// printf("input?\n");
 				free(input);	

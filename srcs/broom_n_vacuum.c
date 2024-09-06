@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 09:23:36 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/06 11:40:20 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/06 12:05:30 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void clean_files(t_bananas *bana)
 	}
 	
 /*
-	printf("	HERE 4\n");
+	this CRASHes if execve fails
 	
 	if(bana->cmd_paths != NULL)
 	{
@@ -73,4 +73,5 @@ void	clean_struct(t_bananas *bana)
 	bana->fd_output = -1;
 	bana->prev_fd[0] = -1;
 	bana->prev_fd[1] = -1;
+
 }

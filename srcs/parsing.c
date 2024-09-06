@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/09/06 11:12:35 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/06 12:17:34 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static void	type_check(t_bananas *bana)
 
 static void	banananice(t_bananas *bana, char **tokens, int token_index)
 {
+	
 	tokens[token_index] = NULL;
 	bana->token = tokens;
 	bana->tok_num = token_index;
@@ -54,6 +55,8 @@ static void	banananice(t_bananas *bana, char **tokens, int token_index)
 	bana->is_dog = false;
 	bana->outfile_count = 0;
 	bana->infile_count = 0;
+	bana->original_stdin = -1; // FOR HEREDOG
+	bana->heredog_interrupted = 0; // SIGNALS IN HEREDOG
 	file_malloc(bana);
 	type_check(bana);
 }

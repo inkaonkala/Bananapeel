@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:41:54 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/06 11:13:01 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/06 12:09:08 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,22 +105,5 @@ void    command_search(t_bananas *bana, char **envp, t_node **env)
     if (bana->tok_num > 0)
         pipex(bana, envp, env);   
     
-    clean_struct(bana);
-	
+    clean_struct(bana);	
 }
-
-// static void print_stack(t_node *stack)
-// {
-
-// 	t_node *ptr;
-// 	ptr = stack;
-
-// 	while (ptr)
-// 	{
-// 		ft_printf("%s\n", ptr->line);
-// 		ptr = ptr->next;
-// 	}
-// }
-
-
-
