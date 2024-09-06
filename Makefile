@@ -3,14 +3,12 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+         #
+#    By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2024/09/05 17:56:41 by etaattol         ###   ########.fr        #
+#    Updated: 2024/09/06 09:33:02 by iniska           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-
 
 NAME		= 	bananapeel
 
@@ -32,7 +30,8 @@ SRCFILES 	= 	bananapeel.c \
 				here_dog_utils.c \
 				cdeeznuts.c \
 				coyotes.c \
-				terminal_configuration.c
+				terminal_configuration.c \
+				broom_n_vacuum.c \
 
 PIPEFILES	=	eleven_pipers_piping.c \
 				arguments.c\
