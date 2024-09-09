@@ -6,14 +6,13 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:41:54 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/06 12:09:08 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/09 14:04:49 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 
 #include "../minishell.h"
-
 
 static bool valid(t_bananas *bana, int j)
 {
@@ -91,17 +90,11 @@ void    command_search(t_bananas *bana, char **envp, t_node **env)
     token_merge(bana);
 
     if (bana->is_dog)
-    {
         big_stopping(SET, 0);
-        while (bana->tok_num > 0)
-            token_cleaner(bana, 0);
-        return ;
-    }
+    
     if (bana->is_rdr && !bana->is_pipe)
-	{
-		file_malloc(bana);
         redirections(bana, envp, env);
-	}
+    
     if (bana->tok_num > 0)
         pipex(bana, envp, env);   
     

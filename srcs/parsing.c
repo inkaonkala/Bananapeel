@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/09/06 12:17:34 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/09 14:43:01 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ static void	type_check(t_bananas *bana)
 	{		
 		if (ft_strncmp(bana->token[i], "<<", 2) == 0)
 		{
+			if (bana->tok_num < 2)
+			{
+				clean_struct(bana);
+				return ;
+			}
 			bana->is_dog = true;
 			find_dog(bana, i);
 			//if (ft_strlen(bana->token[i]) == 2)
@@ -157,7 +162,6 @@ bool	parsing(char *str, t_bananas *bana, t_node **env)
 	}
 
 	banananice(bana, tokens, token_index);
-	// del_quotes(bana);
 	command_search(bana, envp, env);
 
 	//CHECKER

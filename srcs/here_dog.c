@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_dog.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 13:19:18 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/05 16:53:31 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/09/09 14:42:09 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,28 @@ int big_stopping(int get, int newvalue)
 	return stopper;
 }
 
+static char	*clean_deli(char *str)
+{
+	char *copy;
+
+	int i;
+
+	i = 0;
+	copy = malloc(sizeof(char) * 4);
+	if(!copy)
+	{
+		ft_printf("Malloc fail in dog\n");
+		return (0);
+	}
+	while(str[i] == '<' && str[i] != '\0')
+	{
+		copy[i] = str[i];
+		i++;
+	}
+	copy[i] = '\0';
+	return (copy);
+}
+
 void	find_dog(t_bananas *bana, int tk_i)
 {       
 	char *delimiter;
@@ -98,7 +120,10 @@ void	find_dog(t_bananas *bana, int tk_i)
 		separate = 1;
 	}
 	else
+	{
 		delimiter = bana->token[tk_i] + 2;
+		bana->token[tk_i] = clean_deli(bana->token[tk_i]);
+	}
 	//ft_printf("THIS IS :%s\n", delimiter);
 	handle_the_dog(delimiter, bana);
 	if (separate)
