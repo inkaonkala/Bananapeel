@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/09/06 12:17:34 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/09 10:34:09 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,6 @@ bool	parsing(char *str, t_bananas *bana, t_node **env)
 	}
 
 	banananice(bana, tokens, token_index);
-	// del_quotes(bana);
 	command_search(bana, envp, env);
 
 	//CHECKER

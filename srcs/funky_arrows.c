@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   funky_arrows.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:33:37 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/03 17:22:27 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/09/09 11:34:49 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,10 @@ static void	execute_rdr(t_bananas *bana, char **envp, t_node **env)
 	}
 	if (pid == 0)
 	{
+
 		dupper(bana);
 		close_files(bana);
+	
 		cmd_args = ft_split(bana->token[0], ' ');
 		if(cmd_args == NULL)
 		{

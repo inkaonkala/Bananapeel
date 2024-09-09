@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 10:06:52 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/06 12:01:32 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/09 11:38:31 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,11 @@ bool    file_handling(t_bananas *bana, int i)
 		token_cleaner(bana, i);
 		return (true);
 	}
-	
+	if (ft_strncmp(bana->token[i], "<<\0", 3) == 0)
+	{
+		token_cleaner(bana, i);
+		return(true);
+	}
 	return (false);
 }
 

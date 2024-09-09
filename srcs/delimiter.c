@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   delimiter.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 13:07:40 by iniska            #+#    #+#             */
-/*   Updated: 2024/08/20 18:30:22 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/09/09 11:33:05 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,21 +39,27 @@ char	*find_delimiter(t_bananas *bana)
 	{
 		if (!ft_strcmp(bana->token[i++], "<<"))
 		{
-			// token_cleaner(bana, i);   token cleaning removed cause it changed the index
+			//token_cleaner(bana, i);   token cleaning removed cause it changed the index
 			len = ft_strlen(bana->token[i]);
 			deli = malloc(sizeof(char) * (len  + 1));
 			if(!deli)
 			{
+				//clean_struct(bana); // TEST!
 				//clean_n_exit()// THIS WE NEED TO DO!
 				return (NULL);
 			}
 			ft_strlcpy(deli, bana->token[i], len + 1);
-			// token_cleaner(bana, i);        token cleaning removed cause it changed the index
+			token_cleaner(bana, i); //        token cleaning removed cause it changed the index
 			return(deli);
 		}
 	}
 	return (NULL);
 }
+
+
+
+
+
 
 /*
 char	*find_delimiter(char *str)
