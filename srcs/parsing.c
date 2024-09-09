@@ -6,11 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/09/09 14:20:54 by jbremser         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/*   Updated: 2024/08/28 14:44:44 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/09 14:43:01 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +22,11 @@ static void	type_check(t_bananas *bana)
 	{		
 		if (ft_strncmp(bana->token[i], "<<", 2) == 0)
 		{
+			if (bana->tok_num < 2)
+			{
+				clean_struct(bana);
+				return ;
+			}
 			bana->is_dog = true;
 			find_dog(bana, i);
 			//if (ft_strlen(bana->token[i]) == 2)

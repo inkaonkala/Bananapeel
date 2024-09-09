@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 10:30:36 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/02 12:38:56 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/09 12:39:38 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,7 @@ bool	redirect_file_putput(t_bananas *bana)
 
 	if(bana->outfile_count > 0)
 	{
-		fd = bana->out_files[bana->outfile_count - 1]; // HERE IS THE PROBLEM
-		
+		fd = bana->out_files[bana->outfile_count - 1];			
 		if(fd != -1)
 		{
 			if(dup2(fd, STDOUT_FILENO) == -1)
@@ -81,8 +80,8 @@ bool	redirect_file_putput(t_bananas *bana)
 				exit(EXIT_FAILURE);
 			}
 			close(fd);
-      		return (true);
+			return (true);
 		}
 	}
-    return (false);
+	return (false);
 }

@@ -6,12 +6,15 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 10:06:52 by iniska            #+#    #+#             */
+/*   Updated: 2024/09/09 14:23:21 by iniska           ###   ########.fr       */
 /*   Updated: 2024/09/09 11:38:31 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../minishell.h"
+
+// make open_file.c
 
 static void    open_infile(t_bananas *bana, int i)
 {
@@ -70,24 +73,62 @@ static void    open_outfile(t_bananas *bana, int i, bool append)
 	bana->outfile_count++;
 }
 
+//
+ 
+static char	*clean_arrows(char *str)
+{
+	int	i;
+	int	j;
+	char *copy;
+
+	i = 0;
+	j = 0;
+	copy = malloc(sizeof(char) * (ft_strlen(str) + 1));
+	if(!copy)
+	{
+		ft_printf("Malloc fail in arrows");
+		return (NULL);
+	}
+	while(str[i] != '\0')
+	{
+		while(str[i] == '<' || str[i] == '>')
+			i++;
+		while(str[i] != '\0')
+		{
+			copy[j] = str[i];
+			i++;
+			j++;
+		}
+	}
+	copy[j] = '\0';
+	return (copy);
+}
+
 bool    file_handling(t_bananas *bana, int i)
 {
     bool    append;
 
 	if ((ft_strncmp(bana->token[i], ">>", 2) == 0) || (ft_strncmp(bana->token[i], ">", 1) == 0))
 	{
-		if (ft_strncmp(bana->token[i], ">>\0", 3) == 0)
+		if (ft_strncmp(bana->token[i], ">>", 3) == 0)
 		{
 			append = true;
-			token_cleaner(bana, i);
+
+			if (ft_strncmp(bana->token[i], ">>\0", 3) != 0)
+				bana->token[i] = clean_arrows(bana->token[i]);
+			else
+				token_cleaner(bana, i);
 			open_outfile(bana, i, append);
 			token_cleaner(bana, i);
 			return (true);
 		}	
-		else if( ft_strncmp(bana->token[i], ">\0", 2) == 0)
+		else if( ft_strncmp(bana->token[i], ">", 1) == 0)
 		{
 			append = false;
-			token_cleaner(bana, i);
+			if( ft_strncmp(bana->token[i], ">\0", 2) != 0)
+				bana->token[i] = clean_arrows(bana->token[i]);
+			else
+				token_cleaner(bana, i);
 			// take the token token[>] and delete it, incrament file to this spot and token_count--
 			open_outfile(bana, i, append);
 			token_cleaner(bana, i);
@@ -97,17 +138,23 @@ bool    file_handling(t_bananas *bana, int i)
 
 
 	}
-	if (ft_strncmp(bana->token[i], "<\0", 2) == 0)
+	if (ft_strncmp(bana->token[i], "<<", 2) == 0)
 	{
-		token_cleaner(bana, i);
+		if (ft_strncmp(bana->token[i], "<<\0", 3) != 0)
+			bana->token[i] = clean_arrows(bana->token[i]);
+		else
+			token_cleaner(bana, i);
+		return(true);
+	}
+	else if (ft_strncmp(bana->token[i], "<", 1) == 0)
+	{
+		if (ft_strncmp(bana->token[i], "<\0", 2) != 0)
+			bana->token[i] = clean_arrows(bana->token[i]);
+		else
+			token_cleaner(bana, i);
 		open_infile(bana, i);
 		token_cleaner(bana, i);
 		return (true);
-	}
-	if (ft_strncmp(bana->token[i], "<<\0", 3) == 0)
-	{
-		token_cleaner(bana, i);
-		return(true);
 	}
 	return (false);
 }
