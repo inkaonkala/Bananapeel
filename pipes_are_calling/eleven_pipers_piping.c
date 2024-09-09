@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 11:01:35 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/06 11:00:07 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/09 10:13:37 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void pipex(t_bananas *bana, char **envp, t_node **env)
     int i;
     pid_t pid;
 
-    bana->prev_fd[0] = -1;
+	bana->prev_fd[0] = -1;
     bana->prev_fd[1] = -1;
 
     if (!handle_commands(bana, envp, env))
