@@ -6,11 +6,94 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/03 14:39:33 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/09 14:02:42 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+// static void handle_export(t_bananas *bana, t_node *env)
+// {
+//     bool    found_in_env;
+//     t_node    *head;
+//     char     *temp;
+//     int     len;
+//     temp = NULL;
+//     found_in_env = false;
+//     head = env;
+//     if (bana->tok_num == 1)
+//     {
+//         while (env)
+//         {
+//             if (env->value)
+//                 printf("declare -x %s=\"%s\"\n", env->key, env->value);    
+//             else if (!env->value)
+//                 printf("declare -x %s\n", env->key);    
+//             if (!env->next)
+//                 break ;
+//             env = env->next;
+            
+//         }
+//         token_cleaner(bana, 0);
+//     }
+//     while (bana->tok_num >= 1)   //////////////////////////////// CANT FIND COMMAND, nothing is stopping the function
+//     {
+//         if (!ft_strncmp(bana->token[0], "export", 6))
+//             token_cleaner(bana, 0);
+//         if (ft_strchr(bana->token[0], '=') && printf("= found"))
+//         {
+//             printf("Here\n");
+//             temp = ft_strchr(bana->token[0], '=');  
+//             temp++;
+//             printf("temp:%s\n", temp);
+//             len = temp - bana->token[0] - 1;
+//             printf("len:%d\n", len);
+//         }
+//         else
+//         {
+//             len = ft_strlen(bana->token[0]);
+//             printf("len:%d\n", len);
+//         }
+//         while (env)
+//         {
+//             if (!env)
+//                 break ;
+//             else if (!ft_strncmp(env->key, bana->token[0], len))
+//             {
+//                 found_in_env = true;
+//                 if (temp)
+//                 {
+//                     if (env->value)
+//                         free(env->value);
+//                     printf("inside temp-env->value\n");
+//                     env->value = ft_strdup(temp);
+//                 }
+//             }
+//             env = env->next;    
+//         }
+//         if (found_in_env == false)
+//             add_end(&env, bana->token[0]);
+//         token_cleaner(bana, 0);
+//         printf("end of first token loop tok_num:%d\n", bana->tok_num);
+//         temp = NULL;
+//         found_in_env = false;
+//         env = head;
+//     }
+//     if (bana->is_rdr)
+//         exit (0);
+// }
+            // env = head;
+        //    printf("FIE: %s not found in ENV and env is now at%s=%s\n", bana->token[0], env->key, env->value);
+            //printf("FIE: NEXT%s not found in ENV and env is now at%s=%s\n", bana->token[0], env->key, env->value);
+    //     env = head;
+    //         while (env->next)
+    // {
+    //     if (!env)
+    //         break ;
+    //     if (env->value)
+    //         printf("%s=%s\n", env->key, env->value);    
+    //     env = env->next;
+    // }
 
 static void handle_export(t_bananas *bana, t_node *env)
 {
