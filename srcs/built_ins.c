@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/09 14:02:42 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/09 17:27:10 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,7 +207,7 @@ void built_ins(t_bananas *bana, t_node **env)
 	char 	*bi;
 
 	// printf("In BI's\n");
-	//print_tokens(bana); //CHECKER
+	// print_tokens(bana); //CHECKER
 	if (bana->token[0])
 	{
 		bi = bana->token[0];
