@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 14:29:28 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/28 17:55:29 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/09 13:42:35 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ t_node   *parse_str(t_node *node, char *str)
 
     i = 0;    
     split = ft_strchr(str, '=');
-    // split++;
     if (!split)
     {
         ft_printf("no split\n");
@@ -41,66 +40,143 @@ t_node   *parse_str(t_node *node, char *str)
     }
     else
     {
+        if (node->key)
+            free(node->key);
+        if (node->value)
+            free(node->value);
         i = split - str;
-        // ft_printf("i: %d\n", i);
         split++;
+        // if (*split == '\0')
         node->value = ft_strdup(split);
-        // ft_printf("value: %s\n", node->value);
-        // free(split);
         str[i] = '\0';
         node->key = ft_strdup(str);
-        // ft_strlcpy(node->key, str, i);
-        // ft_printf("key: %s\n", node->key);
     }
     return (node);
 }
 
+// t_node   *parse_str(t_node *node, char *str)
+// {
+//     char *split;
+//     int i;
 
-int	add_end(t_node **stack, char *str)
+//     i = 0;    
+//     split = ft_strchr(str, '=');
+//     // split++;
+//     if (!split)
+//     {
+//         ft_printf("no split\n");
+//         node->value = NULL;
+//         node->key = ft_strdup(str);
+//     }
+//     else
+//     {
+//         i = split - str;
+//         // ft_printf("i: %d\n", i);
+//         split++;
+//         node->value = ft_strdup(split);
+//         // ft_printf("value: %s\n", node->value);
+//         // free(split);
+//         str[i] = '\0';
+//         node->key = ft_strdup(str);
+//         // ft_strlcpy(node->key, str, i);
+//         // ft_printf("key: %s\n", node->key);
+//     }
+//     return (node);
+// }
+
+int    add_end(t_node **stack, char *str)
 {
-	t_node	*pre;
-	t_node	*last;
+    t_node    *pre;
+    t_node    *last;
 
-	last = malloc(sizeof(t_node));
-	if (!last)
-		return (1);
-	last->next = NULL;
-    // printf("inside add_end\n");
+    last = ft_calloc(1, sizeof(t_node));
+    if (!last)
+        return (1);
+    last->key = NULL;
+    last->value = NULL;
     last = parse_str(last, str);
-	// last->line = ft_strdup(str); //////// added to function above to split the lines
-    // printf("after strdup; line: %s\n", last->line);
-	if (!(*stack))
-	{
-        // printf("inside add_end if\n");
-		*stack = last;
-		last->prev = NULL;
-	}
-	else
-	{
+    last->next = NULL;
+    if (!(*stack))
+    {
+        *stack = last;
+        last->prev = NULL;
+    }
+    else
+    {
         pre = find_last(*stack); 
-        // printf("inside add_end else\n");
-		pre->next = last;
-		last->prev = pre;
-	}
-	return (0);
+        pre->next = last;
+        last->prev = pre;
+    }
+    return (0);
 }
 
-void	free_env(t_node	**env)
+
+// int	add_end(t_node **stack, char *str)
+// {
+// 	t_node	*pre;
+// 	t_node	*last;
+
+// 	last = malloc(sizeof(t_node));
+// 	if (!last)
+// 		return (1);
+// 	last->next = NULL;
+//     // printf("inside add_end\n");
+//     last = parse_str(last, str);
+// 	// last->line = ft_strdup(str); //////// added to function above to split the lines
+//     // printf("after strdup; line: %s\n", last->line);
+// 	if (!(*stack))
+// 	{
+//         // printf("inside add_end if\n");
+// 		*stack = last;
+// 		last->prev = NULL;
+// 	}
+// 	else
+// 	{
+//         pre = find_last(*stack); 
+//         // printf("inside add_end else\n");
+// 		pre->next = last;
+// 		last->prev = pre;
+// 	}
+// 	return (0);
+// }
+
+void    free_env(t_node    **env)
 {
-	t_node	*temp;
-	t_node	*curr;
+    t_node    *temp;
+    t_node    *curr;
 
    
-	curr = *env;
-	temp = NULL;
-	while (curr)
-	{
-		temp = curr->next;
-		free(curr);
-		curr = temp;
-	}
-	*env = NULL;
+    curr = *env;
+    temp = NULL;
+    while (curr)
+    {
+        free(curr->key);
+        free(curr->value);
+        temp = curr->next;
+        free(curr);
+        curr = temp;
+    }
+    free(env);
 }
+    // printf("inside FREE_ENV\n");
+    // env = NULL;
+
+// void	free_env(t_node	**env)
+// {
+// 	t_node	*temp;
+// 	t_node	*curr;
+
+   
+// 	curr = *env;
+// 	temp = NULL;
+// 	while (curr)
+// 	{
+// 		temp = curr->next;
+// 		free(curr);
+// 		curr = temp;
+// 	}
+// 	*env = NULL;
+// }
 
 void load_list(char **envp, t_node **env)
 {
