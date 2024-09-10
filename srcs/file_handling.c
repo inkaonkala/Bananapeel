@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 10:06:52 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/09 14:23:21 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/10 13:48:45 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ static void    open_infile(t_bananas *bana, int i)
 		fd = open(bana->token[i], O_RDONLY);
 		if (fd == -1)
 		{
-			//ft_printf("%s: ", bana->token[i]);
 			perror("Bananas!");
 			return ;
 		}
@@ -107,9 +106,9 @@ bool    file_handling(t_bananas *bana, int i)
 {
     bool    append;
 
-	if ((ft_strncmp(bana->token[i], ">>", 2) == 0) || (ft_strncmp(bana->token[i], ">", 1) == 0))
-	{
-		if (ft_strncmp(bana->token[i], ">>", 3) == 0)
+	if (ft_strncmp(bana->token[i], ">", 1) == 0)
+	{		
+		if (ft_strncmp(bana->token[i], ">>", 2) == 0)
 		{
 			append = true;
 
@@ -128,7 +127,6 @@ bool    file_handling(t_bananas *bana, int i)
 				bana->token[i] = clean_arrows(bana->token[i]);
 			else
 				token_cleaner(bana, i);
-			// take the token token[>] and delete it, incrament file to this spot and token_count--
 			open_outfile(bana, i, append);
 			token_cleaner(bana, i);
 			return (true);
@@ -139,11 +137,12 @@ bool    file_handling(t_bananas *bana, int i)
 	}
 	if (ft_strncmp(bana->token[i], "<<", 2) == 0)
 	{
-		if (ft_strncmp(bana->token[i], "<<\0", 3) != 0)
-			bana->token[i] = clean_arrows(bana->token[i]);
-		else
-			token_cleaner(bana, i);
-		return(true);
+		
+		//if (ft_strncmp(bana->token[i], "<<\0", 3) != 0)
+		bana->token[i] = clean_arrows(bana->token[i]);
+		//else
+		//	token_cleaner(bana, i);
+		//return(true);
 	}
 	else if (ft_strncmp(bana->token[i], "<", 1) == 0)
 	{
