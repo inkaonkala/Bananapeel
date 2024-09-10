@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+         #
+#    By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2024/09/06 09:33:02 by iniska           ###   ########.fr        #
+#    Updated: 2024/09/09 19:06:43 by jbremser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SRCFILES 	= 	bananapeel.c \
 				coyotes.c \
 				terminal_configuration.c \
 				broom_n_vacuum.c \
+				dollar_store.c
 
 PIPEFILES	=	eleven_pipers_piping.c \
 				arguments.c\

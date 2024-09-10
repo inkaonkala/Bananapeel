@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/03 14:39:33 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/10 16:10:39 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ static void handle_export(t_bananas *bana, t_node *env)
 		token_cleaner(bana, 0);
 		while (env->prev)
 			env = env->prev;
-		printf("end of first token loop tok_num:%d\n", bana->tok_num);
 		temp = NULL;
 		found_in_env = false;
 	}
@@ -124,7 +123,7 @@ void built_ins(t_bananas *bana, t_node **env)
 	char 	*bi;
 
 	// printf("In BI's\n");
-	//print_tokens(bana); //CHECKER
+	// print_tokens(bana); //CHECKER
 	if (bana->token[0])
 	{
 		bi = bana->token[0];
@@ -152,3 +151,5 @@ void built_ins(t_bananas *bana, t_node **env)
 			// printf("Command '%s' not found\n", bi); 
 	}
 }
+
+		// printf("end of first token loop tok_num:%d\n", bana->tok_num);

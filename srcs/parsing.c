@@ -5,12 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/09/10 09:45:08 by iniska           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/*   Updated: 2024/08/28 14:44:44 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/10 15:32:34 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +114,24 @@ static int	count_tokens(char *str)
 	return (count);
 }
 
+// void	dollar_check(char *str)
+// {
+// 	int i;
+
+// 	i = 0;
+// 	if (ft_strchr(str, 36))
+// 	{
+// 		i = ft_strchr(str, 36);
+		
+// 	}
+// 	else
+// 		return ;
+
+// 	// while (str[i])
+
+
+// }
+
 bool	parsing(char *str, t_bananas *bana, t_node **env)
 {
 	char	**tokens;
@@ -149,12 +162,23 @@ bool	parsing(char *str, t_bananas *bana, t_node **env)
 
 			i = quote_chk(str, &cur_quo, i);	
 			int tok_len = i - start; //HERE HERE
+
+			
+// add in here a checker to see if there "$" in there tok between start and i, 
+//then check if cur_quo is a ' or " or nonexistant
+// if we find one, we search through env->key to see if one matches
+//if they match, copy the key into the token, instead of what was there. 
+
+
 			tokens[token_index] = malloc(tok_len + 1);
 			if (!tokens[token_index])
 			{
 				return (false);
 			}
 			ft_strlcpy(tokens[token_index], &str[start], tok_len + 1);
+			printf("amount of tokens: %d\n", token_count);
+			tokens[token_index] = dollar_check(tokens[token_index], *env);
+			printf("\nafter expansion: token: %s\n", tokens[token_index]);
 			token_index++;
 		}
 	}
