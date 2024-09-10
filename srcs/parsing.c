@@ -3,9 +3,8 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
 /*   Updated: 2024/09/10 15:32:34 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -22,15 +21,13 @@ static void	type_check(t_bananas *bana)
 	{		
 		if (ft_strncmp(bana->token[i], "<<", 2) == 0)
 		{
-			if (bana->tok_num < 2)
+			bana->is_dog = true;
+			find_dog(bana, i);
+			if (bana->tok_num < 1)
 			{
 				clean_struct(bana);
 				return ;
 			}
-			bana->is_dog = true;
-			find_dog(bana, i);
-			//if (ft_strlen(bana->token[i]) == 2)
-			//	i++;
 		}
 		
 		if(ft_strncmp(bana->token[i], "|", 1) == 0)
@@ -62,52 +59,25 @@ static void	banananice(t_bananas *bana, char **tokens, int token_index)
 	type_check(bana);
 }
 
-char	**list_to_eepie(char **eepie, t_node **env)
+static char	**list_to_eepie(char **eepie, t_node **env)
 {
 	int len;
 	int i;
 	t_node *curr;
-	char	*ptr_parking;
 
 	i = 0;
 	curr = *env;
-	len = stack_len(curr);
+	len = stack_len(curr) + 1;
 	eepie = ft_calloc(len, sizeof(char *));
-	while (i < len)
+	while (i < len - 1)
 	{
 		eepie[i] = ft_strjoin(curr->key, "=");
-		ptr_parking = eepie[i];
 		eepie[i] = ft_strjoin(eepie[i], curr->value);
-		free(ptr_parking);
-		ptr_parking = NULL;
 		curr = curr->next;
 		i++;
 	}
 	return (eepie);
 }
-
-	// printf("\n\nlist_to_eepie run\n\n");
-		// ptr_parking = eepie[i];
-		// free(ptr_parking); //this may be extra
-// static char	**list_to_eepie(char **eepie, t_node **env)
-// {
-// 	int len;
-// 	int i;
-// 	t_node *curr;
-
-// 	i = 0;
-// 	curr = *env;
-// 	len = stack_len(curr) + 1;
-// 	eepie = ft_calloc(len, sizeof(char *));
-// 	while (i < len - 1)
-// 	{
-// 		eepie[i] = ft_strjoin(curr->key, "=");
-// 		eepie[i] = ft_strjoin(eepie[i], curr->value);
-// 		curr = curr->next;
-// 		i++;
-// 	}
-// 	return (eepie);
-// }
 
 static int	count_tokens(char *str)
 {
@@ -217,7 +187,6 @@ bool	parsing(char *str, t_bananas *bana, t_node **env)
 	command_search(bana, envp, env);
 
 	//CHECKER
-	
 	return (true);
 }
 
