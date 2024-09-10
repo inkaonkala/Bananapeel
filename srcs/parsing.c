@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/09/09 18:12:05 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/10 15:32:34 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,9 +206,9 @@ bool	parsing(char *str, t_bananas *bana, t_node **env)
 				return (false);
 			}
 			ft_strlcpy(tokens[token_index], &str[start], tok_len + 1);
-			printf("\ntoken: %s\n", tokens[token_index]);
 			printf("amount of tokens: %d\n", token_count);
-			dollar_check(tokens[token_index]);
+			tokens[token_index] = dollar_check(tokens[token_index], *env);
+			printf("\nafter expansion: token: %s\n", tokens[token_index]);
 			token_index++;
 		}
 	}

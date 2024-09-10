@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 18:12:07 by etaattol          #+#    #+#             */
-/*   Updated: 2024/09/09 19:05:41 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/10 15:26:55 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,6 +212,6 @@ void    handle_sigint_s(int sig);
 // terminal_configuration.c
 void	setup_terminal(struct termios *original_termios);
 void	restore_terminal(const struct termios *original_termios);
-void	dollar_check(char *str);//, t_node **env);
+char	*dollar_check(char *str, t_node *env);
 
 #endif
