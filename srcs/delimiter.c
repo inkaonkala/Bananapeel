@@ -7,7 +7,6 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 13:07:40 by iniska            #+#    #+#             */
 /*   Updated: 2024/09/09 14:39:50 by iniska           ###   ########.fr       */
-/*   Updated: 2024/09/09 11:33:05 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +54,6 @@ char	*find_delimiter(t_bananas *bana)
 	}
 	return (NULL);
 }
-
-
-
-
-
 
 /*
 char	*find_delimiter(char *str)
