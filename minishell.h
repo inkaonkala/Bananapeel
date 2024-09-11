@@ -153,7 +153,7 @@ void    redirections(t_bananas *bana, char **envp, t_node **env);
 /* ************************************************************************** */
 /*									file_handling							  */
 /* ************************************************************************** */
-bool  file_handling(t_bananas *bana, int i);
+void 	file_handling(t_bananas *bana);
 void    file_malloc(t_bananas *bana);
 /* ************************************************************************** */
 /*									linked_lists    						  */
