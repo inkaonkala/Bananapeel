@@ -21,6 +21,14 @@ static void	type_check(t_bananas *bana)
 	{		
 		if (ft_strncmp(bana->token[i], "<<", 2) == 0)
 		{
+			if ((ft_strncmp(bana->token[i], "<<<", 3) == 0) 
+				|| (ft_strncmp(bana->token[i], "<<>", 3) == 0)
+				|| (ft_strncmp(bana->token[i], "<<|", 3) == 0))
+			{
+				clean_struct(bana);
+				printf("banana: syntax error after token <<\n");
+				return ;
+			}
 			bana->is_dog = true;
 			find_dog(bana, i);
 			if (bana->tok_num < 1)
