@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bananapeel.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:43:50 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/06 12:19:18 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/11 12:56:29 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int main(int arv, char **arc, char **envp)
 	}
 	load_list(envp, env);
 	setup_terminal(&original_termios);
-	if (isatty(STDIN_FILENO))
+	if (isatty(STDIN_FILENO) || 1)
 	{
 		signaling();
 		while (1)

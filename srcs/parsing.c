@@ -3,12 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Updated: 2024/09/10 15:32:34 by jbremser         ###   ########.fr       */
+/*   Created: 2024/09/10 15:32:34 by jbremser          #+#    #+#             */
+/*   Updated: 2024/09/11 18:17:37 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../minishell.h"
 
@@ -64,6 +64,7 @@ static void	banananice(t_bananas *bana, char **tokens, int token_index)
 	bana->original_stdin = -1; // FOR HEREDOG
 	bana->heredog_interrupted = 0; // SIGNALS IN HEREDOG
 	file_malloc(bana);
+    del_quotes(bana);
 	type_check(bana);
 }
 
@@ -184,9 +185,9 @@ bool	parsing(char *str, t_bananas *bana, t_node **env)
 				return (false);
 			}
 			ft_strlcpy(tokens[token_index], &str[start], tok_len + 1);
-			printf("amount of tokens: %d\n", token_count);
+			//printf("amount of tokens: %d\n", token_count);
 			tokens[token_index] = dollar_check(tokens[token_index], *env);
-			printf("\nafter expansion: token: %s\n", tokens[token_index]);
+			//printf("\nafter expansion: token: %s\n", tokens[token_index]);
 			token_index++;
 		}
 	}
