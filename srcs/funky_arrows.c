@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:33:37 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/10 13:48:27 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/11 11:40:31 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ static void	execute_rdr(t_bananas *bana, char **envp, t_node **env)
 
 		dupper(bana);
 		close_files(bana);
-	
 		cmd_args = ft_split(bana->token[0], ' ');
 		if(cmd_args == NULL)
 		{
@@ -99,23 +98,18 @@ static void	execute_rdr(t_bananas *bana, char **envp, t_node **env)
 		waitpid(pid, &status, 0);
 }
 
+
 void    redirections(t_bananas *bana, char **envp, t_node **env)
 {
-	int		i;
 	
-	i = 0;
 	if (bana->tok_num < 2)
 	{
 		clean_struct(bana);
 		return ;
 	}
-	while(bana->token[i])
-	{
-		//file_malloc(bana);
-		if(file_handling(bana, i))
-			continue ;
-		i++;
-	}
+
+	file_handling(bana);
+	
 	if(bana->is_dog && bana->tok_num < 1)
 	{
 		clean_struct(bana);
