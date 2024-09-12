@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   exec_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:46:16 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/11 14:42:41 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/12 16:56:38 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-/*
-// this is here for the lonely cat
 static void empty_prompt(void)
 {
     char *line;
@@ -34,11 +32,10 @@ static void empty_prompt(void)
     close(fd[1]);
     signal(SIGINT, SIG_DFL);
 }
-*/
 
 static void	execute_command(t_bananas *bana, char **envp, int index)
 {
-	char	**cmd_args;
+	char **cmd_args;
 
 	cmd_args = ft_split(bana->token[index], ' ');
 	if (cmd_args == NULL || cmd_args[0] == NULL)
@@ -46,36 +43,40 @@ static void	execute_command(t_bananas *bana, char **envp, int index)
 		ft_printf("Bananas! Failed to split command arguments\n");
 		exiting(bana, 1);
 	}
-
-	//if ((ft_strncmp(cmd_args[0],  "cat", 3) == 0)  && cmd_args[1] == NULL || 
-	//	(ft_strncmp(cmd_args[0], "grep", 4) == 0) && cmd_args[2] == NULL)
-	//		empty_prompt();	
-  
-	if (!ft_strncmp(bana->cmd_paths[index], "exit", 5))
+	if (!ft_strncmp(cmd_args[0], "exit", 5))
+	{
 		handle_exit(bana);
+		free(cmd_args);
+		exiting(bana, 0);
+	}
 	if(bana->cmd_paths[index])
 	{
-		execve(bana->cmd_paths[index], cmd_args, envp);
-		exiting(bana, 1);
+			execve(bana->cmd_paths[index], cmd_args, envp);
+			ft_printf("Bananas! Failed to execute command: %s\n", strerror(errno));
+			free_argh(cmd_args);
+			exiting(bana, 126);
 	}
 	else
 	{
 		ft_printf("Bananas! Can't find your command :( \n");
-		exiting(bana, 0);
+		free_argh(cmd_args);
+		exiting(bana, 127);
 	}
 	free_argh(cmd_args);
+	exiting(bana, 1);
 }
 
 bool	fork_it(t_bananas *bana, int fd[2], pid_t *pid, int index)
 {
 	if (index < bana->tok_num)
 	{
-		if (pipe(fd) == -1)
+		if(pipe(fd) == -1)
 		{
 			perror("No pipes to fork the banananas\n");
 			return (false);
 		}
 	}
+
 	*pid = fork();
 	if (*pid == -1)
 	{
@@ -87,50 +88,50 @@ bool	fork_it(t_bananas *bana, int fd[2], pid_t *pid, int index)
 	return (true);
 }
 
-static void	pid_is_more(t_bananas *bana, int index, int last, int fd[2])
-{
-	if (index > 0)
-		close(bana->prev_fd[0]);
-	if (!last)
-	{
-		bana->prev_fd[0] = fd[0];
-		close(fd[1]);
-	}
-	else
-		shut_fd(fd);
-}
-
-static void	file_put(t_bananas *bana, int index, int fd[2])
-{
-	if (bana->is_rdr)
-	{
-		if (!redirect_file_input(bana))
-			redirect_input(bana, index);
-		redirect_file_putput(bana);
-	}
-	else
-	{
-		redirect_input(bana, index);
-		redirect_putput(bana, fd, index);
-	}
-}
-
 int	create_child(t_bananas *bana, char **envp, int index)
 {
 	pid_t	pid;
 	int		fd[2];
 	int		last;
+	int		status;
 
-	last = (index == bana->tok_num - 1);
+	last = (index == bana->tok_num) -1;
+
 	if (!fork_it(bana, fd, &pid, index))
 		return (false);
 	if (pid == 0)
 	{
-		file_put(bana, index, fd);
+		if(bana->is_rdr)
+		{
+			if(!redirect_file_input(bana))
+				redirect_input(bana, index);
+			redirect_file_putput(bana);
+		}
+		else
+		{
+			redirect_input(bana, index);
+			redirect_putput(bana, fd, index);
+		}
 		execute_command(bana, envp, index);
 		exit (1);
 	}
 	else
-		pid_is_more(bana, index, last, fd);
+	{
+		if (index > 0)
+			close(bana->prev_fd[0]);
+
+		if (!last)
+		{
+			bana->prev_fd[0] = fd[0];
+			close(fd[1]);
+		}
+		else
+		{
+			shut_fd(fd);
+			waitpid(pid, &status, 0);
+			bana->last_exit_status = WEXITSTATUS(status);
+		}
+	}
 	return (true);
 }
+

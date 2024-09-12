@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bananapeel.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:43:50 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/12 09:45:55 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/09/12 16:34:46 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int main(int arv, char **arc, char **envp)
 		printf("Banana errors\n");
 		exit (1); // what do we want this to do in this case?
 	}
+	bana.last_exit_status = 0;
 	env = ft_calloc(1, sizeof(t_node));
 	if (!env)
 	{
