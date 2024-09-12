@@ -5,10 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Updated: 2024/09/10 15:32:34 by jbremser         ###   ########.fr       */
+/*   Created: 2024/09/10 15:32:34 by jbremser          #+#    #+#             */
+/*   Updated: 2024/09/11 13:11:22 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../minishell.h"
 
@@ -184,9 +184,9 @@ bool	parsing(char *str, t_bananas *bana, t_node **env)
 				return (false);
 			}
 			ft_strlcpy(tokens[token_index], &str[start], tok_len + 1);
-			printf("amount of tokens: %d\n", token_count);
+			//printf("amount of tokens: %d\n", token_count); 					// COMMENTED THESE OUT
 			tokens[token_index] = dollar_check(tokens[token_index], *env);
-			printf("\nafter expansion: token: %s\n", tokens[token_index]);
+			//printf("\nafter expansion: token: %s\n", tokens[token_index]); 	// COMMENTED THESE OUT
 			token_index++;
 		}
 	}
