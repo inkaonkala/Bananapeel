@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 18:12:07 by etaattol          #+#    #+#             */
-/*   Updated: 2024/09/10 15:26:55 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/11 13:04:00 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ int     empties(char c);
 int		quote_chk(char *str, char *cur_quo, int i);
 bool	check_specials(char *token);
 int     number_checker(char *argv);
-void	free_stuff(char **args, char *path);
 
 /* ************************************************************************** */
 /*									here_dog								  */
@@ -145,6 +144,7 @@ void	del_quotes(t_bananas *bana);
 
 void    token_cleaner(t_bananas *bana, int i);
 void    exiting(t_bananas *bana, int i);
+void	free_stuff(char **args, char *path);
 
 /* ************************************************************************** */
 /*									funky_arrows							  */
@@ -153,8 +153,22 @@ void    redirections(t_bananas *bana, char **envp, t_node **env);
 /* ************************************************************************** */
 /*									file_handling							  */
 /* ************************************************************************** */
+
 void 	file_handling(t_bananas *bana);
-void    file_malloc(t_bananas *bana);
+
+/* ************************************************************************** */
+/*									open_files  							  */
+/* ************************************************************************** */
+
+void	open_infile(t_bananas *bana, int i);
+void	open_outfile(t_bananas *bana, int i, bool append);
+
+/* ************************************************************************** */
+/*									file_malloc 							  */
+/* ************************************************************************** */
+
+void	file_malloc(t_bananas *bana);
+
 /* ************************************************************************** */
 /*									linked_lists    						  */
 /* ************************************************************************** */

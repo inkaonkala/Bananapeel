@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+         #
+#    By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2024/09/09 19:06:43 by jbremser         ###   ########.fr        #
+#    Updated: 2024/09/11 14:48:35 by iniska           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,8 @@ SRCFILES 	= 	bananapeel.c \
 				funky_arrows.c \
 				file_handling.c \
 				linked_lists.c \
+				file_malloc.c \
+				open_files.c \
 				clean_n_exit.c \
 				here_dog_utils.c \
 				cdeeznuts.c \
@@ -42,6 +44,7 @@ PIPEFILES	=	eleven_pipers_piping.c \
 				files.c \
 				init_pipes.c \
 				in_n_out_put.c \
+				get_path.c \
 				pipe_helpers.c
 				
 SRCDIR		=	srcs
