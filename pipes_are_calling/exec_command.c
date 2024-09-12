@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   exec_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:46:16 by iniska            #+#    #+#             */
 /*   Updated: 2024/09/11 14:42:41 by iniska           ###   ########.fr       */
@@ -46,7 +46,14 @@ static void	execute_command(t_bananas *bana, char **envp, int index)
 		ft_printf("Bananas! Failed to split command arguments\n");
 		exiting(bana, 1);
 	}
-	if (bana->cmd_paths[index])
+
+	//if ((ft_strncmp(cmd_args[0],  "cat", 3) == 0)  && cmd_args[1] == NULL || 
+	//	(ft_strncmp(cmd_args[0], "grep", 4) == 0) && cmd_args[2] == NULL)
+	//		empty_prompt();	
+  
+	if (!ft_strncmp(bana->cmd_paths[index], "exit", 5))
+		handle_exit(bana);
+	if(bana->cmd_paths[index])
 	{
 		execve(bana->cmd_paths[index], cmd_args, envp);
 		exiting(bana, 1);

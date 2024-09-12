@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_store.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:05:09 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/10 15:35:15 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/11 18:32:00 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static char *expand_var(char *str, t_node *env)
 		value_len = ft_strlen(temp_node->value);
 		if (value_len <= ft_strlen(str))
 		{
-			ft_memmove(str, temp_node->value, value_len);
+			ft_strlcpy(str, temp_node->value, value_len + 1);	// memmove changed to strlcpy which null terminates
 			printf("str4: %s\n", str);
 		}
 		else

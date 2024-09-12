@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   delimiter.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 13:07:40 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/09 14:39:50 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/11 18:21:04 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ char	*find_delimiter(t_bananas *bana)
 	{
 		if (!ft_strcmp(bana->token[i++], "<<"))
 		{
+			if (!bana->token[i])
+				return (ft_strdup(""));
 			//token_cleaner(bana, i);   token cleaning removed cause it changed the index
 			len = ft_strlen(bana->token[i]);
 			deli = malloc(sizeof(char) * (len  + 1));
