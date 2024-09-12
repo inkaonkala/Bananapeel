@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 10:20:14 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/28 13:10:19 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/12 11:16:12 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,32 @@ int	handle_pwd(t_bananas *bana)
 	return (0);
 }
 
+
+size_t exit_coder(char *argv)
+{
+    size_t i = 0;
+    unsigned long result = 0;
+
+    while (argv[i] != '\0')
+    {
+        if (!isdigit(argv[i]))
+            return (0);
+        i++;
+    }
+    i = 0;
+    while (argv[i] != '\0')
+    {
+        if (result > (unsigned long)(INT_MAX / 10) || 
+            (result == (unsigned long)(INT_MAX / 10) && (argv[i] - '0') > (INT_MAX % 10)))
+            	result = result % ((unsigned long)INT_MAX + 1);
+        result = result * 10 + (argv[i] - '0');
+        i++;
+    }
+	return (result % 256);
+}
+
 void handle_exit(t_bananas *bana)
-{ //mostly done, need to deal with large and negative numbers, as well as EXIT CODES 0-255, how are others dealing with exit codes
+{ 
 	int temp;
 
 	if (bana->tok_num == 1)
@@ -68,7 +92,7 @@ void handle_exit(t_bananas *bana)
 	{
 		if (number_checker(bana->token[1]))
 		{
-			temp = ft_atoi(bana->token[1]);
+			temp = exit_coder(bana->token[1]);
 			ft_printf("🍌Bye Bye BaNaNaNas🍌!\nexit(%d)\n", temp);
 			while (bana->tok_num > 0)
 				token_cleaner(bana, 0);
