@@ -6,11 +6,26 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 09:07:07 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/11 10:48:02 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/11 12:56:16 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	free_stuff(char **args, char *path)
+{
+	int	i;
+
+	i = 0;
+	while(args[i])
+	{
+		free(args[i]);
+		i++;
+	}
+	free(args);
+	if (path)
+		free(path);
+}
 
 void token_cleaner(t_bananas *bana, int i)
 {

@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 13:22:34 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/09 12:37:47 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/11 13:50:05 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	pipe_helper(int **pipes, int i, int num_pipes)
 		pipes[i] = malloc(sizeof(int) * 2);
 		if (!pipes[i])
 		{
-			perror("Malloc fails in pipe helper\n");
+			perror("Bananas! Malloc fails in pipe helper\n");
 			return ;
 		}
 		pipe_helper(pipes, i + 1, num_pipes);
@@ -36,7 +36,7 @@ void	init_pipes(t_bananas *bana)
 		bana->pipes = malloc(sizeof(int *) * num_pipes);
 		if (!bana->pipes)
 		{
-			perror("Malloc failed in pipes");
+			perror("Bananas! Malloc failed in pipes\n");
 			clean_struct(bana);
 			exit(-1);
 		}

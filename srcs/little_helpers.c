@@ -3,30 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   little_helpers.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 14:42:49 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/03 14:46:34 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/11 12:56:17 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../minishell.h"
 
-void	free_stuff(char **args, char *path)
-{
-	int	i;
 
-	i = 0;
-	while(args[i])
-	{
-		free(args[i]);
-		i++;
-	}
-	free(args);
-	if (path)
-		free(path);
-}
 
 int	empties(char c)
 {
@@ -55,7 +42,6 @@ int    	quote_chk(char *str, char *cur_quo, int i)
     return (i);
 }
 
-
 bool	check_specials(char *token)
 {
 	if (ft_strcmp(token, "|") == 0 
@@ -79,21 +65,4 @@ int	number_checker(char *argv)
 	return (0);
 
 }
-	// int	num;
-	// int	temp;
 
-	// printf("inside number_checker\n");
-	// num = ft_atoi(argv);
-	// temp = 0;
-	// if (num < 0)
-	// 	return (1);
-	// if (num == 0)
-	// 	return (0);
-	// while (num > 0)
-	// {
-	// 	temp = num % 10;
-	// 	if (temp < 0 || temp > 9)
-	// 		return (1);
-	// 	num /= 10;
-	// }
-	// return (0);
