@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 12:04:29 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/03 11:01:16 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/11 14:25:18 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	get_infile(t_bananas *bana)
 {
-	int fd;
+	int	fd;
 
 	if (bana->tok_num < 2 || bana->token[1] == NULL)
 	{
@@ -39,11 +39,11 @@ static int	get_outfile(t_bananas *bana)
 		perror("Bananas! Flawed output\n");
 		return (-1);
 	}
-	bana->fd_output = open(bana->token[bana->tok_num - 1], O_WRONLY | O_TRUNC | O_CREAT, 0644);
+	bana->fd_output = open(bana->token[bana->tok_num - 1],
+			O_WRONLY | O_TRUNC | O_CREAT, 0644);
 	if (bana->fd_output == -1)
 	{
 		perror("Bananas!: Error opening output file");
-		//exit(1);
 		return (-1);
 	}
 	return (bana->fd_output);
