@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 14:29:28 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/12 15:00:51 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/12 15:42:55 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	remove_node(t_node *node)
 {
-	t_node *temp;
+	t_node	*temp;
+	
 	if (!node->prev && !node->next) //only node
 	{
 		(void)temp;
@@ -39,8 +40,7 @@ void	remove_node(t_node *node)
 		node = temp;
 		return ;
 	}
-	else
-	//needs to handle for first node, last node, two nodes only, edges
+	else //needs to handle for first node, last node, two nodes only, edges
 	{
 		temp = node->prev;
 		temp->next = node->next;
@@ -60,9 +60,9 @@ t_node	*find_last(t_node	*stack)
 	temp = stack;
 	while (temp->next)
 		temp = temp->next;
-    // printf("inside find last\n");
 	return (temp);
 }
+    // printf("inside find last\n");
 
 t_node   *parse_str(t_node *node, char *str)
 {
@@ -71,28 +71,28 @@ t_node   *parse_str(t_node *node, char *str)
 
     i = 0;    
     split = ft_strchr(str, '=');
-    // split++;
     if (!split)
     {
-        ft_printf("no split\n");
         node->value = NULL;
         node->key = ft_strdup(str);
     }
     else
     {
         i = split - str;
-        // ft_printf("i: %d\n", i);
         split++;
         node->value = ft_strdup(split);
-        // ft_printf("value: %s\n", node->value);
-        // free(split);
         str[i] = '\0';
         node->key = ft_strdup(str);
-        // ft_strlcpy(node->key, str, i);
-        // ft_printf("key: %s\n", node->key);
     }
     return (node);
 }
+    // split++;
+        // ft_printf("no split\n");
+        // ft_printf("i: %d\n", i);
+        // ft_printf("value: %s\n", node->value);
+        // free(split);
+        // ft_strlcpy(node->key, str, i);
+        // ft_printf("key: %s\n", node->key);
 
 void	free_env(t_node	**env)
 {
@@ -116,7 +116,6 @@ void load_list(char **envp, t_node **env)
     int i;
 
     i = 0;
-    // printf("Load_list\n");
     while (envp[i])
     {
         if (add_end(env, envp[i]))
@@ -125,10 +124,11 @@ void load_list(char **envp, t_node **env)
             write(1, "Error\n", 6);
             exit(1);
         }
-        // printf("another line\n");
         i++;
     }
 }
+    // printf("Load_list\n");
+        // printf("another line\n");
 
 int	stack_len(t_node *stack)
 {

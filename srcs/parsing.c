@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:32:34 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/11 13:11:22 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/12 17:03:47 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,7 @@ bool	parsing(char *str, t_bananas *bana, t_node **env)
 	envp = NULL;
 	token_count = count_tokens(str);
 	envp = list_to_eepie(envp, env);
-	tokens = malloc((token_count + 1) * sizeof(char *));
+	tokens = ft_calloc((token_count + 1), sizeof(char *));
 	if (!tokens)
 		return (false);
 	
@@ -168,36 +168,25 @@ bool	parsing(char *str, t_bananas *bana, t_node **env)
 		if(str[i])
 		{
 			start = i;
-
 			i = quote_chk(str, &cur_quo, i);	
-			int tok_len = i - start; //HERE HERE
-
-			
-// add in here a checker to see if there "$" in there tok between start and i, 
-//then check if cur_quo is a ' or " or nonexistant
-// if we find one, we search through env->key to see if one matches
-//if they match, copy the key into the token, instead of what was there. 
-
-
+			int tok_len = i - start;
 			tokens[token_index] = malloc(tok_len + 1);
 			if (!tokens[token_index])
 			{
 				return (false);
 			}
 			ft_strlcpy(tokens[token_index], &str[start], tok_len + 1);
-			//printf("amount of tokens: %d\n", token_count);
-			tokens[token_index] = dollar_check(tokens[token_index], *env);
-			//printf("\nafter expansion: token: %s\n", tokens[token_index]);
+			tokens[token_index] = dollar_check(tokens[token_index], *env, bana);
 			token_index++;
 		}
 	}
-
 	banananice(bana, tokens, token_index);
 	command_search(bana, envp, env);
-
-	//CHECKER
 	return (true);
 }
+	//CHECKER
+			//printf("amount of tokens: %d\n", token_count);
+			//printf("\nafter expansion: token: %s\n", tokens[token_index]);
 
 
 // void print_tokens(char *bana->tokens)

@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 18:12:07 by etaattol          #+#    #+#             */
-/*   Updated: 2024/09/12 15:02:37 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/12 16:48:00 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ typedef struct s_bananas
     // for heredog:
     int     original_stdin;
     int     heredog_interrupted;
+    int     last_exit_status;
+
     
 }   t_bananas;
 
@@ -235,6 +237,6 @@ void    handle_sigint_s(int sig);
 // terminal_configuration.c
 void	setup_terminal(struct termios *original_termios);
 void	restore_terminal(const struct termios *original_termios);
-char	*dollar_check(char *str, t_node *env);
+char	*dollar_check(char *str, t_node *env, t_bananas *bana);
 
 #endif

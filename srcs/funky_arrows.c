@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   funky_arrows.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:33:37 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/11 11:40:31 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/12 16:54:39 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
 #include "../minishell.h"
-
 
 static void	close_files(t_bananas *bana)
 {
@@ -86,7 +83,7 @@ static void	execute_rdr(t_bananas *bana, char **envp, t_node **env)
 			built_ins(bana, env);
 			perror("Command is bananas:");
 			free_stuff(cmd_args, NULL);
-			exit(EXIT_FAILURE);
+			exiting(bana, 126);
 		}
 		built_ins(bana, env);
 		token_cleaner(bana, 0);
@@ -95,7 +92,10 @@ static void	execute_rdr(t_bananas *bana, char **envp, t_node **env)
 		exiting(bana, -1);
 	}
 	else
+	{
 		waitpid(pid, &status, 0);
+		bana->last_exit_status = WEXITSTATUS(status);
+	}
 }
 
 
