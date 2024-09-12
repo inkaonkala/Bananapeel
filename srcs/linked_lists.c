@@ -6,11 +6,50 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 14:29:28 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/28 17:55:29 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/12 15:00:51 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	remove_node(t_node *node)
+{
+	t_node *temp;
+	if (!node->prev && !node->next) //only node
+	{
+		(void)temp;
+		free(node);
+		return ;
+	}
+	else if (!node->prev && node->next) //first node
+	{
+		temp = node->next;
+		node->next = NULL;
+		temp->prev = NULL;
+		free(node);
+		node = temp;
+		return ;
+	}
+	else if (node->prev && !node->next) //last node
+	{
+		temp = node->prev;
+		temp->next = NULL;
+		node->prev = NULL;
+		free(node);
+		node = temp;
+		return ;
+	}
+	else
+	//needs to handle for first node, last node, two nodes only, edges
+	{
+		temp = node->prev;
+		temp->next = node->next;
+		temp->next->prev = temp;
+		node->prev = NULL;
+		node->next = NULL;
+		free(node);	
+	}
+}
 
 t_node	*find_last(t_node	*stack)
 {
@@ -53,36 +92,6 @@ t_node   *parse_str(t_node *node, char *str)
         // ft_printf("key: %s\n", node->key);
     }
     return (node);
-}
-
-
-int	add_end(t_node **stack, char *str)
-{
-	t_node	*pre;
-	t_node	*last;
-
-	last = malloc(sizeof(t_node));
-	if (!last)
-		return (1);
-	last->next = NULL;
-    // printf("inside add_end\n");
-    last = parse_str(last, str);
-	// last->line = ft_strdup(str); //////// added to function above to split the lines
-    // printf("after strdup; line: %s\n", last->line);
-	if (!(*stack))
-	{
-        // printf("inside add_end if\n");
-		*stack = last;
-		last->prev = NULL;
-	}
-	else
-	{
-        pre = find_last(*stack); 
-        // printf("inside add_end else\n");
-		pre->next = last;
-		last->prev = pre;
-	}
-	return (0);
 }
 
 void	free_env(t_node	**env)

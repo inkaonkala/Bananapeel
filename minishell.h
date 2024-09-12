@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 18:12:07 by etaattol          #+#    #+#             */
-/*   Updated: 2024/09/11 13:04:00 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/12 15:02:37 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,21 @@ void	built_ins(t_bananas *bana, t_node **env);
 void    handle_deeznuts(t_bananas *bana, t_node *env);
 
 /* ************************************************************************** */
+/*									export           						  */
+/* ************************************************************************** */
+void	handle_export(t_bananas *bana, t_node *env);
+int     add_end(t_node **stack, char *str);
+
+/* ************************************************************************** */
+/*									handle_exit        						  */
+/* ************************************************************************** */
+void    handle_exit(t_bananas *bana);
+
+/* ************************************************************************** */
 /*									built-ins_helpers						  */
 /* ************************************************************************** */
 void	handle_echo(t_bananas *bana);
 int	    handle_pwd(t_bananas *bana);
-void    handle_exit(t_bananas *bana);
 void    handle_unset(t_bananas *bana, t_node **env);
 void	remove_node(t_node *node);
 
@@ -174,7 +184,6 @@ void	file_malloc(t_bananas *bana);
 /* ************************************************************************** */
 t_node  *find_last(t_node	*stack);
 t_node  *parse_str(t_node *node, char *str);
-int     add_end(t_node **stack, char *str);
 void	free_env(t_node	**env);
 int     stack_len(t_node *stack);
 void    load_list(char **envp, t_node **env);
