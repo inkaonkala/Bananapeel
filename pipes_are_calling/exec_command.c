@@ -6,7 +6,7 @@
 /*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:46:16 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/11 18:42:01 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/09/12 13:06:51 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,26 +41,29 @@ static void	execute_command(t_bananas *bana, char **envp, int index)
 	if (cmd_args == NULL || cmd_args[0] == NULL)
 	{
 		ft_printf("Bananas! Failed to split command arguments\n");
-		exiting(bana, 1);
+		cleanup_and_exit(bana, 1);
 	}
-
-	//if ((ft_strncmp(cmd_args[0],  "cat", 3) == 0)  && cmd_args[1] == NULL || 
-	//	(ft_strncmp(cmd_args[0], "grep", 4) == 0) && cmd_args[2] == NULL)
-	//		empty_prompt();
-	
-	if (!ft_strncmp(bana->cmd_paths[index], "exit", 5))
+	if (!ft_strncmp(cmd_args[0], "exit", 5))
+	{
 		handle_exit(bana);
+		free(cmd_args);
+		cleanup_and_exit(bana, 0);
+	}
 	if(bana->cmd_paths[index])
 	{
 			execve(bana->cmd_paths[index], cmd_args, envp);
-			exiting(bana, 1);
+			ft_printf("Bananas! Failed to execute command: %s\n", strerror(errno));
+			free_argh(cmd_args);
+			cleanup_and_exit(bana, 126);
 	}
 	else
 	{
-		ft_printf("Bananas! Can't find your command :( \n"); // WHICH WE WANT TO USE?
-		exiting(bana, 0);
+		ft_printf("Bananas! Can't find your command :( \n");
+		free_argh(cmd_args);
+		cleanup_and_exit(bana, 127);
 	}
 	free_argh(cmd_args);
+	cleanup_and_exit(bana, 1);
 }
 
 bool	fork_it(t_bananas *bana, int fd[2], pid_t *pid, int index)
@@ -90,13 +93,12 @@ int	create_child(t_bananas *bana, char **envp, int index)
 	pid_t	pid;
 	int		fd[2];
 	int		last;
+	int		status;
 
-	last = (index == bana->tok_num); // ADDED -1 HERE
+	last = (index == bana->tok_num) -1;
 
 	if (!fork_it(bana, fd, &pid, index))
 		return (false);
-	
-
 	if (pid == 0)
 	{
 		if(bana->is_rdr)
@@ -124,7 +126,11 @@ int	create_child(t_bananas *bana, char **envp, int index)
 			close(fd[1]);
 		}
 		else
+		{
 			shut_fd(fd);
+			waitpid(pid, &status, 0);
+			bana->last_exit_status = WEXITSTATUS(status);
+		}
 	}
 	return (true);
 }

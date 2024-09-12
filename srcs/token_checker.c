@@ -6,11 +6,9 @@
 /*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:41:54 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/11 18:17:32 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/09/12 14:36:28 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "../minishell.h"
 
@@ -32,7 +30,6 @@ static bool valid(t_bananas *bana, int j)
         }
     else
         return (false);
-    
 }
 
 static void merge_it(t_bananas *bana, int i, int j)
@@ -43,11 +40,11 @@ static void merge_it(t_bananas *bana, int i, int j)
 	if((ft_strncmp(bana->token[i], "<", 1)) == 0 || (ft_strncmp(bana->token[i], ">", 1) == 0))
 		return ;
 	len = ft_strlen(bana->token[i]) + ft_strlen(bana->token[j]) + 2;
-    new_str = (char *)malloc(len * sizeof(char));
+    new_str = (char *)ft_calloc(len, sizeof(char));
 	if (new_str == NULL)
 	{
-		ft_printf("Malloc fail in merge\n");
-		exiting(bana, 1);
+		ft_printf("Calloc fail in merge\n");
+		cleanup_and_exit(bana, 1);
     }
 	ft_strlcpy(new_str, bana->token[i], len);
 	ft_strlcat(new_str, " ", len);
@@ -57,7 +54,7 @@ static void merge_it(t_bananas *bana, int i, int j)
 	if (j < bana->tok_num && ((ft_strcmp(bana->token[i], "|") != 0) ||
 	ft_strncmp(bana->token[i], "<", 1) != 0 ||
 	ft_strncmp(bana->token[i], ">", 1) != 0 ||
-	ft_strncmp(bana->token[i], "echo\0", 5) != 0))
+	ft_strncmp(bana->token[i], "echo", 4) != 0))
     	token_cleaner(bana, j);
 }
 
@@ -76,7 +73,6 @@ void    token_merge(t_bananas *bana)
 				merge_it(bana, i, j);	
         }
         i++;
-
     }
 }
 
@@ -84,7 +80,6 @@ void    command_search(t_bananas *bana, char **envp, t_node **env)
 {
     if (!bana->is_rdr && !bana->is_pipe)
         built_ins(bana, env);
-    
     
     token_merge(bana);
 

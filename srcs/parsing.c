@@ -6,7 +6,7 @@
 /*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:32:34 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/11 18:17:37 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/09/12 14:32:54 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ static void	banananice(t_bananas *bana, char **tokens, int token_index)
 	bana->is_dog = false;
 	bana->outfile_count = 0;
 	bana->infile_count = 0;
-	bana->original_stdin = -1; // FOR HEREDOG
-	bana->heredog_interrupted = 0; // SIGNALS IN HEREDOG
+	bana->original_stdin = -1;
+	bana->heredog_interrupted = 0;
 	file_malloc(bana);
     del_quotes(bana);
 	type_check(bana);
@@ -109,7 +109,6 @@ static int	count_tokens(char *str)
 			if (str[i] == '"' || str[i] == '\'')
 			{
 				if (quotes && str[i] == current)
-					// count++;
 					quotes = 0;
 				else if (!quotes)
 				{
@@ -122,24 +121,6 @@ static int	count_tokens(char *str)
 	}
 	return (count);
 }
-
-// void	dollar_check(char *str)
-// {
-// 	int i;
-
-// 	i = 0;
-// 	if (ft_strchr(str, 36))
-// 	{
-// 		i = ft_strchr(str, 36);
-		
-// 	}
-// 	else
-// 		return ;
-
-// 	// while (str[i])
-
-
-// }
 
 bool	parsing(char *str, t_bananas *bana, t_node **env)
 {
@@ -157,10 +138,9 @@ bool	parsing(char *str, t_bananas *bana, t_node **env)
 	envp = NULL;
 	token_count = count_tokens(str);
 	envp = list_to_eepie(envp, env);
-	tokens = malloc((token_count + 1) * sizeof(char *));
+	tokens = ft_calloc((token_count + 1), sizeof(char *));
 	if (!tokens)
 		return (false);
-	
 	while(str[i])
 	{
 		while (str[i] && empties(str[i]))
@@ -170,14 +150,7 @@ bool	parsing(char *str, t_bananas *bana, t_node **env)
 			start = i;
 
 			i = quote_chk(str, &cur_quo, i);	
-			int tok_len = i - start; //HERE HERE
-
-			
-// add in here a checker to see if there "$" in there tok between start and i, 
-//then check if cur_quo is a ' or " or nonexistant
-// if we find one, we search through env->key to see if one matches
-//if they match, copy the key into the token, instead of what was there. 
-
+			int tok_len = i - start;
 
 			tokens[token_index] = malloc(tok_len + 1);
 			if (!tokens[token_index])
@@ -185,34 +158,12 @@ bool	parsing(char *str, t_bananas *bana, t_node **env)
 				return (false);
 			}
 			ft_strlcpy(tokens[token_index], &str[start], tok_len + 1);
-			//printf("amount of tokens: %d\n", token_count);
-			tokens[token_index] = dollar_check(tokens[token_index], *env);
-			//printf("\nafter expansion: token: %s\n", tokens[token_index]);
+			tokens[token_index] = dollar_check(tokens[token_index], *env, bana);
 			token_index++;
 		}
 	}
 
 	banananice(bana, tokens, token_index);
 	command_search(bana, envp, env);
-
-	//CHECKER
 	return (true);
 }
-
-
-// void print_tokens(char *bana->tokens)
-// {
-// 	for (int k = 0; k < token_i; k++) 
-// 	{
-//        ft_printf("Token %d: %s\n", k, tokens[k]);
-//        free(tokens[k]); // Free each token after use
-//     }
-// 	free(tokens);
-
-// 	if (tokens != NULL)
-// 	{
-// 		ft_printf("%s", &tokens);
-// 		free_tokens(tokens);
-// 	}
-// }
-

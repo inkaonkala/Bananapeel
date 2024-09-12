@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   file_handling.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 10:06:52 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/11 11:41:08 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/12 10:32:36 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../minishell.h"
-
-// make open_file.c
 
 static void    open_infile(t_bananas *bana, int i)
 {
@@ -32,7 +29,6 @@ static void    open_infile(t_bananas *bana, int i)
 			ft_printf("Error: Unable to find heredog delimiter\n");
 		set_heredog_status(OUT_HEREDOG);
 		bana->is_dog = true;
-		//ft_printf("FD should be the heredog pipe\n");
 	}
 	else if (get_heredog_status() == OUT_HEREDOG)
 	{
@@ -60,13 +56,11 @@ static void    open_outfile(t_bananas *bana, int i, bool append)
 		fd = open(bana->token[i], O_WRONLY | O_APPEND | O_CREAT, 0644);
 	else
 		fd = open(bana->token[i], O_WRONLY | O_TRUNC | O_CREAT, 0644);
-
 	if (fd == -1)
 	{
 		perror("Bananas!: Error opening output file");
 		return ;
 	}
-	
 	bana->out_files[bana->outfile_count] = fd;
 	bana->outfile_count++;
 }
@@ -105,18 +99,6 @@ void file_malloc(t_bananas *bana)
     bana->outfile_count = 0;
 }
 
-
-//
-
-//static void	clean_one_tok(t_bananas *bana, int i)
-//{
-//	free(bana->token[i]);
-//	bana->tok_num--;
-//	if(bana->token[i++] != NULL)
-//		bana->token[i] = bana->token[i + 1];
-//
-//}
-
 static char	*clean_arrows(char *str)
 {
 	int	i;
@@ -153,22 +135,18 @@ static void   to_files(t_bananas *bana, int i)
 	if (ft_strncmp(bana->token[i], ">>", 2) == 0)
 	{
 		append = true;
-
 		if (ft_strncmp(bana->token[i], ">>\0", 3) != 0)
 			bana->token[i] = clean_arrows(bana->token[i]);
 		else
 			token_cleaner(bana, i);
 		open_outfile(bana, i, append);
 		token_cleaner(bana, i);
-		
-
 	}	
 	else if( ft_strncmp(bana->token[i], ">", 1) == 0)
 	{
 		append = false;
 		if( ft_strncmp(bana->token[i], ">\0", 2) != 0)
 			bana->token[i] = clean_arrows(bana->token[i]);
-
 		else
 			token_cleaner(bana, i);
 		open_outfile(bana, i, append);
@@ -184,16 +162,12 @@ static void	from_files(t_bananas *bana, int i)
 		bana->token[i] = clean_arrows(bana->token[i]);
 	else if (ft_strncmp(bana->token[i], "<", 1) == 0)
 	{
-		
 		if (ft_strncmp(bana->token[i], "<\0", 2) != 0)
 			bana->token[i] = clean_arrows(bana->token[i]);
-		
 		else
 			token_cleaner(bana, i);
-		
 		open_infile(bana, i);		
 		token_cleaner(bana, i);
-
 	}
 }
 
@@ -202,7 +176,6 @@ void	file_handling(t_bananas *bana)
 	int i;
 
 	i = 0;
-
 	while(bana->token[i] && bana->tok_num > 1)
 	{
 		if(ft_strncmp(bana->token[i], "<", 1) == 0)
@@ -213,5 +186,4 @@ void	file_handling(t_bananas *bana)
 		else
 			i++;
 	}
-
 }

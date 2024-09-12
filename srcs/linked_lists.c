@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   linked_lists.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 14:29:28 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/28 17:55:29 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/12 13:22:08 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ t_node	*find_last(t_node	*stack)
 	temp = stack;
 	while (temp->next)
 		temp = temp->next;
-    // printf("inside find last\n");
 	return (temp);
 }
 
@@ -32,25 +31,18 @@ t_node   *parse_str(t_node *node, char *str)
 
     i = 0;    
     split = ft_strchr(str, '=');
-    // split++;
     if (!split)
     {
-        ft_printf("no split\n");
         node->value = NULL;
         node->key = ft_strdup(str);
     }
     else
     {
         i = split - str;
-        // ft_printf("i: %d\n", i);
         split++;
         node->value = ft_strdup(split);
-        // ft_printf("value: %s\n", node->value);
-        // free(split);
         str[i] = '\0';
         node->key = ft_strdup(str);
-        // ft_strlcpy(node->key, str, i);
-        // ft_printf("key: %s\n", node->key);
     }
     return (node);
 }
@@ -65,20 +57,15 @@ int	add_end(t_node **stack, char *str)
 	if (!last)
 		return (1);
 	last->next = NULL;
-    // printf("inside add_end\n");
     last = parse_str(last, str);
-	// last->line = ft_strdup(str); //////// added to function above to split the lines
-    // printf("after strdup; line: %s\n", last->line);
 	if (!(*stack))
 	{
-        // printf("inside add_end if\n");
 		*stack = last;
 		last->prev = NULL;
 	}
 	else
 	{
         pre = find_last(*stack); 
-        // printf("inside add_end else\n");
 		pre->next = last;
 		last->prev = pre;
 	}
@@ -107,7 +94,6 @@ void load_list(char **envp, t_node **env)
     int i;
 
     i = 0;
-    // printf("Load_list\n");
     while (envp[i])
     {
         if (add_end(env, envp[i]))
@@ -116,7 +102,6 @@ void load_list(char **envp, t_node **env)
             write(1, "Error\n", 6);
             exit(1);
         }
-        // printf("another line\n");
         i++;
     }
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_n_exit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 09:07:07 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/11 10:48:02 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/12 13:02:10 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,16 @@ void token_cleaner(t_bananas *bana, int i)
 	free(bana->token[i]);
 		while (i < bana->tok_num - 1)
 		{
-			// printf("incleaner\n");
 			bana->token[i] = bana->token[i + 1];
 			i++;	
 		}
 	bana->tok_num--;
 	if (bana->tok_num == 0)
-	{
-	//	free(bana->token[0]);
 		bana->token[0] = NULL;
-	}
 }
 
-void    exiting(t_bananas *bana, int i)
+void    cleanup_and_exit(t_bananas *bana, int status)
 {
 	clean_struct(bana);
-    // If something else to clean, clean here mebbe?
-	if (i == 0)
-		exit (0);
-	if (i == 1)
-		exit (-1);
+	exit (status);
 }

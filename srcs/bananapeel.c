@@ -6,7 +6,7 @@
 /*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:43:50 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/12 09:45:55 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/09/12 14:31:42 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int main(int arv, char **arc, char **envp)
 {
 	(void)arc;
 	(void)arv;
-	//int 	status;
 
 	t_bananas		bana;
 	char			*input;
@@ -29,17 +28,18 @@ int main(int arv, char **arc, char **envp)
 	if(!ft_memset(&bana, 0, sizeof(t_bananas)))
 	{
 		printf("Banana errors\n");
-		exit (1); // what do we want this to do in this case?
+		exit (1);
 	}
+	bana.last_exit_status = 0;
 	env = ft_calloc(1, sizeof(t_node));
 	if (!env)
 	{
 		printf("Banana errors\n");
-		exit(1); // what do we want this to do in this case?
+		exit(1);
 	}
 	load_list(envp, env);
 	setup_terminal(&original_termios);
-	if (isatty(STDIN_FILENO))
+	if (isatty(STDIN_FILENO) || 1)
 	{
 		signaling();
 		while (1)
@@ -70,10 +70,7 @@ int main(int arv, char **arc, char **envp)
 				continue ;
 			}
 			if (input)
-				// printf("input?\n");
 				free(input);	
-			//if (env)
-			//	free_env(env);
 		}
 		restore_terminal(&original_termios);
 	}

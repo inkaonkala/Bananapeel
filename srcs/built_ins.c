@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_ins.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/10 16:10:39 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/12 14:08:57 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,18 @@ static void handle_export(t_bananas *bana, t_node *env)
 		}
 		token_cleaner(bana, 0);
 	}
-	while (bana->tok_num >= 1)   //////////////////////////////// CANT FIND COMMAND, nothing is stopping the function
+	while (bana->tok_num >= 1)
 	{
 		if (!ft_strncmp(bana->token[0], "export", 6))
 			token_cleaner(bana, 0);
-		if (ft_strchr(bana->token[0], '=') && printf("= found"))
+		if (ft_strchr(bana->token[0], '='))
 		{
-			printf("Here\n");
 			temp = ft_strchr(bana->token[0], '=');  
 			temp++;
-			printf("temp:%s\n", temp);
 			len = temp - bana->token[0] - 1;
-			printf("len:%d\n", len);
 		}
 		else
-		{
 			len = ft_strlen(bana->token[0]);
-			printf("len:%d\n", len);
-		}
 		while (env->next)
 		{
 			if (!env)
@@ -65,11 +59,10 @@ static void handle_export(t_bananas *bana, t_node *env)
 		}
 		if (found_in_env == false)
 		{
-			printf("FALSE FOUND BOBIATHAN:%s\n", bana->token[0]);
 			add_end(&env, "");
 			if (temp)
 			{
-				ft_strlcpy(env->key, bana->token[0], len + 1);  //export "NEW KEY" doesnt work--->    this is not complete, i need to add FULL export into env->key and value
+				ft_strlcpy(env->key, bana->token[0], len + 1);
 				env->value = ft_strdup(temp);
 			}
 			else
@@ -95,7 +88,7 @@ static void handle_env(t_bananas *bana, t_node *env)
 		if (!env)
 			break ;
 		if (env->value)
-			printf("%s=%s\n", env->key, env->value);	
+			printf("%s=%s\n", env->key, env->value);
 		env = env->next;
 	}
 	while (bana->tok_num > 0)
@@ -122,13 +115,10 @@ void built_ins(t_bananas *bana, t_node **env)
 	size_t	len;
 	char 	*bi;
 
-	// printf("In BI's\n");
-	// print_tokens(bana); //CHECKER
 	if (bana->token[0])
 	{
 		bi = bana->token[0];
 		len = ft_strlen(bi);
-		// printf("bi:%s\n", bi);
 		if (len > 0 && bi[len - 1]  == '\n')
 			bi[len - 1] = '\0';
 		else if (ft_strcmp(bi, "exit") == 0)
@@ -147,9 +137,5 @@ void built_ins(t_bananas *bana, t_node **env)
 			handle_deeznuts(bana, *env);
 		else
 			return ;
-			//send to pipes
-			// printf("Command '%s' not found\n", bi); 
 	}
 }
-
-		// printf("end of first token loop tok_num:%d\n", bana->tok_num);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_line.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 10:14:58 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/03 09:47:33 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/12 10:35:47 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,18 +96,7 @@ bool	parse_cmd_line(t_bananas *bana, char **envp)
     while (i < bana->tok_num)
     {	
 		if (check_specials(bana->token[i]))
-		{
-			free(bana->token[i]);
-			while(i < bana->tok_num - 1)
-			{
-				bana->token[i] = bana->token[i + 1];
-				i++;
-			}
-			bana->token[i] = NULL;
-			bana->tok_num--;
-			i = new_index;
-			continue ;
-		}
+			token_cleaner(bana, i);
         cmd = ft_split(bana->token[i], ' ');
         if (!cmd)
         {

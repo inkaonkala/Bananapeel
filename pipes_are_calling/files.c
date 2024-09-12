@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   files.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 12:04:29 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/03 11:01:16 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/12 10:43:04 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ static int	get_outfile(t_bananas *bana)
 	if (bana->fd_output == -1)
 	{
 		perror("Bananas!: Error opening output file");
-		//exit(1);
 		return (-1);
 	}
 	return (bana->fd_output);

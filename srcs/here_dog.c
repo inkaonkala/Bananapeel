@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_dog.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 13:19:18 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/09 14:42:09 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/12 10:33:35 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,6 @@ void	find_dog(t_bananas *bana, int tk_i)
 		delimiter = bana->token[tk_i] + 2;
 		bana->token[tk_i] = clean_deli(bana->token[tk_i]);
 	}
-	//ft_printf("THIS IS :%s\n", delimiter);
 	handle_the_dog(delimiter, bana);
 	if (separate)
 		free(delimiter);

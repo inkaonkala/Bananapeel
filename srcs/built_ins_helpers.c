@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_ins_helpers.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 10:20:14 by jbremser          #+#    #+#             */
-/*   Updated: 2024/08/28 13:10:19 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/12 11:21:47 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,20 @@ int	handle_pwd(t_bananas *bana)
 
 	token_cleaner(bana, 0);
 	if (!(buf = getcwd(NULL, 0)))
+	{
+		bana->last_exit_status = 1;
 		return (1);
+	}
 	printf("%s\n", buf);
+	free(buf);
+	bana->last_exit_status = 0;
 	if (bana->is_rdr)
 		exit (0);
 	return (0);
 }
 
 void handle_exit(t_bananas *bana)
-{ //mostly done, need to deal with large and negative numbers, as well as EXIT CODES 0-255, how are others dealing with exit codes
+{
 	int temp;
 
 	if (bana->tok_num == 1)
@@ -113,33 +118,17 @@ void handle_unset(t_bananas *bana, t_node **env)
 	if (bana->is_rdr)
 		exit (0);
 }
-	// printf("%d\n", bana->tok_num);
-	// if (bana->tok_num == 1)
-		// printf("amount of tokens = %d\n", bana->tok_num);
-		// printf("inside\n");
-		// while tok_num > 1
-		//search for bana-token1 in all of the keys of the LL iterating through them. 
-		//remove that whole list and link it back up with the ones around. 
-			// printf("inside inner while loop\n");
-		//	if (!env)
-				// break ;
-				// printf("after token cleaner\n");
-				// return ;
-				// printf("after remove node\n");
-			// printf("next");
-		// printf("after inner loop\n");
-
 
 void	remove_node(t_node *node)
 {
 	t_node *temp;
-	if (!node->prev && !node->next) //only node
+	if (!node->prev && !node->next)
 	{
 		(void)temp;
 		free(node);
 		return ;
 	}
-	else if (!node->prev && node->next) //first node
+	else if (!node->prev && node->next)
 	{
 		temp = node->next;
 		node->next = NULL;
@@ -148,7 +137,7 @@ void	remove_node(t_node *node)
 		node = temp;
 		return ;
 	}
-	else if (node->prev && !node->next) //last node
+	else if (node->prev && !node->next)
 	{
 		temp = node->prev;
 		temp->next = NULL;
@@ -158,7 +147,6 @@ void	remove_node(t_node *node)
 		return ;
 	}
 	else
-	//needs to handle for first node, last node, two nodes only, edges
 	{
 		temp = node->prev;
 		temp->next = node->next;

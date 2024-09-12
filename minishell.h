@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 18:12:07 by etaattol          #+#    #+#             */
-/*   Updated: 2024/09/10 15:26:55 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/12 13:03:08 by etaattol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ typedef struct s_bananas
     // for heredog:
     int     original_stdin;
     int     heredog_interrupted;
+
+    int     last_exit_status;
     
 }   t_bananas;
 
@@ -144,7 +146,7 @@ void	del_quotes(t_bananas *bana);
 /* ************************************************************************** */
 
 void    token_cleaner(t_bananas *bana, int i);
-void    exiting(t_bananas *bana, int i);
+void    cleanup_and_exit(t_bananas *bana, int status);
 
 /* ************************************************************************** */
 /*									funky_arrows							  */
@@ -212,6 +214,6 @@ void    handle_sigint_s(int sig);
 // terminal_configuration.c
 void	setup_terminal(struct termios *original_termios);
 void	restore_terminal(const struct termios *original_termios);
-char	*dollar_check(char *str, t_node *env);
+char	*dollar_check(char *str, t_node *env, t_bananas *bana);
 
 #endif
