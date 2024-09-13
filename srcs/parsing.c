@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:32:34 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/12 17:03:47 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/13 13:28:24 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,18 +70,26 @@ static void	banananice(t_bananas *bana, char **tokens, int token_index)
 
 static char	**list_to_eepie(char **eepie, t_node **env)
 {
-	int len;
-	int i;
-	t_node *curr;
+	int		len;
+	int		i;
+	t_node	*curr;
+	char	*temp;
 
 	i = 0;
 	curr = *env;
-	len = stack_len(curr) + 1;
+	len = stack_len(curr);
+	// len++;
 	eepie = ft_calloc(len, sizeof(char *));
 	while (i < len - 1)
 	{
-		eepie[i] = ft_strjoin(curr->key, "=");
-		eepie[i] = ft_strjoin(eepie[i], curr->value);
+		temp = eepie[i];
+		if (curr->key)
+			temp = ft_strjoin(curr->key, "=");
+		if (curr->value)
+			temp = ft_strjoin(temp, curr->value);
+		free(eepie[i]);
+		eepie[i] = temp;
+		free(temp);
 		curr = curr->next;
 		i++;
 	}
@@ -157,6 +165,7 @@ bool	parsing(char *str, t_bananas *bana, t_node **env)
 	envp = NULL;
 	token_count = count_tokens(str);
 	envp = list_to_eepie(envp, env);
+
 	tokens = ft_calloc((token_count + 1), sizeof(char *));
 	if (!tokens)
 		return (false);
