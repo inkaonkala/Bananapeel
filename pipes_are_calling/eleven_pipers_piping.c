@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 11:01:35 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/12 16:30:48 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/13 15:51:33 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static bool	handle_commands(t_bananas *bana, char **envp, t_node **env)
 {
 	if (bana->is_rdr)
-		redirections(bana, envp, env);
+		redirections(bana, envp);
 	if (!parse_cmd_line(bana, envp))
 	{
 		clean_n_errors(bana);

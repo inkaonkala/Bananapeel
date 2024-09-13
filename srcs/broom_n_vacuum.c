@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 09:23:36 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/06 14:46:17 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/13 15:35:08 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,3 +75,10 @@ void	clean_struct(t_bananas *bana)
 	bana->prev_fd[1] = -1;
 
 }
+
+
+// void clean_banana(t_bananas *bana)
+// {
+// 	clean_struct(bana);
+	
+// }
