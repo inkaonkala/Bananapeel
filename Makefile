@@ -6,7 +6,7 @@
 #    By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2024/09/11 14:48:35 by iniska           ###   ########.fr        #
+#    Updated: 2024/09/13 10:42:55 by iniska           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,8 @@ SRCFILES 	= 	bananapeel.c \
 				coyotes.c \
 				terminal_configuration.c \
 				broom_n_vacuum.c \
+				export.c \
+				handle_exit.c \
 				dollar_store.c
 
 PIPEFILES	=	eleven_pipers_piping.c \
@@ -45,7 +47,9 @@ PIPEFILES	=	eleven_pipers_piping.c \
 				init_pipes.c \
 				in_n_out_put.c \
 				get_path.c \
-				pipe_helpers.c
+				pipe_helpers.c \
+				forks.c \
+				create_child.c
 				
 SRCDIR		=	srcs
 PIPEDIR		=	pipes_are_calling
