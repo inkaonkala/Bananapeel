@@ -200,18 +200,45 @@ void	clean_struct(t_bananas *bana);
 /*									pipes_are_calling						  */
 /* ************************************************************************** */
 
-void	free_char_array(char ***paths, int arc);
-void     pipex(t_bananas *bana, char **envp, t_node **env);
-
-char	*get_path(char *path_name, char **envp);
-bool    parse_cmd_line(t_bananas *bana, char **envp);
-
+//  arguments.c
 
 bool	parse_cmd_args(t_bananas *bana);
-void	clean_n_errors(t_bananas *bana);
-int     create_child(t_bananas *bana, char **envp, int index);
-void	init_pipes(t_bananas *bana);
+
+// clean_n_errors.c
+
+void	free_array(char ***paths, int arc);
 void	free_line(char **paths, int arc);
+void	free_char_array(char ***paths, int arc);
+void	clean_n_errors(t_bananas *bana);
+
+// command_line.c
+
+bool    parse_cmd_line(t_bananas *bana, char **envp);
+
+// eleven_pipers_piping.c
+
+void	pipex(t_bananas *bana, char **envp, t_node **env);
+
+// execute_command.c
+
+void	execute_command(t_bananas *bana, char **envp, int index);
+
+// create_child.c 
+
+int		create_child(t_bananas *bana, char **envp, int index);
+
+// files.c
+
+bool	check_arguments(t_bananas *bana);
+
+// forks.c
+
+bool	fork_it(t_bananas *bana, int fd[2], pid_t *pid, int index);
+
+
+// get_path.c
+
+char	*get_path(char *path_name, char **envp);
 
 //in_n_out_put.c
 
@@ -220,19 +247,17 @@ void	redirect_input(t_bananas *bana, int index);
 bool	redirect_file_input(t_bananas *bana);
 bool	redirect_file_putput(t_bananas *bana);
 
-// files.c
-bool	check_arguments(t_bananas *bana);
+// init_pipes.c
 
-// files.c
-bool	check_arguments(t_bananas *bana);
+void	init_pipes(t_bananas *bana);
 
 // pipe_helpers.c
 
+void	empty_prompt(void);
 void	shut_fd(int fd[2]);
 void	free_argh(char **argh);
 void    handle_sigint_s(int sig);
-//void	del_taco(t_bananas *bana);
-//int	    trim_quote(char *str, char *cur_quo, int i);
+
 
 // terminal_configuration.c
 void	setup_terminal(struct termios *original_termios);

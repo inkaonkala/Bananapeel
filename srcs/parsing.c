@@ -123,24 +123,6 @@ static int	count_tokens(char *str)
 	return (count);
 }
 
-// void	dollar_check(char *str)
-// {
-// 	int i;
-
-// 	i = 0;
-// 	if (ft_strchr(str, 36))
-// 	{
-// 		i = ft_strchr(str, 36);
-		
-// 	}
-// 	else
-// 		return ;
-
-// 	// while (str[i])
-
-
-// }
-
 bool	parsing(char *str, t_bananas *bana, t_node **env)
 {
 	char	**tokens;
@@ -187,21 +169,4 @@ bool	parsing(char *str, t_bananas *bana, t_node **env)
 	//CHECKER
 			//printf("amount of tokens: %d\n", token_count);
 			//printf("\nafter expansion: token: %s\n", tokens[token_index]);
-
-
-// void print_tokens(char *bana->tokens)
-// {
-// 	for (int k = 0; k < token_i; k++) 
-// 	{
-//        ft_printf("Token %d: %s\n", k, tokens[k]);
-//        free(tokens[k]); // Free each token after use
-//     }
-// 	free(tokens);
-
-// 	if (tokens != NULL)
-// 	{
-// 		ft_printf("%s", &tokens);
-// 		free_tokens(tokens);
-// 	}
-// }
 
