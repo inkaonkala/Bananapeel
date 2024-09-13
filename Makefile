@@ -47,7 +47,9 @@ PIPEFILES	=	eleven_pipers_piping.c \
 				init_pipes.c \
 				in_n_out_put.c \
 				get_path.c \
-				pipe_helpers.c
+				pipe_helpers.c \
+				forks.c \
+				create_child.c
 				
 SRCDIR		=	srcs
 PIPEDIR		=	pipes_are_calling

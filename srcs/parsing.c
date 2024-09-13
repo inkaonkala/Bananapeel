@@ -147,8 +147,8 @@ static int	count_tokens(char *str)
 	return (count);
 }
 
-
 bool	parsing(char *str, t_bananas *bana)
+
 {
 	char	**tokens;
 	int		token_count;
