@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_n_exit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 09:07:07 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/11 12:56:16 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/12 16:58:35 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,6 @@ void token_cleaner(t_bananas *bana, int i)
 void    exiting(t_bananas *bana, int i)
 {
 	clean_struct(bana);
-    // If something else to clean, clean here mebbe?
-	if (i == 0)
-		exit (0);
-	if (i == 1)
-		exit (-1);
+	exit(i);
 }
+    // If something else to clean, clean here mebbe?

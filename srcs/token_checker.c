@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   token_checker.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:41:54 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/11 18:17:32 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/09/12 17:04:25 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "../minishell.h"
 
@@ -43,10 +41,10 @@ static void merge_it(t_bananas *bana, int i, int j)
 	if((ft_strncmp(bana->token[i], "<", 1)) == 0 || (ft_strncmp(bana->token[i], ">", 1) == 0))
 		return ;
 	len = ft_strlen(bana->token[i]) + ft_strlen(bana->token[j]) + 2;
-    new_str = (char *)malloc(len * sizeof(char));
+    new_str = (char *)ft_calloc(len, sizeof(char));
 	if (new_str == NULL)
 	{
-		ft_printf("Malloc fail in merge\n");
+		ft_printf("Calloc fail in merge\n");
 		exiting(bana, 1);
     }
 	ft_strlcpy(new_str, bana->token[i], len);
