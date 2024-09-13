@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 09:23:36 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/13 17:02:50 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/13 17:47:43 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,18 +94,15 @@ void	free_stuff(char **args, char *path)
 void token_cleaner(t_bananas *bana, int i)
 {
 	free(bana->token[i]);
-		while (i < bana->tok_num - 1)
-		{
-			// printf("incleaner\n");
-			bana->token[i] = bana->token[i + 1];
-			i++;	
-		}
-	bana->tok_num--;
-	if (bana->tok_num == 0)
+	while (i < bana->tok_num - 1)
 	{
-	//	free(bana->token[0]);
-		bana->token[0] = NULL;
+		bana->token[i] = bana->token[i + 1];
+		i++;	
 	}
+	bana->tok_num--;
+    bana->token[bana->tok_num] = NULL;
+	if (bana->tok_num == 0)
+		bana->token[0] = NULL;
 }
 
 void    exiting(t_bananas *bana, int i)
