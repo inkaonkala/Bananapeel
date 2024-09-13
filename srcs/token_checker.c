@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:41:54 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/12 17:04:25 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/13 15:51:30 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void    token_merge(t_bananas *bana)
 void    command_search(t_bananas *bana, char **envp, t_node **env)
 {
     if (!bana->is_rdr && !bana->is_pipe)
-        built_ins(bana, env);
+        built_ins(bana);
     
     
     token_merge(bana);
@@ -90,7 +90,7 @@ void    command_search(t_bananas *bana, char **envp, t_node **env)
         big_stopping(SET, 0);
     
     if (bana->is_rdr && !bana->is_pipe)
-        redirections(bana, envp, env);
+        redirections(bana, envp);
     
     if (bana->tok_num > 0)
         pipex(bana, envp, env);   

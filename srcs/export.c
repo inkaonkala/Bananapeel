@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:10:17 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/12 15:04:57 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/13 15:56:04 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,14 @@ static void	search_env(t_bananas *bana, t_node *env, char *temp, int len)
 		env = env->prev;
 }
 
-void	handle_export(t_bananas *bana, t_node *env)
+void	handle_export(t_bananas *bana)
 {
 	char	*temp;
 	int		len;
 
 	temp = NULL;
 	if (bana->tok_num == 1)
-		lone_export(bana, env);
+		lone_export(bana, bana->env);
 	while (bana->tok_num >= 1)
 	{
 		if (!ft_strcmp(bana->token[0], "export"))
@@ -85,7 +85,7 @@ void	handle_export(t_bananas *bana, t_node *env)
 		}
 		else
 			len = ft_strlen(bana->token[0]);
-		search_env(bana, env, temp, len);
+		search_env(bana, bana->env, temp, len);
 		token_cleaner(bana, 0);
 		temp = NULL;
 	}

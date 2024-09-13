@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:43:50 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/12 16:34:46 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/13 16:32:52 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,16 @@ int main(int arv, char **arc, char **envp)
 
 	t_bananas		bana;
 	char			*input;
-	t_node			**env;
 	struct termios	original_termios;
 	
 	input = NULL;
-	env = NULL;
-
 	if(!ft_memset(&bana, 0, sizeof(t_bananas)))
 	{
 		printf("Banana errors\n");
 		exit (1); // what do we want this to do in this case?
 	}
 	bana.last_exit_status = 0;
-	env = ft_calloc(1, sizeof(t_node));
-	if (!env)
-	{
-		printf("Banana errors\n");
-		exit(1); // what do we want this to do in this case?
-	}
-	load_list(envp, env);
+	load_list(&bana, envp);
 	setup_terminal(&original_termios);
 	if (isatty(STDIN_FILENO))
 	{
@@ -46,6 +37,7 @@ int main(int arv, char **arc, char **envp)
 		while (1)
 		{
 			input = readline("🍌banana_peel:");
+			// printf("\nKey of first line of env: %s  Value of: %s \n", bana.env[0].key, bana.env[0].value);
 			if (input == NULL)
 			{
 				write(1, "\n🍌 Goodbye Mate! 🍌\n", 26);
@@ -58,11 +50,11 @@ int main(int arv, char **arc, char **envp)
 			}
 			add_history(input);
 
-			if(!parsing(input, &bana, env))
+			if(!parsing(input, &bana))
 			{
 				ft_printf("Parsing is bananas");
-				if (env)
-				 	free_env(env);
+				if (!bana.env)
+				 	free_env(&bana.env);
 				break ;
 			}
 			if (bana.heredog_interrupted)
@@ -73,8 +65,8 @@ int main(int arv, char **arc, char **envp)
 			if (input)
 				// printf("input?\n");
 				free(input);	
-			//if (env)
-			//	free_env(env);
+			// if (env)
+			// 	free_env(env);
 		}
 		restore_terminal(&original_termios);
 	}
@@ -82,5 +74,6 @@ int main(int arv, char **arc, char **envp)
 	{
 		ft_printf("Bananas not ripen yet");
 	}
+	clean_banana(&bana);
 	return (0);
 }

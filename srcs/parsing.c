@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:32:34 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/12 17:03:47 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/13 17:20:38 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,25 +68,49 @@ static void	banananice(t_bananas *bana, char **tokens, int token_index)
 	type_check(bana);
 }
 
-static char	**list_to_eepie(char **eepie, t_node **env)
+static char	**list_to_eepie(t_node **env) //claudes
 {
-	int len;
-	int i;
-	t_node *curr;
+	int		len;
+	int		i;
+	t_node	*curr;
+	char	*temp;
+	char	**eepie;
+	char	*temp_value;
 
 	i = 0;
 	curr = *env;
-	len = stack_len(curr) + 1;
+	len = stack_len(curr);
+	// len++;
 	eepie = ft_calloc(len, sizeof(char *));
+	if (!eepie)
+		return (NULL);
 	while (i < len - 1)
 	{
-		eepie[i] = ft_strjoin(curr->key, "=");
-		eepie[i] = ft_strjoin(eepie[i], curr->value);
+		if (curr->key)
+		{
+			temp = ft_strjoin(curr->key, "=");
+			if (temp)
+			{
+				if (curr->value)
+				{
+					temp_value = ft_strjoin(temp, curr->value);
+					free(temp);
+					if (temp_value)
+					{
+						eepie[i] = ft_strdup(temp_value);
+						free(temp_value);
+					}
+				}
+				else
+					eepie[i] = ft_strdup(temp);
+			}
+		}
 		curr = curr->next;
 		i++;
 	}
 	return (eepie);
 }
+
 
 static int	count_tokens(char *str)
 {
@@ -123,26 +147,31 @@ static int	count_tokens(char *str)
 	return (count);
 }
 
-bool	parsing(char *str, t_bananas *bana, t_node **env)
+bool	parsing(char *str, t_bananas *bana)
+
 {
 	char	**tokens;
 	int		token_count;
 	int		i;
 	int		token_index;
 	char	cur_quo;
-	char	**envp;
 	int		start;
 
 	i = 0;
 	token_index = 0;
 	cur_quo = 0;
-	envp = NULL;
 	token_count = count_tokens(str);
-	envp = list_to_eepie(envp, env);
+	free_char_array(bana->envp);
+	free(bana->envp);
+	bana->envp = list_to_eepie(&bana->env);
+    // if (!envp)
+    // {
+    //     free_tokens(tokens); 
+	//     return (false);
+    // }
 	tokens = ft_calloc((token_count + 1), sizeof(char *));
 	if (!tokens)
 		return (false);
-	
 	while(str[i])
 	{
 		while (str[i] && empties(str[i]))
@@ -158,15 +187,91 @@ bool	parsing(char *str, t_bananas *bana, t_node **env)
 				return (false);
 			}
 			ft_strlcpy(tokens[token_index], &str[start], tok_len + 1);
-			tokens[token_index] = dollar_check(tokens[token_index], *env, bana);
+			tokens[token_index] = dollar_check(tokens[token_index], bana->env, bana);
 			token_index++;
 		}
 	}
 	banananice(bana, tokens, token_index);
-	command_search(bana, envp, env);
+	command_search(bana, bana->envp, &bana->env);
+	// clean_command_line();
 	return (true);
 }
 	//CHECKER
 			//printf("amount of tokens: %d\n", token_count);
 			//printf("\nafter expansion: token: %s\n", tokens[token_index]);
 
+
+// void print_tokens(char *bana->tokens)
+// {
+// 	for (int k = 0; k < token_i; k++) 
+// 	{
+//        ft_printf("Token %d: %s\n", k, tokens[k]);
+//        free(tokens[k]); // Free each token after use
+//     }
+// 	free(tokens);
+
+// 	if (tokens != NULL)
+// 	{
+// 		ft_printf("%s", &tokens);
+// 		free_tokens(tokens);
+// 	}
+// }
+
+
+// static char	**list_to_eepie(char **eepie, t_node **env) //old
+// {
+// 	int		len;
+// 	int		i;
+// 	t_node	*curr;
+// 	char	*temp;
+
+// 	i = 0;
+// 	curr = *env;
+// 	len = stack_len(curr);
+// 	// len++;
+// 	eepie = ft_calloc(len, sizeof(char *));
+// 	while (i < len - 1)
+// 	{
+// 		// temp = eepie[i];
+// 		if (curr->key)
+// 			temp = ft_strjoin(curr->key, "=");
+// 		if (curr->value)
+// 			temp = ft_strjoin(temp, curr->value);
+// 		free(eepie[i]);
+// 		eepie[i] = temp;
+// 		free(temp);
+// 		curr = curr->next;
+// 		i++;
+// 	}
+// 	return (eepie);
+// void	dollar_check(char *str)
+// {
+// 	int i;
+
+// 	i = 0;
+// 	if (ft_strchr(str, 36))
+// 	{
+// 		i = ft_strchr(str, 36);
+		
+// 	}
+// 	else
+// 		return ;
+
+// 	// while (str[i])
+
+
+// }
+
+// static void free_tokens(char **tokens)
+// {
+//     int i = 0;
+//     if (!tokens)
+//         return;
+//     while (tokens[i])
+//     {
+//         free(tokens[i]);
+//         i++;
+//     }
+//     free(tokens);
+// }
+// }

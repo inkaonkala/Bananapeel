@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:33:37 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/12 16:54:39 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/13 15:50:36 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	dupper(t_bananas * bana)
 	}
 }
 
-static void	execute_rdr(t_bananas *bana, char **envp, t_node **env)
+static void	execute_rdr(t_bananas *bana, char **envp)
 {
 	pid_t	pid;
 	int		status;
@@ -80,12 +80,12 @@ static void	execute_rdr(t_bananas *bana, char **envp, t_node **env)
 		if(!path)
 		{
 			printf("%s\n", cmd_args[0]);
-			built_ins(bana, env);
+			built_ins(bana);
 			perror("Command is bananas:");
 			free_stuff(cmd_args, NULL);
 			exiting(bana, 126);
 		}
-		built_ins(bana, env);
+		built_ins(bana);
 		token_cleaner(bana, 0);
 		execve(path, cmd_args, envp);
 		free_stuff(cmd_args, path);
@@ -99,7 +99,7 @@ static void	execute_rdr(t_bananas *bana, char **envp, t_node **env)
 }
 
 
-void    redirections(t_bananas *bana, char **envp, t_node **env)
+void    redirections(t_bananas *bana, char **envp)
 {
 	
 	if (bana->tok_num < 2)
@@ -117,7 +117,7 @@ void    redirections(t_bananas *bana, char **envp, t_node **env)
 	}
 	if(!bana->is_pipe)
 	{
-		execute_rdr(bana, envp, env);
+		execute_rdr(bana, envp);
 		while(bana->tok_num > 0)
 			token_cleaner(bana, 0);
 	}

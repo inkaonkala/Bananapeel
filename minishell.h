@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 18:12:07 by etaattol          #+#    #+#             */
-/*   Updated: 2024/09/12 16:48:00 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/13 17:02:48 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,14 @@
 #define GET 1
 
 // extern int global;
+
+typedef struct s_node
+{
+    char            *value;
+    char            *key;
+    struct  s_node  *next;
+    struct  s_node  *prev;
+}   t_node;
 
 typedef struct s_bananas
 {
@@ -68,28 +76,24 @@ typedef struct s_bananas
     int     heredog_interrupted;
     int     last_exit_status;
 
+    char    **envp;
+    t_node  *env;
+
     
 }   t_bananas;
 
-typedef struct s_node
-{
-    char            *value;
-    char            *key;
-    struct  s_node  *next;
-    struct  s_node  *prev;
-}   t_node;
 
 
 /* ************************************************************************** */
 /*									built-ins								  */
 /* ************************************************************************** */
-void	built_ins(t_bananas *bana, t_node **env);
+void	built_ins(t_bananas *bana);
 void    handle_deeznuts(t_bananas *bana, t_node *env);
 
 /* ************************************************************************** */
 /*									export           						  */
 /* ************************************************************************** */
-void	handle_export(t_bananas *bana, t_node *env);
+void	handle_export(t_bananas *bana);
 int     add_end(t_node **stack, char *str);
 
 /* ************************************************************************** */
@@ -113,7 +117,7 @@ int     big_stopping(int get, int newvalue);
 /* ************************************************************************** */
 /*									parsing 								  */
 /* ************************************************************************** */
-bool	parsing(char *str, t_bananas *bana, t_node **env);
+bool	parsing(char *str, t_bananas *bana);
 int		empties(char c);
 /* ************************************************************************** */
 /*									little_helpers							  */
@@ -161,7 +165,7 @@ void	free_stuff(char **args, char *path);
 /* ************************************************************************** */
 /*									funky_arrows							  */
 /* ************************************************************************** */
-void    redirections(t_bananas *bana, char **envp, t_node **env);
+void    redirections(t_bananas *bana, char **envp);
 /* ************************************************************************** */
 /*									file_handling							  */
 /* ************************************************************************** */
@@ -188,13 +192,16 @@ t_node  *find_last(t_node	*stack);
 t_node  *parse_str(t_node *node, char *str);
 void	free_env(t_node	**env);
 int     stack_len(t_node *stack);
-void    load_list(char **envp, t_node **env);
+void	load_list(t_bananas *bana, char **envp);
 
 /* ************************************************************************** */
 /*									broom_n_vacuum    						  */
 /* ************************************************************************** */
-
+void    clean_banana(t_bananas *bana);
 void	clean_struct(t_bananas *bana);
+char    *free_char_array(char **array);
+void	free_array(char ***paths, int arc);
+
 
 /* ************************************************************************** */
 /*									pipes_are_calling						  */
@@ -206,9 +213,7 @@ bool	parse_cmd_args(t_bananas *bana);
 
 // clean_n_errors.c
 
-void	free_array(char ***paths, int arc);
 void	free_line(char **paths, int arc);
-void	free_char_array(char ***paths, int arc);
 void	clean_n_errors(t_bananas *bana);
 
 // command_line.c

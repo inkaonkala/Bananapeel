@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:56:50 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/12 15:00:02 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/13 16:32:03 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static void	exiter(t_bananas *bana)
 			ft_printf("🍌Bye Bye BaNaNaNas🍌!\nexit(%d)\n", temp);
 			while (bana->tok_num > 0)
 				token_cleaner(bana, 0);
+			clean_banana(bana);
 			exit(temp);
 		}
 		else
@@ -57,6 +58,7 @@ static void	exiter(t_bananas *bana)
 				bana->token[0], bana->token[1]);
 			while (bana->tok_num > 0)
 				token_cleaner(bana, 2);
+			clean_banana(bana);
 			exit(0);
 		}
 	}
@@ -68,6 +70,7 @@ void	handle_exit(t_bananas *bana)
 	{
 		ft_printf("Bye Bye BaNaNaNas!\nexit\n");
 		token_cleaner(bana, 0);
+		clean_banana(bana);
 		exit(0);
 	}
 	else if (bana->tok_num >= 2)
