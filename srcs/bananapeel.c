@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:43:50 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/13 16:11:25 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/13 16:32:52 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ int main(int arv, char **arc, char **envp)
 			if (input)
 				// printf("input?\n");
 				free(input);	
-			//if (env)
-			//	free_env(env);
+			// if (env)
+			// 	free_env(env);
 		}
 		restore_terminal(&original_termios);
 	}
@@ -74,6 +74,6 @@ int main(int arv, char **arc, char **envp)
 	{
 		ft_printf("Bananas not ripen yet");
 	}
-	
+	clean_banana(&bana);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 14:29:28 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/13 16:10:05 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/13 16:27:33 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,22 +102,7 @@ t_node   *parse_str(t_node *node, char *str)
         // ft_strlcpy(node->key, str, i);
         // ft_printf("key: %s\n", node->key);
 
-void	free_env(t_node	**env)
-{
-	t_node	*temp;
-	t_node	*curr;
 
-   
-	curr = *env;
-	temp = NULL;
-	while (curr)
-	{
-		temp = curr->next;
-		free(curr);
-		curr = temp;
-	}
-	*env = NULL;
-}
 
 void	load_list(t_bananas *bana, char **envp)
 {

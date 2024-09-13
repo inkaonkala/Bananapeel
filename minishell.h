@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 18:12:07 by etaattol          #+#    #+#             */
-/*   Updated: 2024/09/13 16:11:05 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/13 17:02:48 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,14 +197,16 @@ void	load_list(t_bananas *bana, char **envp);
 /* ************************************************************************** */
 /*									broom_n_vacuum    						  */
 /* ************************************************************************** */
-
+void    clean_banana(t_bananas *bana);
 void	clean_struct(t_bananas *bana);
+char    *free_char_array(char **array);
+void	free_array(char ***paths, int arc);
+
 
 /* ************************************************************************** */
 /*									pipes_are_calling						  */
 /* ************************************************************************** */
 
-void	free_char_array(char ***paths, int arc);
 void     pipex(t_bananas *bana, char **envp, t_node **env);
 
 char	*get_path(char *path_name, char **envp);

@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:32:34 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/13 15:42:21 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/13 17:20:38 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,13 @@ static void	banananice(t_bananas *bana, char **tokens, int token_index)
 	type_check(bana);
 }
 
-static char	**list_to_eepie(char **eepie, t_node **env) //claudes
+static char	**list_to_eepie(t_node **env) //claudes
 {
 	int		len;
 	int		i;
 	t_node	*curr;
 	char	*temp;
+	char	**eepie;
 	char	*temp_value;
 
 	i = 0;
@@ -110,33 +111,6 @@ static char	**list_to_eepie(char **eepie, t_node **env) //claudes
 	return (eepie);
 }
 
-// static char	**list_to_eepie(char **eepie, t_node **env) //old
-// {
-// 	int		len;
-// 	int		i;
-// 	t_node	*curr;
-// 	char	*temp;
-
-// 	i = 0;
-// 	curr = *env;
-// 	len = stack_len(curr);
-// 	// len++;
-// 	eepie = ft_calloc(len, sizeof(char *));
-// 	while (i < len - 1)
-// 	{
-// 		// temp = eepie[i];
-// 		if (curr->key)
-// 			temp = ft_strjoin(curr->key, "=");
-// 		if (curr->value)
-// 			temp = ft_strjoin(temp, curr->value);
-// 		free(eepie[i]);
-// 		eepie[i] = temp;
-// 		free(temp);
-// 		curr = curr->next;
-// 		i++;
-// 	}
-// 	return (eepie);
-// }
 
 static int	count_tokens(char *str)
 {
@@ -173,36 +147,6 @@ static int	count_tokens(char *str)
 	return (count);
 }
 
-// void	dollar_check(char *str)
-// {
-// 	int i;
-
-// 	i = 0;
-// 	if (ft_strchr(str, 36))
-// 	{
-// 		i = ft_strchr(str, 36);
-		
-// 	}
-// 	else
-// 		return ;
-
-// 	// while (str[i])
-
-
-// }
-
-// static void free_tokens(char **tokens)
-// {
-//     int i = 0;
-//     if (!tokens)
-//         return;
-//     while (tokens[i])
-//     {
-//         free(tokens[i]);
-//         i++;
-//     }
-//     free(tokens);
-// }
 
 bool	parsing(char *str, t_bananas *bana)
 {
@@ -217,7 +161,9 @@ bool	parsing(char *str, t_bananas *bana)
 	token_index = 0;
 	cur_quo = 0;
 	token_count = count_tokens(str);
-	bana->envp = list_to_eepie(bana->envp, &bana->env);
+	free_char_array(bana->envp);
+	free(bana->envp);
+	bana->envp = list_to_eepie(&bana->env);
     // if (!envp)
     // {
     //     free_tokens(tokens); 
@@ -271,3 +217,61 @@ bool	parsing(char *str, t_bananas *bana)
 // 	}
 // }
 
+
+// static char	**list_to_eepie(char **eepie, t_node **env) //old
+// {
+// 	int		len;
+// 	int		i;
+// 	t_node	*curr;
+// 	char	*temp;
+
+// 	i = 0;
+// 	curr = *env;
+// 	len = stack_len(curr);
+// 	// len++;
+// 	eepie = ft_calloc(len, sizeof(char *));
+// 	while (i < len - 1)
+// 	{
+// 		// temp = eepie[i];
+// 		if (curr->key)
+// 			temp = ft_strjoin(curr->key, "=");
+// 		if (curr->value)
+// 			temp = ft_strjoin(temp, curr->value);
+// 		free(eepie[i]);
+// 		eepie[i] = temp;
+// 		free(temp);
+// 		curr = curr->next;
+// 		i++;
+// 	}
+// 	return (eepie);
+// void	dollar_check(char *str)
+// {
+// 	int i;
+
+// 	i = 0;
+// 	if (ft_strchr(str, 36))
+// 	{
+// 		i = ft_strchr(str, 36);
+		
+// 	}
+// 	else
+// 		return ;
+
+// 	// while (str[i])
+
+
+// }
+
+// static void free_tokens(char **tokens)
+// {
+//     int i = 0;
+//     if (!tokens)
+//         return;
+//     while (tokens[i])
+//     {
+//         free(tokens[i]);
+//         i++;
+//     }
+//     free(tokens);
+// }
+// }

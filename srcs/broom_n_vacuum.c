@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 09:23:36 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/13 15:35:08 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/13 17:02:50 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,170 @@ void	clean_struct(t_bananas *bana)
 
 }
 
+void	free_stuff(char **args, char *path)
+{
+	int	i;
 
-// void clean_banana(t_bananas *bana)
+	i = 0;
+	while(args[i])
+	{
+		free(args[i]);
+		i++;
+	}
+	free(args);
+	if (path)
+		free(path);
+}
+
+void token_cleaner(t_bananas *bana, int i)
+{
+	free(bana->token[i]);
+		while (i < bana->tok_num - 1)
+		{
+			// printf("incleaner\n");
+			bana->token[i] = bana->token[i + 1];
+			i++;	
+		}
+	bana->tok_num--;
+	if (bana->tok_num == 0)
+	{
+	//	free(bana->token[0]);
+		bana->token[0] = NULL;
+	}
+}
+
+void    exiting(t_bananas *bana, int i)
+{
+	clean_banana(bana);
+	exit(i);
+    // If something else to clean, clean here mebbe?
+}
+
+void	free_env(t_node	**env)
+{
+	t_node	*temp;
+	t_node	*curr;
+
+   
+	curr = *env;
+	temp = NULL;
+	while (curr)
+	{
+		temp = curr->next;
+		free(curr->value);
+		free(curr->key);
+		free(curr);
+		curr = temp;
+	}
+	*env = NULL;
+}
+
+void clean_banana(t_bananas *bana)
+{
+	clean_struct(bana);
+	free_env(&bana->env);
+	free_char_array(bana->envp);
+}
+
+
+void	free_array(char ***paths, int arc)
+{
+	int	i;
+
+	if (paths == NULL)
+		return ;
+	i = 0;
+	if (arc == -1)
+	{
+		while (paths[i] != NULL)
+		{
+			free(*paths[i]);
+			i++;
+		}
+	}
+	else
+	{
+		while (i < arc)
+		{
+			if (*paths[i] != NULL)
+				free((*paths[i]));
+			i++;
+		}
+	}
+	free (*paths);
+	*paths = NULL;
+}
+
+void	free_line(char **paths, int arc)
+{
+	int	i;
+
+	if (paths == NULL)
+		return ;
+	i = 0;
+	if (arc == -1)
+	{
+		while (paths[i] != NULL)
+		{
+			free(paths[i]);
+			i++;
+		}
+	}
+	else
+	{
+		while (i < arc)
+		{
+			if (paths[i] != NULL)
+				free(paths[i]);
+			i++;
+		}
+	}
+	free(paths);
+	paths = NULL;
+}
+
+char    *free_char_array(char **array)
+{
+    size_t    i;
+
+    if (array == NULL)
+        return (NULL);
+    i = 0;
+    while ((array)[i] != NULL)
+    {
+        free((array)[i]);
+        (array)[i] = NULL;
+        i++;
+    }
+    free(*array);
+    *array = NULL;
+    return (NULL);
+}
+
+// void	free_char_array(char **paths)
 // {
-// 	clean_struct(bana);
-	
+// 	int i;
+
+// 	i = 0;
+// 	while (paths[i])
+// 	{
+// 		free(paths[i]);
+// 		paths[i] = NULL;
+// 		i++;
+// 	} 
+// 	free(paths);
+
 // }
+
+void	clean_n_errors(t_bananas *bana)
+{
+	if (bana->fd_input != -1)
+		close(bana->fd_input);
+	if (bana->fd_output != -1)
+		close(bana->fd_output);
+	if (bana->cmd_paths != NULL)
+		free_line(bana->cmd_paths, bana->tok_num - 1);
+	if (bana->token != NULL)
+		free_array(&bana->token, bana->tok_num - 1);
+	free(bana);
+}
