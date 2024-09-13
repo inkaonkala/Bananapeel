@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:10:17 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/13 15:56:04 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/13 18:34:36 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	lone_export(t_bananas *bana, t_node *env)
 
 static void	add_to_env(t_bananas *bana, t_node *env, char *temp, int len)
 {
-	add_end(&env, "");
+	add_end(&env, bana->token[0]);
 	if (temp)
 	{
 		ft_strlcpy(env->key, bana->token[0], len + 1);

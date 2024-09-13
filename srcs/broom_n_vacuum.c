@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 09:23:36 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/13 18:16:50 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/13 18:20:02 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,8 +208,8 @@ char    *free_char_array(char **array)
         (array)[i] = NULL;
         i++;
     }
-    free(*array);
-    *array = NULL;
+    // *array = NULL;
+    free(array);
     return (NULL);
 }
 

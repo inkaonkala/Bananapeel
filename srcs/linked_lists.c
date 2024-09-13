@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 14:29:28 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/13 16:27:33 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/13 18:23:47 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,30 +94,13 @@ t_node   *parse_str(t_node *node, char *str)
     }
     return (node);
 }
-    // split++;
-        // ft_printf("no split\n");
-        // ft_printf("i: %d\n", i);
-        // ft_printf("value: %s\n", node->value);
-        // free(split);
-        // ft_strlcpy(node->key, str, i);
-        // ft_printf("key: %s\n", node->key);
-
 
 
 void	load_list(t_bananas *bana, char **envp)
 {
     int i;
 
-
     i = 0;
-	// env = ft_calloc(1, sizeof(t_node));
-	// env->next = NULL;
-	// env->prev = NULL;
-	// if (!env)
-	// {
-	// 	printf("Banana errors\n");
-	// 	exit(1); // what do we want this to do in this case?
-	// }
     while (envp[i])
     {
         if (add_end(&bana->env, envp[i]))
@@ -148,3 +131,19 @@ int	stack_len(t_node *stack)
 	}
 	return (i);
 }
+    // split++;
+        // ft_printf("no split\n");
+        // ft_printf("i: %d\n", i);
+        // ft_printf("value: %s\n", node->value);
+        // free(split);
+        // ft_strlcpy(node->key, str, i);
+        // ft_printf("key: %s\n", node->key);
+
+	// env = ft_calloc(1, sizeof(t_node));
+	// env->next = NULL;
+	// env->prev = NULL;
+	// if (!env)
+	// {
+	// 	printf("Banana errors\n");
+	// 	exit(1); // what do we want this to do in this case?
+	// }

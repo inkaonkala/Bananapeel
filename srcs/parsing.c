@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:32:34 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/13 17:20:38 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/13 18:24:28 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,7 @@ bool	parsing(char *str, t_bananas *bana)
 	cur_quo = 0;
 	token_count = count_tokens(str);
 	free_char_array(bana->envp);
-	free(bana->envp);
+	// free(bana->envp);
 	bana->envp = list_to_eepie(&bana->env);
     // if (!envp)
     // {
