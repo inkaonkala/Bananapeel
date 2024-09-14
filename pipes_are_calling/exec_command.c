@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:46:16 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/12 16:56:38 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/14 16:52:32 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ void	execute_command(t_bananas *bana, char **envp, int index)
 	}
 	if(bana->cmd_paths[index])
 	{
-			execve(bana->cmd_paths[index], cmd_args, envp);
-			ft_printf("Bananas! Failed to execute command: %s\n", strerror(errno));
-			free_argh(cmd_args);
-			exiting(bana, 126);
+		execve(bana->cmd_paths[index], cmd_args, envp);
+		ft_printf("Bananas! Failed to execute command: %s\n", strerror(errno));
+		free_argh(cmd_args);
+		exiting(bana, 126);
 	}
 	else
 	{

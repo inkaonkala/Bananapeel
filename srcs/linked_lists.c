@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 14:29:28 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/13 18:23:47 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/14 16:23:20 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void	load_list(t_bananas *bana, char **envp)
         }
         i++;
     }
-	printf("\nKey of first line of env: %s  Value of: %s \n", bana->env[0].key, bana->env[0].value);
+	// printf("\nKey of first line of env: %s  Value of: %s \n", bana->env[0].key, bana->env[0].value);
 	return ;
 }
     // printf("Load_list\n");

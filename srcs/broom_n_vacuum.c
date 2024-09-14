@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 09:23:36 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/13 18:20:02 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/14 17:22:15 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void token_cleaner(t_bananas *bana, int i)
 	free(bana->token[i]);
 	while (i < bana->tok_num - 1)
 	{
+		printf("\ninside\n");
 		bana->token[i] = bana->token[i + 1];
 		i++;	
 	}
