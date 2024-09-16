@@ -6,18 +6,25 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/16 14:03:25 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/16 15:49:48 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 static void	handle_env(t_bananas *bana)
-{
+{	
+	// t_bananas	*temp;
+
+	// temp = bana;
+	printf("\ninside ENV\n");
 	while (bana->env->next)
 	{
 		if (!bana->env)
+		{		
+			printf("why am i broken?\n");
 			break ;
+		}
 		if (bana->env->value)
 			printf("%s=%s\n", bana->env->key, bana->env->value);
 		bana->env = bana->env->next;
@@ -26,6 +33,10 @@ static void	handle_env(t_bananas *bana)
 		token_cleaner(bana, 0);
 	if (bana->is_rdr)
 		exit (0);
+	// bana = temp;
+	while (bana->env->prev)
+		bana->env = bana->env->prev;
+
 }
 
 void	print_tokens(t_bananas *bana)
