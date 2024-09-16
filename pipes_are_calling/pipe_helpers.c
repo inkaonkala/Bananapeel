@@ -6,13 +6,13 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 10:53:11 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/13 09:44:51 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/16 09:50:10 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void empty_prompt(void)
+void	empty_prompt(void)
 {
 	char	*line;
 	int		fd[2];
