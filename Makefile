@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+         #
+#    By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2024/09/12 14:59:04 by jbremser         ###   ########.fr        #
+#    Updated: 2024/09/13 10:42:55 by iniska           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
