@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   funky_arrows.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:33:37 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/13 15:50:36 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/16 12:56:02 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,18 +98,14 @@ static void	execute_rdr(t_bananas *bana, char **envp)
 	}
 }
 
-
 void    redirections(t_bananas *bana, char **envp)
 {
-	
 	if (bana->tok_num < 2)
 	{
 		clean_struct(bana);
 		return ;
 	}
-
-	file_handling(bana);
-	
+	file_handling(bana);	
 	if(bana->is_dog && bana->tok_num < 1)
 	{
 		clean_struct(bana);

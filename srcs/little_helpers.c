@@ -6,13 +6,11 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 14:42:49 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/11 12:56:17 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/16 12:54:59 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../minishell.h"
-
 
 
 int	empties(char c)

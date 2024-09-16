@@ -6,7 +6,7 @@
 #    By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2024/09/13 10:42:55 by iniska           ###   ########.fr        #
+#    Updated: 2024/09/16 13:17:18 by iniska           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRCFILES 	= 	bananapeel.c \
 	 			built_ins.c \
 				built_ins_helpers.c \
 	 			parsing.c \
+				banananice.c \
 	 			here_dog.c \
 	 			delimiter.c \
 				token_checker.c \
@@ -36,7 +37,7 @@ SRCFILES 	= 	bananapeel.c \
 				broom_n_vacuum.c \
 				export.c \
 				handle_exit.c \
-				dollar_store.c
+				dollar_store.c 
 
 PIPEFILES	=	eleven_pipers_piping.c \
 				arguments.c\

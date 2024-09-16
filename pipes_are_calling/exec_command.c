@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:46:16 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/16 11:14:55 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/16 14:11:32 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	execute_command(t_bananas *bana, char **envp, int index)
 	cmd_args = ft_split(bana->token[index], ' ');
 	if (cmd_args == NULL || cmd_args[0] == NULL)
 	{
-		ft_printf("Bananas! Failed to split command arguments\n");
+		printf("Bananas! Failed to split command arguments\n");
 		exiting(bana, 1);
 	}
 	if (!ft_strncmp(cmd_args[0], "exit", 5))
@@ -40,8 +40,9 @@ void	execute_command(t_bananas *bana, char **envp, int index)
 		do_it(bana, envp, index, cmd_args);
 	else
 	{
-		ft_printf("Bananas! Can't find your command :( \n");
+		printf("Bananas! Can't find your command :( \n");
 		free_argh(cmd_args);
+		clean_struct(bana);
 		exiting(bana, 127);
 	}
 	free_argh(cmd_args);
