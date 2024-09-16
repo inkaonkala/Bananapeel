@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 15:11:50 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/16 12:21:58 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/16 13:38:54 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,19 +88,24 @@ void	homeward_bound(t_bananas *bana)
 
 void	handle_deeznuts(t_bananas *bana)
 {
-	token_cleaner(bana, 0);
-	if (!bana->token || !bana->token[0])
+	if (bana->tok_num <= 2)
 	{
-		homeward_bound(bana);
+		token_cleaner(bana, 0);
+		if (!bana->token || !bana->token[0] || (!ft_strcmp(bana->token[0], "~")))
+		{
+			homeward_bound(bana);
+			update_pwds(bana);
+			while (bana->tok_num > 0)
+				token_cleaner(bana, 0);
+			return ;
+		}
+		if (chdir(bana->token[0]))
+		{
+			printf("cd: %s not set\n", bana->token[0]);
+			return ;
+		}
 		update_pwds(bana);
-		return ;
 	}
-	if (chdir(bana->token[0]))
-	{
-		printf("cd: %s not set\n", bana->token[0]);
-		return ;
-	}
-	update_pwds(bana);
 	while (bana->tok_num > 0)
 		token_cleaner(bana, 0);
 	if (bana->is_rdr)
