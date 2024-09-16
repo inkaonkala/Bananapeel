@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signaling.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:37:19 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/11 17:37:48 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/09/16 13:59:11 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void    signaling(void)
 	
 	//signal(SIGTSTP, SIG_IGN); 
 }
+
 /*
 void	reset_terminal_settings(void)
 {

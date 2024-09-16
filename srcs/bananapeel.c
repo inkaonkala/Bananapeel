@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Updated: 2024/09/13 13:11:18 by iniska           ###   ########.fr       */
-/*   Updated: 2024/09/13 16:32:52 by jbremser         ###   ########.fr       */
+/*   Created: 2024/09/13 13:11:18 by iniska            #+#    #+#             */
+/*   Updated: 2024/09/16 13:07:13 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int main(int arv, char **arc, char **envp)
 	if(!ft_memset(&bana, 0, sizeof(t_bananas)))
 	{
 		printf("Banana errors\n");
-		exit(1); // what do we want this to do in this case?
+		exit(1);
 	}
 	bana.last_exit_status = 0;
 	load_list(&bana, envp);
@@ -52,7 +52,7 @@ int main(int arv, char **arc, char **envp)
 
 			if(!parsing(input, &bana))
 			{
-				ft_printf("Parsing is bananas");
+				ft_printf("Parsing is bananas!\n");
 				if (!bana.env)
 				 	free_env(&bana.env);
 				break ;
@@ -63,17 +63,12 @@ int main(int arv, char **arc, char **envp)
 				continue ;
 			}
 			if (input)
-				// printf("input?\n");
-				free(input);	
-			// if (env)
-			// 	free_env(env);
+				free(input);
 		}
 		restore_terminal(&original_termios);
 	}
 	else
-	{
-		ft_printf("Bananas not ripen yet");
-	}
+		ft_printf("Bananas not ripen yet!\n");
 	clean_banana(&bana);
 	return (0);
 }

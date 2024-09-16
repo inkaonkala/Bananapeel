@@ -3,39 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   broom_n_vacuum.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 09:23:36 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/16 10:14:48 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/16 13:52:04 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-
 static void clean_files(t_bananas *bana)
 {
-	// int i; 
+	int i; 
 	
-	// i = 0;
-
+	i = 0;
 	if (bana->in_files != NULL)
 	{
-	//	printf("\n infile nulled\n");
 		free(bana->in_files);
 		bana->in_files = NULL;
 	}
-
 	if(bana->out_files != NULL)
 	{
-	//	printf("\noutfiles nulled \n");
 		free(bana->out_files);
 		bana->out_files = NULL;
 	}
-	
-/*
-	this CRASHes if execve fails
-	
 	if(bana->cmd_paths != NULL)
 	{
 		while(bana->cmd_paths[i] != NULL)
@@ -46,25 +37,19 @@ static void clean_files(t_bananas *bana)
 		}
 		free(bana->cmd_paths);
 		bana->cmd_paths = NULL;
-	}
-*/	
+	}	
 }
-
 
 void	clean_struct(t_bananas *bana)
 {
-	//printf("PATH: %s\n", bana->cmd_paths[0]);
-
-	if (bana->tok_num > 0)
+	while (bana->tok_num > 0)
 		token_cleaner(bana, 0);
-
 	clean_files(bana);
 	if(bana->pipes != NULL)
 	{
 		free(bana->pipes);
 		bana->pipes = NULL;
 	}
-
 	// RESETER
 	bana->tok_num = 0;
 	bana->infile_count = 0;
@@ -91,7 +76,6 @@ void	free_stuff(char **args, char *path)
 		free(path);
 }
 
-
 void token_cleaner(t_bananas *bana, int i)
 {
     if (bana->token == NULL || i >= bana->tok_num)
@@ -110,22 +94,6 @@ void token_cleaner(t_bananas *bana, int i)
         bana->token = NULL;
     }
 }
-
-
-// void token_cleaner(t_bananas *bana, int i)
-// {
-// 	free(bana->token[i]);
-// 	while (i < bana->tok_num - 1)
-// 	{
-// 		printf("\ninside\n");
-// 		bana->token[i] = bana->token[i + 1];
-// 		i++;	
-// 	}
-// 	bana->tok_num--;
-//     bana->token[bana->tok_num] = NULL;
-// 	if (bana->tok_num == 0)
-// 		free(bana->token);
-// }
 
 void    exiting(t_bananas *bana, int i)
 {
@@ -159,7 +127,6 @@ void clean_banana(t_bananas *bana)
 	free_env(&bana->env);
 	free_char_array(bana->envp);
 }
-
 
 void	free_array(char ***paths, int arc)
 {
@@ -235,6 +202,19 @@ char    *free_char_array(char **array)
     return (NULL);
 }
 
+void	clean_n_errors(t_bananas *bana)
+{
+	if (bana->fd_input != -1)
+		close(bana->fd_input);
+	if (bana->fd_output != -1)
+		close(bana->fd_output);
+	if (bana->cmd_paths != NULL)
+		free_line(bana->cmd_paths, bana->tok_num - 1);
+	if (bana->token != NULL)
+		free_array(&bana->token, bana->tok_num - 1);
+	free(bana);
+}
+
 // void	free_char_array(char **paths)
 // {
 // 	int i;
@@ -250,15 +230,17 @@ char    *free_char_array(char **array)
 
 // }
 
-void	clean_n_errors(t_bananas *bana)
-{
-	if (bana->fd_input != -1)
-		close(bana->fd_input);
-	if (bana->fd_output != -1)
-		close(bana->fd_output);
-	if (bana->cmd_paths != NULL)
-		free_line(bana->cmd_paths, bana->tok_num - 1);
-	if (bana->token != NULL)
-		free_array(&bana->token, bana->tok_num - 1);
-	free(bana);
-}
+// void token_cleaner(t_bananas *bana, int i)
+// {
+// 	free(bana->token[i]);
+// 	while (i < bana->tok_num - 1)
+// 	{
+// 		printf("\ninside\n");
+// 		bana->token[i] = bana->token[i + 1];
+// 		i++;	
+// 	}
+// 	bana->tok_num--;
+//     bana->token[bana->tok_num] = NULL;
+// 	if (bana->tok_num == 0)
+// 		free(bana->token);
+// }
