@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 18:12:07 by etaattol          #+#    #+#             */
-/*   Updated: 2024/09/13 17:02:48 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/14 16:28:28 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ typedef struct s_bananas
 /*									built-ins								  */
 /* ************************************************************************** */
 void	built_ins(t_bananas *bana);
-void    handle_deeznuts(t_bananas *bana, t_node *env);
+void handle_deeznuts(t_bananas *bana);
 
 /* ************************************************************************** */
 /*									export           						  */

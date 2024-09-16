@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 09:23:36 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/13 18:20:02 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/16 10:14:48 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,19 +91,41 @@ void	free_stuff(char **args, char *path)
 		free(path);
 }
 
+
 void token_cleaner(t_bananas *bana, int i)
 {
-	free(bana->token[i]);
-	while (i < bana->tok_num - 1)
+    if (bana->token == NULL || i >= bana->tok_num)
+        return;  
+    free(bana->token[i]);
+	while (i < bana->tok_num - 1) 
 	{
-		bana->token[i] = bana->token[i + 1];
-		i++;	
-	}
-	bana->tok_num--;
-    bana->token[bana->tok_num] = NULL;
-	if (bana->tok_num == 0)
-		free(bana->token);
+        bana->token[i] = bana->token[i + 1];
+        i++;
+    }
+    bana->token[bana->tok_num - 1] = NULL;
+    bana->tok_num--;
+    if (bana->tok_num == 0) 
+	{
+        free(bana->token);
+        bana->token = NULL;
+    }
 }
+
+
+// void token_cleaner(t_bananas *bana, int i)
+// {
+// 	free(bana->token[i]);
+// 	while (i < bana->tok_num - 1)
+// 	{
+// 		printf("\ninside\n");
+// 		bana->token[i] = bana->token[i + 1];
+// 		i++;	
+// 	}
+// 	bana->tok_num--;
+//     bana->token[bana->tok_num] = NULL;
+// 	if (bana->tok_num == 0)
+// 		free(bana->token);
+// }
 
 void    exiting(t_bananas *bana, int i)
 {
