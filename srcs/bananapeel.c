@@ -3,9 +3,9 @@
 /*                                                        :::      ::::::::   */
 /*   bananapeel.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/07 10:43:50 by iniska            #+#    #+#             */
+/*   Updated: 2024/09/13 13:11:18 by iniska           ###   ########.fr       */
 /*   Updated: 2024/09/13 16:32:52 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -26,7 +26,7 @@ int main(int arv, char **arc, char **envp)
 	if(!ft_memset(&bana, 0, sizeof(t_bananas)))
 	{
 		printf("Banana errors\n");
-		exit (1); // what do we want this to do in this case?
+		exit(1); // what do we want this to do in this case?
 	}
 	bana.last_exit_status = 0;
 	load_list(&bana, envp);
