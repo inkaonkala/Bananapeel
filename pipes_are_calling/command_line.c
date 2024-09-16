@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 10:14:58 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/13 13:21:07 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/16 12:08:53 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static bool	init_path(t_bananas *bana)
 {
-	bana->cmd_paths = ft_calloc(bana->tok_num - 1, sizeof(char *));
+	bana->cmd_paths = ft_calloc(bana->tok_num, sizeof(char *));
 	if (!bana->cmd_paths)
 		return (false);
 	return (true);
@@ -27,7 +27,7 @@ bool	parse_cmd_line(t_bananas *bana, char **envp)
 	char	*path;
 
 	i = 0;
-	if(!init_path(bana))
+	if (!init_path(bana))
 		return (false);
 	while (i < bana->tok_num)
 	{	

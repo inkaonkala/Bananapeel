@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 09:42:58 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/13 09:44:17 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/16 10:09:51 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,12 @@ bool	fork_it(t_bananas *bana, int fd[2], pid_t *pid, int index)
 {
 	if (index < bana->tok_num)
 	{
-		if(pipe(fd) == -1)
+		if (pipe(fd) == -1)
 		{
 			perror("No pipes to fork the banananas\n");
 			return (false);
 		}
 	}
-
 	*pid = fork();
 	if (*pid == -1)
 	{
