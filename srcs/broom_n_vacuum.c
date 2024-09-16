@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 09:23:36 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/16 10:14:48 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/16 13:50:00 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 static void clean_files(t_bananas *bana)
 {
-	// int i; 
+	int i; 
 	
-	// i = 0;
+	i = 0;
 
 	if (bana->in_files != NULL)
 	{
@@ -33,8 +33,8 @@ static void clean_files(t_bananas *bana)
 		bana->out_files = NULL;
 	}
 	
-/*
-	this CRASHes if execve fails
+
+	// this CRASHes if execve fails
 	
 	if(bana->cmd_paths != NULL)
 	{
@@ -47,7 +47,7 @@ static void clean_files(t_bananas *bana)
 		free(bana->cmd_paths);
 		bana->cmd_paths = NULL;
 	}
-*/	
+	
 }
 
 

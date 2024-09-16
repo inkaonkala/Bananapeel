@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 14:29:28 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/14 16:23:20 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/16 13:51:54 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ t_node   *parse_str(t_node *node, char *str)
     {
         i = split - str;
         split++;
+		// if (node->value)
+		// 	free(node->value);
         node->value = ft_strdup(split);
         str[i] = '\0';
         node->key = ft_strdup(str);
