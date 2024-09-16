@@ -7,6 +7,7 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 09:23:36 by iniska            #+#    #+#             */
 /*   Updated: 2024/09/16 13:52:04 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/16 13:50:00 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +28,7 @@ static void clean_files(t_bananas *bana)
 		free(bana->out_files);
 		bana->out_files = NULL;
 	}
+
 	if(bana->cmd_paths != NULL)
 	{
 		while(bana->cmd_paths[i] != NULL)
@@ -37,7 +39,8 @@ static void clean_files(t_bananas *bana)
 		}
 		free(bana->cmd_paths);
 		bana->cmd_paths = NULL;
-	}	
+	}
+
 }
 
 void	clean_struct(t_bananas *bana)

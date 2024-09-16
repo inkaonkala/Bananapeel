@@ -6,22 +6,21 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/14 16:33:39 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/16 14:03:25 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static void	handle_env(t_bananas *bana, t_node *env)
+static void	handle_env(t_bananas *bana)
 {
-	(void)bana;
-	while (env->next)
+	while (bana->env->next)
 	{
-		if (!env)
+		if (!bana->env)
 			break ;
-		if (env->value)
-			printf("%s=%s\n", env->key, env->value);
-		env = env->next;
+		if (bana->env->value)
+			printf("%s=%s\n", bana->env->key, bana->env->value);
+		bana->env = bana->env->next;
 	}
 	while (bana->tok_num > 0)
 		token_cleaner(bana, 0);
@@ -53,7 +52,7 @@ static void	send_to_bob(t_bananas *bana, char *bi)
 	else if (ft_strcmp(bi, "unset") == 0)
 		handle_unset(bana, &bana->env);
 	else if (ft_strcmp(bi, "env") == 0)
-		handle_env(bana, bana->env);
+		handle_env(bana);
 	else if (ft_strcmp(bi, "export") == 0)
 		handle_export(bana);
 	else if (ft_strcmp(bi, "cd") == 0)
