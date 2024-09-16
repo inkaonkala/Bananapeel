@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 10:20:14 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/12 16:36:03 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/16 11:30:07 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int	handle_pwd(t_bananas *bana)
 		return (1);
 	}
 	printf("%s\n", buf);
+	free(buf);
 	bana->last_exit_status = 0;
 	if (bana->is_rdr)
 		exit (0);
