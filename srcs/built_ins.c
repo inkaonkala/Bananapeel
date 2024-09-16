@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/12 14:27:45 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/13 15:57:10 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	print_tokens(t_bananas *bana)
 	}
 }
 
-static void	send_to_bob(t_bananas *bana, t_node **env, char *bi)
+static void	send_to_bob(t_bananas *bana, char *bi)
 {
 	if (ft_strcmp(bi, "exit") == 0)
 		handle_exit(bana);
@@ -51,18 +51,18 @@ static void	send_to_bob(t_bananas *bana, t_node **env, char *bi)
 	else if (ft_strcmp(bi, "echo") == 0)
 		handle_echo(bana);
 	else if (ft_strcmp(bi, "unset") == 0)
-		handle_unset(bana, env);
+		handle_unset(bana, &bana->env);
 	else if (ft_strcmp(bi, "env") == 0)
-		handle_env(bana, *env);
+		handle_env(bana, bana->env);
 	else if (ft_strcmp(bi, "export") == 0)
-		handle_export(bana, *env);
+		handle_export(bana);
 	else if (ft_strcmp(bi, "cd") == 0)
-		handle_deeznuts(bana, *env);
+		handle_deeznuts(bana, bana->env);
 	else
 		return ;
 }
 
-void	built_ins(t_bananas *bana, t_node **env)
+void	built_ins(t_bananas *bana)
 {
 	size_t	len;
 	char	*bi;
@@ -73,7 +73,7 @@ void	built_ins(t_bananas *bana, t_node **env)
 		len = ft_strlen(bi);
 		if (len > 0 && bi[len - 1] == '\n')
 			bi[len - 1] = '\0';
-		send_to_bob(bana, env, bi);
+		send_to_bob(bana, bi);
 		return ;
 	}
 }
