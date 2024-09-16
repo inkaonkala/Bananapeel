@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:32:34 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/12 17:03:47 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/13 13:21:10 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,3 @@ bool	parsing(char *str, t_bananas *bana, t_node **env)
 	command_search(bana, envp, env);
 	return (true);
 }
-	//CHECKER
-			//printf("amount of tokens: %d\n", token_count);
-			//printf("\nafter expansion: token: %s\n", tokens[token_index]);
-
