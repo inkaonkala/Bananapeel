@@ -3,9 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:32:34 by jbremser          #+#    #+#             */
+/*   Updated: 2024/09/13 13:21:10 by iniska           ###   ########.fr       */
 /*   Updated: 2024/09/13 18:24:28 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -196,82 +197,3 @@ bool	parsing(char *str, t_bananas *bana)
 	// clean_command_line();
 	return (true);
 }
-	//CHECKER
-			//printf("amount of tokens: %d\n", token_count);
-			//printf("\nafter expansion: token: %s\n", tokens[token_index]);
-
-
-// void print_tokens(char *bana->tokens)
-// {
-// 	for (int k = 0; k < token_i; k++) 
-// 	{
-//        ft_printf("Token %d: %s\n", k, tokens[k]);
-//        free(tokens[k]); // Free each token after use
-//     }
-// 	free(tokens);
-
-// 	if (tokens != NULL)
-// 	{
-// 		ft_printf("%s", &tokens);
-// 		free_tokens(tokens);
-// 	}
-// }
-
-
-// static char	**list_to_eepie(char **eepie, t_node **env) //old
-// {
-// 	int		len;
-// 	int		i;
-// 	t_node	*curr;
-// 	char	*temp;
-
-// 	i = 0;
-// 	curr = *env;
-// 	len = stack_len(curr);
-// 	// len++;
-// 	eepie = ft_calloc(len, sizeof(char *));
-// 	while (i < len - 1)
-// 	{
-// 		// temp = eepie[i];
-// 		if (curr->key)
-// 			temp = ft_strjoin(curr->key, "=");
-// 		if (curr->value)
-// 			temp = ft_strjoin(temp, curr->value);
-// 		free(eepie[i]);
-// 		eepie[i] = temp;
-// 		free(temp);
-// 		curr = curr->next;
-// 		i++;
-// 	}
-// 	return (eepie);
-// void	dollar_check(char *str)
-// {
-// 	int i;
-
-// 	i = 0;
-// 	if (ft_strchr(str, 36))
-// 	{
-// 		i = ft_strchr(str, 36);
-		
-// 	}
-// 	else
-// 		return ;
-
-// 	// while (str[i])
-
-
-// }
-
-// static void free_tokens(char **tokens)
-// {
-//     int i = 0;
-//     if (!tokens)
-//         return;
-//     while (tokens[i])
-//     {
-//         free(tokens[i]);
-//         i++;
-//     }
-//     free(tokens);
-// }
-// }
