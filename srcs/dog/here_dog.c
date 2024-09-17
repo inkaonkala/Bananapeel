@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_dog.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 13:19:18 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/17 11:39:28 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/17 09:43:03 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ static char	*clean_deli(char *str)
 	copy = malloc(sizeof(char) * 4);
 	if(!copy)
 	{
-		printf("Malloc fail in dog\n");
+		ft_printf("Malloc fail in dog\n");
 		return (0);
 	}
 	while(str[i] == '<' && str[i] != '\0')
@@ -124,7 +124,7 @@ void	find_dog(t_bananas *bana, int tk_i)
 		delimiter = bana->token[tk_i] + 2;
 		bana->token[tk_i] = clean_deli(bana->token[tk_i]);
 	}
-	//printf("THIS IS :%s\n", delimiter);
+	//ft_printf("THIS IS :%s\n", delimiter);
 	handle_the_dog(delimiter, bana);
 	if (separate)
 		free(delimiter);

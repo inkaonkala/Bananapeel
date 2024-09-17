@@ -3,11 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bananapeel.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 13:11:18 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/17 11:59:12 by iniska           ###   ########.fr       */
-/*   Updated: 2024/09/17 11:41:20 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/17 12:19:05 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +67,7 @@ int main(int arv, char **arc, char **envp)
 		restore_terminal(&original_termios);
 	}
 	else
-		printf("Bananas not ripen yet!\n");
+		ft_printf("Bananas not ripen yet!\n");
 	clean_banana(&bana);
 	return (0);
 }

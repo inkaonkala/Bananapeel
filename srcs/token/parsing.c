@@ -3,11 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:32:34 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/17 11:23:03 by iniska           ###   ########.fr       */
-/*   Updated: 2024/09/17 11:32:55 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/17 12:23:14 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +135,7 @@ bool	parsing(char *str, t_bananas *bana)
 	int		token_count;
 
 	token_count = count_tokens(str);
-	if (token_count == 0)
+	if(token_count == 0)
 		return (true);
 	free_char_array(bana->envp);
 	bana->envp = list_to_eepie(&bana->env);

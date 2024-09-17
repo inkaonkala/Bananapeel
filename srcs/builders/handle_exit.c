@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_exit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:56:50 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/17 11:38:48 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/17 09:42:43 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	exiter(t_bananas *bana)
 		if (number_checker(bana->token[1]))
 		{
 			temp = exit_coder(bana->token[1]);
-			printf("🍌Bye Bye BaNaNaNas🍌!\nexit(%d)\n", temp);
+			ft_printf("🍌Bye Bye BaNaNaNas🍌!\nexit(%d)\n", temp);
 			while (bana->tok_num > 0)
 				token_cleaner(bana, 0);
 			clean_banana(bana);
@@ -54,7 +54,7 @@ static void	exiter(t_bananas *bana)
 		else
 		{
 			(void)temp;
-			printf("🍌Bye Bye BaNaNaNas🍌!\nexit\n%s: %s: count your 🍌s!\n",
+			ft_printf("🍌Bye Bye BaNaNaNas🍌!\nexit\n%s: %s: count your 🍌s!\n",
 				bana->token[0], bana->token[1]);
 			while (bana->tok_num > 0)
 				token_cleaner(bana, 2);
@@ -68,7 +68,7 @@ void	handle_exit(t_bananas *bana)
 {
 	if (bana->tok_num == 1)
 	{
-		printf("Bye Bye BaNaNaNas!\nexit\n");
+		ft_printf("Bye Bye BaNaNaNas!\nexit\n");
 		token_cleaner(bana, 0);
 		clean_banana(bana);
 		exit(0);

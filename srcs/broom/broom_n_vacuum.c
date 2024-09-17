@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 09:23:36 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/17 11:16:53 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/17 14:41:56 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 static void clean_files(t_bananas *bana)
 {
-	int i; 
-	
-	i = 0;
+	//int i; 
+	//
+	//i = 0;
 	if (bana->in_files != NULL)
 	{
 		free(bana->in_files);
@@ -28,17 +28,17 @@ static void clean_files(t_bananas *bana)
 		free(bana->out_files);
 		bana->out_files = NULL;
 	}
-	if(bana->cmd_paths != NULL)
-	{
-		while(bana->cmd_paths[i] != NULL)
-		{
-			free(bana->cmd_paths[i]);
-			bana->cmd_paths[i] = NULL;
-			i++;
-		}
-		free(bana->cmd_paths);
-		bana->cmd_paths = NULL;
-	}
+	//if(bana->cmd_paths != NULL)
+	//{
+	//	while(bana->cmd_paths[i] != NULL)
+	//	{
+	//		free(bana->cmd_paths[i]);
+	//		bana->cmd_paths[i] = NULL;
+	//		i++;
+	//	}
+	//	free(bana->cmd_paths);
+	//	bana->cmd_paths = NULL;
+	//}
 }
 
 void	clean_struct(t_bananas *bana)

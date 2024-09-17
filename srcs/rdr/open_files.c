@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_files.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 13:01:29 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/17 11:39:39 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/17 09:43:56 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	open_infile(t_bananas *bana, int i)
 			free(delimiter);
 		}
 		else
-			printf("Bananas! : Unable to find heredog delimiter\n");
+			ft_printf("Bananas! : Unable to find heredog delimiter\n");
 		set_heredog_status(OUT_HEREDOG);
 		bana->is_dog = true;
 	}
@@ -42,7 +42,7 @@ void	open_infile(t_bananas *bana, int i)
 	}
 	else
 	{
-		printf("Bananas! Unexpected token while in heredog: %s\n", bana->token[i]);
+		ft_printf("Bananas! Unexpected token while in heredog: %s\n", bana->token[i]);
 		return ;
 	}
 	bana->infile_count++;

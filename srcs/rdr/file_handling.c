@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_handling.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 10:06:52 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/17 11:39:31 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/17 09:43:21 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char	*clean_arrows(char *str)
 	copy = malloc(sizeof(char) * (ft_strlen(str) + 1));
 	if (!copy)
 	{
-		printf("Malloc fail in arrows");
+		ft_printf("Malloc fail in arrows");
 		return (NULL);
 	}
 	while (str[i] != '\0')

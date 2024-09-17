@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   funky_arrows.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:33:37 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/17 11:39:35 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/17 09:43:24 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void	execute_rdr(t_bananas *bana, char **envp)
 		cmd_args = ft_split(bana->token[0], ' ');
 		if(cmd_args == NULL)
 		{
-			printf("Bnanas! Failed to split the command arguments\n");
+			ft_printf("Bnanas! Failed to split the command arguments\n");
 			free_stuff(cmd_args, path);
 			exiting(bana, 1);
 		}
