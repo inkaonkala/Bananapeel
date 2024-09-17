@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bananapeel.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 13:11:18 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/16 13:07:13 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/17 11:38:27 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ int main(int arv, char **arc, char **envp)
 			add_history(input);
 
 			if(!parsing(input, &bana))
-			{
-				ft_printf("Parsing is bananas!\n");
+	
+				printf("Parsing is bananas!\n");
 				if (!bana.env)
 				 	free_env(&bana.env);
 				break ;
@@ -68,7 +68,7 @@ int main(int arv, char **arc, char **envp)
 		restore_terminal(&original_termios);
 	}
 	else
-		ft_printf("Bananas not ripen yet!\n");
+		printf("Bananas not ripen yet!\n");
 	clean_banana(&bana);
 	return (0);
 }

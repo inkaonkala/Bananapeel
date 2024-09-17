@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:46:16 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/16 14:11:32 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/17 11:38:08 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	do_it(t_bananas *bana, char **envp, int index, char **cmd_args)
 {
 	execve(bana->cmd_paths[index], cmd_args, envp);
-	ft_printf("Bananas! Failed to execute command: %s\n", strerror(errno));
+	printf("Bananas! Failed to execute command: %s\n", strerror(errno));
 	free_argh(cmd_args);
 	exiting(bana, 126);
 }
