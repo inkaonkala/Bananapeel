@@ -6,11 +6,11 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:32:34 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/16 13:46:22 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/17 09:51:51 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 static char	**list_to_eepie(t_node **env) //claudes
 {

@@ -6,11 +6,11 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 12:59:08 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/11 13:20:45 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/17 10:04:02 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 static void	mallocing(t_bananas *bana, int in_file_count, int out_file_count)
 {

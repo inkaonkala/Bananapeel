@@ -6,12 +6,12 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 14:29:28 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/16 12:55:21 by iniska           ###   ########.fr       */
-/*   Updated: 2024/09/16 13:51:54 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/17 09:51:48 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+
+#include "../../minishell.h"
 
 void	remove_node(t_node *node)
 {

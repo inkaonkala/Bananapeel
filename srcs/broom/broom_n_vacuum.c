@@ -6,12 +6,12 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 09:23:36 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/16 13:52:04 by iniska           ###   ########.fr       */
-/*   Updated: 2024/09/16 13:50:00 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/17 09:52:04 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+
+#include "../../minishell.h"
 
 static void clean_files(t_bananas *bana)
 {

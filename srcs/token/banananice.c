@@ -6,11 +6,11 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:16:45 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/16 13:46:43 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/17 09:51:45 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 static void	type_check(t_bananas *bana)
 {

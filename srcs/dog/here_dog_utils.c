@@ -6,11 +6,11 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 17:25:20 by etaattol          #+#    #+#             */
-/*   Updated: 2024/09/16 12:59:59 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/17 10:06:15 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 static inline char	*_getstatus(void)
 {
@@ -21,7 +21,7 @@ static inline char	*_getstatus(void)
 
 char    get_heredog_status(void)
 {
-		return (*_getstatus());
+	return (*_getstatus());
 }
 
 

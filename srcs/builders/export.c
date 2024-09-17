@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:10:17 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/13 18:34:36 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/17 09:42:40 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 static void	lone_export(t_bananas *bana, t_node *env)
 {

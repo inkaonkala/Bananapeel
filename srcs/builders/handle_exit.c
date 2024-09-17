@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   handle_exit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:56:50 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/13 16:32:03 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/17 09:42:43 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 static size_t	exit_coder(char *argv)
 {

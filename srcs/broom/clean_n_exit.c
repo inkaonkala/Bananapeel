@@ -3,12 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   clean_n_exit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 09:07:07 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/13 16:25:44 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/17 09:52:11 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 

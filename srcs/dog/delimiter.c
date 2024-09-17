@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   delimiter.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 13:07:40 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/11 18:21:04 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/09/17 10:03:38 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 /*
 static char *add_n(char *str)

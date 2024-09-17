@@ -6,11 +6,11 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:37:19 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/16 13:59:11 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/17 09:43:12 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 static void	handle_sigint(int sig)
 {

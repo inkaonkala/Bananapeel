@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_store.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:05:09 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/12 16:48:08 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/17 09:42:36 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 static t_node *find_key(char *key, t_node *env)
 {
