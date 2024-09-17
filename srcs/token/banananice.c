@@ -6,11 +6,27 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:16:45 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/17 09:51:45 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/17 12:10:43 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+static bool	check_dog(t_bananas *bana, int i)
+{	
+	if ((ft_strncmp(bana->token[i], "<<<", 3) == 0) 
+		|| (ft_strncmp(bana->token[i], "<<>", 3) == 0)
+		|| (ft_strncmp(bana->token[i], "<<|", 3) == 0))
+	{
+		printf("Banana !: syntax error after token <<\n");
+		return (false);
+	}
+	bana->is_dog = true;
+	find_dog(bana, i);
+	if (bana->tok_num < 1)
+		return (false);
+	return (true);
+}
 
 static void	type_check(t_bananas *bana)
 {
@@ -21,17 +37,7 @@ static void	type_check(t_bananas *bana)
 	{		
 		if (ft_strncmp(bana->token[i], "<<", 2) == 0)
 		{
-			if ((ft_strncmp(bana->token[i], "<<<", 3) == 0) 
-				|| (ft_strncmp(bana->token[i], "<<>", 3) == 0)
-				|| (ft_strncmp(bana->token[i], "<<|", 3) == 0))
-			{
-				clean_struct(bana);
-				printf("Banana !: syntax error after token <<\n");
-				return ;
-			}
-			bana->is_dog = true;
-			find_dog(bana, i);
-			if (bana->tok_num < 1)
+			if (!(check_dog(bana, i)))
 			{
 				clean_struct(bana);
 				return ;
@@ -48,7 +54,6 @@ static void	type_check(t_bananas *bana)
 		i++;		
 	}	
 }
-
 
 void	banananice(t_bananas *bana, char **tokens, int token_index)
 {
