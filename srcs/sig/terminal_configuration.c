@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   terminal_configuration.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etaattol <etaattol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:06:03 by etaattol          #+#    #+#             */
-/*   Updated: 2024/09/03 13:28:03 by etaattol         ###   ########.fr       */
+/*   Updated: 2024/09/17 09:43:16 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 void	setup_terminal(struct termios *original_termios)
 {

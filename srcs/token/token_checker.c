@@ -6,11 +6,11 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:41:54 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/16 13:57:21 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/17 09:51:55 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 static bool valid(t_bananas *bana, int j)
 {

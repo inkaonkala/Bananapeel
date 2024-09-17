@@ -6,11 +6,11 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 10:06:52 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/11 13:09:04 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/17 09:43:21 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 static char	*clean_arrows(char *str)
 {

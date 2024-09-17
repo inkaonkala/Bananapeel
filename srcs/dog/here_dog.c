@@ -6,11 +6,11 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 13:19:18 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/16 13:00:41 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/17 09:43:03 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 void	handle_the_dog(const char *delimiter, t_bananas *bana)
 {

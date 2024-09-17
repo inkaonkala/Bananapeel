@@ -6,11 +6,11 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:33:37 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/16 12:56:02 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/17 09:43:24 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 static void	close_files(t_bananas *bana)
 {

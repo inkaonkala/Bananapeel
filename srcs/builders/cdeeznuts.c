@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cdeeznuts.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 15:11:50 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/16 13:38:54 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/17 09:42:29 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 static void	old_pwd_update(t_bananas *bana, char *old_pwd_temp)
 {
