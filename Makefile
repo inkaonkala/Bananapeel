@@ -6,7 +6,7 @@
 #    By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2024/09/16 13:17:18 by iniska           ###   ########.fr        #
+#    Updated: 2024/09/17 10:07:55 by iniska           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,29 +15,30 @@ NAME		= 	bananapeel
 FLAGS		=	-Wall -Wextra -Werror -g #-fsanitize=address
 
 SRCFILES 	= 	bananapeel.c \
-				signaling.c \
-				little_helpers.c \
-	 			built_ins.c \
-				built_ins_helpers.c \
-	 			parsing.c \
-				banananice.c \
-	 			here_dog.c \
-	 			delimiter.c \
-				token_checker.c \
-				funky_arrows.c \
-				file_handling.c \
-				linked_lists.c \
-				file_malloc.c \
-				open_files.c \
-				clean_n_exit.c \
-				here_dog_utils.c \
-				cdeeznuts.c \
-				coyotes.c \
-				terminal_configuration.c \
-				broom_n_vacuum.c \
-				export.c \
-				handle_exit.c \
-				dollar_store.c 
+				sig/signaling.c \
+				sig/terminal_configuration.c \
+				broom/little_helpers.c \
+				broom/clean_n_exit.c \
+				broom/broom_n_vacuum.c \
+				builders/cdeeznuts.c \
+				builders/coyotes.c \
+				builders/export.c \
+				builders/handle_exit.c \
+				builders/dollar_store.c \
+				builders/built_ins.c \
+				builders/built_ins_helpers.c \
+				token/linked_lists.c \
+				token/token_checker.c \
+	 			token/parsing.c \
+				token/banananice.c \
+	 			dog/here_dog.c \
+	 			dog/delimiter.c \
+				dog/here_dog_utils.c \
+				rdr/funky_arrows.c \
+				rdr/file_handling.c \
+				rdr/file_malloc.c \
+				rdr/open_files.c \
+
 
 PIPEFILES	=	eleven_pipers_piping.c \
 				arguments.c\
@@ -62,8 +63,7 @@ LIBFT_DIR	=	./libft
 LIBFT		=	$(LIBFT_DIR)/libft.a
 
 SRCS		=	$(addprefix $(SRCDIR)/, $(SRCFILES)) \
-
-PSRCS		=	$(addprefix $(PIPEDIR)/, $(PIPEFILES))
+				$(addprefix $(PIPEDIR)/, $(PIPEFILES))
 
 OBJS		= 	$(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS)) \
 				$(patsubst $(PIPEDIR)/%.c, $(PIPEDIR)/%.o, $(PSRCS))
@@ -76,11 +76,11 @@ ANSI_RESET 	:= 	\033[0m
 all: 			$(NAME)
 
 $(OBJDIR)/%.o:	$(SRCDIR)/%.c $(HEADER) 
-				@mkdir -p $(OBJDIR)
+				@mkdir -p $(dir $@)
 				@cc $(FLAGS) -o $@ -c $<
 
 $(OBJDIR)/%.o:	$(PIPEDIR)/%.c $(HEADER)
-				@mkdir -p $(OBJDIR)
+				@mkdir -p $(dir $@)
 				@cc $(FLAGS) -o $@ -c $<
 
 $(NAME):		$(OBJS) $(LIBFT)
