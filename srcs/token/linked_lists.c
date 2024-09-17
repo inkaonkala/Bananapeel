@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   linked_lists.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 14:29:28 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/17 09:51:48 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/17 11:39:44 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,12 +135,12 @@ int	stack_len(t_node *stack)
 	return (i);
 }
     // split++;
-        // ft_printf("no split\n");
-        // ft_printf("i: %d\n", i);
-        // ft_printf("value: %s\n", node->value);
+        // printf("no split\n");
+        // printf("i: %d\n", i);
+        // printf("value: %s\n", node->value);
         // free(split);
         // ft_strlcpy(node->key, str, i);
-        // ft_printf("key: %s\n", node->key);
+        // printf("key: %s\n", node->key);
 
 	// env = ft_calloc(1, sizeof(t_node));
 	// env->next = NULL;

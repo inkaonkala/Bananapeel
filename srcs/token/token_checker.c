@@ -3,10 +3,11 @@
 /*                                                        :::      ::::::::   */
 /*   token_checker.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:41:54 by jbremser          #+#    #+#             */
 /*   Updated: 2024/09/17 11:18:21 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/17 11:39:46 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +44,7 @@ static void merge_it(t_bananas *bana, int i, int j)
 	new_str = (char *)ft_calloc(len, sizeof(char));
 	if (new_str == NULL)
 	{
-		ft_printf("Bananas! : Calloc fail in merge\n");
+		printf("Bananas! : Calloc fail in merge\n");
 		exiting(bana, 1);
 	}
 	ft_strlcpy(new_str, bana->token[i], len);
