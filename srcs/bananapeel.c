@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 13:11:18 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/17 11:38:27 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/17 11:41:20 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int main(int arv, char **arc, char **envp)
 			add_history(input);
 
 			if(!parsing(input, &bana))
-	
+			{
 				printf("Parsing is bananas!\n");
 				if (!bana.env)
 				 	free_env(&bana.env);
