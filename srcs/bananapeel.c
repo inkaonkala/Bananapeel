@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 13:11:18 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/16 13:07:13 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/17 11:59:12 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,8 @@ int main(int arv, char **arc, char **envp)
 				continue ;
 			}
 			add_history(input);
-
 			if(!parsing(input, &bana))
 			{
-				ft_printf("Parsing is bananas!\n");
 				if (!bana.env)
 				 	free_env(&bana.env);
 				break ;
