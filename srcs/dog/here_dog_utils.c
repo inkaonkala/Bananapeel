@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 17:25:20 by etaattol          #+#    #+#             */
-/*   Updated: 2024/09/17 10:06:15 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/18 15:27:58 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,12 @@ static inline char	*_getstatus(void)
 	return (&status);
 }
 
-char    get_heredog_status(void)
+char	get_heredog_status(void)
 {
 	return (*_getstatus());
 }
 
-
-void    set_heredog_status(char status)
+void	set_heredog_status(char status)
 {
 	*_getstatus() = status;
 }
