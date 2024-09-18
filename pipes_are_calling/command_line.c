@@ -6,18 +6,35 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 10:14:58 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/17 14:39:00 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/18 12:53:09 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+static bool	path_handler(t_bananas *bana, char **envp, char *path, int i)
+{
+	char	**cmd;
+
+	cmd = ft_split(bana->token[i], ' ');
+	if (!cmd)
+	{
+		free_line(bana->cmd_paths, bana->tok_num);
+		bana->cmd_paths = NULL;
+		return (false);
+	}
+	path = get_path(cmd[0], envp);
+	bana->cmd_paths[i] = path;
+	free_line(cmd, -1);
+	return (true);
+}
 
 static bool	init_path(t_bananas *bana)
 {
 	int	i;
 
 	i = bana->tok_num;
-	if(i > 3)
+	if (i > 3)
 		i--;
 	bana->cmd_paths = ft_calloc(bana->tok_num, sizeof(char *));
 	if (!bana->cmd_paths)
@@ -38,16 +55,8 @@ bool	parse_cmd_line(t_bananas *bana, char **envp)
 	{	
 		if (!check_specials(bana->token[i]))
 		{
-			cmd = ft_split(bana->token[i], ' ');
-			if (!cmd)
-			{
-				free_line(bana->cmd_paths, bana->tok_num);
-				bana->cmd_paths = NULL;
+			if (!path_handler(bana, envp, path, i))
 				return (false);
-			}
-			path = get_path(cmd[0], envp);
-			bana->cmd_paths[i] = path;
-			free_line(cmd, -1);
 			i++;
 		}
 		else

@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:41:54 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/17 15:15:55 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/18 10:43:15 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ void	command_search(t_bananas *bana, char **envp, t_node **env)
 		big_stopping(SET, 0);
 	if (bana->is_rdr && !bana->is_pipe)
 		redirections(bana, envp);
+	if (find_path_env(envp) == NULL)
+		no_path(bana);
 	if (bana->tok_num > 0)
 		pipex(bana, envp, env);
 	clean_struct(bana);

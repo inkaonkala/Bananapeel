@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 14:47:58 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/12 09:35:21 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/18 10:39:36 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static char	*extrct_path(char *path, char **envp)
 	return (NULL);
 }
 
-static char	**find_path_env(char **envp)
+char	**find_path_env(char **envp)
 {
 	char	*path;
 
