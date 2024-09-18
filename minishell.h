@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 18:12:07 by etaattol          #+#    #+#             */
-/*   Updated: 2024/09/18 11:33:58 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/18 14:00:46 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,7 @@ int     number_checker(char *argv);
 /* ************************************************************************** */
 /*									here_dog								  */
 /* ************************************************************************** */
+
 void	find_dog(t_bananas *bana, int tk_i);
 void 	handle_the_dog(const char *delimiter, t_bananas *bana);
 char    get_heredog_status(void);
@@ -155,7 +156,9 @@ char	*readline_wrapper(const char *prompt, t_bananas *bana);
 /* ************************************************************************** */
 /*									delimiter								  */
 /* ************************************************************************** */
+
 char	*find_delimiter(t_bananas *bana);
+
 /* ************************************************************************** */
 /*									token_checker							  */
 /* ************************************************************************** */
@@ -169,18 +172,14 @@ void    token_merge(t_bananas *bana);
 
 void	del_quotes(t_bananas *bana);
 
-/* ************************************************************************** */
-/*							        clean_n_exit							  */
-/* ************************************************************************** */
 
-void    token_cleaner(t_bananas *bana, int i);
-void    exiting(t_bananas *bana, int i);
-void	free_stuff(char **args, char *path);
 
 /* ************************************************************************** */
 /*									funky_arrows							  */
 /* ************************************************************************** */
+
 void    redirections(t_bananas *bana, char **envp);
+
 /* ************************************************************************** */
 /*									file_handling							  */
 /* ************************************************************************** */
@@ -214,11 +213,28 @@ char	**list_to_eepie(t_node **env);
 /* ************************************************************************** */
 /*									broom_n_vacuum    						  */
 /* ************************************************************************** */
-void    clean_banana(t_bananas *bana);
-void	clean_struct(t_bananas *bana);
-char    *free_char_array(char **array);
-void	free_array(char ***paths, int arc);
 
+void	clean_struct(t_bananas *bana);
+void    token_cleaner(t_bananas *bana, int i);
+void    clean_files(t_bananas *bana);
+void	clean_n_errors(t_bananas *bana);
+
+/* ************************************************************************** */
+/*							        clean_n_exit							  */
+/* ************************************************************************** */
+
+void    clean_banana(t_bananas *bana);
+void    exiting(t_bananas *bana, int i);
+
+/* ************************************************************************** */
+/*							        freeing   	        					  */
+/* ************************************************************************** */
+
+void	free_stuff(char **args, char *path);
+void	free_array(char ***paths, int arc);
+char    *free_char_array(char **array);
+void    free_line(char **paths, int arc);
+void	free_env(t_node	**env);
 
 /* ************************************************************************** */
 /*									pipes_are_calling						  */

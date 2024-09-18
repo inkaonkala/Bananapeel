@@ -6,7 +6,7 @@
 #    By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2024/09/18 12:54:03 by iniska           ###   ########.fr        #
+#    Updated: 2024/09/18 14:17:25 by iniska           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRCFILES 	= 	bananapeel.c \
 				broom/little_helpers.c \
 				broom/clean_n_exit.c \
 				broom/broom_n_vacuum.c \
+				broom/freeing.c \
 				builders/cdeeznuts.c \
 				builders/coyotes.c \
 				builders/export.c \
@@ -35,6 +36,8 @@ SRCFILES 	= 	bananapeel.c \
 				token/env_node.c \
 	 			dog/here_dog.c \
 	 			dog/delimiter.c \
+				dog/dog_signals.c \
+				dog/handle_dog.c \
 				dog/here_dog_utils.c \
 				rdr/funky_arrows.c \
 				rdr/file_handling.c \
