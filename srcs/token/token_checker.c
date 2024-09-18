@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_checker.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:41:54 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/18 10:43:15 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/18 15:21:54 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,18 +77,47 @@ void	token_merge(t_bananas *bana)
 	}
 }
 
+static bool	dora_is_exploring(t_bananas *bana)
+{
+	int no_path;
+
+	dprintf(2, "Dora is exploring\n");
+	no_path = 0;
+	while (bana->env->next)
+	{
+		if (bana->env->next == NULL)
+			break ;
+		if (ft_strcmp(bana->env->key, "PATH") == 0)
+		{
+			no_path = 1;
+			break ;
+		}
+		bana->env = bana->env->next;
+	}
+	while (bana->env->prev)
+	{
+		if (bana->env->next == NULL)
+			break ;
+		bana->env = bana->env->prev;
+	}
+	return (no_path);
+}
+
 void	command_search(t_bananas *bana, char **envp, t_node **env)
 {
 	if (!bana->is_rdr && !bana->is_pipe)
 		built_ins(bana);
-	token_merge(bana);
-	if (bana->is_dog)
-		big_stopping(SET, 0);
-	if (bana->is_rdr && !bana->is_pipe)
-		redirections(bana, envp);
-	if (find_path_env(envp) == NULL)
-		no_path(bana);
 	if (bana->tok_num > 0)
-		pipex(bana, envp, env);
+	{
+		token_merge(bana);
+		if (bana->is_dog)
+			big_stopping(SET, 0);
+		if (bana->is_rdr && !bana->is_pipe)
+			redirections(bana, envp);
+		if (!dora_is_exploring(bana))
+			no_path(bana);
+		if (bana->tok_num > 0)
+			pipex(bana, envp, env);
+	}
 	clean_struct(bana);
 }
