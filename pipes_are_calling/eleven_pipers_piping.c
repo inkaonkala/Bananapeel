@@ -6,11 +6,18 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 11:01:35 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/17 14:06:10 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/18 11:41:39 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+static	int	waiting(int i, int status)
+{
+	waitpid(-1, &status, 0);
+	i++;
+	return (i);
+}
 
 static bool	handle_commands(t_bananas *bana, char **envp, t_node **env)
 {	
@@ -39,7 +46,10 @@ void	pipex(t_bananas *bana, char **envp, t_node **env)
 
 	status = 0;
 	if (!handle_commands(bana, envp, env))
+	{
+		clean_struct(bana);
 		return ;
+	}
 	i = 0;
 	while (i < bana->tok_num)
 	{
@@ -49,10 +59,7 @@ void	pipex(t_bananas *bana, char **envp, t_node **env)
 	}
 	i = 0;
 	while (i < bana->tok_num)
-	{
-		waitpid(-1, &status, 0);
-		i++;
-	}
+		i = waiting(i, status);
 	if (WIFEXITED(status))
 		bana->last_exit_status = WEXITSTATUS(status);
 	else if (WIFSIGNALED(status))
