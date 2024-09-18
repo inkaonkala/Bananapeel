@@ -6,7 +6,7 @@
 #    By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2024/09/17 10:07:55 by iniska           ###   ########.fr        #
+#    Updated: 2024/09/17 15:29:03 by iniska           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRCFILES 	= 	bananapeel.c \
 				token/token_checker.c \
 	 			token/parsing.c \
 				token/banananice.c \
+				token/env_node.c \
 	 			dog/here_dog.c \
 	 			dog/delimiter.c \
 				dog/here_dog_utils.c \

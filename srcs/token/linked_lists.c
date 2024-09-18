@@ -6,18 +6,17 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 14:29:28 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/17 09:51:48 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/17 15:33:29 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../minishell.h"
 
 void	remove_node(t_node *node)
 {
 	t_node	*temp;
-	
-	if (!node->prev && !node->next) //only node
+
+	if (!node->prev && !node->next)
 	{
 		(void)temp;
 		free(node->key);
@@ -25,7 +24,7 @@ void	remove_node(t_node *node)
 		free(node);
 		return ;
 	}
-	else if (!node->prev && node->next) //first node
+	else if (!node->prev && node->next)
 	{
 		temp = node->next;
 		node->next = NULL;
@@ -36,7 +35,7 @@ void	remove_node(t_node *node)
 		node = temp;
 		return ;
 	}
-	else if (node->prev && !node->next) //last node
+	else if (node->prev && !node->next)
 	{
 		temp = node->prev;
 		temp->next = NULL;
@@ -47,7 +46,7 @@ void	remove_node(t_node *node)
 		node = temp;
 		return ;
 	}
-	else //needs to handle for first node, last node, two nodes only, edges
+	else
 	{
 		temp = node->prev;
 		temp->next = node->next;
@@ -71,54 +70,48 @@ t_node	*find_last(t_node	*stack)
 		temp = temp->next;
 	return (temp);
 }
-    // printf("inside find last\n");
 
-t_node   *parse_str(t_node *node, char *str)
+t_node	*parse_str(t_node *node, char *str)
 {
-    char *split;
-    int i;
+	char *split;
+	int i;
 
-    i = 0;    
-    split = ft_strchr(str, '=');
-    if (!split)
-    {
-        node->value = NULL;
-        node->key = ft_strdup(str);
-    }
-    else
-    {
-        i = split - str;
-        split++;
-		// if (node->value)
-		// 	free(node->value);
-        node->value = ft_strdup(split);
-        str[i] = '\0';
-        node->key = ft_strdup(str);
-    }
-    return (node);
+	i = 0;    
+	split = ft_strchr(str, '=');
+	if (!split)
+	{
+		node->value = NULL;
+		node->key = ft_strdup(str);
+	}
+	else
+	{
+		i = split - str;
+		split++;
+		node->value = ft_strdup(split);
+		str[i] = '\0';
+		node->key = ft_strdup(str);
+	}
+	return (node);
 }
 
 
 void	load_list(t_bananas *bana, char **envp)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (envp[i])
-    {
-        if (add_end(&bana->env, envp[i]))
-        {
-            free_env(&bana->env);
-            write(1, "Error\n", 6);
-            exit(1);
-        }
-        i++;
-    }
-	// printf("\nKey of first line of env: %s  Value of: %s \n", bana->env[0].key, bana->env[0].value);
+	i = 0;
+	while (envp[i])
+	{
+		if (add_end(&bana->env, envp[i]))
+		{
+			free_env(&bana->env);
+			write(1, "Error\n", 6);
+			exit(1);
+		}
+		i++;
+	}
 	return ;
 }
-    // printf("Load_list\n");
-        // printf("another line\n");
 
 int	stack_len(t_node *stack)
 {
@@ -134,19 +127,3 @@ int	stack_len(t_node *stack)
 	}
 	return (i);
 }
-    // split++;
-        // ft_printf("no split\n");
-        // ft_printf("i: %d\n", i);
-        // ft_printf("value: %s\n", node->value);
-        // free(split);
-        // ft_strlcpy(node->key, str, i);
-        // ft_printf("key: %s\n", node->key);
-
-	// env = ft_calloc(1, sizeof(t_node));
-	// env->next = NULL;
-	// env->prev = NULL;
-	// if (!env)
-	// {
-	// 	printf("Banana errors\n");
-	// 	exit(1); // what do we want this to do in this case?
-	// }
