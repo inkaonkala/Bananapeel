@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   eleven_pipers_piping.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 11:01:35 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/18 11:41:39 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/18 17:36:41 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static	int	waiting(int i, int status)
+static	int	waiting(int i, int *status)
 {
-	waitpid(-1, &status, 0);
+	waitpid(-1, status, 0);
 	i++;
 	return (i);
 }
@@ -59,7 +59,7 @@ void	pipex(t_bananas *bana, char **envp, t_node **env)
 	}
 	i = 0;
 	while (i < bana->tok_num)
-		i = waiting(i, status);
+		i = waiting(i, &status);
 	if (WIFEXITED(status))
 		bana->last_exit_status = WEXITSTATUS(status);
 	else if (WIFSIGNALED(status))

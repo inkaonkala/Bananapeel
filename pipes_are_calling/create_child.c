@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_child.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 10:43:34 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/18 12:51:30 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/18 17:33:48 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	create_child(t_bananas *bana, char **envp, int index)
 	pid_t	pid;
 	int		fd[2];
 	int		last;
-	int		status;
+	// int		status;
 
 	last = (index == bana->tok_num - 1);
 	if (!fork_it(bana, fd, &pid, index))
@@ -74,8 +74,8 @@ int	create_child(t_bananas *bana, char **envp, int index)
 		else
 		{
 			shut_fd(fd);
-			waitpid(pid, &status, 0);
-			bana->last_exit_status = WEXITSTATUS(status);
+			// waitpid(pid, &status, 0);
+			// bana->last_exit_status = WEXITSTATUS(status);
 		}
 	}
 	return (true);
