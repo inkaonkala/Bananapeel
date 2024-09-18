@@ -6,13 +6,13 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 13:01:29 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/18 13:02:21 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/18 13:10:20 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-static void	dog_it(t_bananas *bana)
+static void	fatdog_it(t_bananas *bana)
 {
 	char	*delimiter;
 
@@ -34,7 +34,7 @@ void	open_infile(t_bananas *bana, int i)
 	int	fd;
 
 	if (ft_strncmp(bana->token[i], "<<", 2) == 0)
-		dog_it(bana);
+		fatdog_it(bana);
 	else if (get_heredog_status() == OUT_HEREDOG)
 	{
 		fd = open(bana->token[i], O_RDONLY);
