@@ -6,30 +6,31 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 12:59:08 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/17 10:04:02 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/18 09:45:57 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-static void	mallocing(t_bananas *bana, int in_file_count, int out_file_count)
+static bool	mallocing(t_bananas *bana, int in_file_count, int out_file_count)
 {
 	bana->in_files = malloc(sizeof(int) * in_file_count);
 	if (!bana->in_files)
 	{
 		perror("Malloc in_files failed");
-		return ;
+		return (false);
 	}
 	bana->out_files = malloc(sizeof(int) * out_file_count);
 	if (!bana->out_files)
 	{
 		perror("Malloc out_files failed");
 		free(bana->in_files);
-		return ;
+		return (false);
 	}
+	return (true);
 }
 
-void	file_malloc(t_bananas *bana)
+bool	file_malloc(t_bananas *bana)
 {
 	int	in_file_count;
 	int	out_file_count;
@@ -47,7 +48,9 @@ void	file_malloc(t_bananas *bana)
 			out_file_count++;
 		i++;
 	}
-	mallocing(bana, in_file_count, out_file_count);
+	if(!mallocing(bana, in_file_count, out_file_count))
+		return (false);
 	bana->infile_count = 0;
 	bana->outfile_count = 0;
+	return(true);
 }

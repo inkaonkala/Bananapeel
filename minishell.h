@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 18:12:07 by etaattol          #+#    #+#             */
-/*   Updated: 2024/09/16 13:18:30 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/18 09:44:08 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ int		empties(char c);
 /*									banananice								  */
 /* ************************************************************************** */
 
-void	banananice(t_bananas *bana, char **tokens, int token_index);
+bool	banananice(t_bananas *bana, char **tokens, int token_index);
 
 /* ************************************************************************** */
 /*									little_helpers							  */
@@ -190,7 +190,7 @@ void	open_outfile(t_bananas *bana, int i, bool append);
 /*									file_malloc 							  */
 /* ************************************************************************** */
 
-void	file_malloc(t_bananas *bana);
+bool	file_malloc(t_bananas *bana);
 
 /* ************************************************************************** */
 /*									linked_lists    						  */
@@ -200,6 +200,8 @@ t_node  *parse_str(t_node *node, char *str);
 void	free_env(t_node	**env);
 int     stack_len(t_node *stack);
 void	load_list(t_bananas *bana, char **envp);
+
+char	**list_to_eepie(t_node **env);
 
 /* ************************************************************************** */
 /*									broom_n_vacuum    						  */

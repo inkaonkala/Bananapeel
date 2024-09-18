@@ -6,54 +6,11 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:32:34 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/17 12:23:14 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/18 09:37:25 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
-static char	**list_to_eepie(t_node **env) //claudes
-{
-	int		len;
-	int		i;
-	t_node	*curr;
-	char	*temp;
-	char	**eepie;
-	char	*temp_value;
-
-	i = 0;
-	curr = *env;
-	len = stack_len(curr);
-	// len++;
-	eepie = ft_calloc(len, sizeof(char *));
-	if (!eepie)
-		return (NULL);
-	while (i < len - 1)
-	{
-		if (curr->key)
-		{
-			temp = ft_strjoin(curr->key, "=");
-			if (temp)
-			{
-				if (curr->value)
-				{
-					temp_value = ft_strjoin(temp, curr->value);
-					free(temp);
-					if (temp_value)
-					{
-						eepie[i] = ft_strdup(temp_value);
-						free(temp_value);
-					}
-				}
-				else
-					eepie[i] = ft_strdup(temp);
-			}
-		}
-		curr = curr->next;
-		i++;
-	}
-	return (eepie);
-}
 
 static int	count_tokens(char *str)
 {
@@ -85,7 +42,7 @@ static int	count_tokens(char *str)
 				}
 			}
 			i++;
-		}	
+		}
 	}
 	return (count);
 }
@@ -105,7 +62,7 @@ static bool	extract_tokens(char *str, char **tokens, t_bananas *bana)
 	{
 		while (str[i] && empties(str[i]))
 			i++;
-		if(str[i])
+		if (str[i])
 		{
 			start = i;
 			i = quote_chk(str, &cur_quo, i);	
@@ -118,7 +75,7 @@ static bool	extract_tokens(char *str, char **tokens, t_bananas *bana)
 			}
 			ft_strlcpy(tokens[token_index], &str[start], tok_len + 1);
 			tokens[token_index] = dollar_check(tokens[token_index], bana->env, bana);
-			if(!tokens[token_index])
+			if (!tokens[token_index])
 			{
 				free_char_array(tokens);
 				return (false);
@@ -135,7 +92,7 @@ bool	parsing(char *str, t_bananas *bana)
 	int		token_count;
 
 	token_count = count_tokens(str);
-	if(token_count == 0)
+	if (token_count == 0)
 		return (true);
 	free_char_array(bana->envp);
 	bana->envp = list_to_eepie(&bana->env);
@@ -147,7 +104,8 @@ bool	parsing(char *str, t_bananas *bana)
 		free_char_array(tokens);
 		return (false);
 	}
-	banananice(bana, tokens, token_count);
+	if (!banananice(bana, tokens, token_count))
+		return (true);
 	command_search(bana, bana->envp, &bana->env);
 	return (true);
 }
