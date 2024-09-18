@@ -6,13 +6,13 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:32:34 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/18 10:05:02 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/18 11:33:23 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-static int	count_tokens(char *str)
+int	count_tokens(char *str)
 {
 	int		count;
 	int		i;

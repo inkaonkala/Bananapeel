@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 18:12:07 by etaattol          #+#    #+#             */
-/*   Updated: 2024/09/18 09:44:08 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/18 11:33:58 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,12 @@ void	built_ins(t_bananas *bana);
 void handle_deeznuts(t_bananas *bana);
 
 /* ************************************************************************** */
+/*									no_path 								  */
+/* ************************************************************************** */
+
+void    no_path(t_bananas *bana);
+
+/* ************************************************************************** */
 /*									export           						  */
 /* ************************************************************************** */
 void	handle_export(t_bananas *bana);
@@ -117,6 +123,8 @@ int     big_stopping(int get, int newvalue);
 /* ************************************************************************** */
 /*									parsing 								  */
 /* ************************************************************************** */
+
+int     count_tokens(char *str);
 bool	parsing(char *str, t_bananas *bana);
 int		empties(char c);
 
@@ -252,6 +260,7 @@ bool	fork_it(t_bananas *bana, int fd[2], pid_t *pid, int index);
 
 // get_path.c
 
+char    **find_path_env(char **envp);
 char	*get_path(char *path_name, char **envp);
 
 //in_n_out_put.c
@@ -267,7 +276,6 @@ void	init_pipes(t_bananas *bana);
 
 // pipe_helpers.c
 
-void	empty_prompt(void);
 void	shut_fd(int fd[2]);
 void	free_argh(char **argh);
 void    handle_sigint_s(int sig);
