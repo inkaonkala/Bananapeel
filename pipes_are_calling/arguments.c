@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arguments.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 10:16:47 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/17 13:55:32 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/18 13:05:15 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ bool	parse_cmd_args(t_bananas *bana)
 			return (false);
 		}
 		bana->cmd_args[i] = *args;
+		free(args);
 		i++;
 	}
 	bana->cmd_args[i] = NULL;
