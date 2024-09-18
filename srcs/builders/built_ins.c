@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_ins.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/17 09:42:24 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/18 15:31:15 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,9 @@
 
 static void	handle_env(t_bananas *bana)
 {	
-	// t_bananas	*temp;
-
-	// temp = bana;
-	printf("\ninside ENV\n");
 	while (bana->env->next)
 	{
-		if (!bana->env)
+		if (bana->env->next == NULL)
 		{		
 			printf("why am i broken?\n");
 			break ;
@@ -33,7 +29,6 @@ static void	handle_env(t_bananas *bana)
 		token_cleaner(bana, 0);
 	if (bana->is_rdr)
 		exit (0);
-	// bana = temp;
 	while (bana->env->prev)
 		bana->env = bana->env->prev;
 
