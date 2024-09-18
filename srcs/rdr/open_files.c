@@ -6,30 +6,35 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 13:01:29 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/17 09:43:56 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/18 13:10:20 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+static void	fatdog_it(t_bananas *bana)
+{
+	char	*delimiter;
+
+	set_heredog_status(IN_HEREDOG);
+	delimiter = find_delimiter(bana);
+	if (delimiter)
+	{
+		handle_the_dog(delimiter, bana);
+		free(delimiter);
+	}
+	else
+		ft_printf("Bananas! : Unable to find heredog delimiter\n");
+	set_heredog_status(OUT_HEREDOG);
+	bana->is_dog = true;
+}
 
 void	open_infile(t_bananas *bana, int i)
 {
 	int	fd;
 
 	if (ft_strncmp(bana->token[i], "<<", 2) == 0)
-	{
-		set_heredog_status(IN_HEREDOG);
-		char *delimiter = find_delimiter(bana);
-		if (delimiter)
-		{
-			handle_the_dog(delimiter, bana);
-			free(delimiter);
-		}
-		else
-			ft_printf("Bananas! : Unable to find heredog delimiter\n");
-		set_heredog_status(OUT_HEREDOG);
-		bana->is_dog = true;
-	}
+		fatdog_it(bana);
 	else if (get_heredog_status() == OUT_HEREDOG)
 	{
 		fd = open(bana->token[i], O_RDONLY);
@@ -42,7 +47,7 @@ void	open_infile(t_bananas *bana, int i)
 	}
 	else
 	{
-		ft_printf("Bananas! Unexpected token while in heredog: %s\n", bana->token[i]);
+		ft_printf("Bananas! Unexpected token in heredog: %s\n", bana->token[i]);
 		return ;
 	}
 	bana->infile_count++;
