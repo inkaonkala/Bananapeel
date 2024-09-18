@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:16:45 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/18 09:47:24 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/18 10:00:32 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ bool	banananice(t_bananas *bana, char **tokens, int token_index)
 	bana->infile_count = 0;
 	bana->original_stdin = -1;
 	bana->heredog_interrupted = 0;
-	if(!file_malloc(bana))
+	if (!file_malloc(bana))
 		return (false);
 	del_quotes(bana);
-	if(!type_check(bana))
+	if (!type_check(bana))
 		return (false);
 	return (true);
 }
