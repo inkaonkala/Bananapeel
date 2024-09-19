@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:16:45 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/18 14:07:02 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/19 10:47:52 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@ static bool	type_check(t_bananas *bana)
 	int	i;
 
 	i = 0;
+
+	if (ft_strncmp(bana->token[0], "|", 1) == 0)
+	{
+		printf("Bananas errors\n");
+		return (false);
+	}
 	while (bana->token[i])
 	{		
 		if (ft_strncmp(bana->token[i], "<<", 2) == 0)
@@ -43,6 +49,12 @@ static bool	type_check(t_bananas *bana)
 		}		
 		if (ft_strncmp(bana->token[i], "|", 1) == 0)
 		{
+			//if (ft_strncmp(bana->token[i++], "|", 1) == 0)
+			//{
+			//	printf("Bananas errors\n");
+			//	clean_struct(bana);
+			//	return (false);
+			//}
 			bana->is_pipe = true;
 		}
 		if (ft_strncmp(bana->token[i], ">>", 2) == 0
