@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 10:43:34 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/18 17:33:48 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/19 17:11:59 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int	create_child(t_bananas *bana, char **envp, int index)
 	pid_t	pid;
 	int		fd[2];
 	int		last;
-	// int		status;
 
 	last = (index == bana->tok_num - 1);
 	if (!fork_it(bana, fd, &pid, index))
@@ -72,11 +71,7 @@ int	create_child(t_bananas *bana, char **envp, int index)
 		if (index > 0 || !last)
 			fd_handler(bana, index, last, fd);
 		else
-		{
 			shut_fd(fd);
-			// waitpid(pid, &status, 0);
-			// bana->last_exit_status = WEXITSTATUS(status);
-		}
 	}
 	return (true);
 }

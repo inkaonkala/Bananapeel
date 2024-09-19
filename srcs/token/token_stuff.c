@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_stuff.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 11:51:19 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/19 12:39:46 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/19 17:02:59 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,34 +49,37 @@ int	count_tokens(char *str)
 	return (count);
 }
 
+/*
+int i[0] = an iterator for string
+int i[1] = an iterator for tokens
+int i[2] = the point in the array that we will start a new token
+int i[3] = the token length
+*/
+
 bool	extract_tokens(char *str, char **tokens, t_bananas *bana)
 {
-	int		i;
-	int		token_i;
-	int		start;
+	int		i[4];
 	char	cur_quo;
-	int		tok_len;
 
-	i = 0;
-	token_i = 0;
+	i[0] = 0;
+	i[1] = 0;
 	cur_quo = 0;
-	while (str[i])
+	while (str[i[0]])
 	{
-		while (str[i] && empties(str[i]))
-			i++;
-		if (str[i])
+		while (str[i[0]] && empties(str[i[0]]))
+			i[0]++;
+		if (str[i[0]])
 		{
-			start = i;
-			i = quote_chk(str, &cur_quo, i);
-			tok_len = i - start;
-			tokens[token_i] = malloc(tok_len + 1);
-			if (!tokens[token_i])
+			i[2] = i[0];
+			i[0] = quote_chk(str, &cur_quo, i[0]);
+			i[3] = i[0] - i[2];
+			tokens[i[1]] = malloc(i[3] + 1);
+			if (!tokens[i[1]])
 				return (return_n_free(tokens));
-			ft_strlcpy(tokens[token_i], &str[start], tok_len + 1);
-			tokens[token_i] = dollar_check(tokens[token_i], bana->env, bana);
-			if (!tokens[token_i])
+			ft_strlcpy(tokens[i[1]], &str[i[2]], i[3] + 1);
+			tokens[i[1]] = dollar_check(tokens[i[1]], bana->env, bana);
+			if (!tokens[i[1]++])
 				return (return_n_free(tokens));
-			token_i++;
 		}
 	}
 	return (true);

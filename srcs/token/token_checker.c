@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_checker.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:41:54 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/19 14:55:55 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/19 16:49:52 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,9 +117,9 @@ void	command_search(t_bananas *bana, char **envp, t_node **env)
 			no_path(bana);
 		if (bana->tok_num > 0)
 		{
-			if(bana->is_rdr)
+			if (bana->is_rdr)
 			{
-				if(rdr_in_pipes(bana, envp))
+				if (rdr_in_pipes(bana, envp))
 					pipex(bana, envp, env);
 			}
 			else

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   linked_lists.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 14:29:28 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/17 15:33:29 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/19 16:48:03 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,49 +14,13 @@
 
 void	remove_node(t_node *node)
 {
-	t_node	*temp;
-
-	if (!node->prev && !node->next)
-	{
-		(void)temp;
-		free(node->key);
-		free(node->value);
-		free(node);
-		return ;
-	}
-	else if (!node->prev && node->next)
-	{
-		temp = node->next;
-		node->next = NULL;
-		temp->prev = NULL;
-		free(node->key);
-		free(node->value);
-		free(node);
-		node = temp;
-		return ;
-	}
-	else if (node->prev && !node->next)
-	{
-		temp = node->prev;
-		temp->next = NULL;
-		node->prev = NULL;
-		free(node->key);
-		free(node->value);
-		free(node);
-		node = temp;
-		return ;
-	}
-	else
-	{
-		temp = node->prev;
-		temp->next = node->next;
-		temp->next->prev = temp;
-		node->prev = NULL;
-		node->next = NULL;
-		free(node->key);
-		free(node->value);
-		free(node);
-	}
+	if (node->prev)
+		node->prev->next = node->next;
+	if (node->next)
+		node->next->prev = node->prev;
+	free(node->key);
+	free(node->value);
+	free(node);
 }
 
 t_node	*find_last(t_node	*stack)
@@ -73,10 +37,10 @@ t_node	*find_last(t_node	*stack)
 
 t_node	*parse_str(t_node *node, char *str)
 {
-	char *split;
-	int i;
+	char	*split;
+	int		i;
 
-	i = 0;    
+	i = 0;
 	split = ft_strchr(str, '=');
 	if (!split)
 	{
@@ -93,7 +57,6 @@ t_node	*parse_str(t_node *node, char *str)
 	}
 	return (node);
 }
-
 
 void	load_list(t_bananas *bana, char **envp)
 {
