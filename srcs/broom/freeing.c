@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:50:14 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/18 13:51:30 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/19 11:38:18 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	free_stuff(char **args, char *path)
 	int	i;
 
 	i = 0;
-	while(args[i])
+	while (args[i])
 	{
 		free(args[i]);
 		i++;
@@ -32,7 +32,6 @@ void	free_env(t_node	**env)
 	t_node	*temp;
 	t_node	*curr;
 
-   
 	curr = *env;
 	temp = NULL;
 	while (curr)
@@ -102,19 +101,19 @@ void	free_line(char **paths, int arc)
 	paths = NULL;
 }
 
-char    *free_char_array(char **array)
+char	*free_char_array(char **array)
 {
-    size_t    i;
+	size_t	i;
 
-    if (array == NULL)
-        return (NULL);
-    i = 0;
-    while ((array)[i] != NULL)
-    {
-        free((array)[i]);
-        (array)[i] = NULL;
-        i++;
-    }
-    free(array);
-    return (NULL);
+	if (array == NULL)
+		return (NULL);
+	i = 0;
+	while ((array)[i] != NULL)
+	{
+		free((array)[i]);
+		(array)[i] = NULL;
+		i++;
+	}
+	free(array);
+	return (NULL);
 }

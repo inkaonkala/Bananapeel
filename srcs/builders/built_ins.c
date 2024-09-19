@@ -18,7 +18,6 @@ static void	handle_env(t_bananas *bana)
 	{
 		if (bana->env->next == NULL)
 		{		
-			printf("why am i broken?\n");
 			break ;
 		}
 		if (bana->env->value)

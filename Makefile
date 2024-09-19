@@ -6,7 +6,7 @@
 #    By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2024/09/18 14:17:25 by iniska           ###   ########.fr        #
+#    Updated: 2024/09/19 11:54:31 by iniska           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRCFILES 	= 	bananapeel.c \
 				builders/no_path.c \
 				token/linked_lists.c \
 				token/token_checker.c \
+				token/token_stuff.c \
 	 			token/parsing.c \
 				token/banananice.c \
 				token/env_node.c \

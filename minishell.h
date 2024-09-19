@@ -52,6 +52,7 @@ typedef struct s_bananas
     bool    is_pipe;
     bool    is_rdr;
     bool    is_dog;
+    bool    rdr_in_pipe;
 
     // for file_handling
     int     *in_files;
@@ -94,6 +95,7 @@ void handle_deeznuts(t_bananas *bana);
 /*									no_path 								  */
 /* ************************************************************************** */
 
+void	brake_token_again(t_bananas *bana);
 void    no_path(t_bananas *bana);
 
 /* ************************************************************************** */
@@ -126,9 +128,15 @@ int     big_stopping(int get, int newvalue);
 /*									parsing 								  */
 /* ************************************************************************** */
 
-int     count_tokens(char *str);
 bool	parsing(char *str, t_bananas *bana);
 int		empties(char c);
+
+/* ************************************************************************** */
+/*									token_stuff								  */
+/* ************************************************************************** */
+
+int     count_tokens(char *str);
+bool	extract_tokens(char *str, char **tokens, t_bananas *bana);
 
 /* ************************************************************************** */
 /*									banananice								  */
@@ -173,8 +181,6 @@ void    token_merge(t_bananas *bana);
 /* ************************************************************************** */
 
 void	del_quotes(t_bananas *bana);
-
-
 
 /* ************************************************************************** */
 /*									funky_arrows							  */
@@ -227,6 +233,7 @@ void	clean_n_errors(t_bananas *bana);
 
 void    clean_banana(t_bananas *bana);
 void    exiting(t_bananas *bana, int i);
+bool	return_n_free(char **tokens);
 
 /* ************************************************************************** */
 /*							        freeing   	        					  */
@@ -258,6 +265,7 @@ bool    parse_cmd_line(t_bananas *bana, char **envp);
 // eleven_pipers_piping.c
 
 void	pipex(t_bananas *bana, char **envp, t_node **env);
+bool	rdr_in_pipes(t_bananas *bana, char **envp);
 
 // execute_command.c
 

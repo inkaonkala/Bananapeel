@@ -6,21 +6,20 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 09:23:36 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/18 14:02:34 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/19 11:40:59 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../../minishell.h"
 
-void clean_files(t_bananas *bana)
+void	clean_files(t_bananas *bana)
 {
 	if (bana->in_files != NULL)
 	{
 		free(bana->in_files);
 		bana->in_files = NULL;
 	}
-	if(bana->out_files != NULL)
+	if (bana->out_files != NULL)
 	{
 		free(bana->out_files);
 		bana->out_files = NULL;
@@ -32,7 +31,7 @@ void	clean_struct(t_bananas *bana)
 	while (bana->tok_num > 0)
 		token_cleaner(bana, 0);
 	clean_files(bana);
-	if(bana->pipes != NULL)
+	if (bana->pipes != NULL)
 	{
 		free(bana->pipes);
 		bana->pipes = NULL;
@@ -46,23 +45,23 @@ void	clean_struct(t_bananas *bana)
 	bana->prev_fd[1] = -1;
 }
 
-void token_cleaner(t_bananas *bana, int i)
+void	token_cleaner(t_bananas *bana, int i)
 {
-    if (bana->token == NULL || i >= bana->tok_num)
-        return;  
-    free(bana->token[i]);
-	while (i < bana->tok_num - 1) 
+	if (bana->token == NULL || i >= bana->tok_num)
+		return ;
+	free(bana->token[i]);
+	while (i < bana->tok_num - 1)
 	{
-        bana->token[i] = bana->token[i + 1];
-        i++;
-    }
-    bana->token[bana->tok_num - 1] = NULL;
-    bana->tok_num--;
-    if (bana->tok_num == 0) 
+		bana->token[i] = bana->token[i + 1];
+		i++;
+	}
+	bana->token[bana->tok_num - 1] = NULL;
+	bana->tok_num--;
+	if (bana->tok_num == 0)
 	{
-        free(bana->token);
-        bana->token = NULL;
-    }
+		free(bana->token);
+		bana->token = NULL;
+	}
 }
 
 void	clean_n_errors(t_bananas *bana)

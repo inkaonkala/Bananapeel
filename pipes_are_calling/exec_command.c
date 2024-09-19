@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:46:16 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/16 14:11:32 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/19 10:53:11 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	execute_command(t_bananas *bana, char **envp, int index)
 		do_it(bana, envp, index, cmd_args);
 	else
 	{
-		printf("Bananas! Can't find your command :( \n");
+		printf("Command is bananas! \n");
 		free_argh(cmd_args);
 		clean_struct(bana);
 		exiting(bana, 127);

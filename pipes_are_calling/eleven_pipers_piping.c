@@ -6,15 +6,15 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 11:01:35 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/18 11:41:39 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/19 14:56:46 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static	int	waiting(int i, int status)
+static	int	waiting(int i, int *status)
 {
-	waitpid(-1, &status, 0);
+	waitpid(-1, status, 0);
 	i++;
 	return (i);
 }
@@ -38,6 +38,23 @@ static bool	handle_commands(t_bananas *bana, char **envp, t_node **env)
 	return (true);
 }
 
+bool	rdr_in_pipes(t_bananas *bana, char **envp)
+{	
+	int j = 0;
+
+	bana->rdr_in_pipe = true;
+	redirections(bana, envp);
+	if(bana->tok_num > 0)
+	{
+		while (strncmp(bana->token[0], "|", 1) != 0)
+			token_cleaner(bana, 0);
+		token_cleaner(bana, 0);
+		bana->is_rdr = false;
+		return (true);
+	}
+	return (false);
+}
+
 void	pipex(t_bananas *bana, char **envp, t_node **env)
 {
 	int		i;
@@ -59,7 +76,7 @@ void	pipex(t_bananas *bana, char **envp, t_node **env)
 	}
 	i = 0;
 	while (i < bana->tok_num)
-		i = waiting(i, status);
+		i = waiting(i, &status);
 	if (WIFEXITED(status))
 		bana->last_exit_status = WEXITSTATUS(status);
 	else if (WIFSIGNALED(status))

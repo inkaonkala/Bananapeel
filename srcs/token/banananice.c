@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:16:45 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/18 14:07:02 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/19 14:27:24 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,20 @@ static bool	type_check(t_bananas *bana)
 	int	i;
 
 	i = 0;
+	if (ft_strncmp(bana->token[0], "|", 1) == 0)
+	{
+		printf("Bananas errors\n");
+		return (false);
+	}
 	while (bana->token[i])
-	{		
+	{
 		if (ft_strncmp(bana->token[i], "<<", 2) == 0)
 		{
 			if (!(check_dog(bana, i)))
 				return (false);
-		}		
-		if (ft_strncmp(bana->token[i], "|", 1) == 0)
-		{
-			bana->is_pipe = true;
 		}
+		if (ft_strncmp(bana->token[i], "|", 1) == 0)
+			bana->is_pipe = true;
 		if (ft_strncmp(bana->token[i], ">>", 2) == 0
 			|| ft_strncmp(bana->token[i], ">", 1) == 0
 			|| ft_strncmp(bana->token[i], "<", 1) == 0)
@@ -62,6 +65,7 @@ bool	banananice(t_bananas *bana, char **tokens, int token_index)
 	bana->is_pipe = false;
 	bana->is_rdr = false;
 	bana->is_dog = false;
+	bana->rdr_in_pipe = false;
 	bana->outfile_count = 0;
 	bana->infile_count = 0;
 	bana->original_stdin = -1;

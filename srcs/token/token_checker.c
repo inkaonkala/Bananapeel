@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_checker.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:41:54 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/18 15:21:54 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/19 14:55:55 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,8 @@ void	token_merge(t_bananas *bana)
 
 static bool	dora_is_exploring(t_bananas *bana)
 {
-	int no_path;
+	int	no_path;
 
-	dprintf(2, "Dora is exploring\n");
 	no_path = 0;
 	while (bana->env->next)
 	{
@@ -117,7 +116,15 @@ void	command_search(t_bananas *bana, char **envp, t_node **env)
 		if (!dora_is_exploring(bana))
 			no_path(bana);
 		if (bana->tok_num > 0)
-			pipex(bana, envp, env);
+		{
+			if(bana->is_rdr)
+			{
+				if(rdr_in_pipes(bana, envp))
+					pipex(bana, envp, env);
+			}
+			else
+				pipex(bana, envp, env);
+		}
 	}
 	clean_struct(bana);
 }
