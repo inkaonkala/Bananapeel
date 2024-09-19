@@ -6,15 +6,15 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 13:11:18 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/19 18:18:55 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/19 18:38:50 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	add_to_bana(t_bananas *bana)
+static void	add_to_bana(t_bananas *bana)
 {
-	if (!ft_memset(&bana, 0, sizeof(t_bananas)))
+	if (!ft_memset(bana, 0, sizeof(t_bananas)))
 	{
 		printf("Banana errors\n");
 		exit(1);
@@ -36,7 +36,7 @@ static bool	shell_loop(t_bananas *bana, char *input)
 		return (true);
 	}
 	add_history(input);
-	if (!parsing(input, &bana))
+	if (!parsing(input, bana))
 	{
 		printf("Parsing is bananas!\n");
 		if (!bana->env)
