@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 18:12:07 by etaattol          #+#    #+#             */
-/*   Updated: 2024/09/18 14:00:46 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/19 12:24:11 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,9 +124,15 @@ int     big_stopping(int get, int newvalue);
 /*									parsing 								  */
 /* ************************************************************************** */
 
-int     count_tokens(char *str);
 bool	parsing(char *str, t_bananas *bana);
 int		empties(char c);
+
+/* ************************************************************************** */
+/*									token_stuff								  */
+/* ************************************************************************** */
+
+int     count_tokens(char *str);
+bool	extract_tokens(char *str, char **tokens, t_bananas *bana);
 
 /* ************************************************************************** */
 /*									banananice								  */
@@ -171,8 +177,6 @@ void    token_merge(t_bananas *bana);
 /* ************************************************************************** */
 
 void	del_quotes(t_bananas *bana);
-
-
 
 /* ************************************************************************** */
 /*									funky_arrows							  */
@@ -225,6 +229,7 @@ void	clean_n_errors(t_bananas *bana);
 
 void    clean_banana(t_bananas *bana);
 void    exiting(t_bananas *bana, int i);
+bool	return_n_free(char **tokens);
 
 /* ************************************************************************** */
 /*							        freeing   	        					  */
