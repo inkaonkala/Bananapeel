@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 18:12:07 by etaattol          #+#    #+#             */
-/*   Updated: 2024/09/19 14:26:43 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/19 16:07:48 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,8 @@ void	handle_echo(t_bananas *bana);
 int	    handle_pwd(t_bananas *bana);
 void    handle_unset(t_bananas *bana, t_node **env);
 void	remove_node(t_node *node);
+t_node	*find_key(char *key, t_node *env);
+
 
 /* ************************************************************************** */
 /*									signaling								  */
