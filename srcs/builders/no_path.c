@@ -6,13 +6,13 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 10:44:08 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/18 11:36:09 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/19 14:09:46 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-static void	brake_token_again(t_bananas *bana)
+void	brake_token_again(t_bananas *bana)
 {
 	char	**new_tok;
 	char	*tok_zero;

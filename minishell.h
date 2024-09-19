@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 18:12:07 by etaattol          #+#    #+#             */
-/*   Updated: 2024/09/19 12:24:11 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/19 14:26:43 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_bananas
     bool    is_pipe;
     bool    is_rdr;
     bool    is_dog;
+    bool    rdr_in_pipe;
 
     // for file_handling
     int     *in_files;
@@ -94,6 +95,7 @@ void handle_deeznuts(t_bananas *bana);
 /*									no_path 								  */
 /* ************************************************************************** */
 
+void	brake_token_again(t_bananas *bana);
 void    no_path(t_bananas *bana);
 
 /* ************************************************************************** */
@@ -261,6 +263,7 @@ bool    parse_cmd_line(t_bananas *bana, char **envp);
 // eleven_pipers_piping.c
 
 void	pipex(t_bananas *bana, char **envp, t_node **env);
+bool	rdr_in_pipes(t_bananas *bana, char **envp);
 
 // execute_command.c
 

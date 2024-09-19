@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:41:54 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/19 11:42:24 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/19 14:55:55 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,15 @@ void	command_search(t_bananas *bana, char **envp, t_node **env)
 		if (!dora_is_exploring(bana))
 			no_path(bana);
 		if (bana->tok_num > 0)
-			pipex(bana, envp, env);
+		{
+			if(bana->is_rdr)
+			{
+				if(rdr_in_pipes(bana, envp))
+					pipex(bana, envp, env);
+			}
+			else
+				pipex(bana, envp, env);
+		}
 	}
 	clean_struct(bana);
 }
