@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/18 15:31:15 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/18 16:32:05 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static void	handle_env(t_bananas *bana)
 	{
 		if (bana->env->next == NULL)
 		{		
-			printf("why am i broken?\n");
 			break ;
 		}
 		if (bana->env->value)
