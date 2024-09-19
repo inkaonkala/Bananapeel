@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:41:54 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/19 09:38:10 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/19 11:42:24 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	token_merge(t_bananas *bana)
 
 static bool	dora_is_exploring(t_bananas *bana)
 {
-	int no_path;
+	int	no_path;
 
 	no_path = 0;
 	while (bana->env->next)
