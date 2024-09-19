@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_ins_helpers.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 10:20:14 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/18 11:33:28 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/19 16:11:41 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ void	handle_unset(t_bananas *bana, t_node **env)
 		{
 			if (!ft_strcmp(node->key, bana->token[0]))
 			{
-				printf("key = %s\n", node->key);
 				token_cleaner(bana, 0);
 				free(node->key);
 				free(node->value);
@@ -87,4 +86,15 @@ void	handle_unset(t_bananas *bana, t_node **env)
 	}
 	if (bana->is_rdr)
 		exit (0);
+}
+
+t_node	*find_key(char *key, t_node *env)
+{
+	while (env)
+	{
+		if (!ft_strcmp(env->key, key))
+			return (env);
+		env = env->next;
+	}
+	return (NULL);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cdeeznuts.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 15:11:50 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/17 09:42:29 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/18 18:02:24 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,8 @@ void	handle_deeznuts(t_bananas *bana)
 	if (bana->tok_num <= 2)
 	{
 		token_cleaner(bana, 0);
-		if (!bana->token || !bana->token[0] || (!ft_strcmp(bana->token[0], "~")))
+		if (!bana->token || !bana->token[0]
+			|| (!ft_strcmp(bana->token[0], "~")))
 		{
 			homeward_bound(bana);
 			update_pwds(bana);

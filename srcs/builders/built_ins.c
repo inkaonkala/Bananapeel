@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/18 15:31:15 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/19 16:09:10 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static void	handle_env(t_bananas *bana)
 		exit (0);
 	while (bana->env->prev)
 		bana->env = bana->env->prev;
-
 }
 
 void	print_tokens(t_bananas *bana)
@@ -82,14 +81,3 @@ void	built_ins(t_bananas *bana)
 		return ;
 	}
 }
-
-		// printf("bi:%s\n", bi);
-	// print_tokens(bana); //CHECKER
-	// printf("In BI's\n");
-			//send to pipes
-			// printf("Command '%s' not found\n", bi); 
-
-		// printf("end of first token loop tok_num:%d\n", bana->tok_num);
-			// printf("len:%d\n", len);
-			// printf("temp:%s\n", temp);
-			// printf("Here\n");
