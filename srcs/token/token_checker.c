@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_checker.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:41:54 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/18 15:52:01 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/19 09:38:10 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ static bool	dora_is_exploring(t_bananas *bana)
 {
 	int no_path;
 
-	// dprintf(2, "Dora is exploring\n");
 	no_path = 0;
 	while (bana->env->next)
 	{
