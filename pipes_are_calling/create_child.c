@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_child.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 10:43:34 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/19 17:11:59 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/20 11:22:00 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,15 @@ int	create_child(t_bananas *bana, char **envp, int index)
 	if (!fork_it(bana, fd, &pid, index))
 		return (false);
 	if (pid == 0)
+	{
+		signal(SIGINT, SIG_DFL);
+        signal(SIGQUIT, SIG_DFL);
 		input_n_putput(bana, envp, index, fd);
+	}
 	else
 	{
+		signal(SIGINT, SIG_IGN);
+		signal(SIGQUIT, SIG_IGN);
 		if (index > 0 || !last)
 			fd_handler(bana, index, last, fd);
 		else

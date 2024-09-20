@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 18:12:07 by etaattol          #+#    #+#             */
-/*   Updated: 2024/09/19 17:48:54 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/20 11:23:04 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@
 
 # define SET 0
 # define GET 1
-
-// extern int global;
 
 typedef struct s_node
 {
@@ -103,6 +101,8 @@ void	handle_exit(t_bananas *bana);
 /* ************************************************************************** */
 /*									built-ins_helpers						  */
 /* ************************************************************************** */
+
+void	echo_pipe(t_bananas *bana);
 void	handle_echo(t_bananas *bana);
 int		handle_pwd(t_bananas *bana);
 void	handle_unset(t_bananas *bana, t_node **env);
@@ -112,6 +112,7 @@ t_node	*find_key(char *key, t_node *env);
 /* ************************************************************************** */
 /*									signaling								  */
 /* ************************************************************************** */
+
 void	signaling(void);
 int		big_stopping(int get, int newvalue);
 

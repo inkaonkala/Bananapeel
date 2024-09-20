@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_ins.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/19 16:09:10 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/20 09:25:10 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,12 @@ static void	send_to_bob(t_bananas *bana, char *bi)
 	else if (ft_strcmp(bi, "pwd") == 0)
 		handle_pwd(bana);
 	else if (ft_strcmp(bi, "echo") == 0)
-		handle_echo(bana);
+	{
+		if(bana->rdr_in_pipe)
+			echo_pipe(bana);
+		else
+			handle_echo(bana);
+	}
 	else if (ft_strcmp(bi, "unset") == 0)
 		handle_unset(bana, &bana->env);
 	else if (ft_strcmp(bi, "env") == 0)

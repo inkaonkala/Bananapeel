@@ -3,14 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   built_ins_helpers.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 10:20:14 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/19 16:11:41 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/20 10:05:12 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+void	echo_pipe(t_bananas *bana)
+{
+	int		i;
+	bool	n_flag;
+
+	n_flag = false;
+	i = 1;
+	if (bana->tok_num > 1)
+	{
+		while (ft_strncmp(bana->token[i], "|", 1) != 0)
+		{	
+			ft_printf("%s ", bana->token[i]);
+			i++;
+		}
+	}
+}
 
 void	handle_echo(t_bananas *bana)
 {
@@ -28,7 +45,7 @@ void	handle_echo(t_bananas *bana)
 			token_cleaner(bana, 1);
 			n_flag = true;
 		}
-		while (i <= bana->tok_num - 2)
+		while (i <= bana->tok_num - 2 )
 			printf("%s ", bana->token[i++]);
 		if (bana->tok_num >= 2)
 			printf("%s", bana->token[bana->tok_num - 1]);
