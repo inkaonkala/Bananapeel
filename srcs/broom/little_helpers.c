@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   little_helpers.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 14:42:49 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/19 11:37:10 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/20 16:46:58 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,15 @@ bool	check_specials(char *token)
 int	number_checker(char *argv)
 {
 	size_t	i;
+	int		found_non_digit;
 
 	i = 0;
+	found_non_digit = 0;
 	while (i <= ft_strlen(argv) - 1)
 	{
-		if (ft_isdigit(argv[i]) == 1)
-			return (1);
+		if (!ft_isdigit(argv[i]))
+			found_non_digit = 1;
 		i++;
 	}
-	return (0);
+	return (found_non_digit);
 }
