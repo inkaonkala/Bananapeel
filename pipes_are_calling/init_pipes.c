@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_pipes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 13:22:34 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/11 13:50:05 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/20 16:56:12 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	init_pipes(t_bananas *bana)
 		{
 			perror("Bananas! Malloc failed in pipes\n");
 			clean_struct(bana);
-			exit(-1);
+			exit(2);
 		}
 		pipe_helper(bana->pipes, 0, num_pipes);
 	}

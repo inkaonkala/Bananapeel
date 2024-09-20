@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_exit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:56:50 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/17 09:42:43 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/20 16:59:43 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,13 @@ static void	exiter(t_bananas *bana)
 {
 	int	temp;
 	{
-		if (number_checker(bana->token[1]))
+		if (!number_checker(bana->token[1]))
 		{
 			temp = exit_coder(bana->token[1]);
 			ft_printf("🍌Bye Bye BaNaNaNas🍌!\nexit(%d)\n", temp);
 			while (bana->tok_num > 0)
 				token_cleaner(bana, 0);
-			clean_banana(bana);
-			exit(temp);
+			exiting(bana, temp);
 		}
 		else
 		{
@@ -57,9 +56,8 @@ static void	exiter(t_bananas *bana)
 			ft_printf("🍌Bye Bye BaNaNaNas🍌!\nexit\n%s: %s: count your 🍌s!\n",
 				bana->token[0], bana->token[1]);
 			while (bana->tok_num > 0)
-				token_cleaner(bana, 2);
-			clean_banana(bana);
-			exit(0);
+				token_cleaner(bana, 0);
+			exiting(bana, 127);
 		}
 	}
 }
