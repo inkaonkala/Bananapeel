@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   freeing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:50:14 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/19 11:38:18 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/23 14:12:47 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@ void	free_env(t_node	**env)
 	while (curr)
 	{
 		temp = curr->next;
-		free(curr->value);
-		free(curr->key);
+		if (curr->value)
+			free(curr->value);
+		if (curr->key)
+			free(curr->key);
 		free(curr);
 		curr = temp;
 	}

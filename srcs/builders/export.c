@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:10:17 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/20 16:12:50 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/23 15:03:20 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static void	lone_export(t_bananas *bana, t_node *env)
 
 static void	add_to_env(t_bananas *bana, t_node *env, char *temp, int len)
 {
-	add_end(&env, bana->token[0]);
 	if (temp)
 	{
 		if (env->value)
@@ -48,9 +47,10 @@ static void	add_to_env(t_bananas *bana, t_node *env, char *temp, int len)
 		env->key = ft_strdup(bana->token[0]);
 		env->value = NULL;
 	}
+	add_end(&env, bana->token[0]);
 }
 
-static void	search_env(t_bananas *bana, t_node *env, char *temp, int len)
+void	search_env(t_bananas *bana, t_node *env, char *temp, int len)
 {
 	bool	found_in_env;
 
@@ -66,6 +66,7 @@ static void	search_env(t_bananas *bana, t_node *env, char *temp, int len)
 			found_in_env = true;
 			if (temp)
 			{
+				dprintf(2, "inside search_env instead of else\n");
 				free(env->value);
 				env->value = ft_strdup(temp);
 				break ;
@@ -73,10 +74,10 @@ static void	search_env(t_bananas *bana, t_node *env, char *temp, int len)
 		}
 		env = env->next;
 	}
-	if (found_in_env == false)
-		add_to_env(bana, env, temp, len);
 	while (env->prev)
 		env = env->prev;
+	if (found_in_env == false)
+		add_to_env(bana, env, temp, len);
 }
 
 void	handle_export(t_bananas *bana)
@@ -112,7 +113,7 @@ int	add_end(t_node **stack, char *str)
 	t_node	*pre;
 	t_node	*last;
 
-	last = malloc(sizeof(t_node));
+	last = ft_calloc(1, sizeof(t_node));
 	if (!last)
 		return (1);
 	last->next = NULL;

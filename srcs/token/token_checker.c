@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_checker.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:41:54 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/23 11:54:06 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/23 13:22:54 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,10 @@ static bool	dora_is_exploring(t_bananas *bana)
 void	command_search(t_bananas *bana, char **envp, t_node **env)
 {
 	if (!bana->is_rdr && !bana->is_pipe)
+		{
 		built_ins(bana);
+		clean_struct(bana);
+		}
 	if (bana->tok_num > 0)
 	{
 		token_merge(bana);

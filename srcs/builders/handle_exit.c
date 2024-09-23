@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:56:50 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/20 16:59:43 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/23 12:57:58 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,7 @@ void	handle_exit(t_bananas *bana)
 	{
 		ft_printf("Bye Bye BaNaNaNas!\nexit\n");
 		token_cleaner(bana, 0);
-		clean_banana(bana);
-		exit(0);
+		exiting(bana, 0);
 	}
 	else if (bana->tok_num >= 2)
 		exiter(bana);
