@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:41:54 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/20 11:08:05 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/23 11:54:06 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,19 +112,14 @@ void	command_search(t_bananas *bana, char **envp, t_node **env)
 		if (bana->is_dog)
 			big_stopping(SET, 0);
 		if (bana->is_rdr && !bana->is_pipe)
+		{
 			redirections(bana, envp);
+			clean_struct(bana);
+		}	
 		if (!dora_is_exploring(bana))
 			no_path(bana);
 		if (bana->tok_num > 0)
-		{
-			if (bana->is_rdr)
-			{
-				if (rdr_in_pipes(bana, envp))
-					pipex(bana, envp, env);
-			}
-			else
-				pipex(bana, envp, env);
-		}
+			eleven_pipers(bana, envp, env);
 	}
 	clean_struct(bana);
 }
