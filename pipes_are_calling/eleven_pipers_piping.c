@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 11:01:35 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/23 09:53:36 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/23 11:54:24 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,15 @@ void	pipex(t_bananas *bana, char **envp, t_node **env)
 		bana->last_exit_status = WEXITSTATUS(status);
 	else if (WIFSIGNALED(status))
 		bana->last_exit_status = 128 + WTERMSIG(status);
+}
+
+void	eleven_pipers(t_bananas *bana, char **envp, t_node **env)
+{
+	if (bana->is_rdr)
+	{
+		if (rdr_in_pipes(bana, envp))
+			pipex(bana, envp, env);
+	}
+	else
+		pipex(bana, envp, env);
 }
