@@ -6,7 +6,7 @@
 #    By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2024/09/19 11:54:31 by iniska           ###   ########.fr        #
+#    Updated: 2024/09/23 09:39:35 by iniska           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,8 @@ PIPEFILES	=	eleven_pipers_piping.c \
 				get_path.c \
 				pipe_helpers.c \
 				forks.c \
-				create_child.c
+				create_child.c \
+				rdr_checker.c \
 				
 SRCDIR		=	srcs
 PIPEDIR		=	pipes_are_calling
