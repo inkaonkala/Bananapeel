@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 10:43:34 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/20 11:22:00 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/23 10:59:29 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	create_child(t_bananas *bana, char **envp, int index)
 	if (pid == 0)
 	{
 		signal(SIGINT, SIG_DFL);
-        signal(SIGQUIT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
 		input_n_putput(bana, envp, index, fd);
 	}
 	else

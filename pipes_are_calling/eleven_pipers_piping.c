@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 11:01:35 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/20 11:11:36 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/23 09:53:36 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,6 @@ static bool	handle_commands(t_bananas *bana, char **envp, t_node **env)
 		return (false);
 	}
 	return (true);
-}
-
-bool	rdr_in_pipes(t_bananas *bana, char **envp)
-{	
-	bana->rdr_in_pipe = true;
-	redirections(bana, envp);
-	if (bana->tok_num > 0)
-	{
-		while (strncmp(bana->token[0], "|", 1) != 0)
-			token_cleaner(bana, 0);
-		token_cleaner(bana, 0);
-		bana->is_rdr = false;
-		return (true);
-	}
-	return (false);
 }
 
 void	pipex(t_bananas *bana, char **envp, t_node **env)

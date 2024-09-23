@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 09:23:36 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/20 11:09:44 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/23 11:01:54 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	clean_files(t_bananas *bana)
 
 void	clean_struct(t_bananas *bana)
 {
-
 	while (bana->tok_num > 0)
 		token_cleaner(bana, 0);
 	clean_files(bana);

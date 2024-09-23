@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 10:06:52 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/18 13:47:35 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/23 11:00:44 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,12 @@ static void	from_files(t_bananas *bana, int i)
 	}
 }
 
-void	file_handling(t_bananas *bana)
+void	mixed_messages(t_bananas *bana)
 {
 	int	i;
 
 	i = 0;
-	while (bana->token[i] && bana->tok_num > 1)
+	while (bana->token[i] && (strncmp(bana->token[i], "|", 1) != 0))
 	{
 		if (ft_strncmp(bana->token[i], "<", 1) == 0)
 			from_files(bana, i);
@@ -95,5 +95,26 @@ void	file_handling(t_bananas *bana)
 			to_files(bana, i);
 		else
 			i++;
+	}
+}
+
+void	file_handling(t_bananas *bana)
+{
+	int	i;
+
+	i = 0;
+	if (bana->rdr_in_pipe)
+		mixed_messages(bana);
+	else
+	{
+		while (bana->token[i] && bana->tok_num > 1)
+		{
+			if (ft_strncmp(bana->token[i], "<", 1) == 0)
+				from_files(bana, i);
+			else if (ft_strncmp(bana->token[i], ">", 1) == 0)
+				to_files(bana, i);
+			else
+				i++;
+		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 18:12:07 by etaattol          #+#    #+#             */
-/*   Updated: 2024/09/20 11:23:04 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/23 11:02:16 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,6 +241,9 @@ bool	parse_cmd_line(t_bananas *bana, char **envp);
 // eleven_pipers_piping.c
 
 void	pipex(t_bananas *bana, char **envp, t_node **env);
+
+// rdr_checker.c
+void	mixed_messages(t_bananas *bana);
 bool	rdr_in_pipes(t_bananas *bana, char **envp);
 
 // execute_command.c
