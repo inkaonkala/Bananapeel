@@ -6,11 +6,11 @@
 #    By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2024/09/23 09:39:35 by iniska           ###   ########.fr        #
+#    Updated: 2024/09/23 14:30:35 by iniska           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= 	bananapeel
+NAME		= 	minishell
 
 FLAGS		=	-Wall -Wextra -Werror -g #-fsanitize=address
 
