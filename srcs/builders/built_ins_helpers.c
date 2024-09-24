@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 10:20:14 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/24 09:41:35 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/24 13:48:51 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ void	handle_unset(t_bananas *bana, t_node **env)
 		node = *env;
 		while (node->next)
 		{
-			if (!ft_strcmp(node->key, bana->token[0]))
+			
+			if (node->key && !ft_strcmp(node->key, bana->token[0]))
 			{
 				token_cleaner(bana, 0);
 				free(node->key);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:10:17 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/24 11:50:14 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/24 12:22:04 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void add_lone_node(t_bananas	*bana)
 {
 	t_node	*last;
 
-	last = ft_calloc(1, sizeof(t_bananas));
+	last = ft_calloc(1, sizeof(t_node));
 	if (!last)
 		exiting(bana, 2);
 	while (bana->env->next)
@@ -64,7 +64,6 @@ static void	add_to_env(t_bananas *bana, t_node *env, char *temp, int len)
 	while (bana->env->prev)
 		bana->env = bana->env->prev;
 }
-
 
 static void	search_env(t_bananas *bana, t_node *env, char *temp, int len)
 {
