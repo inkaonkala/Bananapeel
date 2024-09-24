@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 18:12:07 by etaattol          #+#    #+#             */
-/*   Updated: 2024/09/24 15:49:49 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/24 16:00:01 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void	echo_pipe(t_bananas *bana);
 void	handle_echo(t_bananas *bana);
 int		handle_pwd(t_bananas *bana);
 void	handle_unset(t_bananas *bana);
-void    remove_node(t_bananas *bana, const char *key);
+void	remove_node(t_bananas *bana, const char *key);
 t_node	*find_key(char *key, t_node *env);
 
 /* ************************************************************************** */
