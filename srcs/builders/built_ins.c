@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/24 14:27:04 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/24 17:33:09 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,19 @@
 
 static void	handle_env(t_bananas *bana)
 {	
-	while (bana->env->next)
+	t_node	*temp;
+
+	temp = bana->env;
+	while (temp)
 	{
-		if (bana->env->next == NULL)
-		{		
-			break ;
-		}
-		if (bana->env->value)
-			printf("%s=%s\n", bana->env->key, bana->env->value);
-		bana->env = bana->env->next;
+		if (temp->value)
+			printf("%s=%s\n", temp->key, temp->value);
+		temp = temp->next;
 	}
 	while (bana->tok_num > 0)
 		token_cleaner(bana, 0);
 	if (bana->is_rdr)
 		exit (0);
-	while (bana->env->prev)
-		bana->env = bana->env->prev;
 }
 
 void	print_tokens(t_bananas *bana)

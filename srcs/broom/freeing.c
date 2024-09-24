@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   freeing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:50:14 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/19 11:38:18 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/24 16:33:01 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,20 @@ void	free_env(t_node	**env)
 	t_node	*temp;
 	t_node	*curr;
 
-	curr = *env;
-	temp = NULL;
-	while (curr)
+	if (env)
 	{
-		temp = curr->next;
-		free(curr->value);
-		free(curr->key);
-		free(curr);
-		curr = temp;
+		curr = *env;
+		temp = NULL;
+		while (curr)
+		{
+			temp = curr->next;
+			free(curr->value);
+			free(curr->key);
+			free(curr);
+			curr = temp;
+		}
+		*env = NULL;
 	}
-	*env = NULL;
 }
 
 void	free_array(char ***paths, int arc)

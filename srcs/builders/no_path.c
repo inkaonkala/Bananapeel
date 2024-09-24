@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 10:44:08 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/24 14:21:37 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/24 17:33:44 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,15 @@ void	no_path(t_bananas *bana)
 	}
 }
 
+static t_node	*add_empty_list(t_node	*last)
+{
+	last->key = ft_strdup("PWD");
+	last->value = ft_strdup(getcwd(NULL, 0));
+	last->next = NULL;
+	last->prev = NULL;
+	return (last);
+}
+
 int	add_end(t_node **stack, char *str)
 {
 	t_node	*pre;
@@ -60,6 +69,11 @@ int	add_end(t_node **stack, char *str)
 	last = malloc(sizeof(t_node));
 	if (!last)
 		return (1);
+	if (str == NULL)
+	{
+		*stack = add_empty_list(last);
+		return (0);
+	}
 	last->next = NULL;
 	last = parse_str(last, str);
 	if (!(*stack))

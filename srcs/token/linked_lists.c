@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 14:29:28 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/24 15:55:19 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/24 17:19:42 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,11 @@ void	load_list(t_bananas *bana, char **envp)
 	int	i;
 
 	i = 0;
+	if (!envp[0])
+	{
+		add_end(&bana->env, NULL);
+		return ;
+	}
 	while (envp[i])
 	{
 		if (add_end(&bana->env, envp[i]))

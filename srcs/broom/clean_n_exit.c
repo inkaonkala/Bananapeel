@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 09:07:07 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/19 16:20:23 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/24 17:32:37 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ void	clean_banana(t_bananas *bana)
 {
 	clean_struct(bana);
 	free_env(&bana->env);
-	free_char_array(bana->envp);
+	if (bana->envp[0])
+	{
+		free_char_array(bana->envp);
+	}
 }
 
 bool	return_n_free(char **tokens)
