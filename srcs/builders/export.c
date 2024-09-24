@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:10:17 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/24 11:45:47 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/24 11:50:14 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,7 @@ static void	add_to_env(t_bananas *bana, t_node *env, char *temp, int len)
 	while (bana->env->prev)
 		bana->env = bana->env->prev;
 }
-		// env->key = ft_strdup(bana->token[0]);
-		// env->value = NULL;
-	// add_end(&env, bana->token[0]);
+
 
 static void	search_env(t_bananas *bana, t_node *env, char *temp, int len)
 {
