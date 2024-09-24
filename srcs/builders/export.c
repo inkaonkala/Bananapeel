@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:10:17 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/24 09:20:31 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/24 11:50:14 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,25 @@ static void	lone_export(t_bananas *bana, t_node *env)
 	token_cleaner(bana, 0);
 }
 
+static void add_lone_node(t_bananas	*bana)
+{
+	t_node	*last;
+
+	last = ft_calloc(1, sizeof(t_bananas));
+	if (!last)
+		exiting(bana, 2);
+	while (bana->env->next)
+		bana->env = bana->env->next;
+	last->key = ft_strdup(bana->token[0]);
+	last->value = NULL;
+	bana->env->next = last;	
+	last->prev = bana->env;
+	while (bana->env->prev)
+		bana->env = bana->env->prev;		
+}
+
 static void	add_to_env(t_bananas *bana, t_node *env, char *temp, int len)
 {
-	add_end(&env, bana->token[0]);
 	if (temp)
 	{
 		if (env->value)
@@ -43,12 +59,12 @@ static void	add_to_env(t_bananas *bana, t_node *env, char *temp, int len)
 		ft_strlcpy(env->key, bana->token[0], len + 1);
 		env->value = ft_strdup(temp);
 	}
-	else
-	{
-		env->key = ft_strdup(bana->token[0]);
-		env->value = NULL;
-	}
+	else if (!temp)
+		add_lone_node(bana);
+	while (bana->env->prev)
+		bana->env = bana->env->prev;
 }
+
 
 static void	search_env(t_bananas *bana, t_node *env, char *temp, int len)
 {
