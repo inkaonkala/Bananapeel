@@ -6,11 +6,38 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 09:23:36 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/23 11:01:54 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/24 15:03:54 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+static void	clean_pipestuff(t_bananas *bana)
+{
+	int	b;
+
+	b = 0;
+	if (bana->cmd_paths != NULL || bana->cmd_args != NULL)
+	{
+		while (bana->cmd_paths[b] != NULL)
+		{
+			free(bana->cmd_paths[b]);
+			bana->cmd_paths[b] = NULL;
+			b++;
+		}
+		free(bana->cmd_paths);
+		bana->cmd_paths = NULL;
+		b = 0;
+		while (bana->cmd_args[b] != NULL)
+		{
+			free(bana->cmd_args[b]);
+			bana->cmd_args[b] = NULL;
+			b++;
+		}
+		free(bana->cmd_args);
+		bana->cmd_args = NULL;
+	}
+}
 
 void	clean_files(t_bananas *bana)
 {
@@ -31,6 +58,7 @@ void	clean_struct(t_bananas *bana)
 	while (bana->tok_num > 0)
 		token_cleaner(bana, 0);
 	clean_files(bana);
+	clean_pipestuff(bana);
 	if (bana->pipes != NULL)
 	{
 		free(bana->pipes);
