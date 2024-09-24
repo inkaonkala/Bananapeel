@@ -6,21 +6,36 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 14:29:28 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/19 16:48:03 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/24 15:55:19 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	remove_node(t_node *node)
+void	remove_node(t_bananas *bana, const char *key)
 {
-	if (node->prev)
-		node->prev->next = node->next;
-	if (node->next)
-		node->next->prev = node->prev;
-	free(node->key);
-	free(node->value);
-	free(node);
+	t_node	*current;
+	t_node	*temp;
+
+	current = bana->env;
+	while (current)
+	{
+		if (!ft_strcmp(current->key, key))
+		{
+			if (current->prev)
+				current->prev->next = current->next;
+			else
+				bana->env = current->next;
+			if (current->next)
+				current->next->prev = current->prev;
+			temp = current->next;
+			free(current->key);
+			free(current->value);
+			free(current);
+			return ;
+		}
+		current = current->next;
+	}
 }
 
 t_node	*find_last(t_node	*stack)

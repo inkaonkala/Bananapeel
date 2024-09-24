@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_ins.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/24 09:19:41 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/24 14:27:04 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void	send_to_bob(t_bananas *bana, char *bi)
 			handle_echo(bana);
 	}
 	else if (ft_strcmp(bi, "unset") == 0)
-		handle_unset(bana, &bana->env);
+		handle_unset(bana);
 	else if (ft_strcmp(bi, "env") == 0)
 		handle_env(bana);
 	else if (ft_strcmp(bi, "export") == 0)
