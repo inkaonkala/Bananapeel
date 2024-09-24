@@ -6,11 +6,17 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 10:43:34 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/23 10:59:29 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/24 10:01:05 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+static void	signal_pipe(void)
+{
+	signal(SIGINT, handle_sigint);
+	signal(SIGQUIT, handle_quit);
+}
 
 static bool	hangers(t_bananas *bana)
 {
@@ -79,5 +85,7 @@ int	create_child(t_bananas *bana, char **envp, int index)
 		else
 			shut_fd(fd);
 	}
+	if (last)
+		signal_pipe();
 	return (true);
 }
