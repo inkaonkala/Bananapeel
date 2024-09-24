@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   no_path.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 10:44:08 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/19 14:09:46 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/24 14:21:37 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,28 @@ void	no_path(t_bananas *bana)
 		token_cleaner(bana, 0);
 		printf("Bananas! Nonexistence for such things\n");
 	}
+}
+
+int	add_end(t_node **stack, char *str)
+{
+	t_node	*pre;
+	t_node	*last;
+
+	last = malloc(sizeof(t_node));
+	if (!last)
+		return (1);
+	last->next = NULL;
+	last = parse_str(last, str);
+	if (!(*stack))
+	{
+		*stack = last;
+		last->prev = NULL;
+	}
+	else
+	{
+		pre = find_last(*stack);
+		pre->next = last;
+		last->prev = pre;
+	}
+	return (0);
 }
