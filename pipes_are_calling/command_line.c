@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 10:14:58 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/24 11:51:03 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/24 14:35:30 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,3 @@ bool	parse_cmd_line(t_bananas *bana, char **envp)
 	}
 	return (true);
 }
-

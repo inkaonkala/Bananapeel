@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 09:23:36 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/24 14:27:10 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/24 15:03:54 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static void	clean_pipestuff(t_bananas *bana)
 	int	b;
 
 	b = 0;
-	if(bana->cmd_paths != NULL)
+	if (bana->cmd_paths != NULL || bana->cmd_args != NULL)
 	{
-		while(bana->cmd_paths[b] != NULL)
+		while (bana->cmd_paths[b] != NULL)
 		{
 			free(bana->cmd_paths[b]);
 			bana->cmd_paths[b] = NULL;
@@ -27,17 +27,16 @@ static void	clean_pipestuff(t_bananas *bana)
 		}
 		free(bana->cmd_paths);
 		bana->cmd_paths = NULL;
+		b = 0;
+		while (bana->cmd_args[b] != NULL)
+		{
+			free(bana->cmd_args[b]);
+			bana->cmd_args[b] = NULL;
+			b++;
+		}
+		free(bana->cmd_args);
+		bana->cmd_args = NULL;
 	}
-	b = 0;
-	if(bana->cmd_args != NULL)
-	while(bana->cmd_args[b] != NULL)
-	{
-		free(bana->cmd_args[b]);
-		bana->cmd_args[b] = NULL;
-		b++;
-	}
-	free(bana->cmd_args);
-	bana->cmd_args = NULL;
 }
 
 void	clean_files(t_bananas *bana)

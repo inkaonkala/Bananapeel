@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:41:54 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/24 14:23:26 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/24 14:56:50 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,9 +121,5 @@ void	command_search(t_bananas *bana, char **envp, t_node **env)
 		if (bana->tok_num > 0)
 			eleven_pipers(bana, envp, env);
 	}
-	clean_struct(bana);	
-	if (bana->cmd_paths != NULL)
-		dprintf(2, "here here\n");
-	if (bana->cmd_args != NULL)
-		dprintf(2, "still here\n");
+	clean_struct(bana);
 }
