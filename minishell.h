@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 18:12:07 by etaattol          #+#    #+#             */
-/*   Updated: 2024/09/24 09:59:13 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/24 11:36:45 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 
 # define IN_HEREDOG 1
 # define OUT_HEREDOG 0
+
+# define FD_MAX 12
 
 # define SET 0
 # define GET 1

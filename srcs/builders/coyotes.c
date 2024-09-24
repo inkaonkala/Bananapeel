@@ -3,14 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   coyotes.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 10:02:54 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/19 14:27:11 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/24 11:32:35 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+void	del_quotes_from_tok(char *token)
+{
+	int		i;
+	int		j;
+	char	quote;
+
+	i = 0;
+	j = 0;
+	while (token[i])
+	{
+		if (token[i] == '\'' || token[i] == '"')
+		{
+			quote = token[i];
+			i++;
+			while (token[i] && token[i] != quote)
+				token[j++] = token[i++];
+			if (token[i] == quote)
+				i++;
+		}
+		else
+			token[j++] = token[i++];
+	}
+	token[j] = '\0';
+}
+
+void	del_quotes(t_bananas *bana)
+{
+	int	i;
+
+	i = 0;
+	while (bana->token[i])
+	{
+		del_quotes_from_tok(bana->token[i]);
+		i++;
+	}
+}
+
+/*
+THE OLD VERSION
 
 void	del_quotes_from_tok(char *token)
 {
@@ -35,15 +75,4 @@ void	del_quotes_from_tok(char *token)
 			i++;
 	}
 }
-
-void	del_quotes(t_bananas *bana)
-{
-	int	i;
-
-	i = 0;
-	while (bana->token[i])
-	{
-		del_quotes_from_tok(bana->token[i]);
-		i++;
-	}
-}
+*/

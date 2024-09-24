@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 10:14:58 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/19 10:43:56 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/24 11:51:03 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,34 +65,3 @@ bool	parse_cmd_line(t_bananas *bana, char **envp)
 	return (true);
 }
 
-/*
-bool	parse_cmd_line(t_bananas *bana, char **envp)
-{
-	int		i;
-	char	**cmd;
-	char	*path;
-
-	i = 0;
-	if (!init_path(bana))
-		return (false);
-	while (i < bana->tok_num)
-	{	
-		if (!check_specials(bana->token[i]))
-		{
-			if (!path_handler(bana, envp, path, i))
-				return (false);
-			if(bana->cmd_paths[i] == NULL)
-			{
-				printf("Your command is bananas!\n");
-				token_cleaner(bana, i);
-			}
-			else
-				i++;
-		}
-		else
-			token_cleaner(bana, i);
-	}
-	return (true);
-}
-
-*/
