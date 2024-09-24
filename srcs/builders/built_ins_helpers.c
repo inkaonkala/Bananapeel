@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_ins_helpers.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 10:20:14 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/24 14:57:38 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/24 15:54:29 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	echo_pipe(t_bananas *bana)
 	if (bana->tok_num > 1)
 	{
 		while (ft_strncmp(bana->token[i], "|", 1) != 0)
-		{	
+		{
 			ft_printf("%s ", bana->token[i]);
 			i++;
 		}
@@ -77,32 +77,16 @@ int	handle_pwd(t_bananas *bana)
 	return (0);
 }
 
-void	handle_unset(t_bananas *bana, t_node **env)
+void	handle_unset(t_bananas *bana)
 {
-	t_node	*node;
-
-	node = NULL;
 	token_cleaner(bana, 0);
 	while (bana->tok_num >= 1)
 	{
-		node = *env;
-		while (node->next)
-		{	
-			if (node->key && !ft_strcmp(node->key, bana->token[0]))
-			{
-				token_cleaner(bana, 0);
-				free(node->key);
-				free(node->value);
-				node->key = NULL;
-				node->value = NULL;
-				remove_node(node);
-				break ;
-			}
-			node = node->next;
-		}
+		remove_node(bana, bana->token[0]);
+		token_cleaner(bana, 0);
 	}
 	if (bana->is_rdr)
-		exit (0);
+		exit(0);
 }
 
 t_node	*find_key(char *key, t_node *env)
