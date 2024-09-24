@@ -6,14 +6,27 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:46:16 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/23 15:05:16 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/24 11:41:52 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+static void	close_unused_fds(void)
+{
+	int	fd;
+
+	fd = 3;
+	while (fd < FD_MAX)
+	{
+		close(fd);
+		fd++;
+	}
+}
+
 static void	do_it(t_bananas *bana, char **envp, int index, char **cmd_args)
 {
+	close_unused_fds();
 	execve(bana->cmd_paths[index], cmd_args, envp);
 	ft_printf("Bananas! Failed to execute command: %s\n", strerror(errno));
 	free_argh(cmd_args);
@@ -29,6 +42,7 @@ void	execute_command(t_bananas *bana, char **envp, int index)
 	if (cmd_args == NULL || cmd_args[0] == NULL)
 	{
 		printf("Bananas! Failed to split command arguments\n");
+		free_argh(cmd_args);
 		exiting(bana, 1);
 	}
 	if (!ft_strncmp(cmd_args[0], "exit", 5))
