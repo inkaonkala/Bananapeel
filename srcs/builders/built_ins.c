@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/20 09:25:10 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/24 09:19:41 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	send_to_bob(t_bananas *bana, char *bi)
 		handle_pwd(bana);
 	else if (ft_strcmp(bi, "echo") == 0)
 	{
-		if(bana->rdr_in_pipe)
+		if (bana->rdr_in_pipe)
 			echo_pipe(bana);
 		else
 			handle_echo(bana);

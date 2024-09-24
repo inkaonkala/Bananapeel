@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:10:17 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/20 16:12:50 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/24 09:20:31 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ static void	lone_export(t_bananas *bana, t_node *env)
 			printf("declare -x %s\n", env->key);
 		env = env->next;
 	}
-	while(env->prev)
+	while (env->prev)
 	{
 		if (!env)
 			break ;
-		env = env->prev;	
+		env = env->prev;
 	}
 	token_cleaner(bana, 0);
 }
@@ -59,7 +59,7 @@ static void	search_env(t_bananas *bana, t_node *env, char *temp, int len)
 	{
 		if (!env)
 		{
-			break ;	
+			break ;
 		}
 		else if (!ft_strncmp(env->key, bana->token[0], ft_strlen(env->key)))
 		{

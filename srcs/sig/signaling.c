@@ -6,13 +6,13 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:37:19 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/20 11:23:43 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/24 09:57:11 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-static void	handle_sigint(int sig)
+void	handle_sigint(int sig)
 {
 	(void)sig;
 	if (get_heredog_status() == IN_HEREDOG)
@@ -37,7 +37,7 @@ int	event_hook(void)
 	return (0);
 }
 
-static void	handle_quit(int sig)
+void	handle_quit(int sig)
 {
 	(void)sig;
 }

@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 18:12:07 by etaattol          #+#    #+#             */
-/*   Updated: 2024/09/23 11:49:47 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/24 09:59:13 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,8 @@ int		big_stopping(int get, int newvalue);
 /* ************************************************************************** */
 bool	parsing(char *str, t_bananas *bana);
 int		empties(char c);
+void	handle_sigint(int sig);
+void	handle_quit(int sig);
 
 /* ************************************************************************** */
 /*									token_stuff								  */

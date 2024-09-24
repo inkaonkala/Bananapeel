@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 10:20:14 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/20 10:05:12 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/24 09:41:35 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	handle_echo(t_bananas *bana)
 			token_cleaner(bana, 1);
 			n_flag = true;
 		}
-		while (i <= bana->tok_num - 2 )
+		while (i <= bana->tok_num - 2)
 			printf("%s ", bana->token[i++]);
 		if (bana->tok_num >= 2)
 			printf("%s", bana->token[bana->tok_num - 1]);
