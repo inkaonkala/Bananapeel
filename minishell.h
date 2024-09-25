@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 18:12:07 by etaattol          #+#    #+#             */
-/*   Updated: 2024/09/24 16:00:01 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/25 14:26:19 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,6 +215,7 @@ void	clean_n_errors(t_bananas *bana);
 void	clean_banana(t_bananas *bana);
 void	exiting(t_bananas *bana, int i);
 bool	return_n_free(char **tokens);
+void	clean_env_only(t_bananas *bana);
 
 /* ************************************************************************** */
 /*							        freeing   	        					  */
