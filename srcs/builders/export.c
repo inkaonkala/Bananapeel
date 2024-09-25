@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:10:17 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/25 14:10:54 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/25 14:56:55 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,13 @@
 
 static void	lone_export(t_bananas *bana, t_node *env)
 {
-	while (env->next)
+	while (env)
 	{
-		if (!env)
-			break ;
-		else if (env->value)
+		if (env->value)
 			printf("declare -x %s=\"%s\"\n", env->key, env->value);
 		else if (!env->value)
 			printf("declare -x %s\n", env->key);
 		env = env->next;
-	}
-	while (env->prev)
-	{
-		if (!env)
-			break ;
-		env = env->prev;
 	}
 	token_cleaner(bana, 0);
 }
@@ -58,6 +50,8 @@ static void	add_to_env(t_bananas *bana, t_node *env, char *temp, int len)
 			free(env->value);
 		ft_strlcpy(env->key, bana->token[0], len + 1);
 		env->value = ft_strdup(temp);
+		while (bana->env->prev)
+			bana->env = bana->env->prev;
 	}
 	else if (!temp)
 	{
@@ -65,7 +59,8 @@ static void	add_to_env(t_bananas *bana, t_node *env, char *temp, int len)
 	}
 	while (bana->env->prev)
 		bana->env = bana->env->prev;
-	add_end(&bana->env, bana->token[0]);
+	if (bana->tok_num > 1)
+		add_end(&bana->env, bana->token[0]);
 }
 
 static void	search_env(t_bananas *bana, t_node *env, char *temp, int len)
