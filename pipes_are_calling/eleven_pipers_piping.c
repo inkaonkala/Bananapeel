@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 11:01:35 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/24 14:02:19 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/25 11:58:36 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,10 @@ void	eleven_pipers(t_bananas *bana, char **envp, t_node **env)
 	if (bana->is_rdr)
 	{
 		if (rdr_in_pipes(bana, envp))
-			pipex(bana, envp, env);
+		{
+			if (bana->tok_num > 0)
+				pipex(bana, envp, env);
+		}
 	}
 	else
 		pipex(bana, envp, env);

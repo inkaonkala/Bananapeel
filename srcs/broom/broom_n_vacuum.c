@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 09:23:36 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/24 15:03:54 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/25 12:49:28 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,8 @@ static void	clean_pipestuff(t_bananas *bana)
 	int	b;
 
 	b = 0;
-	if (bana->cmd_paths != NULL || bana->cmd_args != NULL)
+	if (bana->cmd_args != NULL)
 	{
-		while (bana->cmd_paths[b] != NULL)
-		{
-			free(bana->cmd_paths[b]);
-			bana->cmd_paths[b] = NULL;
-			b++;
-		}
-		free(bana->cmd_paths);
-		bana->cmd_paths = NULL;
-		b = 0;
 		while (bana->cmd_args[b] != NULL)
 		{
 			free(bana->cmd_args[b]);
@@ -83,8 +74,8 @@ void	token_cleaner(t_bananas *bana, int i)
 		bana->token[i] = bana->token[i + 1];
 		i++;
 	}
-	bana->token[bana->tok_num - 1] = NULL;
 	bana->tok_num--;
+	bana->token[bana->tok_num] = NULL;
 	if (bana->tok_num == 0)
 	{
 		free(bana->token);
