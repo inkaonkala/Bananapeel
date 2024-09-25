@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 10:20:14 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/25 14:20:56 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/25 14:35:01 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	echo_pipe(t_bananas *bana)
 	i = 1;
 	if (bana->tok_num > 1)
 	{
-		while (bana->token[i][0] != '|' && bana->token[i][0] !='\0')
+		while (bana->token[i][0] != '|' && bana->token[i][0] != '\0')
 		{
 			ft_printf("%s ", bana->token[i]);
 			i++;
