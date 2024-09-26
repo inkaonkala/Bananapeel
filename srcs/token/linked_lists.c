@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 14:29:28 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/24 17:19:42 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/26 12:54:45 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 void	remove_node(t_bananas *bana, const char *key)
 {
 	t_node	*current;
-	t_node	*temp;
+	// t_node	*temp;
 
 	current = bana->env;
+	while (current->prev)
+		current = current->prev;
 	while (current)
 	{
 		if (!ft_strcmp(current->key, key))
@@ -28,7 +30,7 @@ void	remove_node(t_bananas *bana, const char *key)
 				bana->env = current->next;
 			if (current->next)
 				current->next->prev = current->prev;
-			temp = current->next;
+			bana->env = current->next;
 			free(current->key);
 			free(current->value);
 			free(current);

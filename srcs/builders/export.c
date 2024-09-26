@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:10:17 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/25 14:56:55 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/26 12:37:47 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	lone_export(t_bananas *bana, t_node *env)
 	token_cleaner(bana, 0);
 }
 
-static void	add_lone_node(t_bananas	*bana)
+static void	add_lone_node(t_bananas	*bana, char *temp, int len)
 {
 	t_node	*last;
 
@@ -34,33 +34,46 @@ static void	add_lone_node(t_bananas	*bana)
 		exiting(bana, 2);
 	while (bana->env->next)
 		bana->env = bana->env->next;
-	last->key = ft_strdup(bana->token[0]);
-	last->value = NULL;
+	if (len == 0)	
+		last->key = ft_strdup(bana->token[0]);
+	else if (len > 0)
+	{	
+		last->key = ft_calloc(len + 1, sizeof(char));	
+		ft_strlcpy(last->key, bana->token[0], len + 1);
+	}
+	if (temp == NULL)
+		last->value = NULL;
+	else if (temp)
+		last->value = ft_strdup(temp);
 	bana->env->next = last;
 	last->prev = bana->env;
 	while (bana->env->prev)
 		bana->env = bana->env->prev;
 }
 
-static void	add_to_env(t_bananas *bana, t_node *env, char *temp, int len)
+static void	add_to_env(t_bananas *bana, char *temp, int len)
 {
+	// while (bana->env)
+	// 	bana->env = bana->env->next;
 	if (temp)
 	{
-		if (env->value)
-			free(env->value);
-		ft_strlcpy(env->key, bana->token[0], len + 1);
-		env->value = ft_strdup(temp);
-		while (bana->env->prev)
-			bana->env = bana->env->prev;
+		dprintf(2, "inside if temp\n");
+		add_lone_node(bana, temp, len);
+		// if (bana->env->value)
+		// 	free(bana->env->value);
+		// ft_strlcpy(bana->env->key, bana->token[0], len + 1);
+		// bana->env->value = ft_strdup(temp);
+		// while (bana->env->prev)
+		// 	bana->env = bana->env->prev;
 	}
 	else if (!temp)
 	{
-		add_lone_node(bana);
+		add_lone_node(bana, temp, 0);
 	}
+	// if (bana->tok_num > 1)
+	// 	add_end(&bana->env, bana->token[0]);
 	while (bana->env->prev)
 		bana->env = bana->env->prev;
-	if (bana->tok_num > 1)
-		add_end(&bana->env, bana->token[0]);
 }
 
 static void	search_env(t_bananas *bana, t_node *env, char *temp, int len)
@@ -70,15 +83,16 @@ static void	search_env(t_bananas *bana, t_node *env, char *temp, int len)
 	found_in_env = false;
 	while (env->next)
 	{
-		if (!env)
-		{
-			break ;
-		}
-		else if (!ft_strncmp(env->key, bana->token[0], ft_strlen(env->key)))
+		// if (!env)
+		// {
+		// 	break ;
+		// }
+		if (!ft_strncmp(env->key, bana->token[0], ft_strlen(env->key)))
 		{
 			found_in_env = true;
 			if (temp)
 			{
+				dprintf(2, "in search_env\n");
 				free(env->value);
 				env->value = ft_strdup(temp);
 				break ;
@@ -87,7 +101,7 @@ static void	search_env(t_bananas *bana, t_node *env, char *temp, int len)
 		env = env->next;
 	}
 	if (found_in_env == false)
-		add_to_env(bana, env, temp, len);
+		add_to_env(bana, temp, len);
 	while (env->prev)
 		env = env->prev;
 }
