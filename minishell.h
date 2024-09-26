@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 18:12:07 by etaattol          #+#    #+#             */
-/*   Updated: 2024/09/26 15:17:50 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/26 15:55:30 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_bananas
 	bool	is_dog;
 	bool	rdr_in_pipe;
 	bool	nonsense;
+	bool	found_in_env;
 
 	int		*in_files;
 	int		*out_files;
