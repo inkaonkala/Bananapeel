@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:05:09 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/26 15:34:03 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/26 16:45:05 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,21 +68,26 @@ static char	*copy_or_allocate(char *str, char *value)
 
 static char	*expand_var_value(char *str, t_node *env, t_bananas *bana)
 {
+	char	*temp;
 	t_node	*temp_node;
 	char	*var_name;
 
-	var_name = get_var_name(str);
+	temp = str;
+	var_name = get_var_name(temp);
 	if (!var_name)
-		return (str);
+		return (temp);
 	temp_node = find_key(var_name, env);
 	if (temp_node && temp_node->value)
-		str = copy_or_allocate(str, temp_node->value);
+		temp = copy_or_allocate(temp, temp_node->value);
 	else if (ft_strcmp(var_name, "?") == 0)
-		str = expand_exit_status(str, bana);
+		temp = expand_exit_status(temp, bana);
 	else
+	{
 		printf("Variable not found or has no value: %s\n", var_name);
+		temp = ft_strdup("");
+	}
 	free(var_name);
-	return (str);
+	return (temp);
 }
 
 char	*dollar_check(char *str, t_node *env, t_bananas *bana)
