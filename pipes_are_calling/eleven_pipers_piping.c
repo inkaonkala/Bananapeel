@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 11:01:35 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/25 13:14:58 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/26 11:31:19 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static bool	handle_commands(t_bananas *bana, char **envp, t_node **env)
 		redirections(bana, envp);
 	if (!parse_cmd_line(bana, envp))
 	{
-		clean_n_errors(bana);
-		return (false);
+			clean_n_errors(bana);
+			return (false);
 	}
 	if (!parse_cmd_args(bana))
 	{

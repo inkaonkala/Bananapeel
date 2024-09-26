@@ -6,11 +6,28 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:46:16 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/25 13:44:16 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/26 10:00:50 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+static void	free_path(t_bananas *bana)
+{
+	int	b;
+
+	b = 0;
+	if (bana->cmd_paths != NULL)
+	{
+		while (bana->cmd_paths[b] != NULL)
+		{
+			free(bana->cmd_paths[b]);
+			b++;
+		}
+		free(bana->cmd_paths);
+		bana->cmd_paths = NULL;
+	}
+}
 
 static void	close_unused_fds(void)
 {
@@ -56,6 +73,7 @@ void	execute_command(t_bananas *bana, char **envp, int index)
 	else
 	{
 		printf("Command is bananas! \n");
+		free_path(bana);
 		free_argh(cmd_args);
 		exiting(bana, 127);
 	}
