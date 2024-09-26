@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:50:14 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/24 16:33:01 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/26 13:30:04 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,15 @@ void	free_env(t_node	**env)
 {
 	t_node	*temp;
 	t_node	*curr;
-
 	if (env)
 	{
 		curr = *env;
+		while (curr)
+		{
+			if (curr->prev == NULL)
+				break ;
+			curr = curr->prev;
+		}
 		temp = NULL;
 		while (curr)
 		{

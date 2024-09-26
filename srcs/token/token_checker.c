@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_checker.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:41:54 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/24 14:56:50 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/26 13:20:38 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,24 +82,24 @@ static bool	dora_is_exploring(t_bananas *bana)
 	int	no_path;
 
 	no_path = 0;
-	while (bana->env->next)
+	while (bana->env)
 	{
-		if (bana->env->next == NULL)
-			break ;
 		if (ft_strcmp(bana->env->key, "PATH") == 0)
 		{
-			no_path = 1;
-			break ;
+			dprintf(2,"\ndora exploring: 1\n");
+			return (true);
 		}
-		bana->env = bana->env->next;
-	}
-	while (bana->env->prev)
-	{
 		if (bana->env->next == NULL)
 			break ;
-		bana->env = bana->env->prev;
+		bana->env = bana->env->next;
 	}
-	return (no_path);
+	// while (bana->env->prev)
+	// {
+	// 	if (bana->env->next == NULL)
+	// 		break ;
+	// 	bana->env = bana->env->prev;
+	// }
+	return (false);
 }
 
 void	command_search(t_bananas *bana, char **envp, t_node **env)
@@ -117,9 +117,15 @@ void	command_search(t_bananas *bana, char **envp, t_node **env)
 			clean_struct(bana);
 		}	
 		if (!dora_is_exploring(bana))
+		{
+			dprintf(2,"\nno_path\n");
 			no_path(bana);
+		}
 		if (bana->tok_num > 0)
+		{
+			dprintf(2,"\nto eleven pipers\n");
 			eleven_pipers(bana, envp, env);
+		}
 	}
 	clean_struct(bana);
 }

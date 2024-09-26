@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/24 17:33:09 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/26 12:57:32 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@ static void	handle_env(t_bananas *bana)
 	t_node	*temp;
 
 	temp = bana->env;
+	while (temp->prev)
+	{
+		temp = temp->prev;
+	}
 	while (temp)
 	{
 		if (temp->value)
