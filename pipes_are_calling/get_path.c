@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 14:47:58 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/26 11:31:59 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/26 12:11:46 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ char	*get_path(char *path_name, char **envp)
 	char	*full_path;
 	char	**paths;
 
-	
 	if (access(path_name, F_OK) == 0)
 		return (ft_substr(path_name, 0, ft_strlen(path_name)));
 	paths = find_path_env(envp);

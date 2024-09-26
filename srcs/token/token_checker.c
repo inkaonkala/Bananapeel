@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:41:54 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/24 14:56:50 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/26 12:01:35 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ static bool	dora_is_exploring(t_bananas *bana)
 
 void	command_search(t_bananas *bana, char **envp, t_node **env)
 {
+	clean_path(bana);
 	if (!bana->is_rdr && !bana->is_pipe)
 		built_ins(bana);
 	if (bana->tok_num > 0)

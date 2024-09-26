@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 09:23:36 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/26 11:34:46 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/26 11:53:26 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ static void	clean_pipestuff(t_bananas *bana)
 		free(bana->cmd_args);
 		bana->cmd_args = NULL;
 	}
-	if (bana->invalid_cmd)
-		clean_path(bana);
 }
 
 void	clean_files(t_bananas *bana)

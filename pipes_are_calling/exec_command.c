@@ -6,11 +6,19 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:46:16 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/26 10:00:50 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/26 13:25:54 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+static void	cleanup(t_bananas *bana)
+{
+	printf("Command is bananas! \n");
+	free_path(bana);
+	free_argh(cmd_args);
+	exiting(bana, 127);
+}
 
 static void	free_path(t_bananas *bana)
 {
@@ -71,12 +79,7 @@ void	execute_command(t_bananas *bana, char **envp, int index)
 	if (bana->cmd_paths[index])
 		do_it(bana, envp, index, cmd_args);
 	else
-	{
-		printf("Command is bananas! \n");
-		free_path(bana);
-		free_argh(cmd_args);
-		exiting(bana, 127);
-	}
+		cleanup(bana);
 	free_argh(cmd_args);
 	exiting(bana, 1);
 }

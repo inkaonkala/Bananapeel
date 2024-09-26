@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 09:07:07 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/26 11:33:11 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/26 12:47:05 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	exiting(t_bananas *bana, int i)
 
 void	clean_banana(t_bananas *bana)
 {
+	clean_path(bana);
 	clean_struct(bana);
-	//clean_path(bana);
 	free_env(&bana->env);
 	if (bana->envp)
 	{

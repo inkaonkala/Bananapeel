@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 18:12:07 by etaattol          #+#    #+#             */
-/*   Updated: 2024/09/26 11:33:54 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/26 13:17:43 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ typedef struct s_bananas
 	bool	is_rdr;
 	bool	is_dog;
 	bool	rdr_in_pipe;
-	bool	invalid_cmd;
-	int		inval_i;
 
 	int		*in_files;
 	int		*out_files;

@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 10:14:58 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/26 11:31:40 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/26 13:24:32 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ static bool	path_handler(t_bananas *bana, char **envp, int i)
 		return (false);
 	}
 	bana->cmd_paths[i] = get_path(cmd[0], envp);
-	if(bana->cmd_paths[i] == NULL)
-		bana->invalid_cmd = true;
 	free_line(cmd, -1);
 	return (true);
 }
