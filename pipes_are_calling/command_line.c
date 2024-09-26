@@ -6,13 +6,13 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 10:14:58 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/25 12:08:29 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/26 13:24:32 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static bool	path_handler(t_bananas *bana, char **envp, char *path, int i)
+static bool	path_handler(t_bananas *bana, char **envp, int i)
 {
 	char	**cmd;
 
@@ -23,8 +23,7 @@ static bool	path_handler(t_bananas *bana, char **envp, char *path, int i)
 		bana->cmd_paths = NULL;
 		return (false);
 	}
-	path = get_path(cmd[0], envp);
-	bana->cmd_paths[i] = path;
+	bana->cmd_paths[i] = get_path(cmd[0], envp);
 	free_line(cmd, -1);
 	return (true);
 }
@@ -49,7 +48,6 @@ bool	parse_cmd_line(t_bananas *bana, char **envp)
 {
 	int		i;
 	char	**cmd;
-	char	*path;
 
 	i = 0;
 	if (!init_path(bana))
@@ -58,7 +56,7 @@ bool	parse_cmd_line(t_bananas *bana, char **envp)
 	{	
 		if (!check_specials(bana->token[i]))
 		{
-			if (!path_handler(bana, envp, path, i))
+			if (!path_handler(bana, envp, i))
 				return (false);
 			i++;
 		}

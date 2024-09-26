@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 18:12:07 by etaattol          #+#    #+#             */
-/*   Updated: 2024/09/25 14:26:19 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/26 13:17:43 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,7 +215,7 @@ void	clean_n_errors(t_bananas *bana);
 void	clean_banana(t_bananas *bana);
 void	exiting(t_bananas *bana, int i);
 bool	return_n_free(char **tokens);
-void	clean_env_only(t_bananas *bana);
+void	clean_path(t_bananas *bana);
 
 /* ************************************************************************** */
 /*							        freeing   	        					  */
@@ -240,6 +240,8 @@ void	free_line(char **paths, int arc);
 void	clean_n_errors(t_bananas *bana);
 
 // command_line.c
+
+void	invalid_command(t_bananas *bana);
 
 bool	parse_cmd_line(t_bananas *bana, char **envp);
 

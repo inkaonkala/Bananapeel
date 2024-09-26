@@ -6,11 +6,21 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:16:45 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/25 12:10:13 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/26 13:17:26 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+static void	set_null(t_bananas *bana)
+{
+	int	h;
+
+	h = 0;
+	while (bana->token[h])
+		h++;
+	bana->token[h] = NULL;
+}
 
 static bool	check_dog(t_bananas *bana, int i)
 {	
@@ -61,6 +71,7 @@ bool	banananice(t_bananas *bana, char **tokens, int token_index)
 {
 	tokens[token_index] = NULL;
 	bana->token = tokens;
+	set_null(bana);
 	bana->tok_num = token_index;
 	bana->is_pipe = false;
 	bana->is_rdr = false;

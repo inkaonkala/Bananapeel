@@ -104,6 +104,7 @@ static bool	dora_is_exploring(t_bananas *bana)
 
 void	command_search(t_bananas *bana, char **envp, t_node **env)
 {
+	clean_path(bana);
 	if (!bana->is_rdr && !bana->is_pipe)
 		built_ins(bana);
 	if (bana->tok_num > 0)
