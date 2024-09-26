@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bananapeel.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 13:11:18 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/25 14:31:44 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/26 14:51:29 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void	add_to_bana(t_bananas *bana)
 		exit(1);
 	}
 	bana->last_exit_status = 0;
+	bana->cmd_paths = NULL;
 }
 
 static bool	shell_loop(t_bananas *bana, char *input)

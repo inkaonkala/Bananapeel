@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_store.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:05:09 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/24 15:15:24 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/26 14:47:22 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ static char	*expand_var_value(char *str, t_node *env, t_bananas *bana)
 	t_node	*temp_node;
 	char	*var_name;
 
+	dprintf(2, "in expand_var");
 	var_name = get_var_name(str);
 	if (!var_name)
 		return (str);
@@ -110,6 +111,6 @@ char	*dollar_check(char *str, t_node *env, t_bananas *bana)
 			return (expand_var_value(dollar_ptr, env, bana));
 		i++;
 	}
-	free(dollar_ptr);
+	// free(dollar_ptr);
 	return (str);
 }

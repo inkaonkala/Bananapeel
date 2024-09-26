@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_n_exit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 09:07:07 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/26 12:47:05 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/26 14:55:43 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,13 @@ void	clean_path(t_bananas *bana)
 {
 	int	b;
 
-	b = 0;
+	b = -1;
 	if (bana->cmd_paths != NULL)
 	{
-		while (bana->cmd_paths[b] != NULL)
+		while (bana->cmd_paths[b++])
 		{
 			free(bana->cmd_paths[b]);
 			bana->cmd_paths[b] = NULL;
-			b++;
 		}
 		free(bana->cmd_paths);
 		bana->cmd_paths = NULL;
