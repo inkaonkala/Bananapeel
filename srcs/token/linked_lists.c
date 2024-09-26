@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 14:29:28 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/26 12:54:45 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/26 15:34:44 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	remove_node(t_bananas *bana, const char *key)
 {
 	t_node	*current;
-	// t_node	*temp;
 
 	current = bana->env;
 	while (current->prev)
