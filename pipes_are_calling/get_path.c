@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 14:47:58 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/18 10:39:36 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/26 12:11:46 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ static char	*const_and_check(char *paths, char *path_name)
 	char	*oneline;
 	char	*full_path;
 
+	if (paths == NULL && path_name == NULL)
+		return (NULL);
 	oneline = ft_strjoin(paths, "/");
 	if (!oneline)
 		return (NULL);
@@ -77,5 +79,6 @@ char	*get_path(char *path_name, char **envp)
 		}
 		i++;
 	}
-	return (free_line(paths, -1), NULL);
+	free_line(paths, -1);
+	return (NULL);
 }

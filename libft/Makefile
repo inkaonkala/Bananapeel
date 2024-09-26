@@ -26,7 +26,7 @@ CFILES = ft_memset.c \
 		 ft_strchr.c \
 		 ft_strrchr.c \
 		 ft_strnstr.c \
-		 strcmp.c \
+		 ft_strcmp.c \
 		 ft_strncmp.c \
 		 ft_atoi.c \
 		 ft_itoa.c \
@@ -56,7 +56,7 @@ CFILES = ft_memset.c \
 		 cast_hex.c \
 		 cast_dec.c \
 		 printp.c \
-		 get_next_line.c 	
+		 get_next_line.c \
 		 
 ANSI_BLUE := \033[0;34m
 ANSI_RED :=	\033[31m

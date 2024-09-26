@@ -3,14 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   clean_n_exit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 09:07:07 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/25 14:57:15 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/26 12:47:05 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+void	clean_path(t_bananas *bana)
+{
+	int	b;
+
+	b = 0;
+	if (bana->cmd_paths != NULL)
+	{
+		while (bana->cmd_paths[b] != NULL)
+		{
+			free(bana->cmd_paths[b]);
+			bana->cmd_paths[b] = NULL;
+			b++;
+		}
+		free(bana->cmd_paths);
+		bana->cmd_paths = NULL;
+	}
+}
 
 void	exiting(t_bananas *bana, int i)
 {
@@ -20,6 +38,7 @@ void	exiting(t_bananas *bana, int i)
 
 void	clean_banana(t_bananas *bana)
 {
+	clean_path(bana);
 	clean_struct(bana);
 	free_env(&bana->env);
 	if (bana->envp)
