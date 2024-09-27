@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_ins_helpers.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 10:20:14 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/25 14:35:01 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/27 19:25:22 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,12 @@ void	handle_unset(t_bananas *bana)
 
 t_node	*find_key(char *key, t_node *env)
 {
+	while (env)
+	{
+		if (env->prev == NULL)
+			break ;
+		env = env->prev;
+	}
 	while (env)
 	{
 		if (!ft_strcmp(env->key, key))

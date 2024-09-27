@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:05:09 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/27 13:57:27 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/27 20:01:34 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,8 @@ static char	*expand_exit_status(char *str, t_bananas *bana)
 	temp_str = ft_itoa(bana->last_exit_status);
 	if (!temp_str)
 		return (str);
-	if (ft_strlen(temp_str) <= ft_strlen(str))
-		ft_strlcpy(str, temp_str, ft_strlen(temp_str) + 1);
-	else
-		str = temp_str;
-	free(temp_str);
-	return (str);
+	free(str);
+	return (temp_str);
 }
 
 static char	*get_var_name(char *str)
@@ -50,22 +46,6 @@ static char	*get_var_name(char *str)
 	return (var_name);
 }
 
-static char	*copy_or_allocate(char *str, char *value)
-{
-	size_t	value_len;
-	char	*temp_str;
-
-	value_len = ft_strlen(value);
-	if (value_len <= ft_strlen(str))
-		ft_strlcpy(str, value, value_len + 1);
-	else
-	{
-		temp_str = ft_strdup(value);
-		str = temp_str;
-	}
-	return (str);
-}
-
 static char	*expand_var_value(char *str, t_node *env, t_bananas *bana)
 {
 	char	*temp;
@@ -73,23 +53,42 @@ static char	*expand_var_value(char *str, t_node *env, t_bananas *bana)
 	char	*var_name;
 
 	del_quotes_from_tok(str);
-	temp = str;
-	var_name = get_var_name(temp);
+	var_name = get_var_name(str);
 	if (!var_name)
-		return (temp);
+		return (str);
 	temp_node = find_key(var_name, env);
 	if (temp_node && temp_node->value)
-		temp = copy_or_allocate(temp, temp_node->value);
+		temp = ft_strdup(temp_node->value);
 	else if (ft_strcmp(var_name, "?") == 0)
-		temp = expand_exit_status(temp, bana);
+		temp = expand_exit_status(str, bana);
 	else
 	{
 		printf("Variable not found or has no value: %s\n", var_name);
-		temp = ft_strdup("");
+		temp = NULL;
+	}
+	free(var_name);
+	if (!temp)
+	{
+		return (str);
 	}
 	free(str);
-	free(var_name);
 	return (temp);
+}
+
+char	*handle_dollar(char *str, t_node *env, t_bananas *bana, int i)
+{
+	char	*result;
+
+	if (str[i + 1] == '?')
+	{
+		result = ft_itoa(bana->last_exit_status);
+		if (!result)
+			return (str);
+		free(str);
+		return (result);
+	}
+	result = NULL;
+	return (expand_var_value(str, env, bana));
 }
 
 char	*dollar_check(char *str, t_node *env, t_bananas *bana)
@@ -98,7 +97,6 @@ char	*dollar_check(char *str, t_node *env, t_bananas *bana)
 	int		s_quote;
 	int		d_quote;
 	char	*dollar_ptr;
-	int		dollar_pos;
 
 	i = 0;
 	s_quote = 0;
@@ -106,15 +104,15 @@ char	*dollar_check(char *str, t_node *env, t_bananas *bana)
 	dollar_ptr = ft_strchr(str, 36);
 	if (!dollar_ptr)
 		return (str);
-	dollar_pos = dollar_ptr - str;
 	while (str[i])
 	{
 		if (str[i] == '\'' && !d_quote)
 			s_quote = !s_quote;
 		else if (str[i] == '"')
 			d_quote = !d_quote;
-		if (i == dollar_pos && (!s_quote || (s_quote && d_quote)))
-			return (expand_var_value(str, env, bana));
+		if (&str[i] == dollar_ptr)
+			if (!s_quote || (s_quote && d_quote))
+				return (handle_dollar(str, env, bana, i));
 		i++;
 	}
 	return (str);
