@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:05:09 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/27 11:50:24 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/27 13:57:27 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ static char	*expand_var_value(char *str, t_node *env, t_bananas *bana)
 		printf("Variable not found or has no value: %s\n", var_name);
 		temp = ft_strdup("");
 	}
+	free(str);
 	free(var_name);
 	return (temp);
 }
