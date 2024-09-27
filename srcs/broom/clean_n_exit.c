@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 09:07:07 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/26 15:32:34 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/27 15:27:31 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void	clean_path(t_bananas *bana)
 	int	b;
 
 	b = 0;
-	if (!bana->nonsense)
+	if (bana->nonsense)
 		return ;
 	if (bana->cmd_paths != NULL)
 	{
-		while (bana->cmd_paths[b])
+		while (b < bana->tok_num && bana->cmd_paths[b] != NULL)
 		{
 			free(bana->cmd_paths[b]);
 			bana->cmd_paths[b] = NULL;
