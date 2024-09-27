@@ -6,7 +6,7 @@
 /*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 09:23:36 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/26 11:53:26 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/27 13:43:32 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	token_cleaner(t_bananas *bana, int i)
 {
 	if (bana->token == NULL || i >= bana->tok_num)
 		return ;
+	bana->token[i] = NULL;
 	free(bana->token[i]);
 	while (i < bana->tok_num - 1)
 	{

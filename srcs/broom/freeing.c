@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   freeing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:50:14 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/26 15:33:30 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/27 13:52:45 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ void	free_array(char ***paths, int arc)
 	i = 0;
 	if (arc == -1)
 	{
-		while (paths[i] != NULL)
+		while ((*paths)[i] != NULL)
 		{
-			free(*paths[i]);
+			free((*paths)[i]);
 			i++;
 		}
 	}
@@ -73,8 +73,8 @@ void	free_array(char ***paths, int arc)
 	{
 		while (i < arc)
 		{
-			if (*paths[i] != NULL)
-				free((*paths[i]));
+			if ((*paths)[i] != NULL)
+				free(((*paths)[i]));
 			i++;
 		}
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_checker.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:41:54 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/26 15:32:10 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/27 13:14:14 by iniska           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,5 +121,3 @@ void	command_search(t_bananas *bana, char **envp, t_node **env)
 	clean_path(bana);
 	clean_struct(bana);
 }
-
-	// clean_path(bana);
