@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_ins.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:52:07 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/26 12:57:32 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/27 11:52:18 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,6 @@ static void	handle_env(t_bananas *bana)
 		token_cleaner(bana, 0);
 	if (bana->is_rdr)
 		exit (0);
-}
-
-void	print_tokens(t_bananas *bana)
-{
-	int	i;
-
-	i = 0;
-	dprintf(2, "tok_num:%d\n", bana->tok_num);
-	while (i < bana->tok_num)
-	{
-		dprintf(2, "Token#%d: %s\n", i + 1, bana->token[i]);
-		i++;
-	}
 }
 
 static void	send_to_bob(t_bananas *bana, char *bi)

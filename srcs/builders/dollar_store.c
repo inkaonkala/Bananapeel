@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:05:09 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/26 16:45:05 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/27 11:50:24 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ static char	*expand_var_value(char *str, t_node *env, t_bananas *bana)
 	t_node	*temp_node;
 	char	*var_name;
 
+	del_quotes_from_tok(str);
 	temp = str;
 	var_name = get_var_name(temp);
 	if (!var_name)
@@ -112,7 +113,7 @@ char	*dollar_check(char *str, t_node *env, t_bananas *bana)
 		else if (str[i] == '"')
 			d_quote = !d_quote;
 		if (i == dollar_pos && (!s_quote || (s_quote && d_quote)))
-			return (expand_var_value(dollar_ptr, env, bana));
+			return (expand_var_value(str, env, bana));
 		i++;
 	}
 	return (str);

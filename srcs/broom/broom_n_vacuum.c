@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   broom_n_vacuum.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iniska <iniska@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 09:23:36 by iniska            #+#    #+#             */
-/*   Updated: 2024/09/26 11:53:26 by iniska           ###   ########.fr       */
+/*   Updated: 2024/09/27 11:51:30 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	token_cleaner(t_bananas *bana, int i)
 	if (bana->token == NULL || i >= bana->tok_num)
 		return ;
 	free(bana->token[i]);
+	bana->token[i] = NULL;
 	while (i < bana->tok_num - 1)
 	{
 		bana->token[i] = bana->token[i + 1];
