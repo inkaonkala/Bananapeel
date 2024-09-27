@@ -6,7 +6,7 @@
 /*   By: jbremser <jbremser@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:10:17 by jbremser          #+#    #+#             */
-/*   Updated: 2024/09/26 16:06:01 by jbremser         ###   ########.fr       */
+/*   Updated: 2024/09/27 15:43:54 by jbremser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 
 static void	lone_export(t_bananas *bana, t_node *env)
 {
+	while (env)
+	{
+		if (env->prev == NULL)
+			break;	
+		env = env->prev;
+	}
 	while (env)
 	{
 		if (env->value)
